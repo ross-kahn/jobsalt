@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Alumni";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1>Alumni</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+@for (int i = 0; i < 3; i++)
+{
+    <div class="container" data-toggle="collapse" data-target="#collapsable@(i)">
+        <div class="well">
+            <h2><a>test @i</a></h2>
+            <div id="collapsable@(i)" class="collapse">
+                <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+                <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+}

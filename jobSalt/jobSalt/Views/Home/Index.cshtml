@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+    
+ <div class="container">
+    <div class="jumbotron">
+        <h1>Job Search</h1>
+        @using (Html.BeginForm("Index", "Home"))
+        {
+           @Html.TextBox("query")
+            <button type="submit" class="btn btn-primary btn-large">Search</button>
+        }
+    </div>
+</div>
