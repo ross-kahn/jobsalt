@@ -10,9 +10,15 @@ namespace jobSalt.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            Models.Filter[] farray = {new Models.Filter(Models.Filter.FilterType.Keyword, "Java")};
 
-            return View();
+            Models.Indeed_Module indeed = new Models.Indeed_Module();
+            Models.IndeedJobPost[] temp = indeed.GetResults(farray).Results;
+            return View( temp);
+
+            /**ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+
+            return View();**/
         }
 
         public ActionResult About()
