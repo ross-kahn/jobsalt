@@ -5,27 +5,17 @@ using System.Web;
 
 namespace jobSalt.Models
 {
+    public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, Description, FieldOfStudy}
+
     public class Filter
     {
+        public Field TargetField { get; private set; }
+        public String Value { get; private set; }
 
-        public enum FilterType
+        public Filter(Field targetField, String value)
         {
-            Company_Name,
-            Job_Title,
-            Keyword,
-            Location,
-            Salary
+            this.TargetField = targetField;
+            this.Value = value;
         }
-
-        public FilterType type { get; set; }
-
-        public string value { get; set; }
-
-        public Filter(FilterType Type, string Value)
-        {
-            type = Type;
-            value = Value;
-        }
-
     }
 }
