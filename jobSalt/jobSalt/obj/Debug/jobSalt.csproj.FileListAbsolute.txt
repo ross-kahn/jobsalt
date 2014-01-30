@@ -217,3 +217,4 @@ C:\Users\Ross\Documents\GitHub\jobsalt\jobSalt\jobSalt\bin\DotNetOpenAuth.OpenId
 C:\Users\Ross\Documents\GitHub\jobsalt\jobSalt\jobSalt\bin\DotNetOpenAuth.OpenIdOAuth.xml
 C:\Users\Ross\Documents\GitHub\jobsalt\jobSalt\jobSalt\bin\Org.Mentalis.Security.Cryptography.xml
 C:\Users\Ross\Documents\GitHub\jobsalt\jobSalt\jobSalt\bin\Mono.Math.xml
+C:\Users\Ross\Documents\GitHub\jobsalt\jobSalt\jobSalt\obj\Debug\jobSalt.csprojResolveAssemblyReference.cache
