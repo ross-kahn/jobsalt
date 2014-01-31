@@ -15,21 +15,21 @@ namespace jobSalt.Models
         {
 
             // Create a dictionary with Key => FilterType and Value => The actual filter
-            Dictionary<Filter.FilterType, List<string>> FilterHash = new Dictionary<Filter.FilterType, List<string>>();
+            Dictionary<Field, List<string>> FilterHash = new Dictionary<Field, List<string>>();
 
             // Iterate through the list of filters and parse into the filter hash
             foreach (Filter filter in filters)
             {
                 // If the key exists, add the corresponding filter to the end of the list for that type
-                if (FilterHash.ContainsKey(filter.type))
+                if (FilterHash.ContainsKey(filter.TargetField))
                 {
-                    FilterHash[filter.type].Add(filter.value);
+                    FilterHash[filter.TargetField].Add(filter.Value);
                 }
                 else // Create a new list
                 {
                     List<string> list = new List<string>();
-                    list.Add(filter.value);
-                    FilterHash[filter.type] = list;
+                    list.Add(filter.Value);
+                    FilterHash[filter.TargetField] = list;
                 }
             }
 
@@ -50,21 +50,21 @@ namespace jobSalt.Models
          * build it using the filters provided. If no filter is provided for a 
          * particular tag, it uses its default
          **/
-        private string buildRequest(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string buildRequest(Dictionary<Field, List<string>> FilterHash)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(Constants.INDEED_REQUEST_BASE);
 
             builder.Append(build_tag_query(FilterHash));
-            /**foreach (Filter.FilterType key in FilterHash.Keys){
+            /**foreach (Field key in FilterHash.Keys){
                 switch (key)
                 {
                         
-                    case Filter.FilterType.Company_Name:
+                    case Field.Company_Name:
                         break;
-                    case Filter.FilterType.Job_Title:
+                    case Field.Job_Title:
                         break;
-                    case Filter.FilterType.Keyword:
+                    case Field.Keyword:
                         break;
                 }
             }**/
@@ -88,7 +88,7 @@ namespace jobSalt.Models
 
         #region Tag String Builders
 
-        private string build_tag_version(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_version(Dictionary<Field, List<string>> FilterHash)
         {
             return "&v=2";
         }
@@ -101,90 +101,90 @@ namespace jobSalt.Models
         // Indeed supports advanced search, which (depending on how you wanted the search criteria)
         // would change how this string is formated for the request. For now, it's formatted in
         // the default way, which is putting a logical "AND" on each of the search words
-        private string build_tag_query(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_query(Dictionary<Field, List<string>> FilterHash)
         {
             string tag = "&q=";
 
             // Joins the query strings together into an 'AND' format for the request
-            if (FilterHash.ContainsKey(Filter.FilterType.Keyword))
+            if (FilterHash.ContainsKey(Field.Keyword))
             {
-                tag = tag + String.Join("+", FilterHash[Filter.FilterType.Keyword]);
+                tag = tag + String.Join("+", FilterHash[Field.Keyword]);
             }
             
             return tag;
         }
 
-        private string build_tag_location(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_location(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_sort(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_sort(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_radius(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_radius(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_sitetype(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_sitetype(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_jobtype(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_jobtype(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_start(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_start(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_limit(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_limit(Dictionary<Field, List<string>> FilterHash)
         {
             return "&limit="+ Constants.RESULT_LIMIT;
         }
 
-        private string build_tag_fromage(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_fromage(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_highlight(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_highlight(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_filter(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_filter(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_latlong(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_latlong(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_country(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_country(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_chnl(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_chnl(Dictionary<Field, List<string>> FilterHash)
         {
             return "v=";
         }
 
-        private string build_tag_userip(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_userip(Dictionary<Field, List<string>> FilterHash)
         {
             return "&userip=1.2.3.4";
         }
 
-        private string build_tag_useragent(Dictionary<Filter.FilterType, List<string>> FilterHash)
+        private string build_tag_useragent(Dictionary<Field, List<string>> FilterHash)
         {
             return "&useragent=Mozilla/%2F4.0%28Firefox%29";
         }

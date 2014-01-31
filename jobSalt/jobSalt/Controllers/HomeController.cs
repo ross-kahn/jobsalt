@@ -10,7 +10,7 @@ namespace jobSalt.Controllers
     {
         public ActionResult Index()
         {
-            Models.Filter[] farray = {new Models.Filter(Models.Filter.FilterType.Keyword, "Java")};
+            Models.Filter[] farray = {new Models.Filter(Models.Field.Keyword, "Java")};
 
             Models.Indeed_Module indeed = new Models.Indeed_Module();
             Models.IndeedJobPost[] temp = indeed.GetResults(farray).Results;

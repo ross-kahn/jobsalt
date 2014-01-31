@@ -9,11 +9,11 @@ namespace jobSalt.Models
     {
         public Source Source { get; set; }
         public DateTime DatePosted { get; set; }
-        public String Company { get; set; }
-        public String JobTitle { get; set; }
+        public string Company { get; set; }
+        public string JobTitle { get; set; }
         public Location Location { get; set; }
-        public String Salary { get; set; }
-        public String Description { get; set; }
-        public String FieldOfStudy { get; set; }
+        public string Salary { get; set; }
+        public string Description { get; set; }
+        public string FieldOfStudy { get; set; }
     }
 }
