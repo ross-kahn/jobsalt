@@ -13,7 +13,7 @@ namespace jobSalt.Controllers
 
         public ActionResult Index()
         {
-            return View(shepard.GetJobs(new List<Models.Filter>(), 1).ToArray());
+            return View(shepard.GetJobs(new List<Models.Filter>(), 1, 10).ToArray());
         }
 
     }
