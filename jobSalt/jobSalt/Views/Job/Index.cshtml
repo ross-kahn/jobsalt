@@ -1,4 +1,4 @@
-﻿@model jobSalt.Models.IndeedJobPost[]
+﻿@model jobSalt.Models.JobPost[]
 @{
     ViewBag.Title = "Home Page";
 }
@@ -6,7 +6,7 @@
  <div class="container">
     <div class="jumbotron">
         <h1>Job Search</h1>
-        @using (Html.BeginForm("Index", "Home"))
+        @using (Html.BeginForm("Index", "Job"))
         {
            @Html.TextBox("query")
            <input type="submit" value="Search" />
@@ -21,11 +21,11 @@
             <h2>@Model[i].Company</h2>
             <h3>@Model[i].JobTitle</h3>
             <div id="collapsable@(i)" class="collapse">
-                <p>@Html.Raw(Model[i].Snippet)</p>
-                <b>Location:</b> @Model[i].FormattedLocationFull<br />
-                <b>Posted On:</b> @Model[i].Date.ToShortDateString()<br />
+                <p>@Html.Raw(Model[i].Description)</p>
+                <b>Location:</b> @Model[i].Source.Name<br />
+                <b>Posted On:</b> @Model[i].DatePosted.ToShortDateString()<br />
                 <br />
-                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
+                <a href="@Model[i].Source.URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
             </div>
         </div>
     </div>
