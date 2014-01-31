@@ -5,7 +5,7 @@ using System.Web;
 
 namespace jobSalt.Models
 {
-    public enum Field { Keyword, Source, Date, CompanyName, JobTitle, Location, Salary, Description, FieldOfStudy}
+    public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, Description, FieldOfStudy, Query};
 
     public class Filter
     {

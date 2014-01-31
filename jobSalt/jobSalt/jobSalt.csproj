@@ -255,9 +255,10 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Filter.cs" />
-    <Compile Include="Models\Indeed_Module.cs" />
-    <Compile Include="Models\JobShepard.cs" />
-    <Compile Include="Models\LinkedIn_Module.cs" />
+    <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
+    <Compile Include="Models\Modules\Jobs\Indeed_Module.cs" />
+    <Compile Include="Models\Modules\Jobs\JobShepard.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn_Module.cs" />
     <Compile Include="Models\AlumniPost.cs" />
     <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\Location.cs" />
