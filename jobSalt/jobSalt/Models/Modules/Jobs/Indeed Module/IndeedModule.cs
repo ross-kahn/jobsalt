@@ -17,7 +17,7 @@ namespace jobSalt.Models
             builder = new IndeedQueryBuilder();
         }
 
-        public List<JobPost> GetJobs(List<Filter> filters, int page)
+        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
         {
             Dictionary<Field, List<string>> filterHash = Filter.FilterListToDictionary(filters);
 
