@@ -37,7 +37,23 @@ namespace jobSalt.Models.Modules.Jobs
 
         public async List<JobPost> GetJobs(List<Filter> filters, int page)
         {
-            throw new NotImplementedException();
+            //Ignoring the Filters for now
+            List<JobPost> jobs = new List<JobPost>();
+            Random r = new Random();
+            for (int i = 0; i < page; i++)
+            {
+                JobPost post = new JobPost();
+                post.Company = "Microsoft";
+                post.DatePosted = DateTime.Now;
+                post.Description = "A real job you want to apply for " + r.Next(50);
+                post.FieldOfStudy = "Software Engineering";
+                post.JobTitle = "Taco Technician";
+                post.Location = new Location("14623", States.NY, "Rochester");
+                post.Salary = (r.NextDouble() * 1000).ToString();
+                post.Source = "School Database";
+                jobs.Add(post);
+            }
+            return jobs;
         }
     }
 }
