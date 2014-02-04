@@ -11,7 +11,7 @@ using DotNetOpenAuth.OpenId.Extensions.OAuth;
 
 namespace jobSalt.Models
 {
-    public class LinkedIn_Module
+    public class LinkedInModule
     {
         /**
 

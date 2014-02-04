@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +18,7 @@ namespace jobSalt.Models.Modules.Jobs
         /// <summary>
         /// The name to display to the user for this data source
         /// </summary>
-        string DisplayName { get; set; }
+        string DisplayName { get; }
 
         /// <summary>
         /// Asyncronously grap a set of job postings based off of the given filters and page number.
@@ -27,6 +27,6 @@ namespace jobSalt.Models.Modules.Jobs
         /// <param name="page">What page number of results to grab</param>
         /// <returns>The job postings. If less results are returned than ResultsPerPage then it is assumed
         /// that this module has no more results to provide.</returns>
-        async List<JobPost> GetJobs(List<Filter> filters, int page);
+        List<JobPost> GetJobs(List<Filter> filters, int page);
     }
 }
