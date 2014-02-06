@@ -125,7 +125,11 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.Protocols" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -260,6 +264,9 @@
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\HousingPost.cs" />
+    <Compile Include="Models\Modules\Auth\AuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\ShibbolethAuthModule.cs" />
     <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedJobPost.cs" />
