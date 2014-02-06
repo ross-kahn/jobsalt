@@ -22,8 +22,8 @@ namespace jobSalt.Controllers
 
         public AccountController()
         {
-            modules.Add(new LDAPAuthModule("vpn.kasour.com"));
-            modules.Add(new LDAPAuthModule("dc1.ad.sofse.org"));
+            modules.Add(new LDAPAuthModule("vpn.kasour.com", "KASOUR"));
+            modules.Add(new LDAPAuthModule("dc1.ad.sofse.org", "SOFSE"));
         }
 
         //
