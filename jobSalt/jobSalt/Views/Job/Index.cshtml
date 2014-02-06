@@ -1,8 +1,46 @@
-﻿@model jobSalt.Models.JobPost[]
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
     
+<script type="text/javascript">
+
+    var page = 1;
+    var _inCallback = false;
+
+    function loadProducts() {
+        if (page > -1 && !_inCallback) {
+            
+            _inCallback = true;
+            $('div#loading').html('<p><img src="/Content/Images/loading.gif"></p>');
+            
+            $.get("/Job/Index/?page=" + page, function (data) {
+                if (data != '') {
+                    $("#productList").append(data);
+                }
+                else {
+                    alert("Bad Data");
+                    page = -1;
+                }
+
+                _inCallback = false;
+                $('div#loading').empty();
+            });
+            page++;
+        }
+    }
+
+    loadProducts();
+
+    var dcList = true;
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+            loadProducts();
+        }
+    });
+</script>
+
  <div class="container">
     <div class="jumbotron">
         <h1>Job Search</h1>
@@ -12,21 +50,7 @@
            <input type="submit" value="Search" />
         }
     </div>
-</div>
+     <div id="productList"></div>
 
-@for (int i = 0; i < Model.Count(); i++)
-{
-    <div class="container" data-toggle="collapse" data-target="#collapsable@(i)">
-        <div class="well">
-            <h2>@Model[i].Company</h2>
-            <h3>@Model[i].JobTitle</h3>
-            <div id="collapsable@(i)" class="collapse">
-                <p>@Html.Raw(Model[i].Description)</p>
-                <b>Location:</b> @Model[i].Source.Name<br />
-                <b>Posted On:</b> @Model[i].DatePosted.ToShortDateString()<br />
-                <br />
-                <a href="@Model[i].Source.URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
-            </div>
-        </div>
-    </div>
-}
+     <div id="loading"></div> 
+</div>

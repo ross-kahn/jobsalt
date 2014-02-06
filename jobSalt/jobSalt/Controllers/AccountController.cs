@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using jobSalt.Filters;
 using jobSalt.Models;
+using jobSalt.Models.Modules.Auth;
 
 namespace jobSalt.Controllers
 {
@@ -17,6 +18,14 @@ namespace jobSalt.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        private List<AuthModule> modules = new List<AuthModule>();
+
+        public AccountController()
+        {
+            modules.Add(new LDAPAuthModule("vpn.kasour.com"));
+            modules.Add(new LDAPAuthModule("dc1.ad.sofse.org"));
+        }
+
         //
         // GET: /Account/Login
 
@@ -35,9 +44,17 @@ namespace jobSalt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid)
             {
-                return RedirectToLocal(returnUrl);
+                foreach (AuthModule module in modules)
+                {
+                    if (module.IsValid(model.UserName, model.Password))
+                    {
+                        FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError("", "Login data is incorrect!");
             }
 
             // If we got this far, something failed, redisplay form
@@ -52,8 +69,7 @@ namespace jobSalt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
-
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

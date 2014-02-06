@@ -27,6 +27,7 @@ namespace jobSalt.Models.Modules.Jobs
         {
             modules = new List<IJobModule>();
             modules.Add(new DummyJobModule());
+            modules.Add(new DummyJobModule());
         }
         #endregion // Constructors
 
@@ -38,16 +39,12 @@ namespace jobSalt.Models.Modules.Jobs
             object lockObject = new Object();
 
             Parallel.ForEach(modules,
-                () => new List<JobPost>(),
-                (module, loopState, partialResult) =>
+                (module) =>
                 {
-                    return module.GetJobs(filters, page, resultsPerModule);
-                },
-                (partialResult) =>
-                {
-                    lock (lockObject)
+                    List<JobPost> partialJobs = module.GetJobs(filters, page, resultsPerModule);
+                    lock(lockObject)
                     {
-                        jobs.AddRange(partialResult);
+                        jobs.AddRange(partialJobs);
                     }
                 }
             );

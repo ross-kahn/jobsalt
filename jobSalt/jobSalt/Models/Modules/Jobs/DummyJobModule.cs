@@ -20,7 +20,7 @@ namespace jobSalt.Models.Modules.Jobs
                     DatePosted = DateTime.Now,
                     Description = "Fake Posting",
                     FieldOfStudy = "Fishing",
-                    JobTitle = "Job title",
+                    JobTitle = "Job title " + ((page-1)*resultsPerPage+i),
                     Source = new Source() { Name = "DummyData" }
                 });
             }
