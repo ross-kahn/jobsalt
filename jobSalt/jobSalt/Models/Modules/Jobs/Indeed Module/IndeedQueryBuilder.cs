@@ -25,6 +25,41 @@ namespace jobSalt.Models
             // The required base for all requests
             builder.Append(Constants.INDEED_REQUEST_BASE);
 
+            foreach (Field key in FilterHash.Keys)
+            {
+                switch (key)
+                {
+                    case Field.CompanyName:
+                        break;
+
+                    case Field.Date:
+                        break;
+
+                    case Field.Description:
+                        break;
+
+                    case Field.FieldOfStudy:
+                        break;
+
+                    case Field.JobTitle:
+                        break;
+
+                    case Field.Keyword:
+                        break;
+
+                    case Field.Location:
+                        break;
+
+                    case Field.Salary:
+                        break;
+
+                    case Field.Source:
+                        break;
+
+                    default:
+                        break;
+                }
+            }
 
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format
