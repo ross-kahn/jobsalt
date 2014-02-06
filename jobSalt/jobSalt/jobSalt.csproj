@@ -258,7 +258,6 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Constants.cs" />
-    <Compile Include="Models\Field.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\HousingPost.cs" />
     <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
