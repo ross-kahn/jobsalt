@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel;
-using System.IdentityModel.Protocols.WSTrust;
 using System.IdentityModel.Tokens;
 using System.IO;
 using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Xml;
+using Microsoft.IdentityModel.Claims;
+using Microsoft.IdentityModel.Protocols.WSTrust;
+using Microsoft.IdentityModel.SecurityTokenService;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens.Saml2;
 
 namespace jobSalt.Models.Modules.Auth
 {
