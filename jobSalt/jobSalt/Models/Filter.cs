@@ -66,7 +66,7 @@ namespace jobSalt.Models
 				}
 
 			//return
-			return queryString as String;
+            return queryString.ToString();
 			}
 
 

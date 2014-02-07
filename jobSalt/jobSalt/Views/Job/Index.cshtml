@@ -1,45 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-    
-<script type="text/javascript">
 
-    var page = 1;
-    var _inCallback = false;
-
-    function loadProducts() {
-        if (page > -1 && !_inCallback) {
-            
-            _inCallback = true;
-            $('div#loading').html('<p><img src="/Content/Images/loading.gif"></p>');
-            
-            $.get("/Job/Index/?page=" + page, function (data) {
-                if (data != '') {
-                    $("#productList").append(data);
-                }
-                else {
-                    alert("Bad Data");
-                    page = -1;
-                }
-
-                _inCallback = false;
-                $('div#loading').empty();
-            });
-            page++;
-        }
-    }
-
-    loadProducts();
-
-    var dcList = true;
-
-    $(window).scroll(function () {
-        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-
-            loadProducts();
-        }
-    });
-</script>
 
  <div class="container">
     <div class="jumbotron">
@@ -54,3 +16,45 @@
 
      <div id="loading"></div> 
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            loadProducts();
+        });
+
+        var page = 1;
+        var _inCallback = false;
+
+        function loadProducts() {
+            if (page > -1 && !_inCallback) {
+                _inCallback = true;
+            
+                $('div#loading').html('<p><img src="/Content/images/loading.gif"></p>');
+                $.get("/Job/Index?page=" + page, function (data) {
+                    if (data != '') {
+                        $("#productList").append(data);
+                    }
+                    else {
+                        page = -1;
+                    }
+
+                    _inCallback = false;
+                    $('div#loading').empty();
+                });
+                page++;
+            }
+        }
+
+        var dcList = true;
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+                loadProducts();
+            }
+        });
+    </script>
+}

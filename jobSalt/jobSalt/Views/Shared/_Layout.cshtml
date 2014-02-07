@@ -6,9 +6,6 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/bootstrap.min.css")
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        @Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
         @Scripts.Render("~/Scripts/bootstrap.min.js")
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +37,7 @@
 
         @RenderBody();
         
-
+        @Scripts.Render("~/bundles/jquery");
+        @RenderSection("scripts", required: false)
     </body>
 </html>
