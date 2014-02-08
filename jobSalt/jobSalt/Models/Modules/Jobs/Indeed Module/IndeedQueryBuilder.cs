@@ -17,13 +17,15 @@ namespace jobSalt.Models
         private const string USER_AGENT = "Mozilla/%2F4.0%28Firefox%29";
 
 
-        public string buildQuery(Dictionary<Field, List<string>> FilterHash)
+        public string buildQuery(Dictionary<Field, List<string>> FilterHash, int page, int resultsPerPage)
         {
             // String builder, (arguably) more efficient than concatenating strings
             StringBuilder builder = new StringBuilder();
 
             // The required base for all requests
             builder.Append(Constants.INDEED_REQUEST_BASE);
+            builder.Append("&start=" + page * resultsPerPage);
+            builder.Append("&limit=" + resultsPerPage);
 
             foreach (Field key in FilterHash.Keys)
             {
@@ -45,6 +47,7 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Keyword:
+                        builder.Append("&q=\"" + FilterHash[key][0] + "\"");
                         break;
 
                     case Field.Location:

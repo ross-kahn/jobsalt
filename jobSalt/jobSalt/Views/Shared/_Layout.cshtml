@@ -5,6 +5,9 @@
         <title>jobSalt</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
+        @Scripts.Render("~/bundles/jquery");
+        @RenderSection("scripts", required: false)
+
         @Styles.Render("~/Content/bootstrap.min.css")
         @Scripts.Render("~/Scripts/bootstrap.min.js")
 
@@ -36,8 +39,5 @@
         </div>
 
         @RenderBody();
-        
-        @Scripts.Render("~/bundles/jquery");
-        @RenderSection("scripts", required: false)
     </body>
 </html>

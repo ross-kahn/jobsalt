@@ -21,9 +21,7 @@ namespace jobSalt.Models
         {
             Dictionary<Field, List<string>> filterHash = Filter.FilterListToDictionary(filters);
 
-            //string request = buildRequest(filterHash);
-
-            string request = builder.buildQuery(filterHash);
+            string request = builder.buildQuery(filterHash, page, resultsPerPage);
 
             IndeedResult iResult;
             using (var client = new WebClient())
@@ -55,18 +53,6 @@ namespace jobSalt.Models
             }
             return results;
         }
-
-        /** The order that the request is built in matters; tags that are empty
-         * also need to be included in the request. Because of those two things,
-         * this method goes one-by-one through each required tag and attempts to
-         * build it using the filters provided. If no filter is provided for a 
-         * particular tag, it uses its default
-         **/
-        private string buildRequest(Dictionary<Field, List<string>> FilterHash)
-        {
-            return builder.buildQuery(FilterHash);
-        }
-
 
         // TODO: ONLY PASS IN THE LIST OF STRINGS, NOT THE ENTIRE DICTIONARY -Ross
 

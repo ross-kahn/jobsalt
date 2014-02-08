@@ -6,11 +6,12 @@
  <div class="container">
     <div class="jumbotron">
         <h1>Job Search</h1>
-        @using (Html.BeginForm("Index", "Job"))
-        {
+        <form action="/" method="get" onsubmit="submitQuery">
            @Html.TextBox("query")
-           <input type="submit" value="Search" />
-        }
+           <input type="submit" value="Search"/>
+            <!-- This is the simplest way to transfer ViewBag data to javascript -->
+            <input type="hidden" id="filterStrings" value="@ViewBag.Filters" />
+        </form>
     </div>
      <div id="productList"></div>
 
@@ -21,19 +22,22 @@
 {
     <script type="text/javascript">
 
-        $(document).ready(function () {
+        $(window).load(function () {
             loadProducts();
         });
 
-        var page = 1;
+        var page = 0;
         var _inCallback = false;
+
+        @using jobSalt.Models;
 
         function loadProducts() {
             if (page > -1 && !_inCallback) {
                 _inCallback = true;
             
                 $('div#loading').html('<p><img src="/Content/images/loading.gif"></p>');
-                $.get("/Job/Index?page=" + page, function (data) {
+                var filters = $("#filterStrings").val();
+                $.get("/Job/Index?page=" + page + "&filterStrings=" + filters, function (data) {
                     if (data != '') {
                         $("#productList").append(data);
                     }

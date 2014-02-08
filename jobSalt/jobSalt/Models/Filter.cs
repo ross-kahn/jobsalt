@@ -69,6 +69,44 @@ namespace jobSalt.Models
             return queryString.ToString();
 			}
 
+        /// <summary>
+        /// Takes a list of filters given in their query format and converts them into a 
+        /// list of Filter objects.
+        /// </summary>
+        /// <param name="filterStrings">The filters query string to create a list from</param>
+        /// <returns>A list of filters built off the query string</returns>
+        public static List<Filter> FilterQueryStringToList(String filterStrings)
+        {
+            List<Filter> filters = new List<Filter>();
 
+            if (filterStrings != null)
+            {
+
+                //fill filters with filters from filterStrings
+                foreach (string filterString in filterStrings.Split(new Char[] { '{', '}' })) //split into individual filter strings first
+                {
+                    //split current filter string into a string array {targetFiled,value}
+                    String[] currentFilterString = filterString.Split(new char[] { ',' });
+
+                    if (currentFilterString.Length == 2 && Enum.IsDefined(typeof(Models.Field), currentFilterString[0]))
+                    {
+
+                        //get target field from Enum
+                        Models.Field targetField = (Models.Field)Enum.Parse(typeof(Models.Field), currentFilterString[0]);
+
+                        //build the current filter
+                        Models.Filter filter = new Models.Filter(targetField, currentFilterString[1]);
+
+                        //if the filter is not already in the filter list, add it.
+                        if (!filters.Any(a => a.TargetField.Equals(filter.TargetField) && a.Value.Equals(filter.Value)))
+                        {
+                            filters.Add(filter);
+                        }
+                    }
+                }
+            }
+
+            return filters;
+        }
     }
 }
