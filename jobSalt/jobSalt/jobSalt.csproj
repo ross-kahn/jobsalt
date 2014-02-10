@@ -258,6 +258,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\FilterUtilityController.cs" />
+    <Compile Include="Models\FilterUtility.cs" />
     <Compile Include="Controllers\HousingController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
@@ -431,6 +433,7 @@
     <Content Include="Views\Housing\Index.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\Index_Partial.cshtml" />
+    <Content Include="Views\Shared\_FilterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

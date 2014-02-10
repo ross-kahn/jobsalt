@@ -1,0 +1,34 @@
+﻿<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Edit Filters
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Edit Filters</h4>
+            </div>
+            <div class="modal-body">
+                @using jobSalt.Models;
+                @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
+                {
+                    using( Ajax.BeginForm("AssignFilter", "FilterUtility", new AjaxOptions() { OnSuccess = "resetJobs();" }))
+                    {
+                        <input type="hidden" name="targetField" value="@target.ToString()" />
+                        @target.ToString()
+                        <br/>
+                        <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(target)">
+                        <input type="submit"  value="Save" />
+                    }
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+    </div>
+</div>

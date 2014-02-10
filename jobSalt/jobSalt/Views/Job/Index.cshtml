@@ -5,60 +5,67 @@
 
  <div class="container">
     <div class="jumbotron">
+        @Html.Partial("_FilterPartial")
         <h1>Job Search</h1>
-        <form action="/" method="get" onsubmit="submitQuery">
-           @Html.TextBox("query")
+        @using jobSalt.Models;
+        @using (Ajax.BeginForm("AssignFilter", "FilterUtility", new AjaxOptions() { OnSuccess = "resetJobs();" }))
+        {
+           <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword)">
            <input type="submit" value="Search"/>
-            <!-- This is the simplest way to transfer ViewBag data to javascript -->
-            <input type="hidden" id="filterStrings" value="@ViewBag.Filters" />
-        </form>
+            <input type="hidden" id="targetField" name="targetField" value="Keyword" />
+        }
     </div>
      <div id="productList"></div>
 
      <div id="loading"></div> 
 </div>
 
-@section Scripts
+    @section Scripts
 {
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        $(window).load(function () {
-            loadProducts();
-        });
+            var page = 0;
+            var _inCallback = false;
 
-        var page = 0;
-        var _inCallback = false;
+            $(window).load(function () {
+                loadJobs();
+            });
 
-        @using jobSalt.Models;
+            function resetJobs() {
+                page = 0;
+                _inCallback = false;
+                $("#productList").empty();
 
-        function loadProducts() {
-            if (page > -1 && !_inCallback) {
-                _inCallback = true;
-            
-                $('div#loading').html('<p><img src="/Content/images/loading.gif"></p>');
-                var filters = $("#filterStrings").val();
-                $.get("/Job/Index?page=" + page + "&filterStrings=" + filters, function (data) {
-                    if (data != '') {
-                        $("#productList").append(data);
-                    }
-                    else {
-                        page = -1;
-                    }
-
-                    _inCallback = false;
-                    $('div#loading').empty();
-                });
-                page++;
+                loadJobs();
             }
-        }
 
-        var dcList = true;
+            function loadJobs() {
+                if (page > -1 && !_inCallback) {
+                    _inCallback = true;
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    $('div#loading').html('<p><img src="/Content/images/loading.gif"></p>');
+                    $.get("/Job/Index?page=" + page, function (data) {
+                        if (data != '') {
+                            $("#productList").append(data);
+                        }
+                        else {
+                            page = -1;
+                        }
 
-                loadProducts();
+                        _inCallback = false;
+                        $('div#loading').empty();
+                    });
+                    page++;
+                }
             }
-        });
-    </script>
-}
+
+            var dcList = true;
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+                    loadProducts();
+                }
+            });
+        </script>
+    }
