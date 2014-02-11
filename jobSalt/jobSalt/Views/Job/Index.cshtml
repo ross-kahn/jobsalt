@@ -8,7 +8,7 @@
         @Html.Partial("_FilterPartial")
         <h1>Job Search</h1>
         @using jobSalt.Models;
-        @using (Html.BeginForm("AssignFilter", "FilterUtility", new AjaxOptions() { OnSuccess = "resetJobs();" }))
+        @using (Html.BeginForm("AssignFilter", "FilterUtility"))
         {
            <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
            <input type="submit" value="Search"/>
@@ -22,7 +22,7 @@
 </div>
 
     @section Scripts
-{
+    {
         <script type="text/javascript">
 
             var page = 0;
@@ -32,13 +32,11 @@
                 loadJobs();
             });
 
-            function resetJobs() {
-                page = 0;
-                _inCallback = false;
-                $("#productList").empty();
-
-                loadJobs();
-            }
+            $(window).scroll(function () {
+                if ($(window).scrollTop() + $(window).height() > $(document).height() - 25) {
+                    loadJobs();
+                }
+            });
 
             function loadJobs() {
                 if (page > -1 && !_inCallback) {
@@ -60,14 +58,5 @@
                     page++;
                 }
             }
-
-            var dcList = true;
-
-            $(window).scroll(function () {
-                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-
-                    loadProducts();
-                }
-            });
         </script>
     }
