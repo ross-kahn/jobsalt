@@ -2,7 +2,7 @@
 @for (int i = 0; i < Model.Count(); i++)
 {
     var guid = Guid.NewGuid().ToString();
-    <div class="container" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
+    <div class="container" style="padding-left:0px; padding-right:30px" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
         <div class="well">
             <h2>@Model[i].Company</h2>
             <h3>@Model[i].JobTitle</h3>
