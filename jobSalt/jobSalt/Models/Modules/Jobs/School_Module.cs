@@ -20,7 +20,7 @@ namespace jobSalt.Models.Modules.Jobs
 
         private void InitializeSQL()
         {
-            connection = null;
+            connection = new SqlConnection("database=ocecs;server=ocecs-seniorproject.rit.edu\\mssql,1211");
         }
 
         public int ResultsPerPage
