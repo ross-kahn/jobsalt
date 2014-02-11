@@ -40,7 +40,8 @@ namespace jobSalt.Models
             List<JobPost> results = new List<JobPost>();
             foreach( IndeedJobPost raw in iResult.Results){
                 JobPost jobpost = new JobPost(){
-                    //Source = null,
+                    URL = raw.URL,
+                    SourceModule = source,
                     DatePosted = raw.Date,
                     Company = raw.Company,
                     JobTitle = raw.JobTitle,
@@ -54,33 +55,11 @@ namespace jobSalt.Models
             return results;
         }
 
-        // TODO: ONLY PASS IN THE LIST OF STRINGS, NOT THE ENTIRE DICTIONARY -Ross
-
-        public int ResultsPerPage
+        Source source = new Source() { Name = "Indeed", Icon = null };
+        public Source Source
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return source; }
         }
-
-        public string DisplayName
-        {
-            get
-            {
-                return Constants.INDEED_DISPLAY_NAME;
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        
     }
    
 }

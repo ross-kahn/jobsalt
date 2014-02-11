@@ -9,9 +9,10 @@
             <div id="@guid" class="collapse">
                 <p>@Html.Raw(Model[i].Description)</p>
                 <b>Location:</b><br />
-                <b>Posted On:@Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
-                <a href="" class="btn btn-primary btn-large" target="_blank">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
             </div>
         </div>
     </div>
