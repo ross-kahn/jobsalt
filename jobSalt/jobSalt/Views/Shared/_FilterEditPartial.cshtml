@@ -1,0 +1,30 @@
+﻿@model jobSalt.Models.Field
+
+@using jobSalt.Models;
+
+@switch (Model)
+{
+    case Field.Keyword:
+        using( Html.BeginForm("AssignFilter", "FilterUtility"))
+        {
+            <input type="hidden" name="targetField" value="@Model.ToString()" />
+            <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
+            @Model.ToString()
+            <br/>
+            <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
+            <input type="submit"  value="Save" />
+        }
+        break;
+    case Field.Date:
+        <div class="datepicker dropdown" id="myDatepicker">
+            <div class="input-append">
+                <div class="dropdown-menu"></div>
+                <input type="text" class="span2" value="" data-toggle="dropdown">
+                <button type="button" class="btn" data-toggle="dropdown"><i class="icon-calendar"></i></button>
+            </div>
+        </div>
+        break;
+    default:
+        <text>@Model.ToString()</text><br/>
+        break;
+}

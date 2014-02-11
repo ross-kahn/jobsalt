@@ -15,15 +15,7 @@
                 @using jobSalt.Models;
                 @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
                 {
-                    using( Html.BeginForm("AssignFilter", "FilterUtility"))
-                    {
-                        <input type="hidden" name="targetField" value="@target.ToString()" />
-                        <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
-                        @target.ToString()
-                        <br/>
-                        <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(target, ViewBag.FilterString)">
-                        <input type="submit"  value="Save" />
-                    }
+                    @Html.Partial("_FilterEditPartial", target);
                 }
             </div>
             <div class="modal-footer">
