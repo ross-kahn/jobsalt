@@ -1,16 +1,18 @@
 ﻿@model jobSalt.Models.JobPost[]
 @for (int i = 0; i < Model.Count(); i++)
 {
-    <div class="container" data-toggle="collapse" data-target="#collapsable@(i)">
+    var guid = Guid.NewGuid().ToString();
+    <div class="container" style="padding-left:0px; padding-right:30px" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
         <div class="well">
             <h2>@Model[i].Company</h2>
             <h3>@Model[i].JobTitle</h3>
-            <div id="collapsable@(i)" class="collapse">
+            <div id="@guid" class="collapse">
                 <p>@Html.Raw(Model[i].Description)</p>
-                <b>Location:</b> @Model[i].Source.Name<br />
-                <b>Posted On:</b> @Model[i].DatePosted.ToShortDateString()<br />
+                <b>Location:</b><br />
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
-                <a href="@Model[i].Source.URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
             </div>
         </div>
     </div>

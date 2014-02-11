@@ -53,7 +53,7 @@ namespace jobSalt.Models
             return cFields;
         }
 
-        public string buildQuery(Dictionary<Field, List<string>> FilterHash)
+        public string buildQuery(Dictionary<Field, List<string>> FilterHash, int page, int resultsPerPage)
         {
 
             FilterHash = combineKeys(FilterHash, getCombineFields());
@@ -63,6 +63,8 @@ namespace jobSalt.Models
 
             // The required base for all requests
             builder.Append(Constants.INDEED_REQUEST_BASE);
+            builder.Append("&start=" + page * resultsPerPage);
+            builder.Append("&limit=" + resultsPerPage);
 
             foreach (Field key in FilterHash.Keys)
             {

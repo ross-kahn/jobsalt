@@ -9,6 +9,5 @@ namespace jobSalt.Models
     {
         public String Name { get; set; }
         public Uri Icon { get; set; }
-        public String URL { get; set; }
     }
 }

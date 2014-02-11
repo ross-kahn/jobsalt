@@ -7,7 +7,8 @@ namespace jobSalt.Models
 {
     public class JobPost
     {
-        public Source Source { get; set; }
+        public string URL { get; set; }
+        public Source SourceModule { get; set; }
         public DateTime DatePosted { get; set; }
         public string Company { get; set; }
         public string JobTitle { get; set; }

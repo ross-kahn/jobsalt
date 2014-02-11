@@ -5,11 +5,16 @@
         <title>jobSalt</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/bootstrap.min.css")
+        @Scripts.Render("~/bundles/jquery");
+        @Scripts.Render("~/bundles/jqueryval")
+        @RenderSection("scripts", required: false)
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        @Scripts.Render("~/Scripts/jquery-1.9.1.min.js")
+        @Styles.Render("~/Content/bootstrap.min.css")
+        @Styles.Render("~/Content/fuelux.min.css")
+        @Styles.Render("~/Content/fuelux-responsive.min.css")
+
         @Scripts.Render("~/Scripts/bootstrap.min.js")
+        @Scripts.Render("~/Scripts/fuelux.min.js")
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
@@ -25,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="#">jobSalt</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -38,8 +43,6 @@
             </div>
         </div>
 
-        @RenderBody();
-        
-
+        @RenderBody()
     </body>
 </html>
