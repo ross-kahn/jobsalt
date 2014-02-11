@@ -62,12 +62,17 @@ namespace jobSalt.Models.Modules.Jobs
                 post.Description = "A real job you want to apply for " + r.Next(50);
                 post.FieldOfStudy = "Software Engineering";
                 post.JobTitle = "Taco Technician";
-                post.Location = new Location("14623", States.NY, "Rochester");
+                post.Location = new Location("14623", "NY", "Rochester");
                 post.Salary = (r.NextDouble() * 1000).ToString();
-                post.Source = new Source();
+                post.SourceModule = new Source();
                 jobs.Add(post);
             }
             return jobs;
+        }
+
+        public Source Source
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }
