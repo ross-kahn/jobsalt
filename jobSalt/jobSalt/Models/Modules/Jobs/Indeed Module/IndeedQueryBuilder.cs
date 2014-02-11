@@ -13,12 +13,51 @@ namespace jobSalt.Models
         private const string VERSION_TAG = "&v=2";
         
         // TODO: OBTAIN THESE FROM USER SESSION (hard-coded right now)
-        private const string USER_IP = "1.2.3.4";
+        private const string USER_IP = "1.2.3.4"; // 129.21.108.174
         private const string USER_AGENT = "Mozilla/%2F4.0%28Firefox%29";
 
+        /// <summary>
+        /// Not every API is able to filter by every Field specified by this program; some Fields
+        /// need to be combined so relevant results are returned. This method combines relevant
+        /// fields and eliminates the ones that simply cannot be translated into an API call
+        /// </summary>
+        /// <param name="filterHash">
+        /// The original hash of filters
+        /// </param>
+        /// <returns>The modified, combined hash of filters</returns>
+        private Dictionary<Field, List<string>> combineKeys(Dictionary<Field, List<string>> filterHash, Field[] toCombine)
+        {
+            if (toCombine == null)
+            {
+                return filterHash;
+            }
+
+            List<string> fos = filterHash[Field.Keyword] ?? new List<string>();
+            foreach (Field keyField in toCombine){
+                if (filterHash.ContainsKey(keyField))
+                {
+                    fos.AddRange(filterHash[keyField]);
+                    filterHash.Remove(keyField);
+                }
+            }
+            filterHash[Field.Keyword] = fos;
+                        
+            return filterHash;
+        }
+
+        public Field[] getCombineFields()
+        {
+            Field[] cFields = { Field.CompanyName, 
+                                  Field.FieldOfStudy, 
+                                  Field.JobTitle };
+            return cFields;
+        }
 
         public string buildQuery(Dictionary<Field, List<string>> FilterHash)
         {
+
+            FilterHash = combineKeys(FilterHash, getCombineFields());
+
             // String builder, (arguably) more efficient than concatenating strings
             StringBuilder builder = new StringBuilder();
 
@@ -29,22 +68,20 @@ namespace jobSalt.Models
             {
                 switch (key)
                 {
-                    case Field.CompanyName:
+                    case Field.CompanyName:  // Should be combined with keyword
                         break;
 
                     case Field.Date:
                         break;
 
-                    case Field.Description:
+                    case Field.FieldOfStudy: // Should be combined with keyword
                         break;
 
-                    case Field.FieldOfStudy:
-                        break;
-
-                    case Field.JobTitle:
+                    case Field.JobTitle:    // Should be combined with keyword
                         break;
 
                     case Field.Keyword:
+                        builder.Append(build_tag_query(FilterHash[Field.Keyword]));
                         break;
 
                     case Field.Location:

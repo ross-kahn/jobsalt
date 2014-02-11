@@ -41,12 +41,17 @@ namespace jobSalt.Models
         {
             List<JobPost> results = new List<JobPost>();
             foreach( IndeedJobPost raw in iResult.Results){
-                JobPost jobpost = new JobPost(){
+                JobPost jobpost = new JobPost()
+                {
                     //Source = null,
                     DatePosted = raw.Date,
                     Company = raw.Company,
                     JobTitle = raw.JobTitle,
-                    //Location = null,
+                    Location = new Location()
+                    {
+                        State = raw.State,
+                        City = raw.City
+                    },
                     Salary = null,
                     Description = raw.Snippet,
                     FieldOfStudy = null

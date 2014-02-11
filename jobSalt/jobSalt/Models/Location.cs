@@ -14,14 +14,15 @@ namespace jobSalt.Models
 
     public class Location
     {
-        public Location(string zip, States state, string city)
+        public Location(string zip = "n/a", string state = "n/a", string city = "n/a")
         {
             this.ZipCode = zip;
             this.State = state;
             this.City = city;
         }
-        public String ZipCode { get; set; }
-        public States State { get; set; }
-        public String City { get; set; }
+
+        public string ZipCode { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
     }
 }
