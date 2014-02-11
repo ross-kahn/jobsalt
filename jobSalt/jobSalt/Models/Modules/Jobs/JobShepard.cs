@@ -26,7 +26,8 @@ namespace jobSalt.Models.Modules.Jobs
         public JobShepard()
         {
             modules = new List<IJobModule>();
-            modules.Add(new IndeedModule());
+            //modules.Add(new IndeedModule());
+            modules.Add(new LinkedInModule());
         }
         #endregion // Constructors
 
