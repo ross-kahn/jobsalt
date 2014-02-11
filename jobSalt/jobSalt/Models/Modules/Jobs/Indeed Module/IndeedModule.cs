@@ -19,6 +19,12 @@ namespace jobSalt.Models
 
         public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
         {
+            // Return empty list if no filters are specified
+            if (filters.Count == 0)
+            {
+                return new List<JobPost>();
+            }
+
             Dictionary<Field, List<string>> filterHash = Filter.FilterListToDictionary(filters);
 
             string request = builder.buildQuery(filterHash, page, resultsPerPage);
