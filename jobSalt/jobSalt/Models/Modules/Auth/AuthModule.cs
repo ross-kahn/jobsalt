@@ -7,11 +7,11 @@ namespace jobSalt.Models.Modules.Auth
 {
     public abstract class AuthModule
     {
-        protected string name = "UNSET";
+        public string Name { get; protected set; }
 
         public string UserID(string username)
         {
-            return name + "_" + username;
+            return Name + "_" + username;
         }
 
         public abstract bool IsValid(string _username, string _password);

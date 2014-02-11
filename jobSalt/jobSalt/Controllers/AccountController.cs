@@ -51,7 +51,7 @@ namespace jobSalt.Controllers
                     if (module.IsValid(model.UserName, model.Password))
                     {
                         FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "");
                     }
                 }
                 ModelState.AddModelError("", "Login data is incorrect!");
@@ -70,7 +70,7 @@ namespace jobSalt.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "");
         }
 
         //

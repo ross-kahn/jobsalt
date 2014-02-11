@@ -17,7 +17,7 @@ namespace jobSalt.Models.Modules.Auth
         public LDAPAuthModule(string DomainController, string Name)
         {
             connectionString = DomainController;
-            this.name = Name;
+            this.Name = Name;
         }
 
         /// <summary>
