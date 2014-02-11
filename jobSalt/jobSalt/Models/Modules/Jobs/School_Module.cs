@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.SqlClient;
 
 namespace jobSalt.Models.Modules.Jobs
 {
     public class School_Module : IJobModule
-    {        
+    {
+        private SqlConnection connection;
         public School_Module ()
         {
-            // May need to initialize DisplayName and ResultsPerPage here
+            this.ResultsPerPage = 10;
+            this.DisplayName = "School Job Server";
+
+            // Initialize SQL connection probably            
+            InitializeSQL();
         }
+
+        private void InitializeSQL()
+        {
+            connection = null;
+        }
+
         public int ResultsPerPage
         {
             get
@@ -35,8 +47,10 @@ namespace jobSalt.Models.Modules.Jobs
             }
         }
 
-        public async List<JobPost> GetJobs(List<Filter> filters, int page)
+        public List<JobPost> GetJobs(List<Filter> filters, int page)
         {
+            //The SQL query needs to include JOINs across different databases based on filters
+
             //Ignoring the Filters for now
             List<JobPost> jobs = new List<JobPost>();
             Random r = new Random();
@@ -50,7 +64,7 @@ namespace jobSalt.Models.Modules.Jobs
                 post.JobTitle = "Taco Technician";
                 post.Location = new Location("14623", States.NY, "Rochester");
                 post.Salary = (r.NextDouble() * 1000).ToString();
-                post.Source = "School Database";
+                post.Source = new Source();
                 jobs.Add(post);
             }
             return jobs;
