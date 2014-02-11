@@ -27,12 +27,21 @@ namespace jobSalt.Controllers
 
         public ActionResult Delete(string username, string module)
         {
-            return View();
+            UserDataRow row = new UserDataRow();
+            row.UserName = username;
+            row.ModuleName = module;
+
+            database.UserDataRows.Remove(row);
+            database.SaveChanges();
+            return Content("Row Deleted");
         }
 
-        public ActionResult Read(string username, string module)
+        public UserDataRow Read(string username, string module)
         {
-            return View();
+            object[] paramList = {username, module};
+
+            UserDataRow row = database.UserDataRows.Find(paramList);
+            return row;
         }
     }
 }

@@ -13,6 +13,6 @@ namespace jobSalt.Models.UserData
         {
         }
 
-        public DBSet<UserDataRow> UserDataRows { get; set; }
+        public DbSet<UserDataRow> UserDataRows { get; set; }
     }
 }
