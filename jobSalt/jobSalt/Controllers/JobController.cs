@@ -12,12 +12,14 @@ namespace jobSalt.Controllers
     {
         private JobShepard shepard = new JobShepard();
 
-        public ActionResult Index(int page = 1, int resultsPerPage = 10)
+        public ActionResult Index(string filterString, int page = 1, int resultsPerPage = 10)
         {
+            ViewBag.FilterString = filterString;
+
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
             {
-                List<Models.Filter> filters = FilterUtility.GetFilters();
+                List<Models.Filter> filters = FilterUtility.GetFilters(filterString);
                 return PartialView("Index_Partial", shepard.GetJobs(filters, page, resultsPerPage).ToArray());
             }
 

@@ -12,21 +12,21 @@ namespace jobSalt.Controllers
     /// </summary>
     public class FilterUtilityController : Controller
     {
-        public ActionResult AssignFilter(Field targetField, string value)
+        public ActionResult AssignFilter(Field targetField, string value, string filterString)
         {
-            FilterUtility.AssignFilter(targetField, value);
-            return null;
+            string newFilterString = FilterUtility.AssignFilter(targetField, value, filterString);
+            return Redirect(Request.UrlReferrer.AbsolutePath.ToString() + "?filterString=" + newFilterString);
         }
 
-        public ActionResult RemoveFilter(Field targetField)
+        public ActionResult RemoveFilter(Field targetField, string filterString)
         {
-            FilterUtility.RemoveFilter(targetField);
-            return null;
+            string newFilterString = FilterUtility.RemoveFilter(targetField, filterString);
+            return Redirect(Request.UrlReferrer.AbsolutePath.ToString() + "?filterString=" + newFilterString);
         }
 
-        public JsonResult GetFilters()
+        public JsonResult GetFilters(string filterString)
         {
-            return Json(FilterUtility.GetFilters());
+            return Json(FilterUtility.GetFilters(filterString), JsonRequestBehavior.AllowGet);
         }
     }
 }

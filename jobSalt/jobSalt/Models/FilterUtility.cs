@@ -9,14 +9,13 @@ namespace jobSalt.Models
     /// <summary>
     /// This class is used across other controllers and views to modify
     /// the filters. An API is exposed through the FilterUtlityController to add/remove/edit
-    /// filters stored in the user's session.
+    /// filters stored in the filterString.
     /// </summary>
     public class FilterUtility
     {
-        public static void AssignFilter(Field targetField, string value)
+        public static string AssignFilter(Field targetField, string value, string filterString)
         {
-            InitializeSessionVariable();
-            Dictionary<Field, string> filters = HttpContext.Current.Session["Filters"] as Dictionary<Field, string>;
+            Dictionary<Field, string> filters = Filter.FilterQueryStringToDictionary(filterString);
 
             if(filters.ContainsKey(targetField))
             {
@@ -26,24 +25,21 @@ namespace jobSalt.Models
             {
                 filters.Add(targetField, value);
             }
-
-            HttpContext.Current.Session["Filters"] = filters;
+            return Filter.FilterListToUrlQueryString(filters);
         }
 
-        public static void RemoveFilter(Field targetField)
+        public static string RemoveFilter(Field targetField, string filterString)
         {
-            InitializeSessionVariable();
-            Dictionary<Field, string> filters = HttpContext.Current.Session["Filters"] as Dictionary<Field, string>;
+            Dictionary<Field, string> filters = Filter.FilterQueryStringToDictionary(filterString);
 
             filters.Remove(targetField);
 
-            HttpContext.Current.Session["Filters"] = filters;
+            return Filter.FilterListToUrlQueryString(filters);
         }
 
-        public static List<Models.Filter> GetFilters()
+        public static List<Models.Filter> GetFilters(string filterString)
         {
-            InitializeSessionVariable();
-            var filterDict = HttpContext.Current.Session["Filters"] as Dictionary<Field, string>;
+            Dictionary<Field, string> filterDict = Filter.FilterQueryStringToDictionary(filterString);
             List<Models.Filter> filters = new List<Models.Filter>();
             foreach( Field target in filterDict.Keys)
             {
@@ -53,10 +49,9 @@ namespace jobSalt.Models
             return filters;
         }
 
-        public static string GetFilterValue(Field targetField)
+        public static string GetFilterValue(Field targetField, string filterString)
         {
-            InitializeSessionVariable();
-            Dictionary<Field, string> filters = HttpContext.Current.Session["Filters"] as Dictionary<Field, string>;
+            Dictionary<Field, string> filters = Filter.FilterQueryStringToDictionary(filterString);
 
             if(filters.ContainsKey(targetField))
             {
@@ -65,14 +60,6 @@ namespace jobSalt.Models
             else
             {
                 return null;
-            }
-        }
-
-        private static void InitializeSessionVariable()
-        {
-            if (HttpContext.Current.Session["Filters"] == null)
-            {
-                HttpContext.Current.Session["Filters"] = new Dictionary<Field, string>();
             }
         }
     }

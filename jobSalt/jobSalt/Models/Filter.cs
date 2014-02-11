@@ -70,6 +70,29 @@ namespace jobSalt.Models
 			}
 
         /// <summary>
+        /// Creates a partial url query string from a dictionary.
+        /// This query string needs to be appended to the full URL. 
+        /// For example, if "?filterStrings={Source,Indeed}{Keyword,Computers}" is returned,
+        /// then the full URL could be "http://localhost:38087/Job?filterStrings={Source,Indeed}{Keyword,Computers}".
+        /// </summary>
+        /// <param name="filters">The filters to create a query string from.</param>
+        /// <returns>A URL query string corresponding to the given list of filters.</returns>
+        public static String FilterListToUrlQueryString(Dictionary<Field, string> filters)
+        {
+            //build the queryString
+            StringBuilder queryString = new StringBuilder();
+
+            //fill with each filter in the form of {filterTarget,value}
+            foreach (Field key in filters.Keys)
+            {
+                queryString.Append("{" + key + "," + filters[key] + "}");
+            }
+
+            //return
+            return queryString.ToString();
+        }
+
+        /// <summary>
         /// Takes a list of filters given in their query format and converts them into a 
         /// list of Filter objects.
         /// </summary>
@@ -101,6 +124,48 @@ namespace jobSalt.Models
                         if (!filters.Any(a => a.TargetField.Equals(filter.TargetField) && a.Value.Equals(filter.Value)))
                         {
                             filters.Add(filter);
+                        }
+                    }
+                }
+            }
+
+            return filters;
+        }
+
+        /// <summary>
+        /// Takes a list of filters given in their query format and converts them into a 
+        /// list of Filter objects.
+        /// </summary>
+        /// <param name="filterStrings">The filters query string to create a list from</param>
+        /// <returns>A list of filters built off the query string</returns>
+        public static Dictionary<Field, string> FilterQueryStringToDictionary(String filterStrings)
+        {
+            Dictionary<Field, string> filters = new Dictionary<Field, string>();
+
+            if (filterStrings != null)
+            {
+
+                //fill filters with filters from filterStrings
+                foreach (string filterString in filterStrings.Split(new Char[] { '{', '}' })) //split into individual filter strings first
+                {
+                    //split current filter string into a string array {targetFiled,value}
+                    String[] currentFilterString = filterString.Split(new char[] { ',' });
+
+                    if (currentFilterString.Length == 2 && Enum.IsDefined(typeof(Models.Field), currentFilterString[0]))
+                    {
+
+                        //get target field from Enum
+                        Models.Field targetField = (Models.Field)Enum.Parse(typeof(Models.Field), currentFilterString[0]);
+                        string value = currentFilterString[1];
+
+                        // Replace the value if the key already exists, otherwise add it.
+                        if(filters.ContainsKey(targetField))
+                        {
+                            filters[targetField] = value;
+                        }
+                        else
+                        {
+                            filters.Add(targetField, value);
                         }
                     }
                 }

@@ -15,12 +15,13 @@
                 @using jobSalt.Models;
                 @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
                 {
-                    using( Ajax.BeginForm("AssignFilter", "FilterUtility", new AjaxOptions() { OnSuccess = "resetJobs();" }))
+                    using( Html.BeginForm("AssignFilter", "FilterUtility"))
                     {
                         <input type="hidden" name="targetField" value="@target.ToString()" />
+                        <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
                         @target.ToString()
                         <br/>
-                        <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(target)">
+                        <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(target, ViewBag.FilterString)">
                         <input type="submit"  value="Save" />
                     }
                 }

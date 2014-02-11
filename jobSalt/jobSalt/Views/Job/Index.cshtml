@@ -8,11 +8,12 @@
         @Html.Partial("_FilterPartial")
         <h1>Job Search</h1>
         @using jobSalt.Models;
-        @using (Ajax.BeginForm("AssignFilter", "FilterUtility", new AjaxOptions() { OnSuccess = "resetJobs();" }))
+        @using (Html.BeginForm("AssignFilter", "FilterUtility", new AjaxOptions() { OnSuccess = "resetJobs();" }))
         {
-           <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword)">
+           <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
            <input type="submit" value="Search"/>
             <input type="hidden" id="targetField" name="targetField" value="Keyword" />
+            <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
         }
     </div>
      <div id="productList"></div>
@@ -44,7 +45,8 @@
                     _inCallback = true;
 
                     $('div#loading').html('<p><img src="/Content/images/loading.gif"></p>');
-                    $.get("/Job/Index?page=" + page, function (data) {
+                    var filterString = $("#filterString").val();
+                    $.get("/Job/Index?page=" + page + "&filterString=" + filterString, function (data) {
                         if (data != '') {
                             $("#productList").append(data);
                         }
