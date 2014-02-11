@@ -283,6 +283,7 @@
     <Compile Include="Models\AlumniPost.cs" />
     <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />
     <Compile Include="Models\Source.cs" />
