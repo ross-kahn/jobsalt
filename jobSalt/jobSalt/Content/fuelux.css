@@ -2289,7 +2289,7 @@ textarea.span1,
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("img/glyphicons-halflings.png");
   background-position: 14px 14px;
   background-repeat: no-repeat;
 }
@@ -2311,7 +2311,7 @@ textarea.span1,
 .fuelux .dropdown-submenu:focus > a > [class^="icon-"],
 .fuelux .dropdown-submenu:hover > a > [class*=" icon-"],
 .fuelux .dropdown-submenu:focus > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
+  background-image: url("img/glyphicons-halflings-white.png");
 }
 
 .fuelux .icon-glass {
@@ -6190,7 +6190,7 @@ textarea.span1,
   padding-left: 16px;
   margin-right: 4px;
   margin-left: -20px;
-  background-image: url(../img/form.png);
+  background-image: url(img/form.png);
   background-position: 0 1px;
   background-repeat: no-repeat;
 }
@@ -6237,7 +6237,7 @@ textarea.span1,
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .fuelux .checkbox-custom i {
-    background-image: url(../img/form-hdpi.png);
+    background-image: url(img/form-hdpi.png);
     background-size: 96px auto;
   }
 }
@@ -7253,7 +7253,7 @@ textarea.span1,
   padding-left: 16px;
   margin-right: 4px;
   margin-left: -20px;
-  background-image: url(../img/form.png);
+  background-image: url(img/form.png);
   background-position: 0 -15px;
   background-repeat: no-repeat;
 }
@@ -7300,7 +7300,7 @@ textarea.span1,
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .fuelux .radio-custom i {
-    background-image: url(../img/form-hdpi.png);
+    background-image: url(img/form-hdpi.png);
     background-size: 96px auto;
   }
 }
