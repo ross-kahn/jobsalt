@@ -10,9 +10,8 @@ namespace jobSalt.Models.Modules.Jobs
     {
         private SqlConnection connection;
         public School_Module ()
-        {
-            this.ResultsPerPage = 10;
-            this.DisplayName = "School Job Server";
+        {            
+            this.DisplayName = "JobZone";
 
             // Initialize SQL connection probably            
             InitializeSQL();
@@ -20,19 +19,7 @@ namespace jobSalt.Models.Modules.Jobs
 
         private void InitializeSQL()
         {
-            connection = new SqlConnection("database=ocecs;server=ocecs-seniorproject.rit.edu\\mssql,1211");
-        }
-
-        public int ResultsPerPage
-        {
-            get
-            {
-                return ResultsPerPage;
-            }
-            set
-            {
-                ResultsPerPage = value;
-            }
+            connection = new SqlConnection("database=ocecs;server=localhost");
         }
 
         public string DisplayName
@@ -53,6 +40,23 @@ namespace jobSalt.Models.Modules.Jobs
 
             //Ignoring the Filters for now
             List<JobPost> jobs = new List<JobPost>();
+            connection.Open();
+            SqlCommand command = new SqlCommand("SELECT title,description,salary,postedDate,employerId from dbo.Jobs", connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while(reader.Read())
+            {
+                JobPost j = new JobPost();
+                j.JobTitle = reader.GetString(0);
+                j.Description = reader.GetString(1);
+                j.Salary = reader.GetString(2);
+                j.DatePosted = reader.GetDateTime(3);
+                j.Company = reader.GetString(4);
+                jobs.Add(j);
+            }
+
+            /*
             Random r = new Random();
             for (int i = 0; i < page; i++)
             {
@@ -67,6 +71,7 @@ namespace jobSalt.Models.Modules.Jobs
                 post.Source = new Source();
                 jobs.Add(post);
             }
+             */
             return jobs;
         }
     }
