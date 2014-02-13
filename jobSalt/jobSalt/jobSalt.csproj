@@ -285,7 +285,9 @@
     <Compile Include="Models\HousingPost.cs" />
     <Compile Include="Models\Modules\Auth\AuthModule.cs" />
     <Compile Include="Models\Modules\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\SamlSignedXml.cs" />
     <Compile Include="Models\Modules\Auth\ShibbolethAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\SigningHelper.cs" />
     <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedJobPost.cs" />
@@ -482,7 +484,6 @@
     <Content Include="Views\Shared\_FilterEditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <None Include="_bin_deployableAssemblies\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
