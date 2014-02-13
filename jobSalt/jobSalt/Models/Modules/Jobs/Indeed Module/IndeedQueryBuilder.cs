@@ -45,6 +45,14 @@ namespace jobSalt.Models
             foreach (Field keyField in toCombine){
                 if (filterHash.ContainsKey(keyField))
                 {
+                    if (keyField == Field.CompanyName)
+                    {
+                        filterHash[keyField][0] = "company:(" + filterHash[keyField][0] + ")";
+                    }
+                    if (keyField == Field.JobTitle)
+                    {
+                        filterHash[keyField][0] = "title:(" + filterHash[keyField][0] + ")";
+                    }
                     fos.AddRange(filterHash[keyField]);
                     filterHash.Remove(keyField);
                 }
@@ -56,7 +64,8 @@ namespace jobSalt.Models
 
         public Field[] getCombineFields()
         {
-            Field[] cFields = {   Field.FieldOfStudy, 
+            Field[] cFields = {   Field.CompanyName,
+                                  Field.FieldOfStudy, 
                                   Field.JobTitle };
             return cFields;
         }
@@ -94,6 +103,7 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Location:
+                        builder.Append("&l=" + FilterHash[key][0]);
                         break;
 
                     case Field.Salary:

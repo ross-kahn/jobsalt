@@ -13,16 +13,13 @@
             </div>
             <div class="modal-body">
                 1. Select Filter Type:<br />
-                <div id="TargetFieldSelect" class="select btn-group" data-resize="auto">
-	                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:200px"><span class="dropdown-label"></span><span class="caret" style="float:right; margin-top:8px"></span></button>
-	                <ul class="dropdown-menu">
-                        @using jobSalt.Models;
-                        @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
-                        {
-                            <li data-value="@target.ToString()"><a href="#">@target.ToString()</a></li>
-                        }
-	                </ul>
-                </div><br />
+                <select id="TargetFieldSelect" class="selectpicker" style="width:180px">
+                    @using jobSalt.Models;
+                    @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
+                    {
+                        <option value="@target.ToString()">@target.ToString()</option>
+                    }
+                </select><br />
                 2. Enter Filter Value:<br />
                 <div id="FieldEditArea"></div><div id="loadingIcon"></div>
             </div>
@@ -35,10 +32,10 @@
 </div>
 
 <script type="text/javascript">
-    $("#TargetFieldSelect").on('changed', function () {
+    $("#TargetFieldSelect").on('change', function () {
         $("#FieldEditArea").empty();
         $('div#loadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
-        var selectedField = $('#TargetFieldSelect').select('selectedItem').value
+        var selectedField = $('#TargetFieldSelect').val();
         $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + selectedField, function (data) {
             if (data != '') {
                 $("#FieldEditArea").append(data);
@@ -47,7 +44,7 @@
         });
     });
 
-    $("#TargetFieldSelect").trigger('changed');
+    $("#TargetFieldSelect").trigger('change');
 
     function SaveAndCloseModal(){
         //SubmitFilter is defined in the partial view _FilterEditPartial,
@@ -55,4 +52,13 @@
         SubmitFilter();
         $('#myModal').modal('toggle');
     }
+
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': 'cat'
+        });
+
+        // $('.selectpicker').selectpicker('hide');
+    });
 </script>
