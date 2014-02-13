@@ -8,7 +8,7 @@
             <h3>@Model[i].JobTitle</h3>
             <div id="@guid" class="collapse">
                 <p>@Html.Raw(Model[i].Description)</p>
-                <b>Location:@Model[i].Location.City, @Model[i].Location.State</b><br />
+                <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
                 <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />

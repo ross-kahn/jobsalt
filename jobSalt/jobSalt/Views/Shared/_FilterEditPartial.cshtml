@@ -6,17 +6,11 @@
 {
     case Field.Date:
         <div>
-            <div id="datetimepicker" class="input-append date">
-              <input type="text" />
-              <span class="add-on">
-                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-              </span>
-            </div>
+            <input type="text" class="form-control" style="height:30px; width:200px" id="datePicker" />
         </div>
         <script type="text/javascript">
-            $('#datetimepicker').datetimepicker({
-                format: 'dd/MM/yyyy hh:mm:ss',
-                language: 'pt-BR'
+            $('#datePicker').datepicker({
+                format: 'mm/dd/yyyy',
             });
 
             function SubmitFilter() {
