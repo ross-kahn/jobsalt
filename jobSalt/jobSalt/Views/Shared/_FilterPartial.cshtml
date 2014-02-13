@@ -21,11 +21,14 @@
                     }
                 </select><br />
                 2. Enter Filter Value:<br />
-                <div id="FieldEditArea"></div><div id="loadingIcon"></div>
+                <form onsubmit="return SaveAndCloseModal()">
+                    <div id="FieldEditArea"></div>
+                </form>
+                <div id="loadingIcon"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
+                <button type="submit" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
             </div>
         </div>
     </div>
@@ -51,6 +54,7 @@
         //it changes based on the filter/input type
         SubmitFilter();
         $('#myModal').modal('toggle');
+        return false;
     }
 
     $(window).on('load', function () {
