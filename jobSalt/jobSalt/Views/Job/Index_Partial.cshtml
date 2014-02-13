@@ -3,8 +3,8 @@
 {
     var guid = Guid.NewGuid().ToString();
     <div class="container" style="padding-left:0px; padding-right:30px" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
-        <div class="well">
-            <h2>@Model[i].Company</h2>
+        <div class="well" style="position:relative">
+            <span><h2>@Model[i].Company<img width="50px" src="@Model[i].SourceModule.Icon"  style="position:absolute; right:0; top:0"/></h2></span><span></span>
             <h3>@Model[i].JobTitle</h3>
             <div id="@guid" class="collapse">
                 <p>@Html.Raw(Model[i].Description)</p>

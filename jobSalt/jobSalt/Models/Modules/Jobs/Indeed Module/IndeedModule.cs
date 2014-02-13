@@ -67,7 +67,7 @@ namespace jobSalt.Models
             return results;
         }
 
-        Source source = new Source() { Name = "Indeed", Icon = null };
+        Source source = new Source() { Name = "Indeed", Icon = @"\Content\images\indeed_icon.png" };
         public Source Source
         {
             get { return source; }

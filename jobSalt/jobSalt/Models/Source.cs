@@ -7,7 +7,7 @@ namespace jobSalt.Models
 {
     public class Source
     {
-        public String Name { get; set; }
-        public Uri Icon { get; set; }
+        public string Name { get; set; }
+        public string Icon { get; set; }
     }
 }
