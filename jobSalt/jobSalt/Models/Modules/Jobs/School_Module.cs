@@ -13,7 +13,7 @@ namespace jobSalt.Models.Modules.Jobs
         {            
             this.DisplayName = "JobZone";
 
-            // Initialize SQL connection probably            
+            // Initialize SQL connection probably
             InitializeSQL();
         }
 
@@ -41,6 +41,8 @@ namespace jobSalt.Models.Modules.Jobs
             //Ignoring the Filters for now
             List<JobPost> jobs = new List<JobPost>();
             connection.Open();
+
+            //Two options, either Filter in the SQL or filter after the statement
             SqlCommand command = new SqlCommand("SELECT title,description,salary,postedDate,employerId from dbo.Jobs", connection);
 
             SqlDataReader reader = command.ExecuteReader();
