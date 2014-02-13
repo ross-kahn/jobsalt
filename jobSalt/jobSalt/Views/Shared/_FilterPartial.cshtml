@@ -12,16 +12,47 @@
                 <h4 class="modal-title" id="myModalLabel">Edit Filters</h4>
             </div>
             <div class="modal-body">
-                @using jobSalt.Models;
-                @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
-                {
-                    @Html.Partial("_FilterEditPartial", target);
-                }
+                1. Select Filter Type:<br />
+                <div id="TargetFieldSelect" class="select btn-group" data-resize="auto">
+	                <button type="button" data-toggle="dropdown" class="btn dropdown-toggle" style="width:200px"><span class="dropdown-label"></span><span class="caret" style="float:right; margin-top:8px"></span></button>
+	                <ul class="dropdown-menu">
+                        @using jobSalt.Models;
+                        @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
+                        {
+                            <li data-value="@target.ToString()"><a href="#">@target.ToString()</a></li>
+                        }
+	                </ul>
+                </div><br />
+                2. Enter Filter Value:<br />
+                <div id="FieldEditArea"></div><div id="loadingIcon"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                <button type="button" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $("#TargetFieldSelect").on('changed', function () {
+        $("#FieldEditArea").empty();
+        $('div#loadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
+        var selectedField = $('#TargetFieldSelect').select('selectedItem').value
+        $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + selectedField, function (data) {
+            if (data != '') {
+                $("#FieldEditArea").append(data);
+            }
+            $('div#loadingIcon').empty();
+        });
+    });
+
+    $("#TargetFieldSelect").trigger('changed');
+
+    function SaveAndCloseModal(){
+        //SubmitFilter is defined in the partial view _FilterEditPartial,
+        //it changes based on the filter/input type
+        SubmitFilter();
+        $('#myModal').modal('toggle');
+    }
+</script>

@@ -5,6 +5,13 @@
 
  <div class="container">
     <div class="jumbotron">
+        @using jobSalt.Models;
+        @foreach (jobSalt.Models.Filter filter in FilterUtility.GetFilters(ViewBag.FilterString))
+        {
+            <button class="btn btn-info btn-lg" data-value="@filter.TargetField" onclick="RemoveFilter(this)">
+                <span>@filter.TargetField </span><span class="glyphicon glyphicon-remove" style="color:darkgray"></span>
+            </button>
+        }
         @Html.Partial("_FilterPartial")
         <h1>Job Search</h1>
         @using jobSalt.Models;
@@ -14,8 +21,6 @@
            <input type="submit" value="Search"/>
             <input type="hidden" id="targetField" name="targetField" value="Keyword" />
             <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
-            
-            <div id="anotherDatepicker"></div>
         }
     </div>
      <div id="productList"></div>
@@ -26,11 +31,6 @@
     @section Scripts
     {
         <script type="text/javascript">
-
-            $('#anotherDatepicker').datepicker({
-                createInput: true
-            });
-
             var page = 0;
             var _inCallback = false;
 
@@ -63,6 +63,10 @@
                     });
                     page++;
                 }
+            }
+
+            function RemoveFilter( button ) {
+                window.location = "/FilterUtility/RemoveFilter?targetField=" + $(button).data('value') + "&filterString=" + "@ViewBag.FilterString";
             }
         </script>
     }

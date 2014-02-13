@@ -32,7 +32,16 @@ namespace jobSalt.Models
                 return filterHash;
             }
 
-            List<string> fos = filterHash[Field.Keyword] ?? new List<string>();
+            List<string> fos;
+            if (filterHash.ContainsKey(Field.Keyword))
+            {
+                fos = filterHash[Field.Keyword];
+            }
+            else
+            {
+                fos = new List<string>();
+            }
+            
             foreach (Field keyField in toCombine){
                 if (filterHash.ContainsKey(keyField))
                 {
@@ -47,15 +56,13 @@ namespace jobSalt.Models
 
         public Field[] getCombineFields()
         {
-            Field[] cFields = { Field.CompanyName, 
-                                  Field.FieldOfStudy, 
+            Field[] cFields = {   Field.FieldOfStudy, 
                                   Field.JobTitle };
             return cFields;
         }
 
         public string buildQuery(Dictionary<Field, List<string>> FilterHash, int page, int resultsPerPage)
         {
-
             FilterHash = combineKeys(FilterHash, getCombineFields());
 
             // String builder, (arguably) more efficient than concatenating strings
@@ -129,13 +136,7 @@ namespace jobSalt.Models
         /// <returns></returns>
         private string build_tag_query(List<string> queries)
         {
-            string tag = "&q=";
-
-            foreach (string q in queries)
-            {
-                // Joins the query strings together into an 'AND' format for the request
-                tag = tag + String.Join("+", q);
-            }
+            string tag = "&q=" + String.Join(" ", queries);
 
             return tag;
         }
