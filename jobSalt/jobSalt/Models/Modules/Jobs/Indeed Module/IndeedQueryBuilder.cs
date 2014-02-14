@@ -32,10 +32,27 @@ namespace jobSalt.Models
                 return filterHash;
             }
 
-            List<string> fos = filterHash[Field.Keyword] ?? new List<string>();
+            List<string> fos;
+            if (filterHash.ContainsKey(Field.Keyword))
+            {
+                fos = filterHash[Field.Keyword];
+            }
+            else
+            {
+                fos = new List<string>();
+            }
+            
             foreach (Field keyField in toCombine){
                 if (filterHash.ContainsKey(keyField))
                 {
+                    if (keyField == Field.CompanyName)
+                    {
+                        filterHash[keyField][0] = "company:(" + filterHash[keyField][0] + ")";
+                    }
+                    if (keyField == Field.JobTitle)
+                    {
+                        filterHash[keyField][0] = "title:(" + filterHash[keyField][0] + ")";
+                    }
                     fos.AddRange(filterHash[keyField]);
                     filterHash.Remove(keyField);
                 }
@@ -47,7 +64,7 @@ namespace jobSalt.Models
 
         public Field[] getCombineFields()
         {
-            Field[] cFields = { Field.CompanyName, 
+            Field[] cFields = {   Field.CompanyName,
                                   Field.FieldOfStudy, 
                                   Field.JobTitle };
             return cFields;
@@ -55,7 +72,6 @@ namespace jobSalt.Models
 
         public string buildQuery(Dictionary<Field, List<string>> FilterHash, int page, int resultsPerPage)
         {
-
             FilterHash = combineKeys(FilterHash, getCombineFields());
 
             // String builder, (arguably) more efficient than concatenating strings
@@ -87,6 +103,7 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Location:
+                        builder.Append("&l=" + FilterHash[key][0]);
                         break;
 
                     case Field.Salary:
@@ -129,13 +146,7 @@ namespace jobSalt.Models
         /// <returns></returns>
         private string build_tag_query(List<string> queries)
         {
-            string tag = "&q=";
-
-            foreach (string q in queries)
-            {
-                // Joins the query strings together into an 'AND' format for the request
-                tag = tag + String.Join("+", q);
-            }
+            string tag = "&q=" + String.Join(" ", queries);
 
             return tag;
         }

@@ -109,7 +109,7 @@ namespace jobSalt.Models
                 foreach (string filterString in filterStrings.Split(new Char[] { '{', '}' })) //split into individual filter strings first
                 {
                     //split current filter string into a string array {targetFiled,value}
-                    String[] currentFilterString = filterString.Split(new char[] { ',' });
+                    String[] currentFilterString = filterString.Split(new char[] { ',' }, 2);
 
                     if (currentFilterString.Length == 2 && Enum.IsDefined(typeof(Models.Field), currentFilterString[0]))
                     {
@@ -149,7 +149,7 @@ namespace jobSalt.Models
                 foreach (string filterString in filterStrings.Split(new Char[] { '{', '}' })) //split into individual filter strings first
                 {
                     //split current filter string into a string array {targetFiled,value}
-                    String[] currentFilterString = filterString.Split(new char[] { ',' });
+                    String[] currentFilterString = filterString.Split(new char[] { ',' }, 2);
 
                     if (currentFilterString.Length == 2 && Enum.IsDefined(typeof(Models.Field), currentFilterString[0]))
                     {

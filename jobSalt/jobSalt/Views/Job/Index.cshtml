@@ -5,13 +5,28 @@
 
  <div class="container">
     <div class="jumbotron">
+        @using jobSalt.Models;
+        @foreach (jobSalt.Models.Filter filter in FilterUtility.GetFilters(ViewBag.FilterString))
+        {
+            <button class="btn btn-info btn-lg" data-value="@filter.TargetField" onclick="RemoveFilter(this)">
+                <span>@filter.TargetField </span><span class="glyphicon glyphicon-remove" style="color:darkgray"></span>
+            </button>
+        }
         @Html.Partial("_FilterPartial")
         <h1>Job Search</h1>
         @using jobSalt.Models;
         @using (Html.BeginForm("AssignFilter", "FilterUtility"))
         {
-           <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
-           <input type="submit" value="Search"/>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="input-group">
+                  <input id="value" class="form-control" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">Search</button>
+                  </span>
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+            </div>
             <input type="hidden" id="targetField" name="targetField" value="Keyword" />
             <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
         }
@@ -24,7 +39,6 @@
     @section Scripts
     {
         <script type="text/javascript">
-
             var page = 0;
             var _inCallback = false;
 
@@ -57,6 +71,10 @@
                     });
                     page++;
                 }
+            }
+
+            function RemoveFilter( button ) {
+                window.location = "/FilterUtility/RemoveFilter?targetField=" + $(button).data('value') + "&filterString=" + "@ViewBag.FilterString";
             }
         </script>
     }

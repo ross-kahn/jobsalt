@@ -2,29 +2,28 @@
 
 @using jobSalt.Models;
 
-@switch (Model)
+@switch (@Model)
 {
-    case Field.Keyword:
-        using( Html.BeginForm("AssignFilter", "FilterUtility"))
-        {
-            <input type="hidden" name="targetField" value="@Model.ToString()" />
-            <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
-            @Model.ToString()
-            <br/>
-            <input id="value" name="value" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
-            <input type="submit"  value="Save" />
-        }
-        break;
     case Field.Date:
-        <div class="datepicker dropdown" id="myDatepicker">
-            <div class="input-append">
-                <div class="dropdown-menu"></div>
-                <input type="text" class="span2" value="" data-toggle="dropdown">
-                <button type="button" class="btn" data-toggle="dropdown"><i class="icon-calendar"></i></button>
-            </div>
+        <div>
+            <input type="text" class="form-control" style="height:30px; width:200px" id="datePicker" />
         </div>
+        <script type="text/javascript">
+            $('#datePicker').datepicker({
+                format: 'mm/dd/yyyy',
+            });
+
+            function SubmitFilter() {
+                alert("date");
+            }
+        </script>
         break;
     default:
-        <text>@Model.ToString()</text><br/>
+            <input id="value" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
+            <script type="text/javascript">
+                function SubmitFilter() {
+                    window.location = "/FilterUtility/AssignFilter?targetField=" + "@Model" + "&filterString="+ "@ViewBag.FilterString" + "&value=" + $('#value').val();
+                }
+            </script>
         break;
 }

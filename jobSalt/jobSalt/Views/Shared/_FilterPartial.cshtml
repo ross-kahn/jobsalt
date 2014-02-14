@@ -12,16 +12,57 @@
                 <h4 class="modal-title" id="myModalLabel">Edit Filters</h4>
             </div>
             <div class="modal-body">
-                @using jobSalt.Models;
-                @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
-                {
-                    @Html.Partial("_FilterEditPartial", target);
-                }
+                1. Select Filter Type:<br />
+                <select id="TargetFieldSelect" class="selectpicker" style="width:180px">
+                    @using jobSalt.Models;
+                    @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
+                    {
+                        <option value="@target.ToString()">@target.ToString()</option>
+                    }
+                </select><br />
+                2. Enter Filter Value:<br />
+                <form onsubmit="return SaveAndCloseModal()">
+                    <div id="FieldEditArea"></div>
+                </form>
+                <div id="loadingIcon"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                <button type="submit" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $("#TargetFieldSelect").on('change', function () {
+        $("#FieldEditArea").empty();
+        $('div#loadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
+        var selectedField = $('#TargetFieldSelect').val();
+        $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + selectedField, function (data) {
+            if (data != '') {
+                $("#FieldEditArea").append(data);
+            }
+            $('div#loadingIcon').empty();
+        });
+    });
+
+    $("#TargetFieldSelect").trigger('change');
+
+    function SaveAndCloseModal(){
+        //SubmitFilter is defined in the partial view _FilterEditPartial,
+        //it changes based on the filter/input type
+        SubmitFilter();
+        $('#myModal').modal('toggle');
+        return false;
+    }
+
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': 'cat'
+        });
+
+        // $('.selectpicker').selectpicker('hide');
+    });
+</script>

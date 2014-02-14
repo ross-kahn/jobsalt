@@ -5,16 +5,20 @@
         <title>jobSalt</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
-        @Scripts.Render("~/bundles/jquery");
+        @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryval")
-        @RenderSection("scripts", required: false)
 
+        
         @Styles.Render("~/Content/bootstrap.min.css")
-        @Styles.Render("~/Content/fuelux.min.css")
-        @Styles.Render("~/Content/fuelux-responsive.min.css")
+        @Styles.Render("~/Content/datetimepicker.css")
+        @Styles.Render("~/Content/bootstrap-select.min.css")
 
         @Scripts.Render("~/Scripts/bootstrap.min.js")
-        @Scripts.Render("~/Scripts/fuelux.min.js")
+        @Scripts.Render("~/Scripts/bootstrap-datepicker.js")
+        @Scripts.Render("~/Scripts/bootstrap-select.min.js")
+        
+
+        @RenderSection("scripts", required: false)
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
