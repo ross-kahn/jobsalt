@@ -48,30 +48,7 @@ namespace jobSalt.Controllers
             public string access_token;
         }
 
-        public ActionResult LinkedInLogin(string code, string state)
-        {
-            Session["LoggedIntoLinkedIn"] = true;
-
-            using (var client = new WebClient())
-            {
-                string request = "https://www.linkedin.com/uas/oauth2/accessToken?grant_type=authorization_code" +
-                                           "&code=" + code +
-                                           "&redirect_uri=http://localhost:38087/Job/LinkedInLogin" +
-                                           "&client_id=75tu3x63buelpy" +
-                                           "&client_secret=hBVkeuOMTd1sCGRe";
-
-                string json = client.DownloadString(request);
-
-                var serializer = new JavaScriptSerializer();
-                linkedInResponse response = serializer.Deserialize<linkedInResponse>(json);
-
-
-                string jobRequest = "https://api.linkedin.com/v1/job-search?keywords=java&sort=DA&oauth2_access_token=" + response.access_token;
-                string jobs = client.DownloadString(jobRequest);
-            }
-
-            return RedirectToAction("Index");
-        }
+       
     }
 
 
