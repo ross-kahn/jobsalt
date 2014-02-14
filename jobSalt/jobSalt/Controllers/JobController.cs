@@ -22,14 +22,6 @@ namespace jobSalt.Controllers
                 Session["LoggedIntoLinkedIn"] = false;
             }
 
-            if ((bool)Session["LoggedIntoLinkedIn"] == false)
-            {
-                return Redirect("https://www.linkedin.com/uas/oauth2/authorization?response_type=code" +
-                                           "&client_id=75tu3x63buelpy" +
-                                           "&state=DCEEFWF45453sdffef424jobsaltisthebesthingever32472134721324r" +
-                                           "&redirect_uri=http://localhost:38087/Job/LinkedInLogin");
-            }
-
             ViewBag.FilterString = filterString;
 
             // If being called from ajax return the partial view that has the next set of job posts
@@ -40,12 +32,6 @@ namespace jobSalt.Controllers
             }
 
             return View();
-        }
-
-        private class linkedInResponse
-        {
-            public string expires_in;
-            public string access_token;
         }
 
        
