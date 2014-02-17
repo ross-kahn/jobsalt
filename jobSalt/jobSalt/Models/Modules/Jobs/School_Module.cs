@@ -34,7 +34,7 @@ namespace jobSalt.Models.Modules.Jobs
             }
         }
 
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsperpage)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsperpage)
         {
             //The SQL query needs to include JOINs across different databases based on filters
 

@@ -33,7 +33,7 @@ namespace jobSalt.Models
             get { throw new NotImplementedException(); }
         }
 
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
         {
             /*if (filters.Count == 0)
             {

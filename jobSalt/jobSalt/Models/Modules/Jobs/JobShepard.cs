@@ -32,7 +32,7 @@ namespace jobSalt.Models.Modules.Jobs
         #endregion // Constructors
 
         #region Public Methods
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerModule)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerModule)
         {
             List<JobPost> jobs = new List<JobPost>();
 
