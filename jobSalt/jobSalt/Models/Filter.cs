@@ -17,34 +17,7 @@ namespace jobSalt.Models
             this.TargetField = targetField;
             this.Value = value;
         }
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="filters"></param>
-		/// <returns></returns>
-        public static Dictionary<Field, List<string>> FilterListToDictionary(List<Filter> filters)
-        {
-            // Create a dictionary with Key => FilterType and Value => The actual filter
-            Dictionary<Field, List<string>> FilterHash = new Dictionary<Field, List<string>>();
 
-            // Iterate through the list of filters and parse into the filter hash
-            foreach (Filter filter in filters)
-            {
-                // If the key exists, add the corresponding filter to the end of the list for that type
-                if (FilterHash.ContainsKey(filter.TargetField))
-                {
-                    FilterHash[filter.TargetField].Add(filter.Value);
-                }
-                else // Create a new list
-                {
-                    List<string> list = new List<string>();
-                    list.Add(filter.Value);
-                    FilterHash[filter.TargetField] = list;
-                }
-            }
-
-            return FilterHash;
-        }
 
 		/// <summary>
 		/// Creates a partial url query string from an IEnumerable list of filters.

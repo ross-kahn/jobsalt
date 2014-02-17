@@ -21,42 +21,39 @@ namespace jobSalt.Models
         /// need to be combined so relevant results are returned. This method combines relevant
         /// fields and eliminates the ones that simply cannot be translated into an API call
         /// </summary>
-        /// <param name="filterHash">
+        /// <param name="filters">
         /// The original hash of filters
         /// </param>
         /// <returns>The modified, combined hash of filters</returns>
-        private Dictionary<Field, List<string>> combineKeys(Dictionary<Field, List<string>> filterHash, Field[] toCombine)
+        private Dictionary<Field, string> combineKeys(Dictionary<Field, string> filterHash, Field[] toCombine)
         {
             if (toCombine == null)
             {
                 return filterHash;
             }
 
-            List<string> fos;
+            string fos;
             if (filterHash.ContainsKey(Field.Keyword))
             {
                 fos = filterHash[Field.Keyword];
             }
             else
             {
-                fos = new List<string>();
+                fos = "";
             }
-            
-            foreach (Field keyField in toCombine){
-                if (filterHash.ContainsKey(keyField))
-                {
-                    if (keyField == Field.CompanyName)
-                    {
-                        filterHash[keyField][0] = "company:(" + filterHash[keyField][0] + ")";
-                    }
-                    if (keyField == Field.JobTitle)
-                    {
-                        filterHash[keyField][0] = "title:(" + filterHash[keyField][0] + ")";
-                    }
-                    fos.AddRange(filterHash[keyField]);
-                    filterHash.Remove(keyField);
-                }
+
+            // THIS SHOULD BE SEPARATE IN THE CALL, NOT PART OF KEYWORD
+            if (filterHash.ContainsKey(Field.CompanyName))
+            {
+                fos += " company%3A(" + filterHash[Field.CompanyName] + ")";
+                filterHash.Remove(Field.CompanyName);
             }
+            if (filterHash.ContainsKey(Field.JobTitle))
+            {
+                fos += " title%3A" + filterHash[Field.JobTitle];
+                filterHash.Remove(Field.JobTitle);
+            }
+
             filterHash[Field.Keyword] = fos;
                         
             return filterHash;
@@ -70,9 +67,9 @@ namespace jobSalt.Models
             return cFields;
         }
 
-        public string buildQuery(Dictionary<Field, List<string>> FilterHash, int page, int resultsPerPage)
+        public string buildQuery(Dictionary<Field, string> filterHash, int page, int resultsPerPage)
         {
-            FilterHash = combineKeys(FilterHash, getCombineFields());
+            filterHash = combineKeys(filterHash, getCombineFields());
 
             // String builder, (arguably) more efficient than concatenating strings
             StringBuilder builder = new StringBuilder();
@@ -82,7 +79,7 @@ namespace jobSalt.Models
             builder.Append("&start=" + page * resultsPerPage);
             builder.Append("&limit=" + resultsPerPage);
 
-            foreach (Field key in FilterHash.Keys)
+            foreach (Field key in filterHash.Keys)
             {
                 switch (key)
                 {
@@ -99,11 +96,11 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Keyword:
-                        builder.Append(build_tag_query(FilterHash[Field.Keyword]));
+                        builder.Append(build_tag_query(filterHash[Field.Keyword]));
                         break;
 
                     case Field.Location:
-                        builder.Append("&l=" + FilterHash[key][0]);
+                        builder.Append("&l=" + filterHash[key][0]);
                         break;
 
                     case Field.Salary:
@@ -144,7 +141,7 @@ namespace jobSalt.Models
         /// </summary>
         /// <param name="queries"></param>
         /// <returns></returns>
-        private string build_tag_query(List<string> queries)
+        private string build_tag_query(string queries)
         {
             string tag = "&q=" + String.Join(" ", queries);
 

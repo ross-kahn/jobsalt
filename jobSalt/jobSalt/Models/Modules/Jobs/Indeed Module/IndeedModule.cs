@@ -17,7 +17,7 @@ namespace jobSalt.Models
             builder = new IndeedQueryBuilder();
         }
 
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
         {
             // Return empty list if no filters are specified
             if (filters.Count == 0)
@@ -25,9 +25,7 @@ namespace jobSalt.Models
                 return new List<JobPost>();
             }
 
-            Dictionary<Field, List<string>> filterHash = Filter.FilterListToDictionary(filters);
-
-            string request = builder.buildQuery(filterHash, page, resultsPerPage);
+            string request = builder.buildQuery(filters, page, resultsPerPage);
 
             IndeedResult iResult;
             using (var client = new WebClient())

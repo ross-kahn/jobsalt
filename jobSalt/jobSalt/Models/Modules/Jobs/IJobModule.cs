@@ -20,6 +20,6 @@ namespace jobSalt.Models.Modules.Jobs
         /// <param name="filters">The filters that the module should use to query</param>
         /// <param name="page">What page number of results to grab</param>
         /// <returns>The job postings</returns>
-        List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage);
+        List<JobPost> GetJobs(Dictionary<Models.Field, string> filters, int page, int resultsPerPage);
     }
 }
