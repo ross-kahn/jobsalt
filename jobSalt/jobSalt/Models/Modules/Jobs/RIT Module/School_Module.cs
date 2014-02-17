@@ -4,15 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 
-namespace jobSalt.Models.Modules.Jobs
+namespace jobSalt.Models.Modules.Jobs.RIT_Module
 {
     public class School_Module : IJobModule
     {
         private SqlConnection connection;
+        private ocecsEntities dbContext = new ocecsEntities();
         public School_Module ()
         {            
-            this.DisplayName = "JobZone";
-
             // Initialize SQL connection probably
             InitializeSQL();
         }
@@ -22,24 +21,33 @@ namespace jobSalt.Models.Modules.Jobs
             connection = new SqlConnection("database=ocecs;server=localhost");
         }
 
-        public string DisplayName
-        {
-            get
-            {
-                return DisplayName;
-            }
-            set
-            {
-                DisplayName = value;
-            }
-        }
-
         public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsperpage)
         {
             //The SQL query needs to include JOINs across different databases based on filters
 
             //Ignoring the Filters for now
             List<JobPost> jobs = new List<JobPost>();
+            var jobsSearchQuery = dbContext.Jobs.Join(dbContext.Employers, j => j.employerId, e => e.id, (j, e) => new { Job = j, Employer = e });
+            jobsSearchQuery = jobsSearchQuery.OrderBy(item => item.Job.modifiedDate);
+            var jobsSearch = jobsSearchQuery.Skip(page * resultsperpage);
+            jobsSearch = jobsSearch.Take(resultsperpage);
+            foreach(var job in jobsSearch.ToList())
+            {
+                JobPost j = new JobPost()
+                {
+                    Company = job.Employer.name,
+                    DatePosted = (DateTime)job.Job.modifiedDate,
+                    Description = job.Job.description,
+                    JobTitle = job.Job.title,
+                    Location = new Location("", job.Employer.state, job.Employer.city),
+                    SourceModule = Source,
+                    URL = @"https://rit-csm.symplicity.com/students/index.php?mode=form&s=jobs&ss=jobs&id=" + job.Job.id
+                };
+
+                jobs.Add(j);
+            }
+
+            /*
             connection.Open();
 
             //Two options, either Filter in the SQL or filter after the statement
@@ -77,9 +85,10 @@ namespace jobSalt.Models.Modules.Jobs
             return jobs;
         }
 
+        private Source source = new Source() { Icon = "", Name = "RIT" };
         public Source Source
         {
-            get { throw new NotImplementedException(); }
+            get { return source; }
         }
     }
 }

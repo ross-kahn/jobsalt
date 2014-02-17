@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="adb683a4f1cd47a1bd687620edc3b58e" Name="Diagram1">
+        <EntityTypeShape EntityType="ocecsModel.Contact" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ocecsModel.Employer" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ocecsModel.Job" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ocecsModel.Quarter" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ocecsModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ocecsModel.User" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="ocecsModel.FK_Contacts_Employers" ManuallyRouted="false" />
+        <AssociationConnector Association="ocecsModel.FK_Employers_Contacts" ManuallyRouted="false" />
+        <AssociationConnector Association="ocecsModel.FK_Jobs_Contacts" ManuallyRouted="false" />
+        <AssociationConnector Association="ocecsModel.FK_Employers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ocecsModel.FK_Jobs_Employers" ManuallyRouted="false" />
+        <AssociationConnector Association="ocecsModel.FK_Jobs_Quarters" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
