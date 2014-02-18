@@ -338,7 +338,6 @@
     <Compile Include="Models\Modules\Jobs\RIT Module\User.cs">
       <DependentUpon>RITDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
     <Compile Include="Models\Modules\Jobs\UAJobLink Module\UAJobLinkModule.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />

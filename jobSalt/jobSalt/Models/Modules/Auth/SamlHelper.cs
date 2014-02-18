@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using log4net;
+//using log4net;
 using System.Net;
 using System.Xml;
 using System.Security.Cryptography.X509Certificates;
@@ -185,12 +185,12 @@ namespace jobSalt.Models.Modules.Auth
             doc.DocumentElement.InsertBefore(signature,
                 doc.DocumentElement.ChildNodes[1]);
 
-            if (SamlHelper.Logger.IsDebugEnabled)
+            /*if (SamlHelper.Logger.IsDebugEnabled)
             {
                 SamlHelper.Logger.DebugFormat(
                     "Saml Assertion before encoding = {0}",
                     doc.OuterXml.ToString());
-            }
+            }*/
             string responseStr = doc.OuterXml;
 
             byte[] base64EncodedBytes =

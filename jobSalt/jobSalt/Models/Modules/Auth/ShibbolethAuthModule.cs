@@ -21,7 +21,7 @@ namespace jobSalt.Models.Modules.Auth
         public override bool IsValid(string _username, string _password)
         {
             Dictionary<string, string> attributes = new Dictionary<string,string>();
-            attributes.add("Principle", "P");
+            //attributes.add("Principle", "P");
 
             string saml = SamlHelper.GetPostSamlResponse( recipient
                                                         , issuer
