@@ -293,11 +293,13 @@
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedQueryBuilder.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedResult.cs" />
     <Compile Include="Models\Modules\Jobs\JobShepard.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInJobPost.cs" />
     <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInQueryBuilder.cs" />
     <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInModule.cs" />
     <Compile Include="Models\AlumniPost.cs" />
     <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInResult.cs" />
     <Compile Include="Models\Modules\Jobs\School_Module.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />
