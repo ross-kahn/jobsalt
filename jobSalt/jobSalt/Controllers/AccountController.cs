@@ -22,6 +22,7 @@ namespace jobSalt.Controllers
 
         public AccountController()
         {
+            modules.Add(new ShibbolethAuthModule("JobSALT", "shibboleth.massivedynamic.net", "AD", "<UnKnown>");
             modules.Add(new LDAPAuthModule("vpn.kasour.com", "KASOUR"));
             modules.Add(new LDAPAuthModule("dc1.ad.sofse.org", "SOFSE"));
         }

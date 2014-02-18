@@ -15,7 +15,7 @@ namespace jobSalt.Models.Modules.Auth
     public static class SamlHelper
     {
         /// <summary>
-        /// Creates a Version 1.1 Saml Assertion
+        /// Creates a Version 2.0 Saml Assertion
         /// </summary>
         /// <param name="issuer">Issuer</param>
         /// <param name="subject">Subject</param>
