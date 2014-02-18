@@ -133,9 +133,16 @@ namespace jobSalt.Models
         /// <returns></returns>
         private string date_converter(string filterQ)
         {
-            string date = "&facet=date-posted," + filterQ;
+            if (isValidFilterQ(filterQ) && Filter.isValidDateURL(filterQ))
+            {
+                string date = "&facet=date-posted," + filterQ;
 
-            return "";
+                return date;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         private string jobTitle_converter(string filterQ)

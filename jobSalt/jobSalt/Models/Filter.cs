@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Globalization;
 namespace jobSalt.Models
 {
     public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, FieldOfStudy, Keyword};
@@ -146,5 +148,23 @@ namespace jobSalt.Models
 
             return filters;
         }
+    
+        /// <summary>
+        /// Takes a string and determines whether it's in proper format
+        /// to go into a jobSalt URL in the Date filter field. All dates 
+        /// must be formatted as 8-digit strings: yyyyMMdd
+        /// </summary>
+        /// <param name="URLRequest"></param>
+        /// <returns></returns>
+        public static bool isValidDateURL(string URLRequest){
+
+            // Uses DateTime.TryParseExact to see if the string exactly matches the format
+            DateTime validator;
+            return DateTime.TryParseExact(URLRequest, "yyyyMMdd",
+                                        new CultureInfo("en-US"),
+                                        DateTimeStyles.None, out validator);
+        }
+
+    
     }
 }
