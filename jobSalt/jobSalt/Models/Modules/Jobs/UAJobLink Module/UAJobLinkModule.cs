@@ -29,7 +29,7 @@ namespace jobSalt.Models.Modules.Jobs.UAJobLink_Module
 		/// <param name="filters">The filters that the module should use to query</param>
 		/// <param name="page">What page number of results to grab</param>
 		/// <returns>The job postings</returns>
-		public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
 		{
 
 		List<JobPost> jobs = new List<JobPost>( );
@@ -50,5 +50,5 @@ namespace jobSalt.Models.Modules.Jobs.UAJobLink_Module
 			}
 		return jobs;
 		}
-	}
+    }
 }

@@ -15,6 +15,9 @@ namespace jobSalt.Models
         public Location Location { get; set; }
         public string Salary { get; set; }
         public string Description { get; set; }
+
+        // This doesn't need to be in a job post, right?
+        // Field of study is only for searching...
         public string FieldOfStudy { get; set; }
     }
 }

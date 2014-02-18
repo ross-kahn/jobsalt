@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Net;
 using System.Web.Mvc;
+using jobSalt.Models.Modules.Jobs.LinkedIn_Module;
 
 
 namespace jobSalt.Models
@@ -33,7 +34,7 @@ namespace jobSalt.Models
             get { throw new NotImplementedException(); }
         }
 
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
         {
             /*if (filters.Count == 0)
             {
@@ -47,6 +48,31 @@ namespace jobSalt.Models
             }
 
             return new List<JobPost>();
+        }
+
+        private List<JobPost> LinkedInResultToJobPosts(LinkedInResult linkedinResult)
+        {
+            List<JobPost> results = new List<JobPost>();
+
+            foreach (LinkedInJobPost raw in linkedinResult.Values)
+            {
+                JobPost jobpost = new JobPost()
+                {
+                    Company = raw.Company,
+                    Description = raw.DescriptionSnippet,
+                    Location = null,
+                    URL = raw.SiteJobURL,
+                    SourceModule = null,
+                    DatePosted = new DateTime(raw.PostingDate.Year, 
+                                                raw.PostingDate.Month, 
+                                                raw.PostingDate.Day),
+                    JobTitle = raw.Position.Title,
+                    Salary = null
+                };
+                results.Add(jobpost);
+            }
+
+            return results;
         }
     }
 }

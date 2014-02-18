@@ -21,42 +21,39 @@ namespace jobSalt.Models
         /// need to be combined so relevant results are returned. This method combines relevant
         /// fields and eliminates the ones that simply cannot be translated into an API call
         /// </summary>
-        /// <param name="filterHash">
+        /// <param name="filters">
         /// The original hash of filters
         /// </param>
         /// <returns>The modified, combined hash of filters</returns>
-        private Dictionary<Field, List<string>> combineKeys(Dictionary<Field, List<string>> filterHash, Field[] toCombine)
+        private Dictionary<Field, string> combineKeys(Dictionary<Field, string> filterHash, Field[] toCombine)
         {
             if (toCombine == null)
             {
                 return filterHash;
             }
 
-            List<string> fos;
+            string fos;
             if (filterHash.ContainsKey(Field.Keyword))
             {
                 fos = filterHash[Field.Keyword];
             }
             else
             {
-                fos = new List<string>();
+                fos = "";
             }
-            
-            foreach (Field keyField in toCombine){
-                if (filterHash.ContainsKey(keyField))
-                {
-                    if (keyField == Field.CompanyName)
-                    {
-                        filterHash[keyField][0] = "company:(" + filterHash[keyField][0] + ")";
-                    }
-                    if (keyField == Field.JobTitle)
-                    {
-                        filterHash[keyField][0] = "title:(" + filterHash[keyField][0] + ")";
-                    }
-                    fos.AddRange(filterHash[keyField]);
-                    filterHash.Remove(keyField);
-                }
+
+            // THIS SHOULD BE SEPARATE IN THE CALL, NOT PART OF KEYWORD
+            if (filterHash.ContainsKey(Field.CompanyName))
+            {
+                fos += " company%3A(" + filterHash[Field.CompanyName] + ")";
+                filterHash.Remove(Field.CompanyName);
             }
+            if (filterHash.ContainsKey(Field.JobTitle))
+            {
+                fos += " title%3A" + filterHash[Field.JobTitle];
+                filterHash.Remove(Field.JobTitle);
+            }
+
             filterHash[Field.Keyword] = fos;
                         
             return filterHash;
@@ -70,9 +67,9 @@ namespace jobSalt.Models
             return cFields;
         }
 
-        public string buildQuery(Dictionary<Field, List<string>> FilterHash, int page, int resultsPerPage)
+        public string buildQuery(Dictionary<Field, string> filterHash, int page, int resultsPerPage)
         {
-            FilterHash = combineKeys(FilterHash, getCombineFields());
+            filterHash = combineKeys(filterHash, getCombineFields());
 
             // String builder, (arguably) more efficient than concatenating strings
             StringBuilder builder = new StringBuilder();
@@ -82,7 +79,7 @@ namespace jobSalt.Models
             builder.Append("&start=" + page * resultsPerPage);
             builder.Append("&limit=" + resultsPerPage);
 
-            foreach (Field key in FilterHash.Keys)
+            foreach (Field key in filterHash.Keys)
             {
                 switch (key)
                 {
@@ -99,11 +96,11 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Keyword:
-                        builder.Append(build_tag_query(FilterHash[Field.Keyword]));
+                        builder.Append(keywordConverter(filterHash[key]));
                         break;
 
                     case Field.Location:
-                        builder.Append("&l=" + FilterHash[key][0]);
+                        builder.Append("&l=" + filterHash[key][0]);
                         break;
 
                     case Field.Salary:
@@ -119,9 +116,9 @@ namespace jobSalt.Models
 
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format
-            builder.Append(build_tag_limit(Constants.RESULT_LIMIT));    // The limit of # of results returned
-            builder.Append(build_tag_userip(USER_IP));                  
-            builder.Append(build_tag_useragent(USER_AGENT));
+            builder.Append(limitConverter(Constants.RESULT_LIMIT));    // The limit of # of results returned
+            builder.Append(useripConverter(USER_IP));                  
+            builder.Append(useragentConverter(USER_AGENT));
             builder.Append(VERSION_TAG);
 
             return builder.ToString();
@@ -144,76 +141,58 @@ namespace jobSalt.Models
         /// </summary>
         /// <param name="queries"></param>
         /// <returns></returns>
-        private string build_tag_query(List<string> queries)
-        {
-            string tag = "&q=" + String.Join(" ", queries);
 
-            return tag;
+        private string keywordConverter (string queries)
+        {
+            if (isValidFilterQ(queries))
+            {
+                string tag = "&as_and=" + String.Join(" ", queries);
+
+                return tag;
+            }
+            else
+            {
+                return "";
+            }
         }
 
-        private string build_tag_location()
+        private string limitConverter(string limit)
         {
-            return "v=";
+            if (isValidFilterQ(limit))
+            {
+                return "&limit=" + limit;
+            }
+            else
+            {
+                return "";
+            }
         }
 
-        private string build_tag_sort( )
+        private string jobtitleConverter(string query)
         {
-            return "v=";
+            if (isValidFilterQ(query))
+            {
+                string result = "&as_ttl=" + String.Join("+", query);
+
+                return result;
+            }
+            else
+            {
+                return "";
+            }
         }
 
-        private string build_tag_radius( )
+        private string companyNameConverter(string query)
         {
-            return "v=";
-        }
-
-        private string build_tag_sitetype( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_jobtype( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_start( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_limit(string limit)
-        {
-            return "&limit=" + limit;
-        }
-
-        private string build_tag_fromage( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_highlight( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_filter( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_latlong( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_country( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_chnl( )
-        {
-            return "v=";
+            if (isValidFilterQ(query))
+            {
+                string result = "&as_cmp=" + String.Join("+", query);
+                return result;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         /// <summary>
@@ -222,7 +201,7 @@ namespace jobSalt.Models
         /// <returns>
         /// Portion of an Indeed API call regarding user ip
         /// </returns>
-        private string build_tag_userip(string ip)
+        private string useripConverter(string ip)
         {
             return "&userip=" + ip;
         }
@@ -232,9 +211,22 @@ namespace jobSalt.Models
         /// This can be obtained from the "User-Agent" HTTP request header from the end-user. This field is required.
         /// </summary>
         /// <returns></returns>
-        private string build_tag_useragent(string agent)
+        private string useragentConverter(string agent)
         {
             return "&useragent=" + agent;
+        }
+
+        private static bool isValidFilterQ(string filterQ)
+        {
+            // What other characters do we need to catch?
+            if (filterQ == null || filterQ.Equals(""))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         #endregion

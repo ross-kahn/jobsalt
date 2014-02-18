@@ -285,7 +285,11 @@
     <Compile Include="Models\HousingPost.cs" />
     <Compile Include="Models\Modules\Auth\AuthModule.cs" />
     <Compile Include="Models\Modules\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\SamlHelper.cs" />
+    <Compile Include="Models\Modules\Auth\SamlSchemas.cs" />
+    <Compile Include="Models\Modules\Auth\SamlSignedXml.cs" />
     <Compile Include="Models\Modules\Auth\ShibbolethAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\SigningHelper.cs" />
     <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedJobPost.cs" />
@@ -293,11 +297,47 @@
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedQueryBuilder.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedResult.cs" />
     <Compile Include="Models\Modules\Jobs\JobShepard.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInJobPost.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInQueryBuilder.cs" />
     <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInModule.cs" />
     <Compile Include="Models\AlumniPost.cs" />
     <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInResult.cs" />
+    <Compile Include="Models\Modules\Jobs\RIT Module\Contact.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\Employer.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\Job.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\Quarter.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\RITDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RITDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\RITDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\RITDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RITDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\School_Module.cs" />
+    <Compile Include="Models\Modules\Jobs\RIT Module\sysdiagram.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modules\Jobs\RIT Module\User.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Modules\Jobs\UAJobLink Module\UAJobLinkModule.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />
@@ -395,6 +435,23 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="Models\Modules\Jobs\RIT Module\RITDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RITDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Modules\Jobs\RIT Module\RITDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RITDB.edmx</DependentUpon>
+      <LastGenOutput>RITDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Modules\Jobs\RIT Module\RITDB.edmx.diagram">
+      <DependentUpon>RITDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Modules\Jobs\RIT Module\RITDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RITDB.edmx</DependentUpon>
+      <LastGenOutput>RITDB.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
@@ -496,6 +553,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,7 +7,7 @@ namespace jobSalt.Models.Modules.Jobs
 {
     public class DummyJobModule : IJobModule
     {
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
         {
             List<JobPost> jobs = new List<JobPost>();
             for (int i = 0; i < resultsPerPage; ++i )
@@ -28,5 +28,6 @@ namespace jobSalt.Models.Modules.Jobs
         {
             get { throw new NotImplementedException(); }
         }
+
     }
 }
