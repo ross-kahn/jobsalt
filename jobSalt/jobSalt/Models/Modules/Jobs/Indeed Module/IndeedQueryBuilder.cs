@@ -141,6 +141,7 @@ namespace jobSalt.Models
         /// </summary>
         /// <param name="queries"></param>
         /// <returns></returns>
+
         private string keywordConverter (string queries)
         {
             if (isValidFilterQ(queries))
@@ -154,6 +155,7 @@ namespace jobSalt.Models
                 return "";
             }
         }
+
         private string limitConverter(string limit)
         {
             if (isValidFilterQ(limit))

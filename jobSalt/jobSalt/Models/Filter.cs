@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Globalization;
 namespace jobSalt.Models
 {
     public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, FieldOfStudy, Keyword};
@@ -17,34 +19,7 @@ namespace jobSalt.Models
             this.TargetField = targetField;
             this.Value = value;
         }
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="filters"></param>
-		/// <returns></returns>
-        public static Dictionary<Field, List<string>> FilterListToDictionary(List<Filter> filters)
-        {
-            // Create a dictionary with Key => FilterType and Value => The actual filter
-            Dictionary<Field, List<string>> FilterHash = new Dictionary<Field, List<string>>();
 
-            // Iterate through the list of filters and parse into the filter hash
-            foreach (Filter filter in filters)
-            {
-                // If the key exists, add the corresponding filter to the end of the list for that type
-                if (FilterHash.ContainsKey(filter.TargetField))
-                {
-                    FilterHash[filter.TargetField].Add(filter.Value);
-                }
-                else // Create a new list
-                {
-                    List<string> list = new List<string>();
-                    list.Add(filter.Value);
-                    FilterHash[filter.TargetField] = list;
-                }
-            }
-
-            return FilterHash;
-        }
 
 		/// <summary>
 		/// Creates a partial url query string from an IEnumerable list of filters.
@@ -173,5 +148,23 @@ namespace jobSalt.Models
 
             return filters;
         }
+    
+        /// <summary>
+        /// Takes a string and determines whether it's in proper format
+        /// to go into a jobSalt URL in the Date filter field. All dates 
+        /// must be formatted as 8-digit strings: yyyyMMdd
+        /// </summary>
+        /// <param name="URLRequest"></param>
+        /// <returns></returns>
+        public static bool isValidDateURL(string URLRequest){
+
+            // Uses DateTime.TryParseExact to see if the string exactly matches the format
+            DateTime validator;
+            return DateTime.TryParseExact(URLRequest, "yyyyMMdd",
+                                        new CultureInfo("en-US"),
+                                        DateTimeStyles.None, out validator);
+        }
+
+    
     }
 }
