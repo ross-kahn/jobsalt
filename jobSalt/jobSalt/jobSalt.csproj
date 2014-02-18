@@ -285,7 +285,11 @@
     <Compile Include="Models\HousingPost.cs" />
     <Compile Include="Models\Modules\Auth\AuthModule.cs" />
     <Compile Include="Models\Modules\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\SamlHelper.cs" />
+    <Compile Include="Models\Modules\Auth\SamlSchemas.cs" />
+    <Compile Include="Models\Modules\Auth\SamlSignedXml.cs" />
     <Compile Include="Models\Modules\Auth\ShibbolethAuthModule.cs" />
+    <Compile Include="Models\Modules\Auth\SigningHelper.cs" />
     <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedJobPost.cs" />
