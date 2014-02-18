@@ -31,6 +31,7 @@ namespace jobSalt.Models.Modules.Jobs.UAJobLink_Module
 		/// <returns>The job postings</returns>
 		public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsPerPage)
 		{
+
 		List<JobPost> jobs = new List<JobPost>( );
 		for ( int i = 0 ; i < resultsPerPage ; ++i )
 			{
@@ -41,6 +42,10 @@ namespace jobSalt.Models.Modules.Jobs.UAJobLink_Module
 				Description = "Default Posting from University of Arizona's Wildcat Joblink" ,
 				FieldOfStudy = "Computer Science" ,
 				JobTitle = "Default " + ( ( page-1 )*resultsPerPage+i ) ,
+				Location = new Location(),
+				 Salary =null,
+				  SourceModule = source,
+				URL = "http://www.career.arizona.edu/joblink"
 			} );
 			}
 		return jobs;
