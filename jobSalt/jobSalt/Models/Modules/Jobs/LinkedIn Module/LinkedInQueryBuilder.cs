@@ -76,13 +76,12 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Location:
-
+                        // For now, assumes that the location is a postal code
+                        builder.Append(location_converter(filterHash[Field.Location]));
                         break;
 
                     case Field.Salary:
-                        break;
-
-                    case Field.Source:
+                        // Deprecated... not useful enough to enhance user experience!
                         break;
 
                     default:
@@ -146,6 +145,24 @@ namespace jobSalt.Models
                 string jt = "&job-title=" + HttpUtility.UrlPathEncode(filterQ);
 
                 return jt;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// For now, assumes that the input is a postal code
+        /// </summary>
+        /// <param name="filterQ"></param>
+        /// <returns></returns>
+        private string location_converter(string filterQ)
+        {
+            if (isValidFilterQ(filterQ))
+            {
+                string loc = "&country-code=us&postal-code=" + filterQ;
+                return loc;
             }
             else
             {
