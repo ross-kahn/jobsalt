@@ -48,6 +48,7 @@ namespace jobSalt.Models
             builder.Append("&start=" + (page * resultsPerPage).ToString());
             builder.Append("&count=" + resultsPerPage.ToString());
             builder.Append("&sort=DD");
+            builder.Append("&f_E=0,1,2,3");
 
             foreach (Field key in filterHash.Keys)
             {
