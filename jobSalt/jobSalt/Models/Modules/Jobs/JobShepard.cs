@@ -1,4 +1,5 @@
-﻿using System;
+﻿using jobSalt.Models.Modules.Jobs.RIT_Module;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,8 @@ namespace jobSalt.Models.Modules.Jobs
         {
             modules = new List<IJobModule>();
             //modules.Add(new IndeedModule());
-            modules.Add(new LinkedInModule());
+            //modules.Add(new LinkedInModule());
+            modules.Add(new School_Module());
         }
         #endregion // Constructors
 
