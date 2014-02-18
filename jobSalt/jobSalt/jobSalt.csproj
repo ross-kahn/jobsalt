@@ -334,6 +334,8 @@
     <Compile Include="Models\Modules\Jobs\RIT Module\User.cs">
       <DependentUpon>RITDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
+    <Compile Include="Models\Modules\Jobs\UAJobLink Module\UAJobLinkModule.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />
     <Compile Include="Models\Source.cs" />
@@ -358,6 +360,7 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\indeed_icon.png" />
+    <Content Include="Content\images\UA_Block_A.png" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Content\images\loading.gif" />
