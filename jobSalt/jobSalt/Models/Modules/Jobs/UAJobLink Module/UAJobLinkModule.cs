@@ -41,11 +41,11 @@ namespace jobSalt.Models.Modules.Jobs.UAJobLink_Module
 				DatePosted = DateTime.Now ,
 				Description = "Default Posting from University of Arizona's Wildcat Joblink" ,
 				FieldOfStudy = "Computer Science" ,
-				JobTitle = "Default " + ( ( page-1 )*resultsPerPage+i ) ,
+				JobTitle = "Default ",
 				Location = new Location(),
 				 Salary =null,
 				  SourceModule = source,
-				URL = "http://www.career.arizona.edu/joblink"
+				URL = "www.career.arizona.edu/joblink"
 			} );
 			}
 		return jobs;
