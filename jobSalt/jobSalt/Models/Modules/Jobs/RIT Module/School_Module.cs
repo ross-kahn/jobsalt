@@ -28,6 +28,21 @@ namespace jobSalt.Models.Modules.Jobs.RIT_Module
             //Ignoring the Filters for now
             List<JobPost> jobs = new List<JobPost>();
             var jobsSearchQuery = dbContext.Jobs.Join(dbContext.Employers, j => j.employerId, e => e.id, (j, e) => new { Job = j, Employer = e });
+            
+            //Use a WHERE clause to match filters perhaps?
+            foreach (var f in filters)
+            {
+                switch (f.TargetField)
+                {
+                    case Field.CompanyName:
+                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(f.Value));
+                        break;
+                    default:
+                        break;
+                }
+                //jobsSearchQuery = jobsSearchQuery.Where(item => it == f.TargetField);
+            }
+
             jobsSearchQuery = jobsSearchQuery.OrderBy(item => item.Job.modifiedDate);
             var jobsSearch = jobsSearchQuery.Skip(page * resultsperpage);
             jobsSearch = jobsSearch.Take(resultsperpage);
