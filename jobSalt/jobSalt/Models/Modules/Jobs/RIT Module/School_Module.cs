@@ -21,7 +21,6 @@ namespace jobSalt.Models.Modules.Jobs.RIT_Module
             connection = new SqlConnection("database=ocecs;server=localhost");
         }
 
-<<<<<<< HEAD:jobSalt/jobSalt/Models/Modules/Jobs/School_Module.cs
         public string DisplayName
         {
             get
@@ -35,9 +34,6 @@ namespace jobSalt.Models.Modules.Jobs.RIT_Module
         }
 
         public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsperpage)
-=======
-        public List<JobPost> GetJobs(List<Filter> filters, int page, int resultsperpage)
->>>>>>> origin/JobZone_module2:jobSalt/jobSalt/Models/Modules/Jobs/RIT Module/School_Module.cs
         {
             //The SQL query needs to include JOINs across different databases based on filters
 
@@ -46,12 +42,12 @@ namespace jobSalt.Models.Modules.Jobs.RIT_Module
             var jobsSearchQuery = dbContext.Jobs.Join(dbContext.Employers, j => j.employerId, e => e.id, (j, e) => new { Job = j, Employer = e });
             
             //Use a WHERE clause to match filters perhaps?
-            foreach (var f in filters)
+            foreach (Field key in filters.Keys)
             {
-                switch (f.TargetField)
+                switch (key)
                 {
                     case Field.CompanyName:
-                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(f.Value));
+                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters[key]));
                         break;
                     default:
                         break;

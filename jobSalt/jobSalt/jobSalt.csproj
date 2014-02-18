@@ -300,7 +300,6 @@
     <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInResult.cs" />
-    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
     <Compile Include="Models\Modules\Jobs\RIT Module\Contact.cs">
       <DependentUpon>RITDB.tt</DependentUpon>
     </Compile>
