@@ -96,7 +96,7 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Keyword:
-                        builder.Append(build_tag_query(filterHash[Field.Keyword]));
+                        builder.Append(keywordConverter(filterHash[key]));
                         break;
 
                     case Field.Location:
@@ -116,9 +116,9 @@ namespace jobSalt.Models
 
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format
-            builder.Append(build_tag_limit(Constants.RESULT_LIMIT));    // The limit of # of results returned
-            builder.Append(build_tag_userip(USER_IP));                  
-            builder.Append(build_tag_useragent(USER_AGENT));
+            builder.Append(limitConverter(Constants.RESULT_LIMIT));    // The limit of # of results returned
+            builder.Append(useripConverter(USER_IP));                  
+            builder.Append(useragentConverter(USER_AGENT));
             builder.Append(VERSION_TAG);
 
             return builder.ToString();
@@ -141,76 +141,56 @@ namespace jobSalt.Models
         /// </summary>
         /// <param name="queries"></param>
         /// <returns></returns>
-        private string build_tag_query(string queries)
+        private string keywordConverter (string queries)
         {
-            string tag = "&q=" + String.Join(" ", queries);
+            if (isValidFilterQ(queries))
+            {
+                string tag = "&as_and=" + String.Join(" ", queries);
 
-            return tag;
+                return tag;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        private string limitConverter(string limit)
+        {
+            if (isValidFilterQ(limit))
+            {
+                return "&limit=" + limit;
+            }
+            else
+            {
+                return "";
+            }
         }
 
-        private string build_tag_location()
+        private string jobtitleConverter(string query)
         {
-            return "v=";
+            if (isValidFilterQ(query))
+            {
+                string result = "&as_ttl=" + String.Join("+", query);
+
+                return result;
+            }
+            else
+            {
+                return "";
+            }
         }
 
-        private string build_tag_sort( )
+        private string companyNameConverter(string query)
         {
-            return "v=";
-        }
-
-        private string build_tag_radius( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_sitetype( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_jobtype( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_start( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_limit(string limit)
-        {
-            return "&limit=" + limit;
-        }
-
-        private string build_tag_fromage( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_highlight( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_filter( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_latlong( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_country( )
-        {
-            return "v=";
-        }
-
-        private string build_tag_chnl( )
-        {
-            return "v=";
+            if (isValidFilterQ(query))
+            {
+                string result = "&as_cmp=" + String.Join("+", query);
+                return result;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         /// <summary>
@@ -219,7 +199,7 @@ namespace jobSalt.Models
         /// <returns>
         /// Portion of an Indeed API call regarding user ip
         /// </returns>
-        private string build_tag_userip(string ip)
+        private string useripConverter(string ip)
         {
             return "&userip=" + ip;
         }
@@ -229,9 +209,22 @@ namespace jobSalt.Models
         /// This can be obtained from the "User-Agent" HTTP request header from the end-user. This field is required.
         /// </summary>
         /// <returns></returns>
-        private string build_tag_useragent(string agent)
+        private string useragentConverter(string agent)
         {
             return "&useragent=" + agent;
+        }
+
+        private static bool isValidFilterQ(string filterQ)
+        {
+            // What other characters do we need to catch?
+            if (filterQ == null || filterQ.Equals(""))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         #endregion
