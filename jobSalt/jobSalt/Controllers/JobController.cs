@@ -15,7 +15,7 @@ namespace jobSalt.Controllers
         private JobShepard shepard = new JobShepard();
         
 
-        public ActionResult Index(string filterString, int page = 1, int resultsPerPage = 10)
+        public ActionResult Index(string filterString, int page = 0, int resultsPerPage = 10)
         {
             if (Session["LoggedIntoLinkedIn"] == null)
             {
@@ -27,7 +27,6 @@ namespace jobSalt.Controllers
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
             {
-                //List<Models.Filter> filters = FilterUtility.GetFilters(filterString);
                 Dictionary<Models.Field, string> filters = jobSalt.Models.Filter.FilterQueryStringToDictionary(filterString);
                 return PartialView("Index_Partial", shepard.GetJobs(filters, page, resultsPerPage).ToArray());
             }
