@@ -2,78 +2,18 @@
   "jobs": {
     "_count": 10,
     "_start": 0,
-    "_total": 4387,
+    "_total": 181994,
     "values": [
       {
         "company": {
-          "name": "Microsoft"
+          "name": "JPS Health Network"
         },
-        "descriptionSnippet": "Job Category: MarketingLocation: Beijing, CNJob ID: 869686-136235Division: MarketingConsumer PR Manager, China Works with the Business Group Marketing, PR Lead, Citizenship, Marketing and Marketing and Operations leads in China to develop Communications strategy and plans for Microsoft products and services, targeting consumers. This includes: strategy for driving perception changing media coverag",
-        "locationDescription": "Beijing, CN",
+        "descriptionSnippet": "The Care Manager supports the physician and interdisciplinary team in facilitating patient care, with the underlying objective of enhancing the quality of clinical outcomes and patient satisfaction.  This job integrates population management, care facilitation (appropriate level of care) and utilization/quality management functions.    Typical Duties Applies a series of criteria and measures to st",
+        "locationDescription": "Dallas/Fort Worth Area",
         "position": {
           "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
-          },
-          "jobType": {
-            "code": "F",
-            "name": "Full-time"
-          },
-          "location": {
-            "country": {
-              "code": "cn"
-            },
-            "name": "Beijing City, China"
-          },
-          "title": "SR PUB RELATIONS MGR - SMSG - Beijing"
-        },
-        "postingDate": {
-          "day": 20,
-          "month": 2,
-          "year": 2014
-        },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692682&trk=api*a3227641*s3301901*"
-      },
-      {
-        "company": {
-          "name": "Microsoft"
-        },
-        "descriptionSnippet": "Job Category: Software Engineering: DevelopmentLocation: Herzelia, ILJob ID: 869691-136257Division: Devices and Studios EngineeringThe ILDC AD team is looking for engineers with passion for technology, customers and quality which are looking for developing products with deep technological challenges.Our Access and identity mgmt. products have a rich set of capabilities related to Networking, Netwo",
-        "locationDescription": "Herzelia, IL",
-        "position": {
-          "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
-          },
-          "jobType": {
-            "code": "F",
-            "name": "Full-time"
-          },
-          "location": {
-            "country": {
-              "code": "il"
-            },
-            "name": "Israel"
-          },
-          "title": "Software Development Engineer - Active Directory ILDC"
-        },
-        "postingDate": {
-          "day": 20,
-          "month": 2,
-          "year": 2014
-        },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692681&trk=api*a3227641*s3301901*"
-      },
-      {
-        "company": {
-          "name": "Microsoft"
-        },
-        "descriptionSnippet": "Job Category: SalesLocation: Dallas, TX, USJob ID: 869044-136342Division: SalesThe South Central District Corporate Accounts Specialist Team is seeking a motivated and self-driven sales professional to fill a key role of a Solution Specialist for Productivity. The Solution Specialist Productivity adds value to Microsoft by delivering the vision &amp; customer value proposition for the Microsoft Pr",
-        "locationDescription": "Dallas, TX, US",
-        "position": {
-          "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
+            "code": "4",
+            "name": "Mid-Senior level"
           },
           "jobType": {
             "code": "F",
@@ -85,25 +25,26 @@
             },
             "name": "Dallas/Fort Worth Area"
           },
-          "title": "PRODUCTIVITY SSP"
+          "title": "Case Manager"
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692679&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801178&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<p><strong>Qualifications:</strong>  <br><strong>Required Education and Experience:</strong> </p><ul><li>Graduation from an Accredited School of Nursing. </li><li>Two plus years’ clinical experience in the following areas: </li></ul><p>Hospital: critical care, med-surg, specialty services </p><p>Home health nursing </p><p>Health Center/clinic/medical home </p><p>SNF/ long-term care (LTC) experience </p><ul><li>Prior case management experience.  </li></ul><p><strong>Required Licensure/Certification/Specialized Training: </strong></p><ul><li>RN licensure through the Texas State Board of Nurse Examiners. </li><li>American Heart Association CPR/BLS Certification (subsequent to hire).</li></ul>"
       },
       {
         "company": {
-          "name": "Microsoft"
+          "name": "BankNewport"
         },
-        "descriptionSnippet": "Job Category: Services &amp; ConsultingLocation: Spain - Non Location Specific, ESJob ID: 869694-136247Division: Services &amp; SupportDo you want to play a key role in a fast growing and leading organization, with a high visibility on the strategy? Do you want to directly impact the optimization of a large and complex Services business across 12 countries? Do you like ensuring that customer expec",
-        "locationDescription": "Spain - Non Location Specific, ES",
+        "descriptionSnippet": "BUSINESS DEVELOPMENT OFFICER   OVERVIEW:   Responsible for working with Vice President- Business Developer Officer, Commercial Lenders, Branch Managers, and Residential Mortgage Originators in the Bank’s market area to assist them in achieving Bank sales &amp; business development goals.  Focus will be on growing market share and ensuring that BankNewport maintains a strong local community presenc",
+        "locationDescription": "Providence, Rhode Island Area",
         "position": {
           "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
+            "code": "4",
+            "name": "Mid-Senior level"
           },
           "jobType": {
             "code": "F",
@@ -111,29 +52,29 @@
           },
           "location": {
             "country": {
-              "code": "es"
+              "code": "us"
             },
-            "name": "Spain"
+            "name": "Providence, Rhode Island Area"
           },
-          "title": "MCS, Area Resource Manager"
+          "title": "Business Development Officer"
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692676&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801177&trk=api*a3227641*s3301901*"
       },
       {
         "company": {
-          "name": "Microsoft"
+          "name": "PLS Logistics Services"
         },
-        "descriptionSnippet": "Job Category: Services &amp; ConsultingLocation: Portugal - Non Location Specific, PTJob ID: 869694-136253Division: Services &amp; SupportDo you want to play a key role in a fast growing and leading organization, with a high visibility on the strategy? Do you want to directly impact the optimization of a large and complex Services business across 12 countries? Do you like ensuring that customer ex",
-        "locationDescription": "Portugal - Non Location Specific, PT",
+        "descriptionSnippet": "Overview:   Work in a fast pace, demanding environment to ensure daily customer service requirements and carrier utilization plans are met with respect to performance and profitability. Responsibilities: Dispatch shipments to motor carriers by following customer service requirements and carrier utilization plans to achieve performance and profit objectives Monitor and ensure shipments are confirme",
+        "locationDescription": "Greater Pittsburgh Area",
         "position": {
           "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
+            "code": "3",
+            "name": "Associate"
           },
           "jobType": {
             "code": "F",
@@ -141,55 +82,26 @@
           },
           "location": {
             "country": {
-              "code": "pt"
+              "code": "us"
             },
-            "name": "Portugal"
+            "name": "Houston, Texas Area"
           },
-          "title": "MCS, Area Resource Manager"
+          "title": "Logistics Coordinator (Bilingual Spanish/English)"
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692675&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801176&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<p><strong>Minimum Requirements</strong> </p><ul><li>Strong communication and organizational skills </li><li>Advanced use of Microsoft Excel in past roles a plus </li><li>Ability to communicate in both Spanish and English to support our customer base </li></ul><p><strong>Minimum Qualifications</strong> </p><ul><li>Bachelor’s Degree or work experience in related field </li><li>Intermediate skill level with other Microsoft packages </li><li>Prior Flatbed Dispatch experience</li></ul>"
       },
       {
         "company": {
-          "name": "Microsoft"
+          "name": "Phoenix Contact USA"
         },
-        "descriptionSnippet": "Job Category: Services &amp; ConsultingLocation: Italy - Non Location Specific, ITJob ID: 869694-136244Division: Services &amp; SupportDo you want to play a key role in a fast growing and leading organization, with a high visibility on the strategy? Do you want to directly impact the optimization of a large and complex Services business across 12 countries? Do you like ensuring that customer expec",
-        "locationDescription": "Italy - Non Location Specific, IT",
-        "position": {
-          "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
-          },
-          "jobType": {
-            "code": "F",
-            "name": "Full-time"
-          },
-          "location": {
-            "country": {
-              "code": "it"
-            },
-            "name": "Italy"
-          },
-          "title": "MCS, Area Resource Manager"
-        },
-        "postingDate": {
-          "day": 20,
-          "month": 2,
-          "year": 2014
-        },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692674&trk=api*a3227641*s3301901*"
-      },
-      {
-        "company": {
-          "name": "Microsoft"
-        },
-        "descriptionSnippet": "Job Category: Software Engineering: DevelopmentLocation: Redmond, WA, USJob ID: 869618-136296Division: Operating Systems EngineeringThe Wireless and Core Connectivity team is the team that makes networking possible. Connecting to web servers? That’s us. Enabling gamers to connect to each other? That’s us. Making every hotspot a possible gateway to the internet? We do that. Using WiFi for home, wor",
-        "locationDescription": "Redmond, WA, US",
+        "descriptionSnippet": "The IPC Software Engineer develops solutions for the Industrial PC team located in Ann Arbor, MI. These solutions include creating and deploying embedded operating system applications and configurations.  The engineer is also responsible for working with customers to collect operating system requirements for custom deployments. RESPONSIBILITIES:   Understands software application dependencies Know",
+        "locationDescription": "Greater Detroit Area",
         "position": {
           "experienceLevel": {
             "code": "0",
@@ -203,27 +115,28 @@
             "country": {
               "code": "us"
             },
-            "name": "Greater Seattle Area"
+            "name": "Greater Detroit Area"
           },
-          "title": "Software Development Engineer II"
+          "title": "Software Engineer "
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692673&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801175&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<ul><li>BS Degree in Software Engineering/Science or comparable preferred </li><li>2-5 years of software experience </li><li>Tactical group written/verbal communication to peers/management </li><li>Works within framework of identified organizational strategy </li><li>Work as directed with Senior level personnel/managers </li><li>Meets 100% of Development Engineer (Software) Level II Competency Profile </li><li>Must be eligible to obtain passport </li></ul><p>  </p><p>  </p><p>ESSENTIAL JOB FUNCTIONS: <p></p></p><ul><li>Must be able to travel by air </li><li>Occasional overseas travel for extended periods required </li><li>Occasional Domestic Travel required </li><li>Must be able to sit for extended periods of time </li><li>Must be able to communicate effectively in English </li><li>Must be able to lift 25 lbs.</li></ul>"
       },
       {
         "company": {
-          "name": "Microsoft"
+          "name": "Western Union"
         },
-        "descriptionSnippet": "Job Category: Customer Service &amp; SupportLocation: Beijing, CNJob ID: 869673-136218Division: Services &amp; SupportJob Description:Scope: global JD appended below Asia timezone (for the pre-sales aspect, mainly GCR &amp; Japan)  English skills is important Because this is year 1 of Asia DTU, a lot of the time will be spent on (1) delivering training/bootcamp/knowledge transfers to new DTU (2) b",
-        "locationDescription": "Beijing, CN",
+        "descriptionSnippet": "We didn’t become the worldwide leader in money movement services overnight. The employees of Western Union have been the backbone of our innovative spirit—and continued success—since our beginnings in 1851. And it’s a proud tradition that continues today with the next dedicated, enterprising individual that joins our team—hopefully, you.   Right now, we are seeking an Assistant Manager, Global Pri",
+        "locationDescription": "Greater Denver Area",
         "position": {
           "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
+            "code": "4",
+            "name": "Mid-Senior level"
           },
           "jobType": {
             "code": "F",
@@ -231,29 +144,92 @@
           },
           "location": {
             "country": {
-              "code": "cn"
+              "code": "us"
             },
-            "name": "Beijing City, China"
+            "name": "Greater Denver Area"
           },
-          "title": "PRIN PFE"
+          "title": "Assistant Manager, Global Pricing Strategy"
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692672&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801173&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<p>  </p><ul><li>3-5+ years of overall experience (work and educational equivalent) including experience in a global consulting environment and global pricing experience; consumer pricing experience a plus </li><li>Bachelor’s degree required </li><li>Experience using simulation models desired Financial Services industry experience is a plus but not required. </li><li>Other preferred industries include hospitality, airlines and telecom Experience in dynamic pricing, yield revenue management, price elasticity, time-of-day pricing. Foreign exchange pricing a plus Big picture strategic thinking with hypothesis driven structured analytical approaches </li><li>Strong modeling and presentation skills, experience and comfort with statistical modeling packages, and comfort with large datasets Excellent communication, negotiation and presentation skills are required </li><li>Ability to operate in a highly complex cross-functional matrixed organization structure to drive direction, decision making, and priorities Negotiation, influencing, and conflict mediation skills to support rapid decision resolution </li><li>Ability to quickly learn and ramp up in new subject matters to drive relevancy to stakeholder interactions Strong team player who regularly volunteers to assist partners, take on additional responsibilities </li><li>Customer oriented </li><li>Capable of working independently </li><li>Ability to travel globally (up to 25%) </li><li>Fluency in English (any additional language is a plus)</li></ul>"
       },
       {
         "company": {
-          "name": "Microsoft"
+          "name": "National Mortgage Insurance Corporation - \"National MI\""
         },
-        "descriptionSnippet": "Job Category: FinanceLocation: Singapore, SGJob ID: 869672-136216Division: FinanceDo you love managing and directing a team of high powered performers working with cutting edge technology? Do you enjoy working with dynamic people to solve complex business problems? If you love a challenge, have a passion for results, and exemplary project management, cross-group collaboration, and audit skills, we",
-        "locationDescription": "Singapore, SG",
+        "descriptionSnippet": "Department: Information Technology Reports to: Director, Information Technology and Security FLSA Status: Exempt Position Type: Contract-to-Hire Job Summary The BCP/DR Specialist will be responsible for coordinating the development, arrangements and procedures so that National MI can respond to a disaster and insure that critical business functions can be resumed within a defined time frame and th",
+        "locationDescription": "San Francisco Bay Area",
+        "position": {
+          "experienceLevel": {
+            "code": "4",
+            "name": "Mid-Senior level"
+          },
+          "jobType": {
+            "code": "C",
+            "name": "Contract"
+          },
+          "location": {
+            "country": {
+              "code": "us"
+            },
+            "name": "San Francisco Bay Area"
+          },
+          "title": "Business Continuity Planning/Disaster Recovery Specialist"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801171&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<ul><li>5-7 plus years experience in business continuity, disaster recovery or related fields </li><li>Knowledge and understanding of current disaster recovery planning techniques and technologies as well as the methods used in performing risk analyses and business impact analyses </li><li>Ability to organize, plan, and direct the testing of emergency response, recovery support, and business resumption procedures </li><li>Strong inter-personal skills to interface with all levels of staff within the organization </li><li>Proficient in the use of all Microsoft Office tools </li><li>Excellent project management skills </li><li>Experience supporting a technologically diverse infrastructure with working technical knowledge of data, voice, Windows, Linux, networking, and application recovery </li><li>Self-motivated, self-directed and shows attention to detail while working </li><li>Knowledge of data compliance and privacy standards and regulations as they apply to insurance and banking industries </li><li>Ability to effectively prioritize and execute tasks in a fast-paced, results-driven environment </li><li>Proven ability to work under stressful conditions, such as business-related crises </li><li>Extensive experience working in a team-oriented, collaborative environment with a diverse team of business and IT staff </li><li>Bachelor’s degree in Computer Science or Information Systems preferred; Professional certifications are an advantage </li><li>Certified Business Continuity Planner (CBCP) or Associate Disaster Recovery Planner certifications preferred </li></ul><p><br><br><strong>Essential Worker Competencies</strong> </p><ul><li>The ability to function independently with minimal supervision </li><li>Works ethically and with integrity supporting organizational goals and values </li><li>Displays commitment to excellence </li><li>Completes work in a timely manner and meets deadlines </li><li>Good verbal and written communication skills </li><li>Meets productivity standards and achieves key outcomes </li><li>Is dependable and keeps commitments </li><li>Contributes to building a positive team spirit and treats others with respect </li><li>Maintains confidentiality of information and uses information appropriately </li><li>Exhibits sound judgment when making decisions and recommendations </li><li>Fosters collaboration toward a common vision and shared goals</li></ul>"
+      },
+      {
+        "company": {
+          "name": "Medical Doctor Associates"
+        },
+        "descriptionSnippet": "Outpatient facility in Northeast Colorado is in need of a Psychiatric Nurse Practitioner for a full time coverage assignment with an opportunity for permanent placement. Patients of all ages will be seen. Work hours are Monday through Friday, 8am until 5 pm each day. The facilities are located in multiple counties throughout Northeast Colorado so travel will be required. Multiple incentives are pr",
+        "locationDescription": "Northeast Colorado",
         "position": {
           "experienceLevel": {
             "code": "0",
             "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "O",
+            "name": "Other"
+          },
+          "location": {
+            "country": {
+              "code": "us"
+            },
+            "name": "Greater Denver Area"
+          },
+          "title": "Psychiatric Nurse Practitioner"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801170&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<p>Client is looking for: </p><ul><li>Drug Enforcement Agency license (DEA) </li><li>Active Colorado Nurse Practitioner license </li><li>Board Certification</li></ul>"
+      },
+      {
+        "company": {
+          "name": "Cisneros Group of Companies"
+        },
+        "descriptionSnippet": "This position reports to the Director of Finance of Cisneros Interactive and will assist with the regional financial reporting process and cash management of the US and Latin America operations. Essential Functions: Assist with the preparation of consolidated operational finance reports (Operational P&amp;L’s and Cash Flows) and other management reports. Develop standardized practices for all coun",
+        "locationDescription": "Miami/Fort Lauderdale Area",
+        "position": {
+          "experienceLevel": {
+            "code": "4",
+            "name": "Mid-Senior level"
           },
           "jobType": {
             "code": "F",
@@ -261,29 +237,30 @@
           },
           "location": {
             "country": {
-              "code": "sg"
+              "code": "us"
             },
-            "name": "Singapore"
+            "name": "Miami/Fort Lauderdale Area"
           },
-          "title": "Audit Director"
+          "title": "Financial Analyst"
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692671&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801169&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<ul><li>Strong analytical and organizational skills </li><li>Must be able to work independently </li><li>Fully bilingual – English and Spanish </li><li>Able to multitask and ability to problem solve. </li><li>Ability to work under pressure and with minimal supervision. </li><li>Bachelors Degree in Accounting, Finance or related field. </li><li>Regional Experience, preferred. </li><li>3 – 4 years of General Accounting and Corporate Finance experience required </li><li>Experience reporting financials in accordance with US GAAP </li><li>Strong computer skills: Excel, Power Point. </li><li>Knowledge of any accounting program system.</li></ul>"
       },
       {
         "company": {
-          "name": "Microsoft"
+          "name": "Capstone Financial, LLC"
         },
-        "descriptionSnippet": "Job Category: SalesLocation: Sao Paulo, BRJob ID: 869606-136300Division: SalesIn the decade ahead, we have a unique opportunity to re-ignite enthusiasm for computer-based productivity by corporations and users alike by selling the importance of information worker productivity as critical to ongoing business success. In order to define information worker productivity in a broader sense and set the ",
-        "locationDescription": "Sao Paulo, Sao Paulo, BR",
+        "descriptionSnippet": "A management career path Do you want to take your practice to the next level? As a Financial Services Representative with Capstone Financial, a MassMutual general agency, we can help you realize your full potential. We offer an agent-centered culture with the freedom, training, and support to push the boundaries of your professional development.   You’ll be part of an entrepreneurial system with a",
+        "locationDescription": "Greater Atlanta Area",
         "position": {
           "experienceLevel": {
-            "code": "0",
-            "name": "Not Applicable"
+            "code": "3",
+            "name": "Associate"
           },
           "jobType": {
             "code": "F",
@@ -291,18 +268,50 @@
           },
           "location": {
             "country": {
-              "code": "br"
+              "code": "us"
             },
-            "name": "São Paulo Area, Brazil"
+            "name": "Greater Atlanta Area"
           },
-          "title": "SOLUTION SPEC PROD"
+          "title": "Managing Associate"
         },
         "postingDate": {
           "day": 20,
           "month": 2,
           "year": 2014
         },
-        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692669&trk=api*a3227641*s3301901*"
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801168&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<p><strong>Qualifications</strong> </p><ul><li>Strong interpersonal skills and customer service focus </li><li>Market development and networking abilities </li><li>Presentation and organization skills </li><li>Strong work ethic and integrity </li><li>Pattern of professional success </li><li>BA, BS, and/or graduate degree or equivalent work experience required</li></ul>"
+      },
+      {
+        "company": {
+          "name": "Gartner"
+        },
+        "descriptionSnippet": "Gartner, a thriving international technology firm with headquarters in Stamford CT, is seeking a Conference Manager to join our growing global Events organization.   This exciting career opportunity will provide you with challenging assignments, travel to exciting locations, and tremendous career advancement.  You will be part of a stable and expanding professional team collaborating to successful",
+        "locationDescription": "Greater New York City Area",
+        "position": {
+          "experienceLevel": {
+            "code": "4",
+            "name": "Mid-Senior level"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "us"
+            },
+            "name": "Greater New York City Area"
+          },
+          "title": "Conference Manager"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11801165&trk=api*a3227641*s3301901*",
+        "skillsAndExperience": "<ul><li>The successful candidate must be client focused and detail oriented. </li><li>You must also be a team player, work well with others, together to reach challenging goals under tight deadlines. </li></ul><ul><li>5 years of business meeting planning experience is required including proven budget management abilities. </li></ul><ul><li>Budgeting and financial control skills. </li></ul><ul><li>Project management experience. </li></ul><ul><li>Prior experience negotiating contracts for meeting services with hotels and other providers. </li></ul><ul><li>In depth knowledge of the hotel, travel, meeting planning business is required, particularly in terms of normal service expectations and negotiations.</li></ul>"
       }
     ]
   }

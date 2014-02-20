@@ -49,6 +49,7 @@ namespace jobSalt.Models
             builder.Append("&count=" + resultsPerPage.ToString());
             builder.Append("&sort=DD");
             builder.Append("&f_E=0,1,2,3");
+            builder.Append("&country-code=us");
 
             foreach (Field key in filterHash.Keys)
             {
