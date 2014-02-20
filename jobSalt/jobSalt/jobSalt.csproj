@@ -342,7 +342,6 @@
     </Compile>
     <Compile Include="Models\Modules\Jobs\UAJobLink Module\UAJobLinkModule.cs" />
     <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInTempData.cs" />
-    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />
     <Compile Include="Models\Source.cs" />
