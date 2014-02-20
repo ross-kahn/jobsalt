@@ -14,7 +14,7 @@ namespace jobSalt.Models.Modules.Jobs.LinkedIn_Module
 
         public LinkedInResult getDummyData()
         {
-            string json = File.ReadAllText("C:\\Users\\Ross\\Documents\\GitHub\\jobsalt\\jobSalt\\jobSalt\\Models\\Modules\\Jobs\\LinkedIn Module\\example_json_linkedin.txt");
+            string json = File.ReadAllText(@"\Content\example_json_linkedin.txt");
             var serializer = new JavaScriptSerializer();
 
             LinkedInResult lResult = serializer.Deserialize<LinkedInResult>(json);
