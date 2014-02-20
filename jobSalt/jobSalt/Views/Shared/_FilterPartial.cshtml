@@ -1,15 +1,50 @@
-﻿<!-- Button trigger modal -->
+﻿@foreach (jobSalt.Models.Filter filter in FilterUtility.GetFilters(ViewBag.FilterString))
+{
+    <button class="btn btn-info btn-lg" data-value="@filter.TargetField" onclick="EditFilter(this, event)">
+        <span>@filter.TargetField </span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon" style="color:#808080" onclick="RemoveFilter(this, event)"></span>
+    </button>
+}
+
+<!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Edit Filters
+    Add Filter
 </button>
 
-<!-- Modal -->
+<style type="text/css">
+    .icon-hover {
+        color: #444 !important;
+    }
+</style>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="editTitle">Place Holder</h4>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return SaveAndCloseModal()">
+                    <div id="editFieldArea"></div>
+                </form>
+                <div id="editLoadingIcon"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Edit Filters</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Filter</h4>
             </div>
             <div class="modal-body">
                 1. Select Filter Type:<br />
@@ -55,6 +90,37 @@
         SubmitFilter();
         $('#myModal').modal('toggle');
         return false;
+    }
+    $(".icon").hover(
+        function () {
+            $(this).toggleClass('icon-hover');
+        },
+        function () {
+            $(this).toggleClass('icon-hover');
+        }
+     );
+
+    function EditFilter(caller, event) {
+        $("#editFieldArea").empty();
+        $("#editTitle").empty();
+
+        $('#editTitle').html($(caller).data('value'));
+
+        $('div#editLoadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
+
+        $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + $(caller).data('value'), function (data) {
+            if (data != '') {
+                $("#editFieldArea").append(data);
+            }
+            $('div#editLoadingIcon').empty();
+        });
+
+        $('#editModal').modal('toggle');
+    }
+
+    function RemoveFilter(caller, event) {
+        window.location = "/FilterUtility/RemoveFilter?targetField=" + $(caller).data('value') + "&filterString=" + "@ViewBag.FilterString";
+        event.stopPropagation();
     }
 
     $(window).on('load', function () {

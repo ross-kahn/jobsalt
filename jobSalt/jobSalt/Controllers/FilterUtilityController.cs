@@ -32,6 +32,7 @@ namespace jobSalt.Controllers
         public PartialViewResult GetFilterView(Field targetField, string filterString)
         {
             ViewBag.FilterString = filterString;
+            ViewBag.inputID = new Guid().ToString();
             return PartialView("_FilterEditPartial", targetField);
         }
     }

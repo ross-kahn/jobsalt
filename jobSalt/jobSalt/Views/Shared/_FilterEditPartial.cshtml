@@ -19,11 +19,11 @@
         </script>
         break;
     default:
-            <input id="value" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
-            <script type="text/javascript">
-                function SubmitFilter() {
-                    window.location = "/FilterUtility/AssignFilter?targetField=" + "@Model" + "&filterString="+ "@ViewBag.FilterString" + "&value=" + $('#value').val();
-                }
-            </script>
+        <input id="@ViewBag.inputID" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
+        <script type="text/javascript">
+            function SubmitFilter() {
+                window.location = "/FilterUtility/AssignFilter?targetField=" + "@Model" + "&filterString=" + "@ViewBag.FilterString" + "&value=" + $('#@ViewBag.inputID').val();
+            }
+        </script>
         break;
 }
