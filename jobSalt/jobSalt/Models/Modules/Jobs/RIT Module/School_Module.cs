@@ -49,6 +49,12 @@ namespace jobSalt.Models.Modules.Jobs.RIT_Module
                     case Field.CompanyName:
                         jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters[key]));
                         break;
+                    case Field.JobTitle:
+                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.title.Contains(f.Value));
+                        break;
+                    case Field.Keyword:
+                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(f.Value));
+                        break;
                     default:
                         break;
                 }
