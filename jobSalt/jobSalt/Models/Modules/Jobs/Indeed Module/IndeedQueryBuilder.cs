@@ -53,6 +53,11 @@ namespace jobSalt.Models
                 fos += " title%3A" + filterHash[Field.JobTitle];
                 filterHash.Remove(Field.JobTitle);
             }
+            if (filterHash.ContainsKey(Field.FieldOfStudy))
+            {
+                fos += " " + filterHash[Field.FieldOfStudy];
+                filterHash.Remove(Field.FieldOfStudy);
+            }
 
             filterHash[Field.Keyword] = fos;
                         
@@ -100,7 +105,7 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Location:
-                        builder.Append("&l=" + filterHash[key][0]);
+                        builder.Append("&l=" + filterHash[key]);
                         break;
 
                     case Field.Salary:
@@ -146,7 +151,7 @@ namespace jobSalt.Models
         {
             if (isValidFilterQ(queries))
             {
-                string tag = "&as_and=" + String.Join(" ", queries);
+                string tag = "&q=" + String.Join(" ", queries);
 
                 return tag;
             }
