@@ -1,0 +1,309 @@
+{
+  "jobs": {
+    "_count": 10,
+    "_start": 0,
+    "_total": 4387,
+    "values": [
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: MarketingLocation: Beijing, CNJob ID: 869686-136235Division: MarketingConsumer PR Manager, China Works with the Business Group Marketing, PR Lead, Citizenship, Marketing and Marketing and Operations leads in China to develop Communications strategy and plans for Microsoft products and services, targeting consumers. This includes: strategy for driving perception changing media coverag",
+        "locationDescription": "Beijing, CN",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "cn"
+            },
+            "name": "Beijing City, China"
+          },
+          "title": "SR PUB RELATIONS MGR - SMSG - Beijing"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692682&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: Software Engineering: DevelopmentLocation: Herzelia, ILJob ID: 869691-136257Division: Devices and Studios EngineeringThe ILDC AD team is looking for engineers with passion for technology, customers and quality which are looking for developing products with deep technological challenges.Our Access and identity mgmt. products have a rich set of capabilities related to Networking, Netwo",
+        "locationDescription": "Herzelia, IL",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "il"
+            },
+            "name": "Israel"
+          },
+          "title": "Software Development Engineer - Active Directory ILDC"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692681&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: SalesLocation: Dallas, TX, USJob ID: 869044-136342Division: SalesThe South Central District Corporate Accounts Specialist Team is seeking a motivated and self-driven sales professional to fill a key role of a Solution Specialist for Productivity. The Solution Specialist Productivity adds value to Microsoft by delivering the vision &amp; customer value proposition for the Microsoft Pr",
+        "locationDescription": "Dallas, TX, US",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "us"
+            },
+            "name": "Dallas/Fort Worth Area"
+          },
+          "title": "PRODUCTIVITY SSP"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692679&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: Services &amp; ConsultingLocation: Spain - Non Location Specific, ESJob ID: 869694-136247Division: Services &amp; SupportDo you want to play a key role in a fast growing and leading organization, with a high visibility on the strategy? Do you want to directly impact the optimization of a large and complex Services business across 12 countries? Do you like ensuring that customer expec",
+        "locationDescription": "Spain - Non Location Specific, ES",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "es"
+            },
+            "name": "Spain"
+          },
+          "title": "MCS, Area Resource Manager"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692676&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: Services &amp; ConsultingLocation: Portugal - Non Location Specific, PTJob ID: 869694-136253Division: Services &amp; SupportDo you want to play a key role in a fast growing and leading organization, with a high visibility on the strategy? Do you want to directly impact the optimization of a large and complex Services business across 12 countries? Do you like ensuring that customer ex",
+        "locationDescription": "Portugal - Non Location Specific, PT",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "pt"
+            },
+            "name": "Portugal"
+          },
+          "title": "MCS, Area Resource Manager"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692675&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: Services &amp; ConsultingLocation: Italy - Non Location Specific, ITJob ID: 869694-136244Division: Services &amp; SupportDo you want to play a key role in a fast growing and leading organization, with a high visibility on the strategy? Do you want to directly impact the optimization of a large and complex Services business across 12 countries? Do you like ensuring that customer expec",
+        "locationDescription": "Italy - Non Location Specific, IT",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "it"
+            },
+            "name": "Italy"
+          },
+          "title": "MCS, Area Resource Manager"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692674&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: Software Engineering: DevelopmentLocation: Redmond, WA, USJob ID: 869618-136296Division: Operating Systems EngineeringThe Wireless and Core Connectivity team is the team that makes networking possible. Connecting to web servers? That’s us. Enabling gamers to connect to each other? That’s us. Making every hotspot a possible gateway to the internet? We do that. Using WiFi for home, wor",
+        "locationDescription": "Redmond, WA, US",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "us"
+            },
+            "name": "Greater Seattle Area"
+          },
+          "title": "Software Development Engineer II"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692673&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: Customer Service &amp; SupportLocation: Beijing, CNJob ID: 869673-136218Division: Services &amp; SupportJob Description:Scope: global JD appended below Asia timezone (for the pre-sales aspect, mainly GCR &amp; Japan)  English skills is important Because this is year 1 of Asia DTU, a lot of the time will be spent on (1) delivering training/bootcamp/knowledge transfers to new DTU (2) b",
+        "locationDescription": "Beijing, CN",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "cn"
+            },
+            "name": "Beijing City, China"
+          },
+          "title": "PRIN PFE"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692672&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: FinanceLocation: Singapore, SGJob ID: 869672-136216Division: FinanceDo you love managing and directing a team of high powered performers working with cutting edge technology? Do you enjoy working with dynamic people to solve complex business problems? If you love a challenge, have a passion for results, and exemplary project management, cross-group collaboration, and audit skills, we",
+        "locationDescription": "Singapore, SG",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "sg"
+            },
+            "name": "Singapore"
+          },
+          "title": "Audit Director"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692671&trk=api*a3227641*s3301901*"
+      },
+      {
+        "company": {
+          "name": "Microsoft"
+        },
+        "descriptionSnippet": "Job Category: SalesLocation: Sao Paulo, BRJob ID: 869606-136300Division: SalesIn the decade ahead, we have a unique opportunity to re-ignite enthusiasm for computer-based productivity by corporations and users alike by selling the importance of information worker productivity as critical to ongoing business success. In order to define information worker productivity in a broader sense and set the ",
+        "locationDescription": "Sao Paulo, Sao Paulo, BR",
+        "position": {
+          "experienceLevel": {
+            "code": "0",
+            "name": "Not Applicable"
+          },
+          "jobType": {
+            "code": "F",
+            "name": "Full-time"
+          },
+          "location": {
+            "country": {
+              "code": "br"
+            },
+            "name": "São Paulo Area, Brazil"
+          },
+          "title": "SOLUTION SPEC PROD"
+        },
+        "postingDate": {
+          "day": 20,
+          "month": 2,
+          "year": 2014
+        },
+        "siteJobUrl": "http://www.linkedin.com/jobs?viewJob=&jobId=11692669&trk=api*a3227641*s3301901*"
+      }
+    ]
+  }
+}

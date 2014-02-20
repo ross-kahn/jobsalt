@@ -28,18 +28,12 @@ namespace jobSalt.Models
 
         }
 
-
-        public Source Source
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
         {
             /*if (filters.Count == 0)
             {
                 return new List<JobPost>();
-            }*/
+            }
 
             using (var client = new WebClient())
             {
@@ -47,32 +41,42 @@ namespace jobSalt.Models
                 Console.WriteLine(xml);
             }
 
-            return new List<JobPost>();
+            return new List<JobPost>();*/
+            LinkedInTempData tempData = new LinkedInTempData();
+            LinkedInResult results = tempData.getDummyData();
+
+            return LinkedInResultToJobPosts(results);
         }
 
         private List<JobPost> LinkedInResultToJobPosts(LinkedInResult linkedinResult)
         {
             List<JobPost> results = new List<JobPost>();
 
-            foreach (LinkedInJobPost raw in linkedinResult.Values)
+            foreach (LinkedInJobPost raw in linkedinResult.jobs.values)
             {
                 JobPost jobpost = new JobPost()
                 {
-                    Company = raw.Company,
-                    Description = raw.DescriptionSnippet,
-                    Location = null,
-                    URL = raw.SiteJobURL,
-                    SourceModule = null,
-                    DatePosted = new DateTime(raw.PostingDate.Year, 
-                                                raw.PostingDate.Month, 
-                                                raw.PostingDate.Day),
-                    JobTitle = raw.Position.Title,
+                    Company = raw.company.name,
+                    Description = raw.descriptionSnippet,
+                    Location = new Location(),
+                    URL = raw.siteJobUrl,
+                    SourceModule = source,
+                    DatePosted = new DateTime(raw.postingDate.year, 
+                                                raw.postingDate.month, 
+                                                raw.postingDate.day),
+                    JobTitle = raw.position.title,
                     Salary = null
                 };
                 results.Add(jobpost);
             }
 
             return results;
+        }
+
+        Source source = new Source() { Name = "LinkedIn", Icon = @"\Content\images\linkedin_icon.jpg" };
+        public Source Source
+        {
+            get { return source; }
         }
     }
 }

@@ -5,53 +5,57 @@ using System.Web;
 
 namespace jobSalt.Models.Modules.Jobs.LinkedIn_Module
 {
+    public class Company
+    {
+        public string name { get; set; }
+    }
+
+    public class ExperienceLevel
+    {
+        public string code { get; set; }
+        public string name { get; set; }
+    }
+
+    public class JobType
+    {
+        public string code { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Country
+    {
+        public string code { get; set; }
+    }
+
+    public class Location
+    {
+        public Country country { get; set; }
+        public string name { get; set; }
+    }
+
+    public class Position
+    {
+        public ExperienceLevel experienceLevel { get; set; }
+        public JobType jobType { get; set; }
+        public Location location { get; set; }
+        public string title { get; set; }
+    }
+
+    public class PostingDate
+    {
+        public int day { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
+    }
+
     public class LinkedInJobPost
     {
-        public string Company { get; set; }
-        public string DescriptionSnippet { get; set; }
-        public string LocationDescription { get; set; }
-        public LinkedInPosition Position { get; set; }
-        public LinkedInPostingDate PostingDate { get; set; }
-        public string SiteJobURL { get; set; }
-    }
-
-    public class LinkedInPosition
-    {
-        public LinkedInExperienceLevel ExperienceLevel { get; set; }
-        public LinkedInJobType JobType { get; set; }
-        public LinkedInLocation Location { get; set; }
-        public string Title { get; set; }
-    }
-
-    public class LinkedInExperienceLevel
-    {
-        public string Code { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class LinkedInJobType
-    {
-        public string Code { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class LinkedInLocation
-    {
-        public LinkedInCountry Country { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class LinkedInCountry
-    {
-        public string Code { get; set; }
-    }
-
-    public class LinkedInPostingDate
-    {
-        public int Day { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-
+        public Company company { get; set; }
+        public string descriptionSnippet { get; set; }
+        public string locationDescription { get; set; }
+        public Position position { get; set; }
+        public PostingDate postingDate { get; set; }
+        public string siteJobUrl { get; set; }
     }
 
 }

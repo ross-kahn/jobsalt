@@ -7,10 +7,16 @@ namespace jobSalt.Models.Modules.Jobs.LinkedIn_Module
 {
     public class LinkedInResult
     {
-        public int Count { get; set; }
-        public int Start { get; set; }
-        public int Total { get; set; }
-
-        public LinkedInJobPost[] Values { get; set; }
+        public Jobs jobs { get; set; }
     }
+
+    public class Jobs
+    {
+        public int _count { get; set; }
+        public int _start { get; set; }
+        public int _total { get; set; }
+        public List<LinkedInJobPost> values { get; set; }
+    }
+
+
 }

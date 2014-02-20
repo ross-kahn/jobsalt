@@ -300,6 +300,7 @@
     <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInResult.cs" />
+    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInTempData.cs" />
     <Compile Include="Models\Modules\Jobs\School_Module.cs" />
     <Compile Include="Models\SalaryPost.cs" />
     <Compile Include="Models\SalaryRange.cs" />
@@ -325,6 +326,7 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\indeed_icon.png" />
+    <Content Include="Content\images\linkedin_icon.jpg" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Content\images\loading.gif" />
@@ -388,6 +390,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Models\Modules\Jobs\LinkedIn Module\example_json_linkedin.txt" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
