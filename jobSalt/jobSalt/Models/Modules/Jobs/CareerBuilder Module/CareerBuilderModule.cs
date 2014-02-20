@@ -14,7 +14,7 @@ namespace jobSalt.Models.Modules.Jobs.CareerBuilder_Module
 		Source source = new Source( )
 		{
 			Name = "CareerBuilder" ,
-			Icon = "http://img.icbdr.com/images/js/cb_logo_new_homepage.png"
+			Icon = "/Content/images/careerbuilder_icon.png"
 		};
 		public Source Source
 			{

@@ -62,7 +62,7 @@ namespace jobSalt.Models.Modules.Jobs
                     {
                         try
                         {
-                            List<JobPost> partialJobs = module.GetJobs(filters, page, resultsPerModule);
+                            List<JobPost> partialJobs = module.GetJobs(new Dictionary<Field, string>(filters), page, resultsPerModule);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
