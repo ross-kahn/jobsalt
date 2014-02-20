@@ -77,7 +77,7 @@ namespace jobSalt.Models
                         break;
 
                     case Field.Location:
-                        builder.Append("&l=" + filterHash[key][0]);
+                        builder.Append("&l=" + filterHash[key]);
                         break;
 
                     case Field.Salary:
