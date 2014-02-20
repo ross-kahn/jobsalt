@@ -112,7 +112,7 @@ namespace jobSalt.Models.Modules.Jobs.RIT_Module
             return jobs;
         }
 
-        private Source source = new Source() { Icon = "", Name = "RIT" };
+        private Source source = new Source() { Icon = @"\Content\images\RIT_icon.png", Name = "RIT" };
         public Source Source
         {
             get { return source; }
