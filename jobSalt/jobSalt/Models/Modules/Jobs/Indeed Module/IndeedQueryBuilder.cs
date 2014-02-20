@@ -16,60 +16,38 @@ namespace jobSalt.Models
         private const string USER_IP = "1.2.3.4"; // 129.21.108.174
         private const string USER_AGENT = "Mozilla/%2F4.0%28Firefox%29";
 
-        /// <summary>
-        /// Not every API is able to filter by every Field specified by this program; some Fields
-        /// need to be combined so relevant results are returned. This method combines relevant
-        /// fields and eliminates the ones that simply cannot be translated into an API call
-        /// </summary>
-        /// <param name="filters">
-        /// The original hash of filters
-        /// </param>
-        /// <returns>The modified, combined hash of filters</returns>
-        private Dictionary<Field, string> combineKeys(Dictionary<Field, string> filterHash, Field[] toCombine)
+        private Dictionary<Field, string> combineFields(Dictionary<Field, string> filterHash)
         {
-            if (toCombine == null)
+            // Check for trailing / leading spaces
+            if (!filterHash.ContainsKey(Field.Keyword))
             {
-                return filterHash;
+                filterHash[Field.Keyword] = "";
             }
 
-            string fos;
-            if (filterHash.ContainsKey(Field.Keyword))
+            if (filterHash.ContainsKey(Field.FieldOfStudy))
             {
-                fos = filterHash[Field.Keyword];
-            }
-            else
-            {
-                fos = "";
+                filterHash[Field.Keyword] += " " + filterHash[Field.FieldOfStudy];
+                filterHash.Remove(Field.FieldOfStudy);
             }
 
-            // THIS SHOULD BE SEPARATE IN THE CALL, NOT PART OF KEYWORD
             if (filterHash.ContainsKey(Field.CompanyName))
             {
-                fos += " company%3A(" + filterHash[Field.CompanyName] + ")";
+                filterHash[Field.Keyword] += " company:" + filterHash[Field.CompanyName];
                 filterHash.Remove(Field.CompanyName);
             }
+
             if (filterHash.ContainsKey(Field.JobTitle))
             {
-                fos += " title%3A" + filterHash[Field.JobTitle];
+                filterHash[Field.Keyword] += " title:" + filterHash[Field.JobTitle];
                 filterHash.Remove(Field.JobTitle);
             }
-
-            filterHash[Field.Keyword] = fos;
-                        
             return filterHash;
-        }
-
-        public Field[] getCombineFields()
-        {
-            Field[] cFields = {   Field.CompanyName,
-                                  Field.FieldOfStudy, 
-                                  Field.JobTitle };
-            return cFields;
         }
 
         public string buildQuery(Dictionary<Field, string> filterHash, int page, int resultsPerPage)
         {
-            filterHash = combineKeys(filterHash, getCombineFields());
+
+            filterHash = combineFields(filterHash);
 
             // String builder, (arguably) more efficient than concatenating strings
             StringBuilder builder = new StringBuilder();
@@ -77,7 +55,6 @@ namespace jobSalt.Models
             // The required base for all requests
             builder.Append(Constants.INDEED_REQUEST_BASE);
             builder.Append("&start=" + page * resultsPerPage);
-            builder.Append("&limit=" + resultsPerPage);
 
             foreach (Field key in filterHash.Keys)
             {
@@ -146,9 +123,9 @@ namespace jobSalt.Models
         {
             if (isValidFilterQ(queries))
             {
-                string tag = "&as_and=" + String.Join(" ", queries);
+                string tag = String.Join("+", queries.Split(' '));
 
-                return tag;
+                return "&q=" + tag;
             }
             else
             {
