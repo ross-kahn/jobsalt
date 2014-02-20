@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace jobSalt.Models.Modules.Jobs.CareerBuilder_Module
@@ -20,8 +23,9 @@ namespace jobSalt.Models.Modules.Jobs.CareerBuilder_Module
 				return source;
 				}
 			}
-		private CareerBuilderQueryBuilder builder;
-		public CareerBuilderModule ( )
+		private readonly CareerBuilderQueryBuilder builder;
+
+		public CareerBuilderModule()
 			{
 			builder = new CareerBuilderQueryBuilder( );
 			}
@@ -38,46 +42,33 @@ namespace jobSalt.Models.Modules.Jobs.CareerBuilder_Module
 
 			string request = builder.BuildQuery( filters , page , resultsPerPage );
 
-			XDocument doc= XDocument.Load( request );
-			var results = doc.Element("ResponseJobSearch").Element("Results");
 
-			foreach ( var post in results.Elements( "JobSearchResult" ))
+			XDocument doc = XDocument.Load( request );
+			IEnumerable<XElement> results = doc.Descendants( "ResponseJobSearch" ).Single( ).Descendants( "Results" ).Single( ).Descendants( "JobSearchResult" );
+
+
+			foreach ( var jobPost in results )
 				{
-				CareerBuilderJobPost jobPost = new CareerBuilderJobPost
+				JobPost post = new JobPost( );
+				post.Company = jobPost.Element( "Company" ).Value;
+				post.URL = jobPost.Element( "JobDetailsURL" ).Value;
+				post.SourceModule =source; 
+				post.DatePosted = DateTime.Parse( jobPost.Element( "PostedDate" ).Value ); 
+				post.JobTitle = jobPost.Element( "JobTitle" ).Value;
+
+				//this field is returned as "MN - Plymouth", so split by values
+				string[] location = jobPost.Element( "Location" ).Value.Split( new char[] { '-' } );
+				post.Location = new Location
 				{
-					Company = post.Element( "Company" ).ToString( ) ,
-					CompanyDetailsURL = post.Element( "CompanyDetailsURL" ).ToString( ) ,
-					CompanyDID =post.Element( "CompanyDID" ).ToString( ) ,
-					CompanyImageURL =post.Element( "CompanyImageURL" ).ToString( ) ,
-					DescriptionTeaser =post.Element( "DescriptionTeaser" ).ToString( ) ,
-					DID =post.Element( "DID" ).ToString( ) ,
-					Distance =post.Element( "Distance" ).ToString( ) ,
-					EmployMentType =post.Element( "EmployMentType" ).ToString( ) ,
-					JobBrandingIcons =post.Element( "JobBrandingIcons" ).ToString( ) ,
-					JobDetailsURL =post.Element( "JobDetailsURL" ).ToString( ) ,
-					JobServiceURL=post.Element( "JobServiceURL" ).ToString( ) ,
-					JobTitle =post.Element( "JobTitle" ).ToString( ) ,
-					Location =post.Element( "Location" ).ToString( ) ,
-					LocationLatitude=post.Element( "LocationLatitude" ).ToString( ) ,
-					LocationLongitude =post.Element( "LocationLongitude" ).ToString( ) ,
-					OnetCode =post.Element( "OnetCode" ).ToString( ) ,
-					ONetFriendlyTitle =post.Element( "ONetFriendlyTitle" ).ToString( ) ,
-					Pay =post.Element( " Pay" ).ToString( ) ,
-					PostedDate =post.Element( "PostedDate" ).ToString( ) ,
-					SimilarJobsURL =post.Element( "SimilarJobsURL" ).ToString( )
+					State= location[0].Trim( ) ,
+					City= location[1].Trim( ) ,
+					ZipCode=null
 				};
-				jobsToReturn.Add( new JobPost
-				{
-					Company = jobPost.Company ,
-					URL = jobPost.JobDetailsURL ,
-					SourceModule =source ,
-					DatePosted = DateTime.Parse( jobPost.PostedDate ) ,
-					JobTitle = jobPost.JobTitle ,
-					Location = new Location( ) ,
-					Description = jobPost.DescriptionTeaser ,
-					FieldOfStudy = null ,
-					Salary =null
-				} );
+				post.Description =  jobPost.Element( "DescriptionTeaser" ).Value;
+				post.FieldOfStudy = null;
+				post.Salary =  jobPost.Element( "Pay" ).Value;
+				jobsToReturn.Add( post );
+
 				}
 			return jobsToReturn;
 			}
