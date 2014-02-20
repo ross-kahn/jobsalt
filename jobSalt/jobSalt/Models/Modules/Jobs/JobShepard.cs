@@ -29,10 +29,9 @@ namespace jobSalt.Models.Modules.Jobs
         {
             modules = new List<IJobModule>();
             modules.Add(new IndeedModule());
-            //modules.Add(new LinkedInModule());
+            modules.Add(new LinkedInModule());
             //modules.Add(new School_Module());
 			modules.Add( new CareerBuilder_Module.CareerBuilderModule( ) );
-
         }
         #endregion // Constructors
 
