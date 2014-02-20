@@ -19,7 +19,7 @@ namespace jobSalt.Controllers
         {
             if (Session["LoggedIntoLinkedIn"] == null)
             {
-                Session["LoggedIntoLinkedIn"] = false;
+                Session["LoggedIntoLinkedIn"] = true;
             }
 
             ViewBag.FilterString = filterString;
