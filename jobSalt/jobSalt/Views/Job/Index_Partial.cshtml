@@ -12,8 +12,14 @@
                 <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
-                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
             </div>
         </div>
     </div>
 }
+
+<script type="text/javascript">
+    function StopPropagation(event) {
+        event.stopPropagation();
+    }
+</script>
