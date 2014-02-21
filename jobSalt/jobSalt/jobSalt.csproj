@@ -292,6 +292,8 @@
     <Compile Include="Models\Modules\Auth\SigningHelper.cs" />
     <Compile Include="Models\Modules\Jobs\CareerBuilder Module\CareerBuilderModule.cs" />
     <Compile Include="Models\Modules\Jobs\CareerBuilder Module\CareerBuilderQueryBuilder.cs" />
+    <Compile Include="Models\Modules\Jobs\Dice\DiceModule.cs" />
+    <Compile Include="Models\Modules\Jobs\Dice\DiceQueryBuilder.cs" />
     <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
     <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedJobPost.cs" />
@@ -366,6 +368,7 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\careerbuilder_icon.png" />
+    <Content Include="Content\images\DiceLogo-550x224.jpg" />
     <Content Include="Content\images\indeed_icon.png" />
     <Content Include="Content\images\RIT_icon.png" />
     <Content Include="Content\images\UA_Block_A.png" />
