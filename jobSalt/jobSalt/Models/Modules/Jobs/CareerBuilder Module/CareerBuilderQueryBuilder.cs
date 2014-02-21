@@ -54,10 +54,43 @@ namespace jobSalt.Models.Modules.Jobs.CareerBuilder_Module
                         break;
 
                     case Field.Salary:
+						int minPay;
+						Int32.TryParse( FilterDict[key] , out minPay );
+						if(minPay is Int32)
+							//set minimum pay level for the search, and only show results with Payment Info
+							builder.Append( "&PayInfoOnly=true&PayLow=" + minPay );
                         break;
 
                     case Field.Source:
                         break;
+					case Field.EducationCode:
+						switch(FilterDict[key])
+							{
+							case "Not Specified":
+								builder.Append( "&EducationCode=DRNS");
+ 								break;
+							case "None":
+								builder.Append( "&EducationCode=DR3210");
+ 								break;
+							case "High School":
+								builder.Append( "&EducationCode=DR3211");
+ 								break;
+							case "2 Year Degree":
+								builder.Append( "&EducationCode=DR321");
+ 								break;
+							case "4 Year Degree":
+								builder.Append( "&EducationCode=DR32");
+ 								break;
+							case "Graduate Degree":
+								builder.Append( "&EducationCode=DR3");
+ 								break;
+							case "Doctorate":
+								builder.Append( "&EducationCode=DR");
+ 								break;
+							default:
+								break; 
+							}
+						break;
 
                     default:
                         break;

@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 using System.Globalization;
 namespace jobSalt.Models
 {
-    public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, FieldOfStudy, Keyword};
+    public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, FieldOfStudy, Keyword, EducationCode};
+
 
     public class Filter
     {
