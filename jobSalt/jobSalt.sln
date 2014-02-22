@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jobSalt", "jobSalt\jobSalt.csproj", "{34993954-C37C-40EE-9773-86E7077DC827}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuzzyString", "FuzzyString\FuzzyString.csproj", "{953A9FBB-A0CB-43A8-A51F-AC9CB55CADFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{34993954-C37C-40EE-9773-86E7077DC827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34993954-C37C-40EE-9773-86E7077DC827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34993954-C37C-40EE-9773-86E7077DC827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953A9FBB-A0CB-43A8-A51F-AC9CB55CADFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953A9FBB-A0CB-43A8-A51F-AC9CB55CADFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953A9FBB-A0CB-43A8-A51F-AC9CB55CADFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953A9FBB-A0CB-43A8-A51F-AC9CB55CADFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

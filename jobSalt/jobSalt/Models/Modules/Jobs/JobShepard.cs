@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Security.Cryptography;
 using System.Text;
+using FuzzyString;
 namespace jobSalt.Models.Modules.Jobs
 	{
 	public class JobShepard
@@ -105,13 +106,9 @@ namespace jobSalt.Models.Modules.Jobs
 					{
 
 
-					// convert job.Company +job.JobTitle string to stream
-					//string byteArray = Encoding.UTF8.GetBytes( job.Company +job.JobTitle );
-					//MemoryStream stream = new MemoryStream( byteArray );
-
-					//get fuzzy hash
-					//SpamSumSignature jobHash = FuzzyHashing.Calculate( stream );
-					string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
+					
+					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
+					string jobHash = job.Company+job.JobTitle;
 					//add hash to dictionary
 					jobHashDict.Add( job , jobHash );
 					}
@@ -153,8 +150,9 @@ namespace jobSalt.Models.Modules.Jobs
 				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
 					{
 					//compare a to b's hashes. remove if too similar
-					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && jobHashDictKV_a.Value==jobHashDictKV_b.Value )
+					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && FuzzyString.FuzzyString.GetSimilarIndex( jobHashDictKV_a.Value,jobHashDictKV_b.Value)>=95 )
 						{
+						System.Diagnostics.Debug.WriteLine( "JobShepard found a duplicate, fuzzy match score: "+ FuzzyString.FuzzyString.GetSimilarIndex( jobHashDictKV_a.Value , jobHashDictKV_b.Value ) +"% similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ "...removing.");
 						//mark duplicate
 						jobsToRemove.Add( jobHashDictKV_a.Key );
 						}
@@ -195,7 +193,8 @@ namespace jobSalt.Models.Modules.Jobs
 		/// <returns>Processed list of jobs</returns>
 		List<JobPost> PostProcessJobs ( List<JobPost> jobs )
 			{
-			jobs = jobs.OrderByDescending( job => job.DatePosted ).ToList( );
+			if(jobs.Count()>0)
+				jobs = jobs.OrderByDescending( job => job.DatePosted ).ToList( );
 
 			return jobs;
 			}
