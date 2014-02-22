@@ -108,7 +108,7 @@ namespace jobSalt.Models.Modules.Jobs
 
 					
 					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-					string jobHash = job.Company+job.JobTitle;
+					string jobHash = job.Company+" "+job.JobTitle;
 					//add hash to dictionary
 					jobHashDict.Add( job , jobHash );
 					}
@@ -153,7 +153,7 @@ namespace jobSalt.Models.Modules.Jobs
 					System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +"% similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 						
 					//compare a to b's hashes. remove if too similar
-					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && (Double.IsNaN(simScore) || simScore>=95) )
+					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && (Double.IsNaN(simScore) || simScore>=15) )
 						{
 						System.Diagnostics.Debug.WriteLine( "JobShepard found a duplicate, fuzzy match score: "+ simScore +"% similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")...removing.");
 						//mark duplicate
