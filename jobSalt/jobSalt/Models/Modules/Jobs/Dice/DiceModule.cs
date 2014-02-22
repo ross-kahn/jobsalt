@@ -43,16 +43,16 @@ namespace jobSalt.Models.Modules.Jobs.Dice
 			XDocument doc = XDocument.Load( request );
 			IEnumerable<XElement> results = doc.Descendants( "result" ).Single( ).Descendants( "resultItemList" ).Single( ).Descendants( "resultItem" );
 
-
 			foreach ( var jobPost in results )
 				{
 				JobPost post = new JobPost( );
+
+
 				post.Company = jobPost.Element( "company" ).Value;
 				post.URL = jobPost.Element( "detailUrl" ).Value;
 				post.SourceModule =source;
 				post.DatePosted = DateTime.Parse( jobPost.Element( "date" ).Value );
 				post.JobTitle = jobPost.Element( "jobTitle" ).Value;
-
 				//this field is returned as "San Ramon, CA", so split by values
 				string[] location = jobPost.Element( "location" ).Value.Split( new char[] { ',' } );
 				post.Location = new Location
