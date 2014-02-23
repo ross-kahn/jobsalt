@@ -283,6 +283,9 @@
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\HousingPost.cs" />
+    <Compile Include="Models\Modules\Alumni\AlumniShepard.cs" />
+    <Compile Include="Models\Modules\Alumni\DummyAlumniModule.cs" />
+    <Compile Include="Models\Modules\Alumni\IAlumniModule.cs" />
     <Compile Include="Models\Modules\Auth\AuthModule.cs" />
     <Compile Include="Models\Modules\Auth\LDAPAuthModule.cs" />
     <Compile Include="Models\Modules\Auth\SamlHelper.cs" />
