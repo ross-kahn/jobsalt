@@ -17,9 +17,9 @@ namespace jobSalt.Models.Modules.Auth
         /// <summary>
         /// Creates a Version 2.0 Saml Assertion
         /// </summary>
-        /// <param name="issuer">Issuer</param>
-        /// <param name="subject">Subject</param>
-        /// <param name="attributes">Attributes</param>
+        /// <param name="issuer">Issuer</param>shibboleth.massivedynamic.net
+        /// <param name="subject">Subject</param>massivedynamic.net
+        /// <param name="attributes">Attributes</param>Principle,P
         /// <returns>returns a Version 2.0 Saml Assertoion</returns>
         private static AssertionType CreateSamlAssertion(string issuer, string recipient, string domain, string subject, Dictionary<string, string> attributes)
         {
