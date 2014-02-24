@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Security.Cryptography;
 using System.Text;
-using FuzzyString;
+using DuoVia.FuzzyStrings;
 namespace jobSalt.Models.Modules.Jobs
 	{
 	public class JobShepard
@@ -149,7 +149,7 @@ namespace jobSalt.Models.Modules.Jobs
 								  select c;
 				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
 					{
-					Double simScore = FuzzyString.FuzzyString.GetSimilarIndex( jobHashDictKV_a.Value , jobHashDictKV_b.Value );
+					Double simScore = jobHashDictKV_a.Value.FuzzyMatch(jobHashDictKV_b.Value);
 					System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +"% similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 						
 					//compare a to b's hashes. remove if too similar
