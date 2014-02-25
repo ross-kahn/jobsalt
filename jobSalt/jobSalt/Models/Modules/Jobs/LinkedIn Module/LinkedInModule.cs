@@ -54,12 +54,12 @@ namespace jobSalt.Models
 
             foreach (LinkedInJobPost raw in linkedinResult.jobs.values)
             {
-                var loc = raw.locationDescription.Split(',');
+                //var loc = raw.locationDescription.Split(',');
                 JobPost jobpost = new JobPost()
                 {
                     Company = raw.company.name,
                     Description = raw.descriptionSnippet,
-                    Location = new Location(null, loc[1], loc[0]),
+                    Location = new Location(null, "U.S.", raw.locationDescription),
                     URL = raw.siteJobUrl,
                     SourceModule = source,
                     DatePosted = new DateTime(raw.postingDate.year, 
