@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace jobSalt.Models.Modules.Alumni
+namespace jobSalt.Models.Feature.Alumni.School_Module
 {
     public class AlumniShepard
     {

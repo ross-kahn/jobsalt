@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using jobSalt.Models.Data_Types;
 
-namespace jobSalt.Models.Modules.Alumni
+namespace jobSalt.Models.Feature.Alumni.School_Module
 {
     interface IAlumniModule
     {
