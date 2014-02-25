@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using jobSalt.Models.Data_Types;
+using jobSalt.Models.Feature.Jobs;
 
-namespace jobSalt.Models.Modules.Jobs.Dice
+namespace jobSalt.Models.Feature.Jobs.Dice_Module
 {
-	public class DiceModule : Modules.Jobs.IJobModule
+	public class DiceModule : Feature.Jobs.IJobModule
 	{
 		Source source = new Source( )
 		{

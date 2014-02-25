@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace jobSalt.Models.Modules.Jobs.Dice
+namespace jobSalt.Models.Feature.Jobs.Dice_Module
 	{
 	public class DiceQueryBuilder
 		{
