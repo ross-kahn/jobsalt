@@ -3,17 +3,23 @@
 {
     var guid = Guid.NewGuid().ToString();
     <div class="container" style="padding-left:0px; padding-right:30px" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
-        <div class="well">
-            <h2>@Model[i].Company</h2>
+        <div class="well" style="position:relative">
+            <span><h2>@Model[i].Company<img width="50px" src="@Model[i].SourceModule.Icon"  style="position:absolute; right:0; top:0"/></h2></span><span></span>
             <h3>@Model[i].JobTitle</h3>
             <div id="@guid" class="collapse">
                 <p>@Html.Raw(Model[i].Description)</p>
-                <b>Location:</b><br />
+                <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
                 <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
-                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
             </div>
         </div>
     </div>
 }
+
+<script type="text/javascript">
+    function StopPropagation(event) {
+        event.stopPropagation();
+    }
+</script>

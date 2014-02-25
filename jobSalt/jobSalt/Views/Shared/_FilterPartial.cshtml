@@ -1,27 +1,134 @@
-﻿<!-- Button trigger modal -->
+﻿@foreach (jobSalt.Models.Filter filter in FilterUtility.GetFilters(ViewBag.FilterString))
+{
+    <button class="btn btn-info btn-lg" data-value="@filter.TargetField" onclick="EditFilter(this, event)">
+        <span>@filter.TargetField </span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon" style="color:#808080" onclick="RemoveFilter(this, event)"></span>
+    </button>
+}
+
+<!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Edit Filters
+    Add Filter
 </button>
 
-<!-- Modal -->
+<style type="text/css">
+    .icon-hover {
+        color: #444 !important;
+    }
+</style>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="editTitle">Place Holder</h4>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return SaveAndCloseModal()">
+                    <div id="editFieldArea"></div>
+                </form>
+                <div id="editLoadingIcon"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Edit Filters</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Filter</h4>
             </div>
             <div class="modal-body">
-                @using jobSalt.Models;
-                @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
-                {
-                    @Html.Partial("_FilterEditPartial", target);
-                }
+                1. Select Filter Type:<br />
+                <select id="TargetFieldSelect" class="selectpicker" style="width:180px">
+                    @using jobSalt.Models;
+                    @foreach(jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
+                    {
+                        <option value="@target.ToString()">@target.ToString()</option>
+                    }
+                </select><br />
+                2. Enter Filter Value:<br />
+                <form onsubmit="return SaveAndCloseModal()">
+                    <div id="FieldEditArea"></div>
+                </form>
+                <div id="loadingIcon"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                <button type="submit" class="btn btn-primary" onclick="SaveAndCloseModal()">Save Filter</button>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $("#TargetFieldSelect").on('change', function () {
+        $("#FieldEditArea").empty();
+        $('div#loadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
+        var selectedField = $('#TargetFieldSelect').val();
+        $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + selectedField, function (data) {
+            if (data != '') {
+                $("#FieldEditArea").append(data);
+            }
+            $('div#loadingIcon').empty();
+        });
+    });
+
+    $("#TargetFieldSelect").trigger('change');
+
+    function SaveAndCloseModal(){
+        //SubmitFilter is defined in the partial view _FilterEditPartial,
+        //it changes based on the filter/input type
+        SubmitFilter();
+        $('#myModal').modal('toggle');
+        return false;
+    }
+    $(".icon").hover(
+        function () {
+            $(this).toggleClass('icon-hover');
+        },
+        function () {
+            $(this).toggleClass('icon-hover');
+        }
+     );
+
+    function EditFilter(caller, event) {
+        $("#editFieldArea").empty();
+        $("#editTitle").empty();
+
+        $('#editTitle').html($(caller).data('value'));
+
+        $('div#editLoadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
+
+        $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + $(caller).data('value'), function (data) {
+            if (data != '') {
+                $("#editFieldArea").append(data);
+            }
+            $('div#editLoadingIcon').empty();
+        });
+
+        $('#editModal').modal('toggle');
+    }
+
+    function RemoveFilter(caller, event) {
+        window.location = "/FilterUtility/RemoveFilter?targetField=" + $(caller).data('value') + "&filterString=" + "@ViewBag.FilterString";
+        event.stopPropagation();
+    }
+
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': 'cat'
+        });
+
+        // $('.selectpicker').selectpicker('hide');
+    });
+</script>

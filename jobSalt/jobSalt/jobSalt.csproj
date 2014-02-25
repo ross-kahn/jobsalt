@@ -270,7 +270,11 @@
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
-    <Compile Include="Models\FilterUtility.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\AlumniShepard.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\IAlumniModule.cs" />
+    <Compile Include="Models\Filter\FilterBag.cs" />
+    <Compile Include="Models\Filter\FilterUtility.cs" />
     <Compile Include="Controllers\HousingController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
@@ -279,32 +283,72 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Feature\Auth\AccountModels.cs" />
     <Compile Include="Models\Constants.cs" />
-    <Compile Include="Models\Filter.cs" />
-    <Compile Include="Models\HousingPost.cs" />
-    <Compile Include="Models\Modules\Auth\AuthModule.cs" />
-    <Compile Include="Models\Modules\Auth\LDAPAuthModule.cs" />
-    <Compile Include="Models\Modules\Auth\SamlHelper.cs" />
-    <Compile Include="Models\Modules\Auth\SamlSchemas.cs" />
-    <Compile Include="Models\Modules\Auth\SamlSignedXml.cs" />
-    <Compile Include="Models\Modules\Auth\ShibbolethAuthModule.cs" />
-    <Compile Include="Models\Modules\Auth\SigningHelper.cs" />
-    <Compile Include="Models\Modules\Jobs\DummyJobModule.cs" />
-    <Compile Include="Models\Modules\Jobs\IJobModule.cs" />
-    <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedJobPost.cs" />
-    <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedModule.cs" />
-    <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedQueryBuilder.cs" />
-    <Compile Include="Models\Modules\Jobs\Indeed Module\IndeedResult.cs" />
-    <Compile Include="Models\Modules\Jobs\JobShepard.cs" />
-    <Compile Include="Models\Modules\Jobs\LinkedIn Module\LinkedInModule.cs" />
-    <Compile Include="Models\AlumniPost.cs" />
-    <Compile Include="Models\JobPost.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Modules\Jobs\School_Module.cs" />
-    <Compile Include="Models\SalaryPost.cs" />
-    <Compile Include="Models\SalaryRange.cs" />
-    <Compile Include="Models\Source.cs" />
+    <Compile Include="Models\Filter\Filter.cs" />
+    <Compile Include="Models\Feature\Housing\HousingPost.cs" />
+    <Compile Include="Models\Feature\Auth\AuthModule.cs" />
+    <Compile Include="Models\Feature\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Feature\Auth\SamlHelper.cs" />
+    <Compile Include="Models\Feature\Auth\SamlSchemas.cs" />
+    <Compile Include="Models\Feature\Auth\SamlSignedXml.cs" />
+    <Compile Include="Models\Feature\Auth\ShibbolethAuthModule.cs" />
+    <Compile Include="Models\Feature\Auth\SigningHelper.cs" />
+    <Compile Include="Models\Feature\Jobs\CareerBuilder Module\CareerBuilderModule.cs" />
+    <Compile Include="Models\Feature\Jobs\CareerBuilder Module\CareerBuilderQueryBuilder.cs" />
+    <Compile Include="Models\Feature\Jobs\DummyJobModule.cs" />
+    <Compile Include="Models\Feature\Jobs\IJobModule.cs" />
+    <Compile Include="Models\Feature\Jobs\Indeed Module\IndeedJobPost.cs" />
+    <Compile Include="Models\Feature\Jobs\Indeed Module\IndeedModule.cs" />
+    <Compile Include="Models\Feature\Jobs\Indeed Module\IndeedQueryBuilder.cs" />
+    <Compile Include="Models\Feature\Jobs\Indeed Module\IndeedResult.cs" />
+    <Compile Include="Models\Feature\Jobs\JobShepard.cs" />
+    <Compile Include="Models\Feature\Jobs\LinkedIn Module\LinkedInJobPost.cs" />
+    <Compile Include="Models\Feature\Jobs\LinkedIn Module\LinkedInQueryBuilder.cs" />
+    <Compile Include="Models\Feature\Jobs\LinkedIn Module\LinkedInModule.cs" />
+    <Compile Include="Models\Feature\Alumni\AlumniPost.cs" />
+    <Compile Include="Models\Feature\Jobs\JobPost.cs" />
+    <Compile Include="Models\Data Types\Location.cs" />
+    <Compile Include="Models\Feature\Jobs\LinkedIn Module\LinkedInResult.cs" />
+    <Compile Include="Models\Feature\Jobs\RIT Module\Contact.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\Employer.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\Job.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\Quarter.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\RITDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RITDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\RITDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\RITDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RITDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\School_Module.cs" />
+    <Compile Include="Models\Feature\Jobs\RIT Module\sysdiagram.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\RIT Module\User.cs">
+      <DependentUpon>RITDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Jobs\UAJobLink Module\UAJobLinkModule.cs" />
+    <Compile Include="Models\Feature\Jobs\LinkedIn Module\LinkedInTempData.cs" />
+    <Compile Include="Models\Feature\Salary\SalaryPost.cs" />
+    <Compile Include="Models\Data Types\SalaryRange.cs" />
+    <Compile Include="Models\Data Types\Source.cs" />
     <Compile Include="Models\UserData\UserDataContext.cs" />
     <Compile Include="Models\UserData\UserDataRow.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -320,15 +364,18 @@
     <Content Include="Content\bootstrap-mvc-validation.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\fonts\fuelux-preloader.svg" />
-    <Content Include="Content\fuelux-responsive.css" />
-    <Content Include="Content\fuelux-responsive.min.css" />
-    <Content Include="Content\fuelux.css" />
-    <Content Include="Content\fuelux.min.css" />
-    <Content Include="Content\images\glyphicons-halflings-white.png" />
-    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\careerbuilder_icon.png" />
+    <Content Include="Content\images\indeed_icon.png" />
+    <Content Include="Content\images\RIT_icon.png" />
+    <Content Include="Content\images\UA_Block_A.png" />
+    <Content Include="Content\images\linkedin_icon.jpg" />
+    <Content Include="Images\glyphicons-halflings-white.png" />
+    <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\img\form-hdpi.png" />
     <Content Include="Content\img\form.png" />
@@ -390,13 +437,35 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\fuelux.min.js" />
+    <Content Include="Content\example_json_linkedin.txt" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\html5shiv.js" />
-    <Content Include="Content\fonts\fuelux-preloader.eot" />
-    <Content Include="Content\fonts\fuelux-preloader.ttf" />
-    <Content Include="Content\fonts\fuelux-preloader.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="Models\Feature\Jobs\RIT Module\RITDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RITDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Jobs\RIT Module\RITDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RITDB.edmx</DependentUpon>
+      <LastGenOutput>RITDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Jobs\RIT Module\RITDB.edmx.diagram">
+      <DependentUpon>RITDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Feature\Jobs\RIT Module\RITDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RITDB.edmx</DependentUpon>
+      <LastGenOutput>RITDB.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\PublishProfiles\Localhost.pubxml" />
+    <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
+    <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -497,6 +566,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

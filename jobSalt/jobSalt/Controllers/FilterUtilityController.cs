@@ -28,5 +28,12 @@ namespace jobSalt.Controllers
         {
             return Json(FilterUtility.GetFilters(filterString), JsonRequestBehavior.AllowGet);
         }
+
+        public PartialViewResult GetFilterView(Field targetField, string filterString)
+        {
+            ViewBag.FilterString = filterString;
+            ViewBag.inputID = new Guid().ToString();
+            return PartialView("_FilterEditPartial", targetField);
+        }
     }
 }
