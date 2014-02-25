@@ -10,7 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using jobSalt.Filters;
 using jobSalt.Models;
-using jobSalt.Models.Modules.Auth;
+using jobSalt.Models.Feature.Auth;
 
 namespace jobSalt.Controllers
 {

@@ -3,7 +3,6 @@
   <metadata>
     <id>DuoVia.FuzzyStrings</id>
     <version>1.0.0</version>
-    <title>DuoVia.FuzzyStrings</title>
     <authors>Duovia</authors>
     <owners>Duovia</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
@@ -12,7 +11,6 @@
     <description>A Collection of Fuzzy String Algorithms for .NET.</description>
     <releaseNotes>Initial release. Enjoy.</releaseNotes>
     <copyright>Copyright 2013 Duovia Inc.</copyright>
-    <language />
     <tags>Fuzzy Strings Dice Coefficient Levenshtein LCS DoubleMetaphone</tags>
   </metadata>
 </package>
