@@ -102,15 +102,17 @@ namespace jobSalt.Models.Modules.Jobs
 
 				//Begin: Duplication removal logic
 				//get a fuzzy hash for each jobPost
+				int i =0;//unique number for each hash
 				foreach ( var job in jobs )
 					{
 
 
 					
 					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-					string jobHash = job.Company+" "+job.JobTitle;
+					string jobHash = job.Company+" "+job.JobTitle+" "+i;
 					//add hash to dictionary
 					jobHashDict.Add( job , jobHash );
+					i++;
 					}
 
 				//End: Duplication removal logic
@@ -149,13 +151,16 @@ namespace jobSalt.Models.Modules.Jobs
 								  select c;
 				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
 					{
-					Double simScore = jobHashDictKV_a.Value.FuzzyMatch(jobHashDictKV_b.Value);
-					System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +"% similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
+					Double  threashold = 0.6;  
+					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
+					//System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 						
 					//compare a to b's hashes. remove if too similar
-					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && (Double.IsNaN(simScore) || simScore>=15) )
+					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && (Double.IsNaN(simScore) || simScore>=threashold) )
 						{
-						System.Diagnostics.Debug.WriteLine( "JobShepard found a duplicate, fuzzy match score: "+ simScore +"% similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")...removing.");
+						System.Diagnostics.Debug.WriteLine( "JobShepard found a duplicate, fuzzy match score: "+ simScore +" similar. Threashold = "+threashold+"\n"
+														   +"\t[Source: "+jobHashDictKV_a.Key.SourceModule.Name+"\t\t\t  hash: " + jobHashDictKV_a.Value+"]...removing.\n" 
+														   +"\t[Source: "+jobHashDictKV_b.Key.SourceModule.Name+"\t\t\t  hash: " + jobHashDictKV_b.Value+ "]\n" );
 						//mark duplicate
 						jobsToRemove.Add( jobHashDictKV_a.Key );
 						}
@@ -196,7 +201,7 @@ namespace jobSalt.Models.Modules.Jobs
 		/// <returns>Processed list of jobs</returns>
 		List<JobPost> PostProcessJobs ( List<JobPost> jobs )
 			{
-			if(jobs.Count()>0)
+			if(jobs.Count()>0 && jobs.All(a=> a!=null && a.DatePosted !=null))
 				jobs = jobs.OrderByDescending( job => job.DatePosted ).ToList( );
 
 			return jobs;
