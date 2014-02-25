@@ -4,7 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
-using jobSalt.Models;
+using jobSalt.Models.Feature.Auth;
 
 namespace jobSalt.Filters
 {

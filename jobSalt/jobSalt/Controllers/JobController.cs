@@ -1,5 +1,5 @@
 ﻿using jobSalt.Models;
-using jobSalt.Models.Modules.Jobs;
+using jobSalt.Models.Feature.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
