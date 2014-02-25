@@ -114,11 +114,9 @@ namespace jobSalt.Models.Modules.Jobs
 					jobHashDict.Add( job , jobHash );
 					i++;
 					}
-
-				//End: Duplication removal logic
-
-				//Begin: Duplication removal logic
-				RemoveDuplicateJobs( jobHashDict , jobs );
+				//only remove duplicates if we have a reasonable number of jobs.
+				if(jobHashDict.Count()>=10)
+					RemoveDuplicateJobs( jobHashDict , jobs );
 				//End: Duplication removal logic 
 
 
