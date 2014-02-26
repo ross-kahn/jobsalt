@@ -15,16 +15,16 @@ using jobSalt.Models.Feature.Auth;
 namespace jobSalt.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         private List<AuthModule> modules = new List<AuthModule>();
 
         public AccountController()
         {
-            modules.Add(new ShibbolethAuthModule("JobSALT", "shibboleth.massivedynamic.net", "AD", "<UnKnown>"));
-            modules.Add(new LDAPAuthModule("vpn.kasour.com", "KASOUR"));
-            modules.Add(new LDAPAuthModule("dc1.ad.sofse.org", "SOFSE"));
+            //modules.Add(new ShibbolethAuthModule("JobSALT", "shibboleth.massivedynamic.net", "AD", "<UnKnown>"));
+            //modules.Add(new LDAPAuthModule("vpn.kasour.com", "KASOUR"));
+            //modules.Add(new LDAPAuthModule("dc1.ad.sofse.org", "SOFSE"));
+            modules.Add(new LDAPAuthModule("maindca.main.ad.rit.edu", "RIT_MAIN"));
         }
 
         //
