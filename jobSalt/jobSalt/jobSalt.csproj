@@ -270,9 +270,9 @@
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
-    <Compile Include="Models\Feature\Alumni\School Module\AlumniShepard.cs" />
+    <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
-    <Compile Include="Models\Feature\Alumni\School Module\IAlumniModule.cs" />
+    <Compile Include="Models\Feature\Alumni\IAlumniModule.cs" />
     <Compile Include="Models\Filter\FilterBag.cs" />
     <Compile Include="Models\Filter\FilterUtility.cs" />
     <Compile Include="Controllers\HousingController.cs" />
@@ -466,6 +466,7 @@
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
+    <Content Include="Views\Alumni\Index_Partial.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

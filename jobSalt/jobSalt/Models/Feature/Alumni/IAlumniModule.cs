@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using jobSalt.Models.Data_Types;
 
-namespace jobSalt.Models.Feature.Alumni.School_Module
+namespace jobSalt.Models.Feature.Alumni
 {
     interface IAlumniModule
     {
