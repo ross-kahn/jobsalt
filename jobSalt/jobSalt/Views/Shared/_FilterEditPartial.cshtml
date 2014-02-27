@@ -18,6 +18,27 @@
             }
         </script>
         break;
+    case Field.Location:
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+
+<input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" style="height:30px; width:200px" />
+
+        <script type="text/javascript">
+            var autocomplete = new google.maps.places.Autocomplete( (document.getElementById('autocomplete')),
+            {
+                types: ['geocode'],
+                componentRestrictions: { country: "us" }
+            });
+            function SubmitFilter() {
+                alert("location");
+            }
+        </script>
+        <style type="text/css">
+            .pac-container {
+                z-index: 1051;
+            }
+        </style>
+        break;    
     default:
         <input id="@ViewBag.inputID" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
         <script type="text/javascript">
