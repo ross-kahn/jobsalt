@@ -47,11 +47,11 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
                     DatePosted = raw.Date,
                     Company = raw.Company,
                     JobTitle = raw.JobTitle,
-                    Location = new Location()
-                    {
-                        State = raw.State,
-                        City = raw.City
-                    },
+                    Location = new Location(
+                        raw.State,
+                        raw.City,
+                        null
+                   ),
                     Salary = null,
                     Description = raw.Snippet,
                     FieldOfStudy = null
