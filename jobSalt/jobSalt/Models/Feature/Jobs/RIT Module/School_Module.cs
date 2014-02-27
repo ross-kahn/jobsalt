@@ -34,7 +34,7 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
             }
         }
 
-        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsperpage)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsperpage)
         {
             //The SQL query needs to include JOINs across different databases based on filters
 
@@ -43,24 +43,23 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
             var jobsSearchQuery = dbContext.Jobs.Join(dbContext.Employers, j => j.employerId, e => e.id, (j, e) => new { Job = j, Employer = e });
             
             //Use a WHERE clause to match filters perhaps?
-            foreach (Field key in filters.Keys)
+            if (!String.IsNullOrWhiteSpace(filters.companyName))
             {
-                switch (key)
-                {
-                    case Field.CompanyName:
-                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters[key]));
-                        break;
-                    case Field.JobTitle:
-                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.title.Contains(filters[key]));
-                        break;
-                    case Field.Keyword:
-                        jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(filters[key]));
-                        break;
-                    default:
-                        break;
-                }
-                //jobsSearchQuery = jobsSearchQuery.Where(item => it == f.TargetField);
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters.companyName));
             }
+
+            if (!String.IsNullOrWhiteSpace(filters.jobTitle))
+            {
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.title.Contains(filters.jobTitle));
+            }
+
+            if (!String.IsNullOrWhiteSpace(filters.keyword))
+            {
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(filters.keyword));
+            }
+
+
+            //jobsSearchQuery = jobsSearchQuery.Where(item => it == f.TargetField);
 
             jobsSearchQuery = jobsSearchQuery.OrderBy(item => item.Job.modifiedDate);
             var jobsSearch = jobsSearchQuery.Skip(page * resultsperpage);
