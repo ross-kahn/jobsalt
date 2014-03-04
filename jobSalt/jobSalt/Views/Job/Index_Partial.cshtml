@@ -2,20 +2,45 @@
 @for (int i = 0; i < Model.Count(); i++)
 {
     var guid = Guid.NewGuid().ToString();
-    <div class="container" style="padding-left:0px; padding-right:30px" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
-        <div class="well" style="position:relative">
-            <span><h2>@Model[i].Company<img width="50px" src="@Model[i].SourceModule.Icon"  style="position:absolute; right:0; top:0"/></h2></span><span></span>
-            <h3>@Model[i].JobTitle</h3>
-            <div id="@guid" class="collapse">
+    if (i % 2 == 0)
+    {
+        <div class="post-margin collapse col-lg-12 col-xs-12 @guid"></div>
+        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+        <div class="post-details">
+            <p>@Html.Raw(Model[i].Description)</p>
+            <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
+            <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+            <b>Source: @Model[i].SourceModule.Name</b><br />
+            <br />
+            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Alumni</a>
+        </div>
+        <div class="arrow-down"></div>
+    </div>
+    <div class="post-margin collapse in col-lg-12 col-xs-12 @guid "></div>
+    }
+        <div class="col-md-6 col-xs-12">
+            <div class="post" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+                <h3 class="ellipsis" style="padding-right:50px">@Model[i].Company</h3>
+                <img width="50px" src="@Model[i].SourceModule.Icon" style="position:absolute; right:0; top:0" />
+                <h4 class="ellipsis">@Model[i].JobTitle</h4>
+            </div>
+        </div>
+    if (i % 2 == 1)
+    {
+        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+            <div class="arrow-up"></div>
+            <div class="post-details">
                 <p>@Html.Raw(Model[i].Description)</p>
                 <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
                 <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
                 <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Alumni</a>
             </div>
         </div>
-    </div>
+    }
 }
 
 <script type="text/javascript">
