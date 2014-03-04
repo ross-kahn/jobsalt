@@ -26,7 +26,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			}
 		private readonly CareerBuilderQueryBuilder builder;
 
-		public CareerBuilderModule()
+		public CareerBuilderModule ( )
 			{
 			builder = new CareerBuilderQueryBuilder( );
 			}
@@ -51,10 +51,10 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			foreach ( var jobPost in results )
 				{
 				JobPost post = new JobPost( );
-				post.Company = jobPost.Element( "Company" ).Value;
+
 				post.URL = jobPost.Element( "JobDetailsURL" ).Value;
-				post.SourceModule =source; 
-				post.DatePosted = DateTime.Parse( jobPost.Element( "PostedDate" ).Value ); 
+				post.SourceModule =source;
+				post.DatePosted = DateTime.Parse( jobPost.Element( "PostedDate" ).Value );
 				post.JobTitle = jobPost.Element( "JobTitle" ).Value;
 
 				//this field is returned as "MN - Plymouth", so split by values
@@ -65,6 +65,8 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 					City= location[1].Trim( ) ,
 					ZipCode=null
 				};
+				//if the company name is empty, fill with city and state (there are some posts with an empty company name)
+				post.Company = jobPost.Element( "Company" ).Value==""?location[1]+" , "+location[0]:jobPost.Element( "Company" ).Value;
 				post.Description =  jobPost.Element( "DescriptionTeaser" ).Value;
 				post.FieldOfStudy = null;
 				post.Salary =  jobPost.Element( "Pay" ).Value;
