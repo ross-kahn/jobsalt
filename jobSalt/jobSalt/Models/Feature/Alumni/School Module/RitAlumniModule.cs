@@ -1,4 +1,5 @@
-﻿using System;
+﻿using jobSalt.Models.Data_Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,22 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
         {
             List<AlumniPost> posts = new List<AlumniPost>();
 
-            
+            var AlumSearchQuery = db.GradPlacements.Where(item => !item.employerName.Equals(null)); // Prune people without jobs? This could be more extensive probably
+
+            foreach (var alum in AlumSearchQuery.ToList())
+            {
+                AlumniPost a = new AlumniPost()
+                {
+                    Company = alum.employerName,
+                    Location = new Location("", alum.employerStateId, alum.employerCity),
+                    FieldOfStudy = alum.studentPrimaryDegreeId + "",
+                    Name = alum.studentEmail + " is temp variable",
+                    PhoneNumber = "None found yet",
+                    Email = alum.studentEmail
+                };
+
+                posts.Add(a);
+            }
 
             return posts;
         }

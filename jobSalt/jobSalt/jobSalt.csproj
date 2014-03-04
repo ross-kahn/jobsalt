@@ -282,6 +282,7 @@
     <Compile Include="Models\Feature\Alumni\School Module\Program.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\RitAlumniModule.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
