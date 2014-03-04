@@ -14,7 +14,11 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
         List<AlumniPost> IAlumniModule.GetAlumni(Dictionary<Field, string> filters)
         {
-            throw new NotImplementedException();
+            List<AlumniPost> posts = new List<AlumniPost>();
+
+
+
+            return posts;
         }
 
         List<string> IAlumniModule.GetCompanies()
