@@ -374,6 +374,7 @@
     <Content Include="Content\images\RIT_icon.png" />
     <Content Include="Content\images\UA_Block_A.png" />
     <Content Include="Content\images\linkedin_icon.jpg" />
+    <Content Include="favicon.jpg" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Content\images\loading.gif" />
