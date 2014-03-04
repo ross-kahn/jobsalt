@@ -25,10 +25,10 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			//add job search api and required dev key.
 			builder.Append( "http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WDHV0RV6Q60BJ3WD2H15&PerPage="+ResultsPerPage +"&PageNumber="+Page );
 
-            builder.Append(keywordConverter(filters.keyword));
-            builder.Append(locationConverter(filters.location));
-            builder.Append(jobTitleConverter(filters.jobTitle));
-            builder.Append(companyNameConverter(filters.companyName));
+            builder.Append(keywordConverter(filters.Keyword));
+            builder.Append(locationConverter(filters.Location));
+            builder.Append(jobTitleConverter(filters.JobTitle));
+            builder.Append(companyNameConverter(filters.CompanyName));
 
 					/* case Field.EducationCode:
 						switch(FilterDict[key])

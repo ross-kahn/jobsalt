@@ -27,8 +27,8 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             builder.Append(Constants.INDEED_REQUEST_BASE);
             builder.Append("&start=" + page * resultsPerPage);
 
-            builder.Append(keywordConverter(filterbag.keyword, filterbag.jobTitle, filterbag.companyName));
-            builder.Append(locationConverter(filterbag.location));
+            builder.Append(keywordConverter(filterbag.Keyword, filterbag.JobTitle, filterbag.CompanyName));
+            builder.Append(locationConverter(filterbag.Location));
         
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format

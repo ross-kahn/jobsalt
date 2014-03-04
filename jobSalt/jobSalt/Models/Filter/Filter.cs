@@ -12,13 +12,18 @@ namespace jobSalt.Models
 
     public class Filter
     {
-        public Field TargetField { get; private set; }
-        public string Value { get; private set; }
+        public Field TargetField { get; set; }
+        public string Value { get; set; }
 
         public Filter(Field targetField, string value)
         {
             this.TargetField = targetField;
             this.Value = value;
+        }
+
+        public Filter()
+        {
+
         }
 
 
