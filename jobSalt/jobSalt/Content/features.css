@@ -1,7 +1,8 @@
 ﻿.post {
     min-height: 20px;
     padding: 10px;
-    background-image:linear-gradient(to bottom, #286487 0, #154e70 100%);
+    background-color: #0c5076;
+    background-image:linear-gradient(to bottom, #0c5076 0, #0c3476 100%);
     border-radius: 7px;
     color: #d7e0e5;
 }
@@ -18,12 +19,11 @@
     height: 10px !important;
 }
 
-.left {
-    margin-right: 5px;
-}
-
-.right {
-    margin-left: 5px;
+.ellipsis {
+    text-overflow:ellipsis; 
+    overflow:hidden; 
+    text-wrap:none; 
+    white-space:nowrap;
 }
 
 .arrow-down {
