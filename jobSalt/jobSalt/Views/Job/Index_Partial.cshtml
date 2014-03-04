@@ -4,28 +4,38 @@
     var guid = Guid.NewGuid().ToString();
     if (i % 2 == 0)
     {
-        <div id="@guid" class="collapse col-lg-12 col-xs-12" style="background-color:aliceblue">
-            <p>@Html.Raw(Model[i].Description)</p>
-            <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
-            <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
-            <b>Source: @Model[i].SourceModule.Name</b><br />
-            <br />
-            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+        <div class="collapse col-lg-12 col-xs-12 post-margin @guid"></div>
+        <div class="collapse col-lg-12 col-xs-12 @guid">
+            <div class="post-details">
+                <p>@Html.Raw(Model[i].Description)</p>
+                <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Source: @Model[i].SourceModule.Name</b><br />
+                <br />
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+            </div>
+            <div class="arrow-down"></div>
         </div>
+        <div class="collapse in col-lg-12 col-xs-12 post-margin @guid"></div>
     }
-        <div class="well col-lg-6 col-xs-12" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target="#@guid">
-            <h3 style="text-overflow:ellipsis; overflow:hidden; text-wrap:none; white-space:nowrap">@Model[i].Company<img width="50px" src="@Model[i].SourceModule.Icon" style="position:absolute; right:0; top:0" /></h3>
-            <h4>@Model[i].JobTitle</h4>
+        <div class="col-lg-6 col-xs-12">
+            <div class="post" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+                <h3 style="text-overflow:ellipsis; overflow:hidden; text-wrap:none; white-space:nowrap">@Model[i].Company<img width="50px" src="@Model[i].SourceModule.Icon" style="position:absolute; right:0; top:0" /></h3>
+                <h4>@Model[i].JobTitle</h4>
+            </div>
         </div>
     if (i % 2 == 1)
     {
-        <div id="@guid" class="collapse well col-lg-12 col-xs-12">
-            <p>@Html.Raw(Model[i].Description)</p>
-            <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
-            <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
-            <b>Source: @Model[i].SourceModule.Name</b><br />
-            <br />
-            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+        <div class="collapse col-lg-12 col-xs-12 @guid">
+            <div class="arrow-up"></div>
+            <div class="post-details">
+                <p>@Html.Raw(Model[i].Description)</p>
+                <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Source: @Model[i].SourceModule.Name</b><br />
+                <br />
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+            </div>
         </div>
     }
 }
