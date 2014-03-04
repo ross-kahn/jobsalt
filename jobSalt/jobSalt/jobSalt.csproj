@@ -273,6 +273,52 @@
     <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
     <Compile Include="Models\Feature\Alumni\IAlumniModule.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\Employer.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\GradPlacement.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\Program.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Designer.cs">
+      <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Designer.cs">
+      <DependentUpon>SchoolAlumniModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolModule.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Filter\FilterBag.cs" />
     <Compile Include="Models\Filter\FilterUtility.cs" />
     <Compile Include="Controllers\HousingController.cs" />
@@ -461,6 +507,36 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RITDB.edmx</DependentUpon>
       <LastGenOutput>RITDB.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolAlumniDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.edmx.diagram">
+      <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniModel.Context.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolAlumniModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.edmx.diagram">
+      <DependentUpon>SchoolAlumniModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
