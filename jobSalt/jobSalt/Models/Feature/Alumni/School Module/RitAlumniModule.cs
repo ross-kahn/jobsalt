@@ -6,7 +6,9 @@ using System.Web;
 namespace jobSalt.Models.Feature.Alumni.School_Module
 {
     public class RitAlumniModule : IAlumniModule
-    {        
+    {
+        private SchoolAlumniDBContext db = new SchoolAlumniDBContext();
+
         Data_Types.Source IAlumniModule.Source
         {
             get { throw new NotImplementedException(); }
@@ -16,7 +18,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
         {
             List<AlumniPost> posts = new List<AlumniPost>();
 
-
+            
 
             return posts;
         }
