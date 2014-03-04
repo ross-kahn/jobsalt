@@ -1,11 +1,12 @@
-﻿using System;
+﻿using jobSalt.Models.Feature.Alumni.School_Module;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace jobSalt.Models.Feature.Alumni.School_Module
+namespace jobSalt.Models.Feature.Alumni
 {
     public class AlumniShepard
     {
@@ -27,6 +28,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
         public AlumniShepard()
         {
             modules = new List<IAlumniModule>();
+            modules.Add(new DummyAlumniModule());
         }
         #endregion // Constructors
 
@@ -57,7 +59,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
                     {
                         try
                         {
-                            List<AlumniPost> partialJobs = module.GetAlumni(new Dictionary<Field, string>(filters), page, resultsPerModule);
+                            List<AlumniPost> partialJobs = module.GetAlumni(new Dictionary<Field, string>(filters));
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;

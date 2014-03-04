@@ -273,18 +273,62 @@
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
-    <Compile Include="Models\Feature\Alumni\School Module\AlumniShepard.cs" />
+    <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
-    <Compile Include="Models\Feature\Alumni\School Module\IAlumniModule.cs" />
-    <Compile Include="Models\Feature\Jobs\Dice Module\DiceModule.cs" />
-    <Compile Include="Models\Feature\Jobs\Dice Module\DiceQueryBuilder.cs" />
+    <Compile Include="Models\Feature\Alumni\IAlumniModule.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\Employer.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\GradPlacement.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\Program.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\RitAlumniModule.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Designer.cs">
+      <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Designer.cs">
+      <DependentUpon>SchoolAlumniModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolAlumniModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\SchoolModule.cs" />
+    <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Filter\FilterBag.cs" />
     <Compile Include="Models\Filter\FilterUtility.cs" />
     <Compile Include="Controllers\HousingController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
     <Compile Include="Controllers\UserDataController.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -372,6 +416,7 @@
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\features.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\careerbuilder_icon.png" />
@@ -468,9 +513,40 @@
       <DependentUpon>RITDB.edmx</DependentUpon>
       <LastGenOutput>RITDB.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolAlumniDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.edmx.diagram">
+      <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SchoolAlumniModel.Context.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SchoolAlumniModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.edmx.diagram">
+      <DependentUpon>SchoolAlumniModel.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
+    <Content Include="Views\Alumni\Index_Partial.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -564,6 +640,7 @@
     <None Include="_bin_deployableAssemblies\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Filters\" />
     <Folder Include="Views\Jobs\" />
   </ItemGroup>
   <ItemGroup>
