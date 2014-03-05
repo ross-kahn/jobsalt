@@ -150,14 +150,14 @@ namespace jobSalt.Models.Feature.Jobs
 								  select c;
 				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
 					{
-					Double  threashold = 0.6;  
+					Double threashold = Constants.DUPLICATE_POST_SIMILARITY_THREASHOLD;  
 					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
-					//System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
+					System.Diagnostics.Debug.WriteLine( "JobShepard:\tJob Post:\tFuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 						
 					//compare a to b's hashes. remove if too similar
 					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && (Double.IsNaN(simScore) || simScore>=threashold) )
 						{
-						System.Diagnostics.Debug.WriteLine( "JobShepard found a duplicate, fuzzy match score: "+ simScore +" similar. Threashold = "+threashold+"\n"
+						System.Diagnostics.Debug.WriteLine( "JobShepard:\tJob Post:\tDuplicate job posting found, fuzzy match score: "+ simScore +" similar. Threashold = "+threashold+"\n"
 														   +"\t[Source: "+jobHashDictKV_a.Key.SourceModule.Name+"\t\t\t  hash: " + jobHashDictKV_a.Value+"]...removing.\n" 
 														   +"\t[Source: "+jobHashDictKV_b.Key.SourceModule.Name+"\t\t\t  hash: " + jobHashDictKV_b.Value+ "]\n" );
 						//mark duplicate
