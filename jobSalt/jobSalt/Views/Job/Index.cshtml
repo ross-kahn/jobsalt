@@ -1,25 +1,27 @@
 ﻿<div class="container">
-    <div class="jumbotron">
-        @using jobSalt.Models;
-        
-        @Html.Partial("_FilterPartial")
-        <h1>Job Search</h1>
-        @using jobSalt.Models;
-        @using (Html.BeginForm("AssignFilter", "FilterUtility"))
-        {
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="input-group">
-                  <input id="value" class="form-control" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">Search</button>
-                  </span>
-                </div><!-- /input-group -->
-              </div><!-- /.col-lg-6 -->
-            </div>
-            <input type="hidden" id="targetField" name="targetField" value="Keyword" />
-            <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
-        }
+    <div class="col-lg-12">
+        <div class="jumbotron">
+            @using jobSalt.Models;
+
+            @Html.Partial("_FilterPartial")
+            <h1>Job Search</h1>
+            @using jobSalt.Models;
+            @using (Html.BeginForm("AssignFilter", "FilterUtility"))
+            {
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <input id="value" class="form-control" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success">Search</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div>
+                <input type="hidden" id="targetField" name="targetField" value="Keyword" />
+                <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
+            }
+        </div>
     </div>
     <div id="productList"></div>
     <div id="loading"></div> 
