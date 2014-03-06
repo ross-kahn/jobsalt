@@ -43,19 +43,19 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
             var jobsSearchQuery = dbContext.Jobs.Join(dbContext.Employers, j => j.employerId, e => e.id, (j, e) => new { Job = j, Employer = e });
             
             //Use a WHERE clause to match filters perhaps?
-            if (!String.IsNullOrWhiteSpace(filters.companyName))
+            if (!String.IsNullOrWhiteSpace(filters.CompanyName))
             {
-                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters.companyName));
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters.CompanyName));
             }
 
-            if (!String.IsNullOrWhiteSpace(filters.jobTitle))
+            if (!String.IsNullOrWhiteSpace(filters.JobTitle))
             {
-                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.title.Contains(filters.jobTitle));
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.title.Contains(filters.JobTitle));
             }
 
-            if (!String.IsNullOrWhiteSpace(filters.keyword))
+            if (!String.IsNullOrWhiteSpace(filters.Keyword))
             {
-                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(filters.keyword));
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(filters.Keyword));
             }
 
 

@@ -14,7 +14,9 @@ namespace jobSalt.Controllers
     {
         public ActionResult AssignFilter(Field targetField, string value, string filterString)
         {
-            string newFilterString = FilterUtility.AssignFilter(targetField, value, filterString);
+            FilterBag fb = FilterBag.createFromJSON(filterString);
+            fb.AssignFilter(new Models.Filter(targetField, value));
+            string newFilterString = fb.JsonEncode();
             return Redirect(Request.UrlReferrer.AbsolutePath.ToString() + "?filterString=" + newFilterString);
         }
 
