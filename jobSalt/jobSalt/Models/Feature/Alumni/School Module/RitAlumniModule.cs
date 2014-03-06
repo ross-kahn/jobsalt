@@ -40,10 +40,17 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
             foreach (var key in filters.Keys)
             {
+                string value = filters[key];
                 switch (key)
                 {
                     case Field.CompanyName:
-                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company.Contains(filters[key]));
+                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company.Contains(value));
+                        break;
+                    case Field.Keyword:
+                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(value));
+                        break;
+                    case Field.FieldOfStudy:
+                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.FieldOfStudy.Contains(value));
                         break;
                     default:
                         break;
