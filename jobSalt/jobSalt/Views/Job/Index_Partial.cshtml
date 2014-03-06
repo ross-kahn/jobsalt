@@ -6,15 +6,15 @@
     {
         <div class="post-margin collapse col-lg-12 col-xs-12 @guid"></div>
         <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
-        <div class="post-details">
-            <p>@Html.Raw(Model[i].Description)</p>
-            <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
-            <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
-            <b>Source: @Model[i].SourceModule.Name</b><br />
-            <br />
-            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
-            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Alumni</a>
-        </div>
+            <div class="post-details" >
+                <p>@Html.Raw(Model[i].Description)</p>
+                <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Source: @Model[i].SourceModule.Name</b><br />
+                <br />
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Alumni</a>
+            </div>
         <div class="arrow-down"></div>
     </div>
     <div class="post-margin collapse in col-lg-12 col-xs-12 @guid "></div>

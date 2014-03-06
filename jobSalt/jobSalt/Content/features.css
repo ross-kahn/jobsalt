@@ -5,6 +5,7 @@
     background-image:linear-gradient(to bottom, #6699CC 0, #478bce 100%);
     border-radius: 7px;
     color: #ffffff;
+    min-height: 107px;
 }
 
 .post-details {
