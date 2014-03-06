@@ -1,4 +1,4 @@
-﻿@foreach (jobSalt.Models.Filter filter in FilterUtility.GetFilters(ViewBag.FilterString))
+﻿@foreach (jobSalt.Models.Filter filter in FilterBag.GetFilters(ViewBag.FilterString))
 {
     <button class="btn btn-info btn-lg" data-value="@filter.TargetField" onclick="EditFilter(this, event)">
         <span>@filter.TargetField </span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon" style="color:#808080" onclick="RemoveFilter(this, event)"></span>
@@ -56,7 +56,7 @@
                     }
                 </select><br />
                 2. Enter Filter Value:<br />
-                <form onsubmit="return SaveAndCloseModal()">
+                <form onsubmit="SaveAndCloseModal()" method="post" action="@Url.Action("AssignFilter", "FilterUtility")">
                     <div id="FieldEditArea"></div>
                 </form>
                 <div id="loadingIcon"></div>
@@ -74,7 +74,11 @@
         $("#FieldEditArea").empty();
         $('div#loadingIcon').html('<p><img src="/Content/images/loading.gif"></p>');
         var selectedField = $('#TargetFieldSelect').val();
-        $.get("/FilterUtility/GetFilterView?filterString=" + "@ViewBag.FilterString" + "&targetField=" + selectedField, function (data) {
+
+        // The double quotes have been replaced with single quotes
+        var fstr = "@Html.Raw(ViewBag.FilterString)";
+
+        $.get("/FilterUtility/GetFilterView?filterString=" + fstr + "&targetField=" + selectedField, function (data) {
             if (data != '') {
                 $("#FieldEditArea").append(data);
             }
@@ -84,12 +88,12 @@
 
     $("#TargetFieldSelect").trigger('change');
 
-    function SaveAndCloseModal(){
+    function SaveAndCloseModal() {
         //SubmitFilter is defined in the partial view _FilterEditPartial,
         //it changes based on the filter/input type
         SubmitFilter();
         $('#myModal').modal('toggle');
-        return false;
+        //return false;
     }
     $(".icon").hover(
         function () {

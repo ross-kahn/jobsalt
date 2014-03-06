@@ -24,7 +24,7 @@ namespace jobSalt.Models
             List<Filter> filters = serializer.Deserialize<List<Filter>>(json);
             FilterBag filterBag = new FilterBag();
 
-            if(filters == null)
+            if(filters == null || String.IsNullOrWhiteSpace(json))
             {
                 return filterBag;
             }
@@ -57,6 +57,7 @@ namespace jobSalt.Models
 
             if (prop.PropertyType.IsPrimitive || typeof(String) == prop.PropertyType)
             {
+                // property to set.SetValue(Object of property, value to set it to, optional index)
                 prop.SetValue(this, decodedValue, null);
             }
             else
@@ -67,29 +68,41 @@ namespace jobSalt.Models
             return true;
         }
 
-        public List<Filter> GetFilters()
+        public List<Filter> GetFilters(bool URLEncoded = false)
         {
             List<Filter> filters = new List<Filter>();
 
+            string value = "";
+
             if(Location != null)
             {
-                filters.Add(new Filter(Field.Location, String.Join(", ", Location.City, Location.State, Location.ZipCode)));
+                value = String.Join(", ", Location.City, Location.State, Location.ZipCode);
+                if (URLEncoded) { value = HttpUtility.UrlEncode(value); }
+                filters.Add(new Filter(Field.Location, value));
             }
             if (!String.IsNullOrEmpty(CompanyName))
             {
-                filters.Add(new Filter(Field.CompanyName, CompanyName));
+                value = CompanyName;
+                if (URLEncoded) { value = HttpUtility.UrlEncode(value); }
+                filters.Add(new Filter(Field.CompanyName, value));
             }
             if (!String.IsNullOrEmpty(JobTitle))
             {
-                filters.Add(new Filter(Field.JobTitle, JobTitle));
+                value = JobTitle;
+                if (URLEncoded) { value = HttpUtility.UrlEncode(value); }
+                filters.Add(new Filter(Field.JobTitle, value));
             }
             if (!String.IsNullOrEmpty(FieldOfStudy))
             {
-                filters.Add(new Filter(Field.FieldOfStudy, FieldOfStudy));
+                value = FieldOfStudy;
+                if (URLEncoded) { value = HttpUtility.UrlEncode(value); }
+                filters.Add(new Filter(Field.FieldOfStudy, value));
             }
             if (!String.IsNullOrEmpty(Keyword))
             {
-                filters.Add(new Filter(Field.Keyword, Keyword));
+                value = Keyword;
+                if (URLEncoded) { value = HttpUtility.UrlEncode(value); }
+                filters.Add(new Filter(Field.Keyword, value));
             }
             return filters;
         }
@@ -97,8 +110,8 @@ namespace jobSalt.Models
         public string JsonEncode()
         {
             var serializer = new JavaScriptSerializer();
-            string json = serializer.Serialize(GetFilters());
-            return System.Web.HttpUtility.UrlEncode(json);
+            string json = serializer.Serialize(GetFilters(true));
+            return json;
         }
 
         public Location Location { get; set; }
@@ -106,6 +119,7 @@ namespace jobSalt.Models
         public string JobTitle { get; set; }
         public string FieldOfStudy { get; set; }
         public string Keyword { get; set; }
+
 
         private static string GetPropertyName(Field targetField)
         {

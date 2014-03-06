@@ -48,7 +48,10 @@
 
                     $('div#loading').html('<p><img src="/Content/images/loading.gif"></p>');
                     var filterString = $("#filterString").val();
-                    $.get("/Job/Index?page=" + page + "&filterString=" + filterString, function (data) {
+
+                    var fstr = "@Html.Raw(ViewBag.FilterString)";
+
+                    $.get("/Job/Index?page=" + page + "&filterString=" + fstr, function (data) {
                         if (data != '') {
                             $("#productList").append(data);
                         }

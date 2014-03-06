@@ -43,10 +43,13 @@
         <input id="@ViewBag.inputID" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
         <script type="text/javascript">
             function SubmitFilter() {
-                window.location = "/FilterUtility/AssignFilter?targetField=" + "@Model" + "&filterString=" + "@ViewBag.FilterString" + "&value=" + $('#@ViewBag.inputID').val();
+                // window.location = "/FilterUtility/AssignFilter?targetField=" + "@Model" + "&filterString=" + "@ViewBag.FilterString" + "&value=" + $('#@ViewBag.inputID').val();
                 
             }
         </script>
         break;
+
 }
+<input type="hidden" id="targetField" name="targetField" value="@Model" />
+<input type="hidden" id="filterString" name="filterString" value="@ViewBag.FilterString" />
 
