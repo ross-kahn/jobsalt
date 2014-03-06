@@ -34,7 +34,11 @@ namespace jobSalt.Controllers
             return View();
         }
 
-       
+        public ActionResult AlumniAtCompany(string filterString, string company)
+        {
+            string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, "");
+            return RedirectToAction("Index", "Alumni", new { filterString = newFilterString });
+        }
     }
 
 

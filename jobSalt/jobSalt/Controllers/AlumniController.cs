@@ -30,7 +30,7 @@ namespace jobSalt.Controllers
 
         public ActionResult JobsAtCompany(string filterString, string company)
         {
-            string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, filterString);
+            string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, "");
             return RedirectToAction("Index", "Job", new { filterString = newFilterString });
         }
 
