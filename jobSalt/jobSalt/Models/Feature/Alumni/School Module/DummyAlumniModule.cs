@@ -8,10 +8,10 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 {
     public class DummyAlumniModule : IAlumniModule
     {
-        public List<AlumniPost> GetAlumni(Dictionary<Field, string> filters, int page, int resultsPerPage)
+        public List<AlumniPost> GetAlumni(Dictionary<Field, string> filters)
         {
             List<AlumniPost> alumni = new List<AlumniPost>();
-            for (int i = 0; i < resultsPerPage; ++i)
+            for (int i = 0; i < 4; ++i)
             {
                 alumni.Add(new AlumniPost()
                 {
@@ -26,10 +26,15 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
             return alumni;
         }
 
+        public List<string> GetCompanies()
+        {
+            return new List<string>() { "OCE RIT", "Indeed", "Microsoft", "Google" };
+        }
+
         public Source Source
         {
             get { throw new NotImplementedException(); }
         }
-
+       
     }
 }

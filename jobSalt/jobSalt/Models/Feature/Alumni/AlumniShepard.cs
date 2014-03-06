@@ -59,7 +59,7 @@ namespace jobSalt.Models.Feature.Alumni
                     {
                         try
                         {
-                            List<AlumniPost> partialJobs = module.GetAlumni(new Dictionary<Field, string>(filters), page, resultsPerModule);
+                            List<AlumniPost> partialJobs = module.GetAlumni(new Dictionary<Field, string>(filters));
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;

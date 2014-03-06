@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SchoolAlumniModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="division" Type="varchar" MaxLength="255" />
+          <Property Name="modifiedDate" Type="smalldatetime" />
+          <Property Name="createdDate" Type="smalldatetime" />
+          <Property Name="address" Type="varchar" MaxLength="2000" />
+          <Property Name="city" Type="varchar" MaxLength="255" />
+          <Property Name="state" Type="varchar" MaxLength="255" />
+          <Property Name="country" Type="varchar" MaxLength="255" />
+          <Property Name="website" Type="varchar" MaxLength="255" />
+          <Property Name="archiveStatus" Type="varchar" MaxLength="255" />
+          <Property Name="accountManagerId" Type="int" />
+          <Property Name="primaryContactId" Type="char" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradPlacements">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hasAcceptedEmployment" Type="bit" Nullable="false" />
+          <Property Name="isAlreadyEmployed" Type="bit" Nullable="false" />
+          <Property Name="isAttendingGradSchool" Type="bit" Nullable="false" />
+          <Property Name="isFreelancing" Type="bit" Nullable="false" />
+          <Property Name="isStillSeeking" Type="bit" Nullable="false" />
+          <Property Name="isUndecided" Type="bit" Nullable="false" />
+          <Property Name="isNotSeeking" Type="bit" Nullable="false" />
+          <Property Name="studentUid" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="studentEmail" Type="varchar" MaxLength="255" />
+          <Property Name="studentPrimaryProgramId" Type="int" Nullable="false" />
+          <Property Name="studentPrimaryDegreeId" Type="int" Nullable="false" />
+          <Property Name="studentSecondaryProgramId" Type="int" />
+          <Property Name="employerName" Type="varchar" MaxLength="255" />
+          <Property Name="employerCity" Type="varchar" MaxLength="255" />
+          <Property Name="employerStateId" Type="char" MaxLength="2" />
+          <Property Name="employerCountryId" Type="char" MaxLength="2" />
+          <Property Name="hasWorkedForEmployer" Type="bit" />
+          <Property Name="hasCoopedForEmployer" Type="bit" />
+          <Property Name="hasWorkedPartTimeForEmployer" Type="bit" />
+          <Property Name="hasFreelancedForEmployer" Type="bit" />
+          <Property Name="isRelatedToField" Type="bit" />
+          <Property Name="placementTitle" Type="varchar" MaxLength="255" />
+          <Property Name="placementSalary" Type="int" />
+          <Property Name="placementBonus" Type="int" />
+          <Property Name="placementOriginId" Type="int" />
+          <Property Name="placementOriginOther" Type="varchar" MaxLength="255" />
+          <Property Name="freelanceDailyWage" Type="int" />
+          <Property Name="gradSchoolEnrollment" Type="char" MaxLength="2" />
+          <Property Name="gradSchoolName" Type="varchar" MaxLength="255" />
+          <Property Name="gradSchoolProgram" Type="varchar" MaxLength="255" />
+          <Property Name="gradSchoolCity" Type="varchar" MaxLength="255" />
+          <Property Name="gradSchoolStateId" Type="char" MaxLength="2" />
+          <Property Name="gradSchoolCountryId" Type="char" MaxLength="2" />
+          <Property Name="dataSource" Type="varchar" MaxLength="255" />
+          <Property Name="dataSourceId" Type="int" />
+          <Property Name="dataSourceOther" Type="varchar" MaxLength="255" />
+          <Property Name="createdDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="modifiedDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="modifiedBy" Type="int" />
+          <Property Name="notes" Type="varchar" MaxLength="255" />
+          <Property Name="dateOfferReceived" Type="smalldatetime" />
+          <Property Name="startDate" Type="smalldatetime" />
+          <Property Name="numJobOffers" Type="int" />
+        </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="plan" Type="varchar" MaxLength="10" />
+          <Property Name="collegeId" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="psName" Type="varchar" MaxLength="255" />
+          <Property Name="requiresCoop" Type="bit" />
+          <Property Name="numCoopsRequired" Type="int" />
+          <Property Name="isSupported" Type="bit" Nullable="false" />
+          <Property Name="isDeprecated" Type="bit" Nullable="false" />
+          <Property Name="coopMin" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="coopAvg" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="coopMax" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="ftMin" Type="int" />
+          <Property Name="ftMed" Type="int" />
+          <Property Name="ftMax" Type="int" />
+          <Property Name="createdDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="modifiedDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="startingLetter" Type="char" MaxLength="1" />
+          <Property Name="endingLetter" Type="char" MaxLength="1" />
+          <Property Name="agreementFormUrl" Type="varchar" MaxLength="255" />
+          <Property Name="careerOverviewUrl" Type="varchar" MaxLength="255" />
+          <Property Name="coopHandbookUrl" Type="varchar" MaxLength="255" />
+          <Property Name="employerHandbookUrl" Type="varchar" MaxLength="255" />
+          <Property Name="eventsLinkUrl" Type="varchar" MaxLength="255" />
+          <Property Name="onlineResourcesUrl" Type="varchar" MaxLength="255" />
+          <Property Name="sampleResumesUrl" Type="varchar" MaxLength="255" />
+          <Property Name="symplicityName" Type="varchar" MaxLength="255" />
+          <Property Name="symplicityMenuCode" Type="varchar" MaxLength="7" />
+          <Property Name="degreeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IsNTID" Type="bit" Nullable="false" />
+          <Property Name="IsAALANA" Type="bit" Nullable="false" />
+          <Property Name="Citizenship1" Type="varchar" MaxLength="3" />
+          <Property Name="Citizenship2" Type="varchar" MaxLength="3" />
+          <Property Name="Ethnicity" Type="varchar" MaxLength="100" />
+          <Property Name="CurrentTerm" Type="int" Nullable="false" />
+          <Property Name="CurrentYear" Type="int" Nullable="false" />
+          <Property Name="CurrentProgramId" Type="int" Nullable="false" />
+          <Property Name="CurrentSecondaryProgramId" Type="int" />
+          <Property Name="CurrentDCE" Type="varchar" MaxLength="70" />
+          <Property Name="CurrentEmail" Type="varchar" MaxLength="70" />
+          <Property Name="CurrentGPA" Type="numeric" Precision="8" Scale="3" />
+          <Property Name="CurrentCumGPA" Type="numeric" Precision="8" Scale="3" />
+          <Property Name="CurrentCompletionTerm" Type="int" />
+          <Property Name="CurrentExpectedGradTerm" Type="int" />
+          <Property Name="CurrentNumCoops" Type="int" />
+          <Property Name="CurrentNumWaivers" Type="int" />
+          <Property Name="CurrentLeavingDate" Type="date" />
+          <Property Name="CurrentLeavingReason" Type="varchar" MaxLength="4" />
+          <Property Name="CurrentAdvisorLastName" Type="varchar" MaxLength="30" />
+          <Property Name="CurrentAdvisorFirstName" Type="varchar" MaxLength="30" />
+          <Property Name="CurrentAdvisorUID" Type="varchar" MaxLength="9" />
+          <Property Name="CurrentAdvisorEmail" Type="varchar" MaxLength="70" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_GradPlacements_Programs1">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1" />
+          <End Role="GradPlacements" Type="Self.GradPlacements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GradPlacements">
+              <PropertyRef Name="studentPrimaryProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradPlacements_Programs2">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="0..1" />
+          <End Role="GradPlacements" Type="Self.GradPlacements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GradPlacements">
+              <PropertyRef Name="studentSecondaryProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradPlacements_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="GradPlacements" Type="Self.GradPlacements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="GradPlacements">
+              <PropertyRef Name="studentUid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CurrentProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolAlumniModelStoreContainer">
+          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradPlacements" EntityType="Self.GradPlacements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GradPlacements_Programs1" Association="Self.FK_GradPlacements_Programs1">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="GradPlacements" EntitySet="GradPlacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradPlacements_Programs2" Association="Self.FK_GradPlacements_Programs2">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="GradPlacements" EntitySet="GradPlacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradPlacements_Students" Association="Self.FK_GradPlacements_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="GradPlacements" EntitySet="GradPlacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Programs" Association="Self.FK_Students_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SchoolAlumniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="division" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
+          <Property Name="createdDate" Type="DateTime" Precision="0" />
+          <Property Name="address" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="archiveStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="accountManagerId" Type="Int32" />
+          <Property Name="primaryContactId" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradPlacement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hasAcceptedEmployment" Type="Boolean" Nullable="false" />
+          <Property Name="isAlreadyEmployed" Type="Boolean" Nullable="false" />
+          <Property Name="isAttendingGradSchool" Type="Boolean" Nullable="false" />
+          <Property Name="isFreelancing" Type="Boolean" Nullable="false" />
+          <Property Name="isStillSeeking" Type="Boolean" Nullable="false" />
+          <Property Name="isUndecided" Type="Boolean" Nullable="false" />
+          <Property Name="isNotSeeking" Type="Boolean" Nullable="false" />
+          <Property Name="studentUid" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="studentEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="studentPrimaryProgramId" Type="Int32" Nullable="false" />
+          <Property Name="studentPrimaryDegreeId" Type="Int32" Nullable="false" />
+          <Property Name="studentSecondaryProgramId" Type="Int32" />
+          <Property Name="employerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="employerCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="employerStateId" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="employerCountryId" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="hasWorkedForEmployer" Type="Boolean" />
+          <Property Name="hasCoopedForEmployer" Type="Boolean" />
+          <Property Name="hasWorkedPartTimeForEmployer" Type="Boolean" />
+          <Property Name="hasFreelancedForEmployer" Type="Boolean" />
+          <Property Name="isRelatedToField" Type="Boolean" />
+          <Property Name="placementTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="placementSalary" Type="Int32" />
+          <Property Name="placementBonus" Type="Int32" />
+          <Property Name="placementOriginId" Type="Int32" />
+          <Property Name="placementOriginOther" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="freelanceDailyWage" Type="Int32" />
+          <Property Name="gradSchoolEnrollment" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="gradSchoolName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gradSchoolProgram" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gradSchoolCity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gradSchoolStateId" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="gradSchoolCountryId" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="dataSource" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dataSourceId" Type="Int32" />
+          <Property Name="dataSourceOther" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="modifiedBy" Type="Int32" />
+          <Property Name="notes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfferReceived" Type="DateTime" Precision="0" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="numJobOffers" Type="Int32" />
+          <NavigationProperty Name="Program" Relationship="Self.FK_GradPlacements_Programs1" FromRole="GradPlacements" ToRole="Programs" />
+          <NavigationProperty Name="Program1" Relationship="Self.FK_GradPlacements_Programs2" FromRole="GradPlacements" ToRole="Programs" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_GradPlacements_Students" FromRole="GradPlacements" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="plan" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="collegeId" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="psName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="requiresCoop" Type="Boolean" />
+          <Property Name="numCoopsRequired" Type="Int32" />
+          <Property Name="isSupported" Type="Boolean" Nullable="false" />
+          <Property Name="isDeprecated" Type="Boolean" Nullable="false" />
+          <Property Name="coopMin" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="coopAvg" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="coopMax" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ftMin" Type="Int32" />
+          <Property Name="ftMed" Type="Int32" />
+          <Property Name="ftMax" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="modifiedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="startingLetter" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="endingLetter" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="agreementFormUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="careerOverviewUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="coopHandbookUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="employerHandbookUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="eventsLinkUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="onlineResourcesUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sampleResumesUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="symplicityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="symplicityMenuCode" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="degreeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GradPlacements" Relationship="Self.FK_GradPlacements_Programs1" FromRole="Programs" ToRole="GradPlacements" />
+          <NavigationProperty Name="GradPlacements1" Relationship="Self.FK_GradPlacements_Programs2" FromRole="Programs" ToRole="GradPlacements" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Programs" FromRole="Programs" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="IsNTID" Type="Boolean" Nullable="false" />
+          <Property Name="IsAALANA" Type="Boolean" Nullable="false" />
+          <Property Name="Citizenship1" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Citizenship2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Ethnicity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentTerm" Type="Int32" Nullable="false" />
+          <Property Name="CurrentYear" Type="Int32" Nullable="false" />
+          <Property Name="CurrentProgramId" Type="Int32" Nullable="false" />
+          <Property Name="CurrentSecondaryProgramId" Type="Int32" />
+          <Property Name="CurrentDCE" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentEmail" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentGPA" Type="Decimal" Precision="8" Scale="3" />
+          <Property Name="CurrentCumGPA" Type="Decimal" Precision="8" Scale="3" />
+          <Property Name="CurrentCompletionTerm" Type="Int32" />
+          <Property Name="CurrentExpectedGradTerm" Type="Int32" />
+          <Property Name="CurrentNumCoops" Type="Int32" />
+          <Property Name="CurrentNumWaivers" Type="Int32" />
+          <Property Name="CurrentLeavingDate" Type="DateTime" Precision="0" />
+          <Property Name="CurrentLeavingReason" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAdvisorLastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAdvisorFirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAdvisorUID" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentAdvisorEmail" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="GradPlacements" Relationship="Self.FK_GradPlacements_Students" FromRole="Students" ToRole="GradPlacements" />
+          <NavigationProperty Name="Program" Relationship="Self.FK_Students_Programs" FromRole="Students" ToRole="Programs" />
+        </EntityType>
+        <Association Name="FK_GradPlacements_Programs1">
+          <End Role="Programs" Type="Self.Program" Multiplicity="1" />
+          <End Role="GradPlacements" Type="Self.GradPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GradPlacements">
+              <PropertyRef Name="studentPrimaryProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradPlacements_Programs2">
+          <End Role="Programs" Type="Self.Program" Multiplicity="0..1" />
+          <End Role="GradPlacements" Type="Self.GradPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GradPlacements">
+              <PropertyRef Name="studentSecondaryProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradPlacements_Students">
+          <End Role="Students" Type="Self.Student" Multiplicity="1" />
+          <End Role="GradPlacements" Type="Self.GradPlacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="GradPlacements">
+              <PropertyRef Name="studentUid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Programs">
+          <End Role="Programs" Type="Self.Program" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="CurrentProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SchoolAlumniDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employers" EntityType="Self.Employer" />
+          <EntitySet Name="GradPlacements" EntityType="Self.GradPlacement" />
+          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <AssociationSet Name="FK_GradPlacements_Programs1" Association="Self.FK_GradPlacements_Programs1">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="GradPlacements" EntitySet="GradPlacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradPlacements_Programs2" Association="Self.FK_GradPlacements_Programs2">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="GradPlacements" EntitySet="GradPlacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradPlacements_Students" Association="Self.FK_GradPlacements_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="GradPlacements" EntitySet="GradPlacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Programs" Association="Self.FK_Students_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SchoolAlumniModelStoreContainer" CdmEntityContainer="SchoolAlumniDBContext">
+          <EntitySetMapping Name="Employers">
+            <EntityTypeMapping TypeName="SchoolAlumniModel.Employer">
+              <MappingFragment StoreEntitySet="Employers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="division" ColumnName="division" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="archiveStatus" ColumnName="archiveStatus" />
+                <ScalarProperty Name="accountManagerId" ColumnName="accountManagerId" />
+                <ScalarProperty Name="primaryContactId" ColumnName="primaryContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradPlacements">
+            <EntityTypeMapping TypeName="SchoolAlumniModel.GradPlacement">
+              <MappingFragment StoreEntitySet="GradPlacements">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hasAcceptedEmployment" ColumnName="hasAcceptedEmployment" />
+                <ScalarProperty Name="isAlreadyEmployed" ColumnName="isAlreadyEmployed" />
+                <ScalarProperty Name="isAttendingGradSchool" ColumnName="isAttendingGradSchool" />
+                <ScalarProperty Name="isFreelancing" ColumnName="isFreelancing" />
+                <ScalarProperty Name="isStillSeeking" ColumnName="isStillSeeking" />
+                <ScalarProperty Name="isUndecided" ColumnName="isUndecided" />
+                <ScalarProperty Name="isNotSeeking" ColumnName="isNotSeeking" />
+                <ScalarProperty Name="studentUid" ColumnName="studentUid" />
+                <ScalarProperty Name="studentEmail" ColumnName="studentEmail" />
+                <ScalarProperty Name="studentPrimaryProgramId" ColumnName="studentPrimaryProgramId" />
+                <ScalarProperty Name="studentPrimaryDegreeId" ColumnName="studentPrimaryDegreeId" />
+                <ScalarProperty Name="studentSecondaryProgramId" ColumnName="studentSecondaryProgramId" />
+                <ScalarProperty Name="employerName" ColumnName="employerName" />
+                <ScalarProperty Name="employerCity" ColumnName="employerCity" />
+                <ScalarProperty Name="employerStateId" ColumnName="employerStateId" />
+                <ScalarProperty Name="employerCountryId" ColumnName="employerCountryId" />
+                <ScalarProperty Name="hasWorkedForEmployer" ColumnName="hasWorkedForEmployer" />
+                <ScalarProperty Name="hasCoopedForEmployer" ColumnName="hasCoopedForEmployer" />
+                <ScalarProperty Name="hasWorkedPartTimeForEmployer" ColumnName="hasWorkedPartTimeForEmployer" />
+                <ScalarProperty Name="hasFreelancedForEmployer" ColumnName="hasFreelancedForEmployer" />
+                <ScalarProperty Name="isRelatedToField" ColumnName="isRelatedToField" />
+                <ScalarProperty Name="placementTitle" ColumnName="placementTitle" />
+                <ScalarProperty Name="placementSalary" ColumnName="placementSalary" />
+                <ScalarProperty Name="placementBonus" ColumnName="placementBonus" />
+                <ScalarProperty Name="placementOriginId" ColumnName="placementOriginId" />
+                <ScalarProperty Name="placementOriginOther" ColumnName="placementOriginOther" />
+                <ScalarProperty Name="freelanceDailyWage" ColumnName="freelanceDailyWage" />
+                <ScalarProperty Name="gradSchoolEnrollment" ColumnName="gradSchoolEnrollment" />
+                <ScalarProperty Name="gradSchoolName" ColumnName="gradSchoolName" />
+                <ScalarProperty Name="gradSchoolProgram" ColumnName="gradSchoolProgram" />
+                <ScalarProperty Name="gradSchoolCity" ColumnName="gradSchoolCity" />
+                <ScalarProperty Name="gradSchoolStateId" ColumnName="gradSchoolStateId" />
+                <ScalarProperty Name="gradSchoolCountryId" ColumnName="gradSchoolCountryId" />
+                <ScalarProperty Name="dataSource" ColumnName="dataSource" />
+                <ScalarProperty Name="dataSourceId" ColumnName="dataSourceId" />
+                <ScalarProperty Name="dataSourceOther" ColumnName="dataSourceOther" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="dateOfferReceived" ColumnName="dateOfferReceived" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="numJobOffers" ColumnName="numJobOffers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="SchoolAlumniModel.Program">
+              <MappingFragment StoreEntitySet="Programs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="plan" ColumnName="plan" />
+                <ScalarProperty Name="collegeId" ColumnName="collegeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="psName" ColumnName="psName" />
+                <ScalarProperty Name="requiresCoop" ColumnName="requiresCoop" />
+                <ScalarProperty Name="numCoopsRequired" ColumnName="numCoopsRequired" />
+                <ScalarProperty Name="isSupported" ColumnName="isSupported" />
+                <ScalarProperty Name="isDeprecated" ColumnName="isDeprecated" />
+                <ScalarProperty Name="coopMin" ColumnName="coopMin" />
+                <ScalarProperty Name="coopAvg" ColumnName="coopAvg" />
+                <ScalarProperty Name="coopMax" ColumnName="coopMax" />
+                <ScalarProperty Name="ftMin" ColumnName="ftMin" />
+                <ScalarProperty Name="ftMed" ColumnName="ftMed" />
+                <ScalarProperty Name="ftMax" ColumnName="ftMax" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="startingLetter" ColumnName="startingLetter" />
+                <ScalarProperty Name="endingLetter" ColumnName="endingLetter" />
+                <ScalarProperty Name="agreementFormUrl" ColumnName="agreementFormUrl" />
+                <ScalarProperty Name="careerOverviewUrl" ColumnName="careerOverviewUrl" />
+                <ScalarProperty Name="coopHandbookUrl" ColumnName="coopHandbookUrl" />
+                <ScalarProperty Name="employerHandbookUrl" ColumnName="employerHandbookUrl" />
+                <ScalarProperty Name="eventsLinkUrl" ColumnName="eventsLinkUrl" />
+                <ScalarProperty Name="onlineResourcesUrl" ColumnName="onlineResourcesUrl" />
+                <ScalarProperty Name="sampleResumesUrl" ColumnName="sampleResumesUrl" />
+                <ScalarProperty Name="symplicityName" ColumnName="symplicityName" />
+                <ScalarProperty Name="symplicityMenuCode" ColumnName="symplicityMenuCode" />
+                <ScalarProperty Name="degreeId" ColumnName="degreeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SchoolAlumniModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsNTID" ColumnName="IsNTID" />
+                <ScalarProperty Name="IsAALANA" ColumnName="IsAALANA" />
+                <ScalarProperty Name="Citizenship1" ColumnName="Citizenship1" />
+                <ScalarProperty Name="Citizenship2" ColumnName="Citizenship2" />
+                <ScalarProperty Name="Ethnicity" ColumnName="Ethnicity" />
+                <ScalarProperty Name="CurrentTerm" ColumnName="CurrentTerm" />
+                <ScalarProperty Name="CurrentYear" ColumnName="CurrentYear" />
+                <ScalarProperty Name="CurrentProgramId" ColumnName="CurrentProgramId" />
+                <ScalarProperty Name="CurrentSecondaryProgramId" ColumnName="CurrentSecondaryProgramId" />
+                <ScalarProperty Name="CurrentDCE" ColumnName="CurrentDCE" />
+                <ScalarProperty Name="CurrentEmail" ColumnName="CurrentEmail" />
+                <ScalarProperty Name="CurrentGPA" ColumnName="CurrentGPA" />
+                <ScalarProperty Name="CurrentCumGPA" ColumnName="CurrentCumGPA" />
+                <ScalarProperty Name="CurrentCompletionTerm" ColumnName="CurrentCompletionTerm" />
+                <ScalarProperty Name="CurrentExpectedGradTerm" ColumnName="CurrentExpectedGradTerm" />
+                <ScalarProperty Name="CurrentNumCoops" ColumnName="CurrentNumCoops" />
+                <ScalarProperty Name="CurrentNumWaivers" ColumnName="CurrentNumWaivers" />
+                <ScalarProperty Name="CurrentLeavingDate" ColumnName="CurrentLeavingDate" />
+                <ScalarProperty Name="CurrentLeavingReason" ColumnName="CurrentLeavingReason" />
+                <ScalarProperty Name="CurrentAdvisorLastName" ColumnName="CurrentAdvisorLastName" />
+                <ScalarProperty Name="CurrentAdvisorFirstName" ColumnName="CurrentAdvisorFirstName" />
+                <ScalarProperty Name="CurrentAdvisorUID" ColumnName="CurrentAdvisorUID" />
+                <ScalarProperty Name="CurrentAdvisorEmail" ColumnName="CurrentAdvisorEmail" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
