@@ -15,33 +15,45 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
             get { throw new NotImplementedException(); }
         }
 
-        List<AlumniPost> IAlumniModule.GetAlumni(Dictionary<Field, string> filters)
+        Dictionary<string, List<AlumniPost>> IAlumniModule.GetAlumni(Dictionary<Field, string> filters)
         {
-            List<AlumniPost> posts = new List<AlumniPost>();
+            Dictionary<string, List<AlumniPost>> posts = new Dictionary<string, List<AlumniPost>>();
 
-            var AlumSearchQuery = db.GradPlacements.Where(item => !item.employerName.Equals(null)); // Prune people without jobs? This could be more extensive probably
+            var AlumSearchQuery = db.GradPlacements.Join(db.Students, grad => grad.studentUid, stud => stud.UID, (grad, stud) => new { Grad = grad, Stud = stud })
+                .Join(db.Programs, inner => inner.Grad.studentPrimaryProgramId, outer => outer.id, (inner, outer) => new AlumniPost
+                {
+                    Company = inner.Grad.employerName,
+                    Location = new Location()
+                    {
+                        ZipCode = "",
+                        City = inner.Grad.employerCity,
+                        State = inner.Grad.employerStateId
+                    },
+                    FieldOfStudy = outer.name,
+                    Name = inner.Stud.FirstName + " " + inner.Stud.LastName,
+                    PhoneNumber = "None found yet",
+                    Email = inner.Grad.studentEmail
+                });
+
+
+            AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company != null);
+            AlumSearchQuery = AlumSearchQuery.OrderBy(item => item.Company);
+
 
             foreach (var alum in AlumSearchQuery.ToList())
             {
-                AlumniPost a = new AlumniPost()
+                if (posts.ContainsKey(alum.Company))
                 {
-                    Company = alum.employerName,
-                    Location = new Location("", alum.employerStateId, alum.employerCity),
-                    FieldOfStudy = alum.studentPrimaryDegreeId + "",
-                    Name = alum.studentEmail + " is temp variable",
-                    PhoneNumber = "None found yet",
-                    Email = alum.studentEmail
-                };
-
-                posts.Add(a);
+                    posts[alum.Company].Add(alum);
+                }
+                else
+                {
+                    posts.Add(alum.Company, new List<AlumniPost>() { alum });
+                }
+                
             }
 
             return posts;
-        }
-
-        List<string> IAlumniModule.GetCompanies()
-        {
-            throw new NotImplementedException();
         }
     }
 }

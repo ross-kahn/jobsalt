@@ -1,4 +1,5 @@
-﻿using jobSalt.Models.Feature.Alumni;
+﻿using jobSalt.Models;
+using jobSalt.Models.Feature.Alumni;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,16 @@ namespace jobSalt.Controllers
             if (Request.IsAjaxRequest())
             {
                 Dictionary<Models.Field, string> filters = jobSalt.Models.Filter.FilterQueryStringToDictionary(filterString);
-                return PartialView("Index_Partial", shepard.GetAlumni(filters, page, resultsPerPage).ToArray());
+                return PartialView("Index_Partial", shepard.GetAlumni(filters));
             }
 
             return View();
+        }
+
+        public ActionResult JobsAtCompany(string filterString, string company)
+        {
+            string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, filterString);
+            return RedirectToAction("Index", "Job", new { filterString = newFilterString });
         }
 
     }

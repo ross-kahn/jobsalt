@@ -4,25 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SchoolAlumniModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Employers">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="255" />
-          <Property Name="division" Type="varchar" MaxLength="255" />
-          <Property Name="modifiedDate" Type="smalldatetime" />
-          <Property Name="createdDate" Type="smalldatetime" />
-          <Property Name="address" Type="varchar" MaxLength="2000" />
-          <Property Name="city" Type="varchar" MaxLength="255" />
-          <Property Name="state" Type="varchar" MaxLength="255" />
-          <Property Name="country" Type="varchar" MaxLength="255" />
-          <Property Name="website" Type="varchar" MaxLength="255" />
-          <Property Name="archiveStatus" Type="varchar" MaxLength="255" />
-          <Property Name="accountManagerId" Type="int" />
-          <Property Name="primaryContactId" Type="char" MaxLength="32" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="SchoolAlumniDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="GradPlacements">
           <Key>
             <PropertyRef Name="id" />
@@ -191,8 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SchoolAlumniModelStoreContainer">
-          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="SchoolAlumniDBModelStoreContainer">
           <EntitySet Name="GradPlacements" EntityType="Self.GradPlacements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
@@ -217,25 +198,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SchoolAlumniModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Employer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="division" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <Property Name="createdDate" Type="DateTime" Precision="0" />
-          <Property Name="address" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="archiveStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="accountManagerId" Type="Int32" />
-          <Property Name="primaryContactId" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
-        </EntityType>
+      <Schema Namespace="SchoolAlumniDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="GradPlacement">
           <Key>
             <PropertyRef Name="id" />
@@ -413,7 +376,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SchoolAlumniDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Employers" EntityType="Self.Employer" />
           <EntitySet Name="GradPlacements" EntityType="Self.GradPlacement" />
           <EntitySet Name="Programs" EntityType="Self.Program" />
           <EntitySet Name="Students" EntityType="Self.Student" />
@@ -439,28 +401,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SchoolAlumniModelStoreContainer" CdmEntityContainer="SchoolAlumniDBContext">
-          <EntitySetMapping Name="Employers">
-            <EntityTypeMapping TypeName="SchoolAlumniModel.Employer">
-              <MappingFragment StoreEntitySet="Employers">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="division" ColumnName="division" />
-                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="archiveStatus" ColumnName="archiveStatus" />
-                <ScalarProperty Name="accountManagerId" ColumnName="accountManagerId" />
-                <ScalarProperty Name="primaryContactId" ColumnName="primaryContactId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="SchoolAlumniDBModelStoreContainer" CdmEntityContainer="SchoolAlumniDBContext">
           <EntitySetMapping Name="GradPlacements">
-            <EntityTypeMapping TypeName="SchoolAlumniModel.GradPlacement">
+            <EntityTypeMapping TypeName="SchoolAlumniDBModel.GradPlacement">
               <MappingFragment StoreEntitySet="GradPlacements">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="hasAcceptedEmployment" ColumnName="hasAcceptedEmployment" />
@@ -511,7 +454,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Programs">
-            <EntityTypeMapping TypeName="SchoolAlumniModel.Program">
+            <EntityTypeMapping TypeName="SchoolAlumniDBModel.Program">
               <MappingFragment StoreEntitySet="Programs">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -547,7 +490,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="SchoolAlumniModel.Student">
+            <EntityTypeMapping TypeName="SchoolAlumniDBModel.Student">
               <MappingFragment StoreEntitySet="Students">
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

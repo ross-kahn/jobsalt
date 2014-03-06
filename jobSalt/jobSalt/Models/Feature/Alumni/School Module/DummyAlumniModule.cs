@@ -8,12 +8,18 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 {
     public class DummyAlumniModule : IAlumniModule
     {
-        public List<AlumniPost> GetAlumni(Dictionary<Field, string> filters)
+        public Dictionary<string, List<AlumniPost>> GetAlumni(Dictionary<Field, string> filters)
         {
-            List<AlumniPost> alumni = new List<AlumniPost>();
-            for (int i = 0; i < 4; ++i)
+            Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
+            alumni.Add("Microsoft", new List<AlumniPost>());
+            alumni.Add("Google", new List<AlumniPost>());
+            alumni.Add("Indeed", new List<AlumniPost>());
+            alumni.Add("Fisher Price", new List<AlumniPost>());
+            alumni.Add("Engadget", new List<AlumniPost>());
+
+            foreach(var key in alumni.Keys)
             {
-                alumni.Add(new AlumniPost()
+                alumni[key].Add(new AlumniPost()
                 {
                     Company = "blah",
                     Location = new Location("14623","NY","Rochester"),
@@ -24,11 +30,6 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
                 });
             }
             return alumni;
-        }
-
-        public List<string> GetCompanies()
-        {
-            return new List<string>() { "OCE RIT", "Indeed", "Microsoft", "Google" };
         }
 
         public Source Source

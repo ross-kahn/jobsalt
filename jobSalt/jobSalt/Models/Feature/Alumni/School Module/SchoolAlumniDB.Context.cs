@@ -25,7 +25,6 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Employer> Employers { get; set; }
         public virtual DbSet<GradPlacement> GradPlacements { get; set; }
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Student> Students { get; set; }

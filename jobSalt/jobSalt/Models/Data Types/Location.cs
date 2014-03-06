@@ -21,6 +21,8 @@ namespace jobSalt.Models.Data_Types
             this.City = city;
         }
 
+        public Location() { }
+
         public string ZipCode { get; set; }
         public string State { get; set; }
         public string City { get; set; }
