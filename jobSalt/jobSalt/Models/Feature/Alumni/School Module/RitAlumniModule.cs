@@ -37,6 +37,19 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
 
             AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company != null);
+
+            foreach (var key in filters.Keys)
+            {
+                switch (key)
+                {
+                    case Field.CompanyName:
+                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company.Contains(filters[key]));
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             AlumSearchQuery = AlumSearchQuery.OrderBy(item => item.Company);
 
 
