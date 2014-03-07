@@ -6,7 +6,7 @@ using System.Security.Cryptography.Xml;
 using System.Xml;
 using System.Security.Cryptography.X509Certificates;
 
-namespace jobSalt.Models.Feature.Auth
+namespace jobSalt.Models.Auth
 {
     public static class SigningHelper
     {

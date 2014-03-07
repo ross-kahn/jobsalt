@@ -270,6 +270,7 @@
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
+    <Compile Include="Models\Config\ConfigLoader.cs" />
     <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
     <Compile Include="Models\Feature\Alumni\IAlumniModule.cs" />
@@ -329,17 +330,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feature\Auth\AccountModels.cs" />
+    <Compile Include="Models\Auth\AccountModels.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Filter\Filter.cs" />
     <Compile Include="Models\Feature\Housing\HousingPost.cs" />
-    <Compile Include="Models\Feature\Auth\AuthModule.cs" />
-    <Compile Include="Models\Feature\Auth\LDAPAuthModule.cs" />
-    <Compile Include="Models\Feature\Auth\SamlHelper.cs" />
-    <Compile Include="Models\Feature\Auth\SamlSchemas.cs" />
-    <Compile Include="Models\Feature\Auth\SamlSignedXml.cs" />
-    <Compile Include="Models\Feature\Auth\ShibbolethAuthModule.cs" />
-    <Compile Include="Models\Feature\Auth\SigningHelper.cs" />
+    <Compile Include="Models\Auth\AuthModule.cs" />
+    <Compile Include="Models\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Auth\SamlHelper.cs" />
+    <Compile Include="Models\Auth\SamlSchemas.cs" />
+    <Compile Include="Models\Auth\SamlSignedXml.cs" />
+    <Compile Include="Models\Auth\ShibbolethAuthModule.cs" />
+    <Compile Include="Models\Auth\SigningHelper.cs" />
     <Compile Include="Models\Feature\Jobs\CareerBuilder Module\CareerBuilderModule.cs" />
     <Compile Include="Models\Feature\Jobs\CareerBuilder Module\CareerBuilderQueryBuilder.cs" />
     <Compile Include="Models\Feature\Jobs\DummyJobModule.cs" />
@@ -485,6 +486,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\example_json_linkedin.txt" />
+    <Content Include="Models\Config\AuthConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />

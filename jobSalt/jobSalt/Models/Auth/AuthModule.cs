@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace jobSalt.Models.Feature.Auth
+namespace jobSalt.Models.Auth
 {
     public abstract class AuthModule
     {

@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace jobSalt.Models.Feature.Auth
+namespace jobSalt.Models.Auth
 {
     public class UsersContext : DbContext
     {

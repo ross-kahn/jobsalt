@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Security.Cryptography.Xml;
 
-namespace jobSalt.Models.Feature.Auth
+namespace jobSalt.Models.Auth
 {
     /// <summary>
     /// SamlSignedXml - Class is used to sign xml, basically the when the ID is retreived the correct ID is used.  

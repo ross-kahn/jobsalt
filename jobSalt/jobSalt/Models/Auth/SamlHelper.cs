@@ -10,7 +10,7 @@ using System.Security.Cryptography.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
-namespace jobSalt.Models.Feature.Auth
+namespace jobSalt.Models.Auth
 {
     public static class SamlHelper
     {

@@ -8,7 +8,7 @@ using System.DirectoryServices;
 using System.DirectoryServices.Protocols;
 using System.Security.Permissions;
 
-namespace jobSalt.Models.Feature.Auth
+namespace jobSalt.Models.Auth
 {
     public class LDAPAuthModule : AuthModule
     {
