@@ -20,6 +20,9 @@ namespace jobSalt.Models
 
         public static FilterBag createFromJSON(string json)
         {
+            if (String.IsNullOrWhiteSpace(json)) { return new FilterBag(); }
+
+
             var serializer = new JavaScriptSerializer();
             List<Filter> filters = serializer.Deserialize<List<Filter>>(json);
             FilterBag filterBag = new FilterBag();

@@ -1,4 +1,4 @@
-﻿@foreach (jobSalt.Models.Filter filter in FilterBag.GetFilters(ViewBag.FilterString))
+﻿@foreach (jobSalt.Models.Filter filter in FilterBag.createFromJSON(ViewBag.FilterString).GetFilters())
 {
     <button class="btn btn-info btn-lg" data-value="@filter.TargetField" onclick="EditFilter(this, event)">
         <span>@filter.TargetField </span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon" style="color:#808080" onclick="RemoveFilter(this, event)"></span>
