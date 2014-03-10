@@ -23,11 +23,11 @@ namespace jobSalt.Models.Config
             Dictionary<string, List<string>> rawConfig = new Dictionary<string, List<string>>();
             Dictionary<string, string[]> config = new Dictionary<string, string[]>();
 
-            loadChildNodes(xml.LastChild, "Config", rawConfig);
+            loadChildNodes(xml.LastChild, "", rawConfig);
 
             foreach (string key in rawConfig.Keys)
             {
-                config[key] = rawConfig[key].ToArray();
+                config[key.Trim('.')] = rawConfig[key].ToArray();
             }
 
             return config;
