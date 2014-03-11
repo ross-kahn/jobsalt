@@ -49,3 +49,19 @@
 .jumbotron {
     margin-bottom: 0px;
 }
+
+.affix-top {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+}
+
+.filter-button .btn {
+    position: relative;
+}
+
+.filter-button .glyphicon {
+    justify-content: flex-end;
+    padding-left: 10px;
+    
+}

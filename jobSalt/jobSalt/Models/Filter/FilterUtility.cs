@@ -62,5 +62,10 @@ namespace jobSalt.Models
                 return null;
             }
         }
+
+        public static bool FilterIsSet(List<Filter> filters, Field targetField)
+        {
+            return filters.Find(filter => filter.TargetField == targetField) != null;
+        }
     }
 }
