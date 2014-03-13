@@ -18,15 +18,10 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             builder = new IndeedQueryBuilder();
         }
 
-        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(FilterBag filterbag, int page, int resultsPerPage)
         {
-            // Return empty list if no filters are specified
-            if (filters.Count == 0)
-            {
-                return new List<JobPost>();
-            }
 
-            string request = builder.buildQuery(filters, page, resultsPerPage);
+            string request = builder.buildQuery(filterbag, page, resultsPerPage);
 
             IndeedResult iResult;
             using (var client = new WebClient())
@@ -52,11 +47,11 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
                     DatePosted = raw.Date,
                     Company = raw.Company,
                     JobTitle = raw.JobTitle,
-                    Location = new Location()
-                    {
-                        State = raw.State,
-                        City = raw.City
-                    },
+                    Location = new Location(
+                        raw.State,
+                        raw.City,
+                        null
+                   ),
                     Salary = null,
                     Description = raw.Snippet,
                     FieldOfStudy = null

@@ -23,12 +23,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
                 .Join(db.Programs, inner => inner.Grad.studentPrimaryProgramId, outer => outer.id, (inner, outer) => new AlumniPost
                 {
                     Company = inner.Grad.employerName,
-                    Location = new Location()
-                    {
-                        ZipCode = "",
-                        City = inner.Grad.employerCity,
-                        State = inner.Grad.employerStateId
-                    },
+                    Location = new Location(inner.Grad.employerStateId, inner.Grad.employerCity, ""),
                     FieldOfStudy = outer.name,
                     Name = inner.Stud.FirstName + " " + inner.Stud.LastName,
                     PhoneNumber = "None found yet",

@@ -27,7 +27,7 @@ namespace jobSalt.Controllers
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
             {
-                Dictionary<Models.Field, string> filters = jobSalt.Models.Filter.FilterQueryStringToDictionary(filterString);
+                FilterBag filters = FilterBag.createFromJSON(filterString);
                 return PartialView("Index_Partial", shepard.GetJobs(filters, page, resultsPerPage).ToArray());
             }
 

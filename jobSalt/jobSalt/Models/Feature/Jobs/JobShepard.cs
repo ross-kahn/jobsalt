@@ -36,7 +36,7 @@ namespace jobSalt.Models.Feature.Jobs
         #endregion // Constructors
 
         #region Public Methods
-        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerModule)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule)
         {
             List<JobPost> jobs = new List<JobPost>();
 
@@ -62,7 +62,7 @@ namespace jobSalt.Models.Feature.Jobs
                     {
                         try
                         {
-                            List<JobPost> partialJobs = module.GetJobs(new Dictionary<Field, string>(filters), page, resultsPerModule);
+                            List<JobPost> partialJobs = module.GetJobs(filters, page, resultsPerModule);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
