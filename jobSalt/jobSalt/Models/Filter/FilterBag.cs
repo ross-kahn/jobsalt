@@ -20,6 +20,15 @@ namespace jobSalt.Models
 
         private FilterBag() { }
 
+        public static FilterBag createFromURLQuery(string query)
+        {
+            int index = query.IndexOf("filterString=", StringComparison.CurrentCultureIgnoreCase);
+            string fs = index < 0 ? "" : query.Substring(index + 13);
+            fs = HttpUtility.UrlDecode(fs);
+
+            return createFromJSON(fs);
+        }
+
         public static FilterBag createFromJSON(string json)
         {
             if (String.IsNullOrWhiteSpace(json)) { return new FilterBag(); }
@@ -55,12 +64,12 @@ namespace jobSalt.Models
             }
         }
 
-        public Type Deserialize<Type>(string value)
+        public object Deserialize<t>(string value)
         {
             var serializer = new JavaScriptSerializer();
             string decodedValue = System.Web.HttpUtility.UrlDecode(value);
 
-            return  (Type)serializer.Deserialize<Type>(decodedValue);
+            return serializer.Deserialize<t>(decodedValue);
         }
 
         public List<Filter> GetFilters(bool URLEncoded = false)
@@ -98,13 +107,14 @@ namespace jobSalt.Models
         {
             var serializer = new JavaScriptSerializer();
             string json = serializer.Serialize(GetFilters(true));
+
             json = json.Replace("\"", "'");
             return json;
         }
 
         public Location Location 
         {
-            get { return filters.ContainsKey(Field.Location) ? Deserialize<Location>(filters[Field.Location]) : null; } 
+            get { return filters.ContainsKey(Field.Location) ? (Location)Deserialize<Location>(filters[Field.Location]) : null; } 
         }
         public string CompanyName 
         {

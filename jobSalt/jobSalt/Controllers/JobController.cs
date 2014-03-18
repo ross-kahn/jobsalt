@@ -22,12 +22,14 @@ namespace jobSalt.Controllers
                 Session["LoggedIntoLinkedIn"] = true;
             }
 
-            ViewBag.FilterString = filterString;
+            FilterBag filters = FilterBag.createFromURLQuery(Request.QueryString.ToString());
+
+            ViewBag.FilterString = filters.JsonEncode();
+            ViewBag.FilterBag = filters;
 
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
             {
-                FilterBag filters = FilterBag.createFromJSON(filterString);
                 return PartialView("Index_Partial", shepard.GetJobs(filters, page, resultsPerPage).ToArray());
             }
 

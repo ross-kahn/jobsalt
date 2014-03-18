@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="input-group">
-                            <input id="value" class="form-control" name="value" type="text" value="@FilterUtility.GetFilterValue(Field.Keyword, ViewBag.FilterString)">
+                            <input id="value" class="form-control" name="value" type="text" value="@ViewBag.FilterBag.Keyword">
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-success">Search</button>
                             </span>

@@ -55,7 +55,7 @@
 
         var fstr = "@Html.Raw(ViewBag.FilterString)";
 
-        $.get("/FilterUtility/GetFilterView?filterString=" + fstr + "&targetField=" + $(caller).data('value'), function (data) {
+        $.get("/FilterUtility/GetFilterView?targetField=" + $(caller).data('value') + "&filterString=" + fstr, function (data) {
             if (data != '') {
                 $("#editFieldArea").append(data);
             }
