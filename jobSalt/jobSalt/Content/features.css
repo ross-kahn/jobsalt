@@ -1,0 +1,67 @@
+﻿.post {
+    min-height: 20px;
+    padding: 10px;
+    background-color: #0c5076;
+    background-image:linear-gradient(to bottom, #6699CC 0, #478bce 100%);
+    border-radius: 7px;
+    color: #ffffff;
+    min-height: 107px;
+}
+
+.post-details {
+    min-height: 20px;
+    padding: 10px;
+    background-image:linear-gradient(to bottom, #CC6600 0, #cc5500 100%);
+    border-radius: 7px;
+    color: #d7e0e5;
+}
+
+.post-margin {
+    height: 10px !important;
+}
+
+.ellipsis {
+    text-overflow:ellipsis; 
+    overflow:hidden; 
+    text-wrap:none; 
+    white-space:nowrap;
+}
+
+.arrow-down {
+    margin-left: 150px;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #cc5500;
+}
+
+.arrow-up {
+    margin-right: 150px;
+    margin-left: auto;
+	width: 0; 
+	height: 0; 
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 20px solid #CC6600;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+}
+
+.affix-top {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+}
+
+.filter-button .btn {
+    position: relative;
+}
+
+.filter-button .glyphicon {
+    justify-content: flex-end;
+    padding-left: 10px;
+    
+}

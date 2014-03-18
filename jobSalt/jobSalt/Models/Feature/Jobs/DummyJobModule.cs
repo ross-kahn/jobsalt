@@ -8,7 +8,7 @@ namespace jobSalt.Models.Feature.Jobs
 {
     public class DummyJobModule : IJobModule
     {
-        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerPage)
         {
             List<JobPost> jobs = new List<JobPost>();
             for (int i = 0; i < resultsPerPage; ++i )

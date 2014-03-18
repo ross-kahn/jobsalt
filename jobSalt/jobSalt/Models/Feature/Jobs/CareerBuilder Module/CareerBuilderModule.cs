@@ -31,15 +31,9 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			builder = new CareerBuilderQueryBuilder( );
 			}
 
-		public List<JobPost> GetJobs ( Dictionary<Field , string> filters , int page , int resultsPerPage )
-			{
+		public List<JobPost> GetJobs ( FilterBag filters , int page , int resultsPerPage )
+		{
 			List<JobPost> jobsToReturn = new List<JobPost>( );
-			;
-			// Return empty list if no filters are specified
-			if ( filters.Count == 0 )
-				{
-				return new List<JobPost>( );
-				}
 
 			string request = builder.BuildQuery( filters , page , resultsPerPage );
 
@@ -59,12 +53,13 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 
 				//this field is returned as "MN - Plymouth", so split by values
 				string[] location = jobPost.Element( "Location" ).Value.Split( new char[] { '-' } );
-				post.Location = new Location
-				{
-					State= location[0].Trim( ) ,
-					City= location[1].Trim( ) ,
-					ZipCode=null
-				};
+
+                // City, state, zip
+                post.Location = new Location(
+                    location[0].Trim(),
+                    location[1].Trim(),
+                    null
+                );
 				post.Description =  jobPost.Element( "DescriptionTeaser" ).Value;
 				post.FieldOfStudy = null;
 				post.Salary =  jobPost.Element( "Pay" ).Value;

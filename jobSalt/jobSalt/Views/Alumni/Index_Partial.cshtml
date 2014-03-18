@@ -1,0 +1,63 @@
+﻿@model Dictionary<string, List<jobSalt.Models.Feature.Alumni.AlumniPost>>
+@using jobSalt.Models.Feature.Alumni;
+@{var odd = true;}
+@foreach(string company in @Model.Keys)
+{
+    var guid = Guid.NewGuid().ToString();
+    if (odd)
+    {
+        <div class="post-margin collapse col-lg-12 col-xs-12 @guid"></div>
+        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+            <div class="post-details container-fluid">
+                @foreach (AlumniPost alumni in @Model[company])
+                {
+                    <div class="col-xs-6 col-lg-4">
+                        <h4>@alumni.Name</h4>
+                        <b>Location:</b> @alumni.Location.City, @alumni.Location.State<br />
+                        <b>Major:</b> @alumni.FieldOfStudy<br />
+                        <b>Email:</b> @alumni.Email<br />
+                        <br />
+                    </div>
+                }
+                <div class="col-xs-12 col-lg-12">
+                    <a href="@Url.Action("JobsAtCompany", new { company = company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">View Jobs</a>
+                </div>
+            </div>
+            <div class="arrow-down"></div>
+        </div>
+        <div class="post-margin collapse in col-lg-12 col-xs-12 @guid "></div>
+    }
+    <div class="col-md-6 col-xs-12">
+        <div class="post" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+            <h3 class="ellipsis" style="padding-right:50px">@company</h3>
+        </div>
+    </div>
+    if (!odd)
+    {
+        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+            <div class="arrow-up"></div>
+            <div class="post-details container-fluid">
+                @foreach (AlumniPost alumni in @Model[company])
+                {
+                    <div class="col-xs-6 col-lg-4">
+                        <h4>@alumni.Name</h4>
+                        <b>Location:</b> @alumni.Location.City, @alumni.Location.State<br />
+                        <b>Major:</b> @alumni.FieldOfStudy<br />
+                        <b>Email:</b> @alumni.Email<br />
+                        <br />
+                    </div>
+                }
+                <div class="col-xs-12 col-lg-12">
+                    <a href="@Url.Action("JobsAtCompany", new { company = company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">View Jobs</a>
+                </div>
+            </div>
+        </div>
+    }
+    odd = !odd;
+}
+
+<script type="text/javascript">
+    function StopPropagation(event) {
+        event.stopPropagation();
+    }
+</script>

@@ -30,7 +30,7 @@ namespace jobSalt.Models.Feature.Jobs.UAJobLink_Module
 		/// <param name="filters">The filters that the module should use to query</param>
 		/// <param name="page">What page number of results to grab</param>
 		/// <returns>The job postings</returns>
-        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerPage)
 		{
 
 		List<JobPost> jobs = new List<JobPost>( );
@@ -43,7 +43,7 @@ namespace jobSalt.Models.Feature.Jobs.UAJobLink_Module
 				Description = "Default Posting from University of Arizona's Wildcat Joblink" ,
 				FieldOfStudy = "Computer Science" ,
 				JobTitle = "Default ",
-				Location = new Location(),
+				Location = null,
 				 Salary =null,
 				  SourceModule = source,
 				URL = "www.career.arizona.edu/joblink"
