@@ -396,6 +396,7 @@
     <Compile Include="Models\Feature\Salary\SalaryPost.cs" />
     <Compile Include="Models\Data Types\SalaryRange.cs" />
     <Compile Include="Models\Data Types\Source.cs" />
+    <Compile Include="Models\Logging\JobSaltLogger.cs" />
     <Compile Include="Models\UserData\UserDataContext.cs" />
     <Compile Include="Models\UserData\UserDataRow.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
