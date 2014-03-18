@@ -32,12 +32,12 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
         
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format
-            builder.Append(limitConverter(Constants.RESULT_LIMIT));    // The limit of # of results returned
-            builder.Append(useripConverter(USER_IP));                  
-            builder.Append(useragentConverter(USER_AGENT));
-            builder.Append(VERSION_TAG);
+            builder.Append(limitConverter(Constants.RESULT_LIMIT));     // The limit of # of results returned
+            builder.Append(useripConverter(USER_IP));                   // The IP of the current user, for Indeed metrics
+            builder.Append(useragentConverter(USER_AGENT));             // The browser of the current user, for Indeed metrics
+            builder.Append(VERSION_TAG);                                // Version of the API, currently v.2
 
-            return HttpUtility.UrlEncode(builder.ToString());
+            return builder.ToString();
         }
 
         #region Tag String Builders
@@ -89,6 +89,12 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
         private string locationConverter(Location loc)
         {
+
+            if (null == loc)
+            {
+                return "";
+            }
+
             string q = "&l=";
 
             if (String.IsNullOrWhiteSpace(loc.ZipCode))

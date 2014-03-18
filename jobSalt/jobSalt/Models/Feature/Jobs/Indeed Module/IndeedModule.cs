@@ -20,8 +20,16 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
         public List<JobPost> GetJobs(FilterBag filterbag, int page, int resultsPerPage)
         {
-
-            string request = builder.buildQuery(filterbag, page, resultsPerPage);
+            // TODO: Replace this with a Logger call
+            string request = "";
+            try
+            {
+                request = builder.buildQuery(filterbag, page, resultsPerPage);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             IndeedResult iResult;
             using (var client = new WebClient())
