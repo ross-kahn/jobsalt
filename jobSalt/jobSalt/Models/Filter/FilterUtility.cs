@@ -13,54 +13,31 @@ namespace jobSalt.Models
     /// </summary>
     public class FilterUtility
     {
-        public static string AssignFilter(Field targetField, string value, string filterString)
-        {
-            Dictionary<Field, string> filters = Filter.FilterQueryStringToDictionary(filterString);
-
-            if(filters.ContainsKey(targetField))
-            {
-                filters[targetField] = value;
-            }
-            else
-            {
-                filters.Add(targetField, value);
-            }
-            return Filter.FilterListToUrlQueryString(filters);
-        }
-
-        public static string RemoveFilter(Field targetField, string filterString)
-        {
-            Dictionary<Field, string> filters = Filter.FilterQueryStringToDictionary(filterString);
-
-            filters.Remove(targetField);
-
-            return Filter.FilterListToUrlQueryString(filters);
-        }
-
         public static List<Models.Filter> GetFilters(string filterString)
         {
-            Dictionary<Field, string> filterDict = Filter.FilterQueryStringToDictionary(filterString);
-            List<Models.Filter> filters = new List<Models.Filter>();
-            foreach( Field target in filterDict.Keys)
-            {
-                filters.Add(new Models.Filter(target, filterDict[target]));
-            }
+            FilterBag fb = FilterBag.createFromJSON(filterString);
 
-            return filters;
+            return fb.GetFilters();
         }
 
         public static string GetFilterValue(Field targetField, string filterString)
         {
-            Dictionary<Field, string> filters = Filter.FilterQueryStringToDictionary(filterString);
+            FilterBag fb = FilterBag.createFromJSON(filterString);
+            return fb.GetFilterValue(targetField);
+        }
 
-            if(filters.ContainsKey(targetField))
-            {
-                return filters[targetField];
-            }
-            else
-            {
-                return null;
-            }
+        public static string AssignFilter(Field targetField, string value, string filterString)
+        {
+            FilterBag fb = FilterBag.createFromJSON(filterString);
+            fb.AssignFilter(new Models.Filter(targetField, value));
+            string newFilterString = fb.JsonEncode().Replace("\"", "'");
+
+            return newFilterString;
+        }
+
+        public static bool FilterIsSet(List<Filter> filters, Field targetField)
+        {
+            return filters.Find(filter => filter.TargetField == targetField) != null;
         }
     }
 }

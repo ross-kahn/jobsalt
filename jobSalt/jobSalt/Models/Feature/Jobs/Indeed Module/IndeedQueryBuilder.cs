@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Text;
+using jobSalt.Models.Data_Types;
 
 namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 {
@@ -16,38 +17,8 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
         private const string USER_IP = "1.2.3.4"; // 129.21.108.174
         private const string USER_AGENT = "Mozilla/%2F4.0%28Firefox%29";
 
-        private Dictionary<Field, string> combineFields(Dictionary<Field, string> filterHash)
+        public string buildQuery(FilterBag filterbag, int page, int resultsPerPage)
         {
-            // Check for trailing / leading spaces
-            if (!filterHash.ContainsKey(Field.Keyword))
-            {
-                filterHash[Field.Keyword] = "";
-            }
-
-            if (filterHash.ContainsKey(Field.FieldOfStudy))
-            {
-                filterHash[Field.Keyword] += " " + filterHash[Field.FieldOfStudy];
-                filterHash.Remove(Field.FieldOfStudy);
-            }
-
-            if (filterHash.ContainsKey(Field.CompanyName))
-            {
-                filterHash[Field.Keyword] += " company:" + filterHash[Field.CompanyName];
-                filterHash.Remove(Field.CompanyName);
-            }
-
-            if (filterHash.ContainsKey(Field.JobTitle))
-            {
-                filterHash[Field.Keyword] += " title:" + filterHash[Field.JobTitle];
-                filterHash.Remove(Field.JobTitle);
-            }
-            return filterHash;
-        }
-
-        public string buildQuery(Dictionary<Field, string> filterHash, int page, int resultsPerPage)
-        {
-
-            filterHash = combineFields(filterHash);
 
             // String builder, (arguably) more efficient than concatenating strings
             StringBuilder builder = new StringBuilder();
@@ -56,47 +27,15 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             builder.Append(Constants.INDEED_REQUEST_BASE);
             builder.Append("&start=" + page * resultsPerPage);
 
-            foreach (Field key in filterHash.Keys)
-            {
-                switch (key)
-                {
-                    case Field.CompanyName:  // Should be combined with keyword
-                        break;
-
-                    case Field.Date:
-                        break;
-
-                    case Field.FieldOfStudy: // Should be combined with keyword
-                        break;
-
-                    case Field.JobTitle:    // Should be combined with keyword
-                        break;
-
-                    case Field.Keyword:
-                        builder.Append(keywordConverter(filterHash[key]));
-                        break;
-
-                    case Field.Location:
-                        builder.Append("&l=" + filterHash[key]);
-                        break;
-
-                    case Field.Salary:
-                        break;
-
-                    case Field.Source:
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-
+            builder.Append(keywordConverter(filterbag.Keyword, filterbag.JobTitle, filterbag.CompanyName));
+            builder.Append(locationConverter(filterbag.Location));
+        
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format
-            builder.Append(limitConverter(Constants.RESULT_LIMIT));    // The limit of # of results returned
-            builder.Append(useripConverter(USER_IP));                  
-            builder.Append(useragentConverter(USER_AGENT));
-            builder.Append(VERSION_TAG);
+            builder.Append(limitConverter(Constants.RESULT_LIMIT));     // The limit of # of results returned
+            builder.Append(useripConverter(USER_IP));                   // The IP of the current user, for Indeed metrics
+            builder.Append(useragentConverter(USER_AGENT));             // The browser of the current user, for Indeed metrics
+            builder.Append(VERSION_TAG);                                // Version of the API, currently v.2
 
             return builder.ToString();
         }
@@ -119,52 +58,66 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
         /// <param name="queries"></param>
         /// <returns></returns>
 
-        private string keywordConverter (string queries)
+        private string keywordConverter (string keyword = "", string jobTitle = "", string companyName = "")
         {
-            if (isValidFilterQ(queries))
+            // Return an empty string if none of the paramters have values
+            if (String.IsNullOrWhiteSpace(keyword + jobTitle + companyName))
             {
-                string tag = String.Join("+", queries.Split(' '));
+                return "";
+            }
 
-                return "&q=" + tag;
+            string query = "&q=";
+
+            if (!String.IsNullOrWhiteSpace(keyword))
+            {
+                query += keyword;
+            }
+
+            if (!String.IsNullOrWhiteSpace(jobTitle))
+            {
+                query += " title:" + jobTitle; 
+            }
+
+            if (!String.IsNullOrWhiteSpace(companyName))
+            {
+                query += " company:" + companyName;
+            }
+
+            return query;
+
+        }
+
+        private string locationConverter(Location loc)
+        {
+
+            if (null == loc)
+            {
+                return "";
+            }
+
+            string q = "&l=";
+
+            if (String.IsNullOrWhiteSpace(loc.ZipCode))
+            {
+                q += loc.ZipCode;
+            }
+            else if (String.IsNullOrWhiteSpace(loc.City) && String.IsNullOrWhiteSpace(loc.State))
+            {
+                q += loc.City + ", " + loc.State;
             }
             else
             {
                 return "";
             }
+
+            return q;
         }
 
         private string limitConverter(string limit)
         {
-            if (isValidFilterQ(limit))
+            if (!String.IsNullOrWhiteSpace(limit))
             {
                 return "&limit=" + limit;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string jobtitleConverter(string query)
-        {
-            if (isValidFilterQ(query))
-            {
-                string result = "&as_ttl=" + String.Join("+", query);
-
-                return result;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        private string companyNameConverter(string query)
-        {
-            if (isValidFilterQ(query))
-            {
-                string result = "&as_cmp=" + String.Join("+", query);
-                return result;
             }
             else
             {
@@ -191,19 +144,6 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
         private string useragentConverter(string agent)
         {
             return "&useragent=" + agent;
-        }
-
-        private static bool isValidFilterQ(string filterQ)
-        {
-            // What other characters do we need to catch?
-            if (filterQ == null || filterQ.Equals(""))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
         }
 
         #endregion

@@ -22,13 +22,8 @@ namespace jobSalt.Models.Feature.Jobs.LinkedIn_Module
                                            "&client_id=75wt0uzfa9hfro" +
                                            "&client_secret=d1a6ef5f-210d-4589-8f94-a83c0aee1708";
 
-        
-        public LinkedInModule()
-        {
 
-        }
-
-        public List<JobPost> GetJobs(Dictionary<Field, string> filters, int page, int resultsPerPage)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerPage)
         {
             /*if (filters.Count == 0)
             {

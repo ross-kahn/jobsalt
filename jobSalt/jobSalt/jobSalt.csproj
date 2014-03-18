@@ -270,13 +270,18 @@
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
+    <Compile Include="Models\Auth\AccountModels.cs" />
+    <Compile Include="Models\Auth\AuthModule.cs" />
+    <Compile Include="Models\Auth\LDAPAuthModule.cs" />
+    <Compile Include="Models\Auth\SamlHelper.cs" />
+    <Compile Include="Models\Auth\SamlSchemas.cs" />
+    <Compile Include="Models\Auth\SamlSignedXml.cs" />
+    <Compile Include="Models\Auth\ShibbolethAuthModule.cs" />
+    <Compile Include="Models\Auth\SigningHelper.cs" />
     <Compile Include="Models\Config\ConfigLoader.cs" />
     <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
     <Compile Include="Models\Feature\Alumni\IAlumniModule.cs" />
-    <Compile Include="Models\Feature\Alumni\School Module\Employer.cs">
-      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Feature\Alumni\School Module\GradPlacement.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
@@ -295,29 +300,10 @@
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolAlumniModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolAlumniModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Designer.cs">
-      <DependentUpon>SchoolAlumniModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Alumni\School Module\SchoolAlumniModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolAlumniModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Alumni\School Module\SchoolModule.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
@@ -330,17 +316,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Auth\AccountModels.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Filter\Filter.cs" />
     <Compile Include="Models\Feature\Housing\HousingPost.cs" />
-    <Compile Include="Models\Auth\AuthModule.cs" />
-    <Compile Include="Models\Auth\LDAPAuthModule.cs" />
-    <Compile Include="Models\Auth\SamlHelper.cs" />
-    <Compile Include="Models\Auth\SamlSchemas.cs" />
-    <Compile Include="Models\Auth\SamlSignedXml.cs" />
-    <Compile Include="Models\Auth\ShibbolethAuthModule.cs" />
-    <Compile Include="Models\Auth\SigningHelper.cs" />
     <Compile Include="Models\Feature\Jobs\CareerBuilder Module\CareerBuilderModule.cs" />
     <Compile Include="Models\Feature\Jobs\CareerBuilder Module\CareerBuilderQueryBuilder.cs" />
     <Compile Include="Models\Feature\Jobs\DummyJobModule.cs" />
@@ -423,6 +401,7 @@
     <Content Include="Content\images\RIT_icon.png" />
     <Content Include="Content\images\UA_Block_A.png" />
     <Content Include="Content\images\linkedin_icon.jpg" />
+    <Content Include="favicon.jpg" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
     <Content Include="Content\images\loading.gif" />
@@ -487,9 +466,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\example_json_linkedin.txt" />
-    <Content Include="Models\Config\AuthConfig.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Models\Config\AuthConfig.xml" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -519,31 +496,18 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SchoolAlumniDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
+      <LastGenOutput>SchoolAlumniDB.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.edmx.diagram">
       <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchoolAlumniDB.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchoolAlumniModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
       <LastGenOutput>SchoolAlumniDB.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SchoolAlumniModel.Context.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SchoolAlumniModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Feature\Alumni\School Module\SchoolAlumniModel.edmx.diagram">
-      <DependentUpon>SchoolAlumniModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />

@@ -1,6 +1,7 @@
 ﻿using jobSalt.Models.Feature.Alumni.School_Module;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,14 +29,14 @@ namespace jobSalt.Models.Feature.Alumni
         public AlumniShepard()
         {
             modules = new List<IAlumniModule>();
-            modules.Add(new DummyAlumniModule());
+            modules.Add(new RitAlumniModule());
         }
         #endregion // Constructors
 
         #region Public Methods
-        public List<AlumniPost> GetAlumni(Dictionary<Field, string> filters, int page, int resultsPerModule)
+        public Dictionary<string, List<AlumniPost>> GetAlumni(FilterBag filters)
         {
-            List<AlumniPost> alumni = new List<AlumniPost>();
+            Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
 
             // Use a dictionary of module to bool so each module can mark when it's complete,
             // this is used incase of a timeout so it can be determined which module did not complete.
@@ -59,15 +60,16 @@ namespace jobSalt.Models.Feature.Alumni
                     {
                         try
                         {
-                            List<AlumniPost> partialJobs = module.GetAlumni(new Dictionary<Field, string>(filters));
+                            Dictionary<string, List<AlumniPost>> partialJobs = module.GetAlumni(filters);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
-                                alumni.AddRange(partialJobs);
+                                alumni = alumni.Concat(partialJobs).ToDictionary(e => e.Key, e => e.Value);
                             }
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
+                            Debug.WriteLine(e.ToString());
                             // The module failed. Not a system failure but the user should be notified
                             // we need to create a mechanism to actually notify them and call it here
                         }
@@ -90,10 +92,8 @@ namespace jobSalt.Models.Feature.Alumni
         /// </summary>
         /// <param name="alumni">Unprocessed list of jobs</param>
         /// <returns>Processed list of alumni</returns>
-        List<AlumniPost> PostProcessAlumni(List<AlumniPost> alumni) 
+        Dictionary<string, List<AlumniPost>> PostProcessAlumni(Dictionary<string, List<AlumniPost>> alumni) 
         {
-            alumni = alumni.OrderByDescending(alum => alum.Email).ToList();
-
             return alumni;
         }
         #endregion // Private Methods

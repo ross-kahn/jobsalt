@@ -12,27 +12,33 @@ namespace jobSalt.Controllers
     /// </summary>
     public class FilterUtilityController : Controller
     {
+    
+        [HttpPost]
         public ActionResult AssignFilter(Field targetField, string value, string filterString)
         {
-            string newFilterString = FilterUtility.AssignFilter(targetField, value, filterString);
+            FilterBag fb = FilterBag.createFromJSON(filterString);
+            fb.AssignFilter(new Models.Filter(targetField, value));
+            string newFilterString = fb.JsonEncode();
+
             return Redirect(Request.UrlReferrer.AbsolutePath.ToString() + "?filterString=" + newFilterString);
         }
 
+        [HttpGet]
         public ActionResult RemoveFilter(Field targetField, string filterString)
         {
-            string newFilterString = FilterUtility.RemoveFilter(targetField, filterString);
+            FilterBag fb = FilterBag.createFromURLQuery(Request.QueryString.ToString());
+            fb.RemoveFilter(targetField);
+            string newFilterString = fb.JsonEncode();
+
             return Redirect(Request.UrlReferrer.AbsolutePath.ToString() + "?filterString=" + newFilterString);
         }
 
-        public JsonResult GetFilters(string filterString)
-        {
-            return Json(FilterUtility.GetFilters(filterString), JsonRequestBehavior.AllowGet);
-        }
-
+        [HttpGet]
         public PartialViewResult GetFilterView(Field targetField, string filterString)
         {
-            ViewBag.FilterString = filterString;
-            ViewBag.inputID = new Guid().ToString();
+            FilterBag fb = FilterBag.createFromURLQuery(Request.QueryString.ToString());
+            ViewBag.FilterString = fb.JsonEncode();
+            ViewBag.inputID = Guid.NewGuid();
             return PartialView("_FilterEditPartial", targetField);
         }
     }
