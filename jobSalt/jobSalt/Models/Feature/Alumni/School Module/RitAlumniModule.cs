@@ -15,7 +15,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
             get { throw new NotImplementedException(); }
         }
 
-        Dictionary<string, List<AlumniPost>> IAlumniModule.GetAlumni(Dictionary<Field, string> filters)
+        Dictionary<string, List<AlumniPost>> IAlumniModule.GetAlumni(FilterBag filters)
         {
             Dictionary<string, List<AlumniPost>> posts = new Dictionary<string, List<AlumniPost>>();
 
@@ -33,25 +33,22 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
             AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company != null);
 
-            foreach (var key in filters.Keys)
+            if( !String.IsNullOrEmpty(filters.CompanyName) )
             {
-                string value = filters[key];
-                switch (key)
-                {
-                    case Field.CompanyName:
-                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company.Contains(value));
-                        break;
-                    case Field.Keyword:
-                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(value));
-                        break;
-                    case Field.FieldOfStudy:
-                        AlumSearchQuery = AlumSearchQuery.Where(alum => alum.FieldOfStudy.Contains(value));
-                        break;
-                    default:
-                        break;
-                }
+                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Company.Contains(filters.CompanyName));
             }
 
+            if (!String.IsNullOrEmpty(filters.Keyword))
+            {
+                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(filters.Keyword));
+            }
+
+            if (!String.IsNullOrEmpty(filters.FieldOfStudy))
+            {
+                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.FieldOfStudy.Contains(filters.FieldOfStudy));
+            }
+
+           
             AlumSearchQuery = AlumSearchQuery.OrderBy(item => item.Company);
 
 

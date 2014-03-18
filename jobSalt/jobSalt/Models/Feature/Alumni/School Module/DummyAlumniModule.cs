@@ -8,7 +8,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 {
     public class DummyAlumniModule : IAlumniModule
     {
-        public Dictionary<string, List<AlumniPost>> GetAlumni(Dictionary<Field, string> filters)
+        public Dictionary<string, List<AlumniPost>> GetAlumni(FilterBag filters)
         {
             Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
             alumni.Add("Microsoft", new List<AlumniPost>());

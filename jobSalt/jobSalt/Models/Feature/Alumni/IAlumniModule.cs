@@ -19,7 +19,7 @@ namespace jobSalt.Models.Feature.Alumni
         /// <param name="filters">The filters that the module should use to query</param>
         /// <param name="page">What page number of results to grab</param>
         /// <returns>The alumni postings</returns>
-        Dictionary<string, List<AlumniPost>> GetAlumni(Dictionary<Models.Field, string> filters);
+        Dictionary<string, List<AlumniPost>> GetAlumni(FilterBag filters);
 
     }
 }

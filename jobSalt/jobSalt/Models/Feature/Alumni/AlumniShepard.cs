@@ -34,7 +34,7 @@ namespace jobSalt.Models.Feature.Alumni
         #endregion // Constructors
 
         #region Public Methods
-        public Dictionary<string, List<AlumniPost>> GetAlumni(Dictionary<Field, string> filters)
+        public Dictionary<string, List<AlumniPost>> GetAlumni(FilterBag filters)
         {
             Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
 
@@ -60,7 +60,7 @@ namespace jobSalt.Models.Feature.Alumni
                     {
                         try
                         {
-                            Dictionary<string, List<AlumniPost>> partialJobs = module.GetAlumni(new Dictionary<Field, string>(filters));
+                            Dictionary<string, List<AlumniPost>> partialJobs = module.GetAlumni(filters);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;

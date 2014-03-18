@@ -16,12 +16,14 @@ namespace jobSalt.Controllers
 
         public ActionResult Index(string filterString, int page = 0, int resultsPerPage = 10)
         {
-            ViewBag.FilterString = filterString;
+            FilterBag filters = FilterBag.createFromURLQuery(Request.QueryString.ToString());
+
+            ViewBag.FilterString = filters.JsonEncode();
+            ViewBag.FilterBag = filters;
 
             // If being called from ajax return the partial view that has the next set of alumni posts
             if (Request.IsAjaxRequest())
             {
-                Dictionary<Models.Field, string> filters = jobSalt.Models.Filter.FilterQueryStringToDictionary(filterString);
                 return PartialView("Index_Partial", shepard.GetAlumni(filters));
             }
 
