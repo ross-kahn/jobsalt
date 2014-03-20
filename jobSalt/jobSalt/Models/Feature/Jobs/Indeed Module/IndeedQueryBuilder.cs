@@ -97,11 +97,11 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
             string q = "&l=";
 
-            if (String.IsNullOrWhiteSpace(loc.ZipCode))
+            if (!String.IsNullOrWhiteSpace(loc.ZipCode))
             {
                 q += loc.ZipCode;
             }
-            else if (String.IsNullOrWhiteSpace(loc.City) && String.IsNullOrWhiteSpace(loc.State))
+            else if (!String.IsNullOrWhiteSpace(loc.City) && !String.IsNullOrWhiteSpace(loc.State))
             {
                 q += loc.City + ", " + loc.State;
             }
