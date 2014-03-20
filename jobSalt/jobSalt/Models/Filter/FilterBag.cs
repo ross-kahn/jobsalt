@@ -146,15 +146,15 @@ namespace jobSalt.Models
         }
         public string JobTitle 
         {
-            get { return filters.ContainsKey(Field.JobTitle) ? filters[Field.JobTitle] : ""; }
+            get { return filters.ContainsKey(Field.JobTitle) ? HttpUtility.UrlDecode(filters[Field.JobTitle]) : ""; }
         }
         public string FieldOfStudy 
         {
-            get { return filters.ContainsKey(Field.FieldOfStudy) ? filters[Field.FieldOfStudy] : ""; }
+            get { return filters.ContainsKey(Field.FieldOfStudy) ? HttpUtility.UrlDecode(filters[Field.FieldOfStudy]) : ""; }
         }
         public string Keyword 
         {
-            get { return filters.ContainsKey(Field.Keyword) ? filters[Field.Keyword] : ""; }
+            get { return filters.ContainsKey(Field.Keyword) ? HttpUtility.UrlDecode(filters[Field.Keyword]) : ""; }
         }
 
     }
