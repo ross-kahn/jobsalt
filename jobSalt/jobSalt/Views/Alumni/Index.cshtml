@@ -1,32 +1,7 @@
-﻿<div class="affix-top panel panel-primary">
-    <div class="panel-heading">
-        Filters
-    </div>
-    <div class="panel-body">
-        @{var filters = FilterUtility.GetFilters(ViewBag.FilterString);}
-        @foreach (jobSalt.Models.Filter filter in filters)
-        {
-            <button class="btn btn-primary btn-lg btn-group-justified" data-value="@filter.TargetField" onclick="EditFilter(this, event)">
-                <span class="pull-left">@filter.TargetField</span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon pull-right" style="color:#808080" onclick="RemoveFilter(this, event)"></span>
-            </button>
-        }
-        @foreach (jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
-        {
-            if (!FilterUtility.FilterIsSet(filters, target))
-            {
-                <button class="btn btn-info btn-lg btn-group-justified" data-value="@target" onclick="EditFilter(this, event)">
-                    <span class="pull-left">@target</span><span data-value="@target" class="glyphicon glyphicon-plus icon pull-right" style="color:#808080"></span>
-                </button>
-            }
-        }
-    </div>
-</div>
-
-<div class="container">
+﻿<div class="container">
     <div class="jumbotron">
         @using jobSalt.Models;
 
-        @Html.Partial("_FilterPartial")
         <h1>Alumni Search</h1>
         @using jobSalt.Models;
         @using (Html.BeginForm("AssignFilter", "FilterUtility"))
@@ -45,9 +20,14 @@
             <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
         }
     </div>
-    <div id="productList"></div>
+</div>
 
-    <div id="loading"></div>
+<div class="container">
+    <div class="row">
+        @Html.Partial("_FilterPartial")
+        <div class="col-md-10" id="productList"></div>
+        <div id="loading"></div>
+    </div>
 </div>
 
 @section Scripts
@@ -58,6 +38,14 @@
 
         $(window).load(function () {
             loadJobs();
+        });
+
+        $(document).ready(function () {
+            $('#sidebar').affix({
+                offset: {
+                    top: 180
+                }
+            });
         });
 
         $(window).scroll(function () {

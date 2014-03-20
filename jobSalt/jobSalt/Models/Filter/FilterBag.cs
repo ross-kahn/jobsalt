@@ -142,7 +142,7 @@ namespace jobSalt.Models
         }
         public string CompanyName 
         {
-            get { return filters.ContainsKey(Field.CompanyName) ? filters[Field.CompanyName] : ""; } 
+            get { return filters.ContainsKey(Field.CompanyName) ? HttpUtility.UrlDecode(filters[Field.CompanyName]) : ""; } 
         }
         public string JobTitle 
         {
