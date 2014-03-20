@@ -50,18 +50,22 @@
     margin-bottom: 0px;
 }
 
-.affix-top {
-    position: fixed;
-    top: 100px;
-    left: 10px;
+
+
+.filters{
+    padding-right: 0px;
 }
 
-.filter-button .btn {
-    position: relative;
-}
+@media (min-width: 979px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top: 10px;
+        width: 180px;
+    }
 
-.filter-button .glyphicon {
-    justify-content: flex-end;
-    padding-left: 10px;
-    
+    #sidebar.affix {
+        position: fixed;
+        top: 60px;
+        width: 180px;
+    }
 }
