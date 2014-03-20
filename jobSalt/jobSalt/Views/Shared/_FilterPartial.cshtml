@@ -13,7 +13,7 @@
                 <h4 class="modal-title" id="editTitle">Place Holder</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="return SaveAndCloseModal()">
+                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="return SaveAndCloseModal(event)">
                     <div id="editFieldArea"></div>
                 </form>
                 <div id="editLoadingIcon"></div>
@@ -29,10 +29,10 @@
 <!-- Add Modal -->
 
 <script type="text/javascript">
-    function SaveAndCloseModal(){
+    function SaveAndCloseModal(event){
         //SubmitFilter is defined in the partial view _FilterEditPartial,
         //it changes based on the filter/input type
-        SubmitFilter();
+        SubmitFilter(event);
         $('#myModal').modal('toggle');
         return true;
     }
