@@ -35,7 +35,26 @@
                 var place = autocomplete.getPlace();
                 var geocoder = new google.maps.Geocoder();
                 var location = {};
-                console.log(place);               
+
+                //Just testing something
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+
+                    if (addressType == "postal_code") {
+                        location.ZipCode = place.address_components[i].short_name;
+                    }
+
+                    if (addressType == "administrative_area_level_1") {
+                        location.State = place.address_components[i].short_name;
+                    }
+
+                    if (addressType == "locality") {
+                        location.City = place.address_components[i].short_name;
+                    }
+                }
+                debugger;
+                $('#@ViewBag.inputID').val = JSON.stringify(location);
+                //Done testing
 
                 geocoder.geocode({ 'latLng': place.geometry.location }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
@@ -60,7 +79,7 @@
                     } else {
                         alert("Geocoder failed due to: " + status);
                     }
-
+                    
                     $('#@ViewBag.inputID').val = JSON.stringify(location);
                 });
                 return false;

@@ -56,16 +56,40 @@
     padding-right: 0px;
 }
 
-@media (min-width: 979px) {
-    #sidebar.affix-top {
+@media (min-width: 768px){
+     #sidebar.affix-top {
         position: static;
         margin-top: 10px;
-        width: 180px;
+        width: 162px;
+        font-size: 12px;
     }
 
     #sidebar.affix {
         position: fixed;
         top: 60px;
-        width: 180px;
+        width: 162px;
+        font-size: 12px;
+    }
+
+    .filter-text {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top: 10px;
+        width: 196px;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 60px;
+        width: 196px;
+    }
+
+    .filter-text {
+        font-size: 18px;
     }
 }
