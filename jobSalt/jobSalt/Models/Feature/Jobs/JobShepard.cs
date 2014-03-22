@@ -37,6 +37,7 @@ namespace jobSalt.Models.Feature.Jobs
             //modules.Add(new School_Module());
 			modules.Add( new CareerBuilder_Module.CareerBuilderModule( ) );
 			modules.Add( new Dice_Module.DiceModule( ) );
+			modules.Add( new UAJobLink_Module.UAJobLinkModule( ) );
 			}
 		#endregion // Constructors
 
@@ -69,7 +70,6 @@ namespace jobSalt.Models.Feature.Jobs
 			var timeout = 5000; // 5 seconds
 			var cts = new CancellationTokenSource( );
 			var t = new Timer( _ => cts.Cancel( ) , null , timeout , -1 );
-
 			try
 				{
 
