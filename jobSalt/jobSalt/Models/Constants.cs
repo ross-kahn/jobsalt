@@ -18,5 +18,10 @@ namespace jobSalt.Models
 
         public const string INDEED_DISPLAY_NAME = "Indeed.com";
 
+		/// <summary>
+		/// The threashold for when to remove a duplicate job posting from results. If two job posts have a similarity above this number, one of them will be removed. Range: 0.0 - 1.0
+		/// </summary>
+		public const Double DUPLICATE_POST_SIMILARITY_THREASHOLD =0.6;
+
     }
 }
