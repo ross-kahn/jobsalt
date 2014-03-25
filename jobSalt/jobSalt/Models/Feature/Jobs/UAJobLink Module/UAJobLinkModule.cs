@@ -40,11 +40,6 @@ namespace jobSalt.Models.Feature.Jobs.UAJobLink_Module
 		{
 
 				List<JobPost> jobsToReturn = new List<JobPost>( ); 
-				// Return empty list if no filters are specified
-				if ( filters.Count == 0 )
-					{
-					return new List<JobPost>( );
-					}
 
 				//build the URI query
 				string request = BuildQuery( filters , page , resultsPerPage );
@@ -77,7 +72,7 @@ namespace jobSalt.Models.Feature.Jobs.UAJobLink_Module
 				return jobsToReturn;
 			}
 
-		public static String BuildQuery ( Dictionary<Field , String> FilterDict , int Page , int ResultsPerPage )
+		public static String BuildQuery ( FilterBag FilterDict , int Page , int ResultsPerPage )
 			{
 			StringBuilder builder = new StringBuilder( );
 			 
@@ -86,46 +81,16 @@ namespace jobSalt.Models.Feature.Jobs.UAJobLink_Module
 			String Keyword="NONE";
 			String JobTitle ="NONE";
 			String Employer="NONE";
-			foreach ( Field key in FilterDict.Keys )
-			{
-				switch ( key )
-			{
-					case Field.CompanyName:
-						Employer = FilterDict[key];
-						break;
 
-					case Field.Date:
-						break;
 
-					case Field.FieldOfStudy:
-						break;
-
-					case Field.JobTitle:
-						JobTitle = FilterDict[key];
-						break;
-
-					case Field.Keyword:
-						Keyword=FilterDict[key];
-						break;
-
-					case Field.Location:
-						Location=FilterDict[key];
-						break;
-
-					case Field.Salary:
-						break;
-
-					case Field.Source:
-						break;
-					case Field.EducationCode:
-						break;
-
-					default:
-						break;
-					}
+			if(FilterDict.CompanyName != "" ){Employer = FilterDict.CompanyName;}
+			if(FilterDict.FieldOfStudy != "" ){Keyword= FilterDict.FieldOfStudy;}
+			if(FilterDict.JobTitle != "" ){JobTitle = FilterDict.JobTitle;}
+			if(FilterDict.Keyword != "" ){Keyword = FilterDict.Keyword;}
+			if(FilterDict.Location.City != "" || FilterDict.Location.State != "" ||FilterDict.Location.ZipCode !="" ){Location = FilterDict.Location.City + ", "+ FilterDict.Location.State +" " +FilterDict.Location.ZipCode;}
+			
 
 				builder.Append( "&Location="+Location+"&Keyword="+Keyword+"&JobTitle="+JobTitle+"&Employer="+Employer );
-			}
 			return builder.ToString( );
 		}
     }
