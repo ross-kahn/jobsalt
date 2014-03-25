@@ -152,7 +152,7 @@ namespace jobSalt.Models.Feature.Jobs
 					{
 					Double threashold = Constants.DUPLICATE_POST_SIMILARITY_THREASHOLD;  
 					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
-					System.Diagnostics.Debug.WriteLine( "JobShepard:\tJob Post:\tFuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
+					System.Diagnostics.Debug.WriteLine( "JobShepard:\tJob Post:\tFuzzy match score: "+ simScore +" similar." +"( \t["+jobHashDictKV_a.Key.SourceModule.Name+"]: "+jobHashDictKV_a.Value+" , \t["+jobHashDictKV_b.Key.SourceModule.Name+"]: "+ jobHashDictKV_b.Value+ ")" );
 						
 					//compare a to b's hashes. remove if too similar
 					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && (Double.IsNaN(simScore) || simScore>=threashold) )
