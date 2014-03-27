@@ -4,6 +4,31 @@
     }
 </style>
 
+@using jobSalt.Models;
+
+<!-- Filter Buttons -->
+<div class="col-md-2 filters">
+    <div id="sidebar">
+        @{var filters = FilterUtility.GetFilters(ViewBag.FilterString);}
+        @foreach (jobSalt.Models.Filter filter in filters)
+        {
+            <button class="btn btn-primary btn-lg col-md-12" data-value="@filter.TargetField" onclick="EditFilter(this, event)">
+                <span class="pull-left filter-text">@filter.TargetField</span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon pull-right" style="color:#808080" onclick="RemoveFilter(this, event)"></span><br/>
+                <div class="filter-subtitle pull-left ellipsis">@FilterUtility.GetFilterValue(filter.TargetField, ViewBag.FilterString)</div>
+            </button>
+        }
+        @foreach (jobSalt.Models.Field target in Enum.GetValues(typeof(jobSalt.Models.Field)))
+        {
+            if (!FilterUtility.FilterIsSet(filters, target))
+            {
+                <button class="btn btn-info btn-lg col-md-12" data-value="@target" onclick="EditFilter(this, event)">
+                    <span class="pull-left filter-text">@target</span><span data-value="@target" class="glyphicon glyphicon-plus icon pull-right" style="color:#808080"></span>
+                </button>
+            }
+        }
+    </div>
+</div>
+
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -13,7 +38,7 @@
                 <h4 class="modal-title" id="editTitle">Place Holder</h4>
             </div>
             <div class="modal-body">
-                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="return SaveAndCloseModal()">
+                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="return SaveAndCloseModal(event)">
                     <div id="editFieldArea"></div>
                 </form>
                 <div id="editLoadingIcon"></div>
@@ -29,10 +54,10 @@
 <!-- Add Modal -->
 
 <script type="text/javascript">
-    function SaveAndCloseModal(){
+    function SaveAndCloseModal(event){
         //SubmitFilter is defined in the partial view _FilterEditPartial,
         //it changes based on the filter/input type
-        SubmitFilter();
+        SubmitFilter(event);
         $('#myModal').modal('toggle');
         return true;
     }

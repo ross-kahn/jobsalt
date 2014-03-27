@@ -67,9 +67,22 @@ namespace jobSalt.Models
         public object Deserialize<t>(string value)
         {
             var serializer = new JavaScriptSerializer();
-            string decodedValue = System.Web.HttpUtility.UrlDecode(value);
+            string decodedValue = FullyDecode(value);
 
             return serializer.Deserialize<t>(decodedValue);
+        }
+
+        private static string FullyDecode(string encodedString)
+        {
+            string decodedString = HttpUtility.UrlDecode(encodedString);
+            string secondPass = HttpUtility.UrlDecode(decodedString);
+            while(!decodedString.Equals(secondPass))
+            {
+                decodedString = secondPass;
+                secondPass = HttpUtility.UrlDecode(secondPass);
+            }
+
+            return decodedString;
         }
 
         public List<Filter> GetFilters(bool URLEncoded = false)
@@ -89,7 +102,7 @@ namespace jobSalt.Models
             switch(target)
             {
                 case Field.Location:
-                    return this.Location.ToString();
+                    return Location == null ? null : Location.ToString();
                 case Field.CompanyName:
                     return this.CompanyName;
                 case Field.FieldOfStudy:
@@ -105,8 +118,19 @@ namespace jobSalt.Models
 
         public string JsonEncode()
         {
+            List<Filter> filterList = new List<Filter>();
+
+            foreach (Field key in filters.Keys)
+            {
+                // This seems really silly to fully decode the string and then re-encode it once.
+                // But MVC is behind the scenes doing URL encoding to our parameters and so
+                // if we don't do this we get ever componding url encoding.
+                string decodedValue = FullyDecode(filters[key]);
+                filterList.Add(new Filter(key, HttpUtility.UrlEncode(decodedValue)));
+            }
+
             var serializer = new JavaScriptSerializer();
-            string json = serializer.Serialize(GetFilters(true));
+            string json = serializer.Serialize(filterList);
 
             json = json.Replace("\"", "'");
             return json;
@@ -118,19 +142,19 @@ namespace jobSalt.Models
         }
         public string CompanyName 
         {
-            get { return filters.ContainsKey(Field.CompanyName) ? filters[Field.CompanyName] : ""; } 
+            get { return filters.ContainsKey(Field.CompanyName) ? HttpUtility.UrlDecode(filters[Field.CompanyName]) : ""; } 
         }
         public string JobTitle 
         {
-            get { return filters.ContainsKey(Field.JobTitle) ? filters[Field.JobTitle] : ""; }
+            get { return filters.ContainsKey(Field.JobTitle) ? HttpUtility.UrlDecode(filters[Field.JobTitle]) : ""; }
         }
         public string FieldOfStudy 
         {
-            get { return filters.ContainsKey(Field.FieldOfStudy) ? filters[Field.FieldOfStudy] : ""; }
+            get { return filters.ContainsKey(Field.FieldOfStudy) ? HttpUtility.UrlDecode(filters[Field.FieldOfStudy]) : ""; }
         }
         public string Keyword 
         {
-            get { return filters.ContainsKey(Field.Keyword) ? filters[Field.Keyword] : ""; }
+            get { return filters.ContainsKey(Field.Keyword) ? HttpUtility.UrlDecode(filters[Field.Keyword]) : ""; }
         }
 
     }

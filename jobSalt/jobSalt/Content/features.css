@@ -50,18 +50,56 @@
     margin-bottom: 0px;
 }
 
-.affix-top {
-    position: fixed;
-    top: 100px;
-    left: 10px;
+
+
+.filters{
+    padding-right: 0px;
 }
 
-.filter-button .btn {
-    position: relative;
+@media (min-width: 768px){
+     #sidebar.affix-top {
+        position: static;
+        margin-top: 10px;
+        width: 162px;
+        font-size: 12px;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 60px;
+        width: 162px;
+        font-size: 12px;
+    }
+
+    .filter-text {
+        font-size: 16px;
+    }
+
+    .filter-subtitle {
+        font-size: 12px;
+        font-style: italic;
+    }
 }
 
-.filter-button .glyphicon {
-    justify-content: flex-end;
-    padding-left: 10px;
-    
+@media (min-width: 1200px) {
+    #sidebar.affix-top {
+        position: static;
+        margin-top: 10px;
+        width: 196px;
+    }
+
+    #sidebar.affix {
+        position: fixed;
+        top: 60px;
+        width: 196px;
+    }
+
+    .filter-text {
+        font-size: 18px;
+    }
+
+    .filter-subtitle {
+        font-size: 12px;
+        font-style: italic;
+    }
 }

@@ -307,6 +307,8 @@
     <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
+    <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
     <Compile Include="Models\Filter\FilterBag.cs" />
     <Compile Include="Models\Filter\FilterUtility.cs" />
     <Compile Include="Controllers\HousingController.cs" />

@@ -13,7 +13,7 @@
                 format: 'mm/dd/yyyy',
             });
 
-            function SubmitFilter() {
+            function SubmitFilter(event) {
                 alert("date");
             }
         </script>
@@ -21,49 +21,81 @@
     case Field.Location:
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 
-        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" style="height:30px; width:200px" />
+        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" style="height:30px; width:200px" />
         <input id="@ViewBag.inputID" type="hidden" name="value" />
 
         <script type="text/javascript">
             var autocomplete;
+            var parsedLocation = false;
+
             autocomplete = new google.maps.places.Autocomplete( (document.getElementById('autocomplete')),
             {
                 types: ['geocode'],
                 componentRestrictions: { country: "us" }
             });
-            function SubmitFilter() {
-                var place = autocomplete.getPlace();
-                var geocoder = new google.maps.Geocoder();
-                var location = {};
-                console.log(place);               
+            function SubmitFilter(event) {
 
-                geocoder.geocode({ 'latLng': place.geometry.location }, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        if (results[1]) {
-                            place = results[1];
-                            for (var i = 0; i < place.address_components.length; i++) {
-                                var addressType = place.address_components[i].types[0];
+                if (!parsedLocation) {
+                    event.preventDefault();
 
-                                if (addressType == "postal_code") {
-                                    location.ZipCode = place.address_components[i].short_name;
-                                }
+                    var place = autocomplete.getPlace();
+                    var geocoder = new google.maps.Geocoder();
+                    var location = {};
 
-                                if (addressType == "administrative_area_level_1") {
-                                    location.State = place.address_components[i].short_name;
-                                }
+                    geocoder.geocode({ 'address': $('#autocomplete').val() }, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[0]) {
+                                place = results[0];
+                                location = ParseLocation(place);
+                                if (!location.ZipCode) {
+                                    geocoder.geocode({ 'location': place.geometry.location }, function (results, status) {
+                                        if (status == google.maps.GeocoderStatus.OK) {
+                                            if (results[0]) {
+                                                place = results[0];
+                                                location = ParseLocation(place);
+                                            }
+                                        }
 
-                                if (addressType == "locality") {
-                                    location.City = place.address_components[i].short_name;
+                                        parsedLocation = true;
+
+                                        $('#@ViewBag.inputID').val(JSON.stringify(location));
+                                        $('#@ViewBag.inputID').closest("form").submit();
+                                    });
+                                } else {
+                                    parsedLocation = true;
+
+                                    $('#@ViewBag.inputID').val(JSON.stringify(location));
+                                    $('#@ViewBag.inputID').closest("form").submit();
                                 }
                             }
-                        }
-                    } else {
-                        alert("Geocoder failed due to: " + status);
+                        } else {
+                            alert("The address could not be parsed.\n Please ensure everything is typed correctly and try again.");
+                        } 
+                    });
+                } else {
+                    parsedLocation = false;
+                }
+            }
+
+            function ParseLocation(place) {
+                var location = {};
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+
+                    if (addressType == "postal_code") {
+                        location.ZipCode = place.address_components[i].short_name;
                     }
 
-                    $('#@ViewBag.inputID').val = JSON.stringify(location);
-                });
-                return false;
+                    if (addressType == "administrative_area_level_1") {
+                        location.State = place.address_components[i].short_name;
+                    }
+
+                    if (addressType == "locality") {
+                        location.City = place.address_components[i].long_name;
+                    }
+                }
+
+                return location;
             }
         </script>
         <style type="text/css">

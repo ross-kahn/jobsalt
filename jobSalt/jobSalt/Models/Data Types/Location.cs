@@ -22,5 +22,10 @@ namespace jobSalt.Models.Data_Types
 
         // This parameterless constructor is needed for deserialization
         public Location() { }
+
+        public override string ToString()
+        {
+            return City + ", " + State + " " + ZipCode;
+        }
     }
 }
