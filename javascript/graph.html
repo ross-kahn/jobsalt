@@ -38,6 +38,8 @@ window.onload = function () {
 	data.push(data2);
 	
 	var bchart = paper.barchart(10, 10, 300, 220, data).hover(fin, fout);
+	var text1 = paper.text(50, 230, "RIT Average").attr({fill: Raphael.g.colors[0]});
+	var text2 = paper.text(50, 240, "MIT Average").attr({fill: Raphael.g.colors[1]});
 };
 </script>
         <table id="data">
