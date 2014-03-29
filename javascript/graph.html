@@ -23,6 +23,7 @@ window.onload = function () {
 	data = [];
 	data1 = [];
 	data2 = [];
+	data3 = [];
 	
 	$("#data").hide();
 	
@@ -33,13 +34,19 @@ window.onload = function () {
 	$("#data2 td").each(function () {
         data2.push($(this).html());
     });
+
+	$("#data3 td").each(function () {
+        data3.push($(this).html());
+    });
 	
 	data.push(data1);
 	data.push(data2);
+	data.push(data3);
 	
 	var bchart = paper.barchart(10, 10, 300, 220, data).hover(fin, fout);
-	var text1 = paper.text(50, 230, "RIT Average").attr({fill: Raphael.g.colors[0]});
-	var text2 = paper.text(50, 240, "MIT Average").attr({fill: Raphael.g.colors[1]});
+	var text1 = paper.text(50, 230, "Max").attr({fill: Raphael.g.colors[0]});
+	var text2 = paper.text(50, 240, "Avg").attr({fill: Raphael.g.colors[1]});
+	var text3 = paper.text(50, 250, "Min").attr({fill: Raphael.g.colors[2]});
 };
 </script>
         <table id="data">
@@ -54,18 +61,25 @@ window.onload = function () {
             </tfoot>
             <tbody>
                 <tr id="data1">
-                    <td>10</td>
-                    <td>20</td>
-                    <td>30</td>
+                    <td>100</td>
+                    <td>80</td>
+                    <td>60</td>
                     <td>40</td>
-                    <td>50</td>
+                    <td>20</td>
                 </tr>
 				<tr id="data2">
+                    <td>90</td>
+                    <td>70</td>
                     <td>50</td>
-                    <td>40</td>
                     <td>30</td>
-                    <td>20</td>
                     <td>10</td>
+				</tr>
+				<tr id="data3">
+                    <td>80</td>
+                    <td>60</td>
+                    <td>40</td>
+                    <td>20</td>
+                    <td>0</td>
 				</tr>
             </tbody>
         </table>
