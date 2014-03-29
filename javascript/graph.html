@@ -6,17 +6,66 @@
 <script src="g.line-min.js"></script>
 <script src="g.dot-min.js"></script>
 <script src="g.bar-min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js"></script>
 </head>
 <body>
 <script>
 window.onload = function () {
 	var paper = Raphael(10, 50, 400, 400);
 
-	data = [[10, 20, 30, 40, 50],[50,40,30,20,10]];
-	var bchart = paper.barchart(10, 10, 300, 220, data);
+	fin = function () {
+                        this.flag = paper.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+                    };
+    fout = function () {
+                        this.flag.animate({opacity: 0}, 300, function () {this.remove();});
+                    };
 	
+	data = [];
+	data1 = [];
+	data2 = [];
 	
+	$("#data").hide();
+	
+	$("#data1 td").each(function () {
+        data1.push($(this).html());
+    });
+	
+	$("#data2 td").each(function () {
+        data2.push($(this).html());
+    });
+	
+	data.push(data1);
+	data.push(data2);
+	
+	var bchart = paper.barchart(10, 10, 300, 220, data).hover(fin, fout);
 };
 </script>
+        <table id="data">
+            <tfoot>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr id="data1">
+                    <td>10</td>
+                    <td>20</td>
+                    <td>30</td>
+                    <td>40</td>
+                    <td>50</td>
+                </tr>
+				<tr id="data2">
+                    <td>50</td>
+                    <td>40</td>
+                    <td>30</td>
+                    <td>20</td>
+                    <td>10</td>
+				</tr>
+            </tbody>
+        </table>
 </body>
 </html>
