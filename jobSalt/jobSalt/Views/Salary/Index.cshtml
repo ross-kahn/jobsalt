@@ -2,4 +2,82 @@
     ViewBag.Title = "Index";
 }
 
+@Scripts.Render("~/bundles/graphing")
+
 <h2>Index</h2>
+
+
+<script>
+    window.onload = function () {
+        var paper = Raphael(10, 50, 400, 400);
+
+        fin = function () {
+            this.flag = paper.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+        };
+        fout = function () {
+            this.flag.animate({ opacity: 0 }, 300, function () { this.remove(); });
+        };
+
+        data = [];
+        data1 = [];
+        data2 = [];
+        data3 = [];
+
+        $("#data").hide();
+
+        $("#data1 td").each(function () {
+            data1.push($(this).html());
+        });
+
+        $("#data2 td").each(function () {
+            data2.push($(this).html());
+        });
+
+        $("#data3 td").each(function () {
+            data3.push($(this).html());
+        });
+
+        data.push(data1);
+        data.push(data2);
+        data.push(data3);
+
+        var bchart = paper.barchart(10, 10, 300, 220, data).hover(fin, fout);
+        var text1 = paper.text(50, 230, "Max").attr({ fill: Raphael.g.colors[0] });
+        var text2 = paper.text(50, 240, "Avg").attr({ fill: Raphael.g.colors[1] });
+        var text3 = paper.text(50, 250, "Min").attr({ fill: Raphael.g.colors[2] });
+    };
+</script>
+<table id="data">
+    <tfoot>
+        <tr>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr id="data1">
+            <td>100</td>
+            <td>80</td>
+            <td>60</td>
+            <td>40</td>
+            <td>20</td>
+        </tr>
+        <tr id="data2">
+            <td>90</td>
+            <td>70</td>
+            <td>50</td>
+            <td>30</td>
+            <td>10</td>
+        </tr>
+        <tr id="data3">
+            <td>80</td>
+            <td>60</td>
+            <td>40</td>
+            <td>20</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>

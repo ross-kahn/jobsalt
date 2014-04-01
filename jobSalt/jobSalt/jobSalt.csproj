@@ -473,6 +473,12 @@
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Graphing\g.bar-min.js" />
+    <Content Include="Scripts\Graphing\g.dot-min.js" />
+    <Content Include="Scripts\Graphing\g.line-min.js" />
+    <Content Include="Scripts\Graphing\g.pie-min.js" />
+    <Content Include="Scripts\Graphing\g.raphael-min.js" />
+    <Content Include="Scripts\Graphing\raphael-min.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
