@@ -308,6 +308,7 @@
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
+    <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
     <Compile Include="Models\Filter\FilterBag.cs" />
     <Compile Include="Models\Filter\FilterUtility.cs" />
