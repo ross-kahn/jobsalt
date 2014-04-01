@@ -71,6 +71,7 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
                 {
                     Logging.JobSaltLogger.Instance.log("(Indeed) An exception occured when parsing Indeed JSON into iResult: " + e.Message);
                     Logging.JobSaltLogger.Instance.log("(Indeed) JSON: \n" + json);
+                    return new List<JobPost>();
                 }
             }
         }
