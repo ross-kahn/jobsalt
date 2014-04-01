@@ -28,14 +28,14 @@ namespace jobSalt.Models.Feature.Salary
         public SalaryShepard()
         {
             modules = new List<ISalaryModule>();
-            //modules.Add(new SalaryModule());
+            modules.Add(new RIT_Module.RITSalaryModule());
         }
         #endregion // Constructors
 
         #region Public Methods
-        public Dictionary<string, List<SalaryPost>> GetAlumni(FilterBag filters)
+        public List<SalaryPost> GetAlumni(FilterBag filters)
         {
-            Dictionary<string, List<SalaryPost>> salaries = new Dictionary<string, List<SalaryPost>>();
+            List<SalaryPost> salaries = new List<SalaryPost>();
 
             // Use a dictionary of module to bool so each module can mark when it's complete,
             // this is used incase of a timeout so it can be determined which module did not complete.
@@ -59,11 +59,11 @@ namespace jobSalt.Models.Feature.Salary
                     {
                         try
                         {
-                            Dictionary<string, List<SalaryPost>> partialJobs = module.GetSalaries(filters);
+                            SalaryPost salaryPartial = module.GetSalaries(filters);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
-                                salaries = salaries.Concat(partialJobs).ToDictionary(e => e.Key, e => e.Value);
+                                salaries.Add(salaryPartial);
                             }
                         }
                         catch (Exception e)
@@ -91,7 +91,7 @@ namespace jobSalt.Models.Feature.Salary
         /// </summary>
         /// <param name="salary">Unprocessed list of salaries</param>
         /// <returns>Processed list of salaries</returns>
-        Dictionary<string, List<SalaryPost>> PostProcessSalaries(Dictionary<string, List<SalaryPost>> salaries) 
+         List<SalaryPost> PostProcessSalaries(List<SalaryPost> salaries) 
         {
             return salaries;
         }

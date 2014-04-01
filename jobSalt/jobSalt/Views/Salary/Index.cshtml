@@ -1,5 +1,37 @@
-﻿@{
+﻿@model string
+
+@{
     ViewBag.Title = "Index";
 }
 
+@Scripts.Render("~/bundles/graphing")
+
 <h2>Index</h2>
+<div class="container">
+    <div class="row">
+        @Html.Partial("_FilterPartial")
+        <div id="graph"></div>
+    </div>
+</div>
+
+<div id="mvc_data" data-data="@Model"></div>
+
+<script>
+    window.onload = function () {
+        var paper = Raphael("graph", 400, 400);
+
+        fin = function () {
+            this.flag = paper.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+        };
+        fout = function () {
+            this.flag.animate({ opacity: 0 }, 300, function () { this.remove(); });
+        };
+
+        data = $('#mvc_data').data('data');
+
+        var bchart = paper.barchart(10, 10, 300, 220, data).hover(fin, fout);
+        var text1 = paper.text(50, 230, "Min").attr({ fill: Raphael.g.colors[0] });
+        var text2 = paper.text(50, 240, "Median").attr({ fill: Raphael.g.colors[1] });
+        var text3 = paper.text(50, 250, "Max").attr({ fill: Raphael.g.colors[2] });
+    };
+</script>
