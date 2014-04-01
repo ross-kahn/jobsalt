@@ -25,12 +25,26 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             try
             {
                 request = builder.buildQuery(filterbag, page, resultsPerPage);
+
+                if (String.IsNullOrEmpty(request))
+                {
+                    throw new ArgumentException("Indeed API request is empty or null");
+                }
+            }
+            catch (ArgumentException argex)
+            {
+
+            }
+            catch (NullReferenceException nullex)
+            {
+
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Exception caught while building Indeed Query: " + e.Message);
             }
 
+            
             IndeedResult iResult;
             using (var client = new WebClient())
             {
