@@ -285,6 +285,9 @@
     <Compile Include="Models\Feature\Alumni\School Module\GradPlacement.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature\Alumni\School Module\LinkedInData_.cs">
+      <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Feature\Alumni\School Module\Program.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>

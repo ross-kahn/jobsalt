@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SchoolAlumniDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SchoolAlumniDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="GradPlacements">
           <Key>
             <PropertyRef Name="id" />
@@ -54,6 +54,36 @@
           <Property Name="dateOfferReceived" Type="smalldatetime" />
           <Property Name="startDate" Type="smalldatetime" />
           <Property Name="numJobOffers" Type="int" />
+        </EntityType>
+        <EntityType Name="LinkedInData'">
+          <Key>
+            <PropertyRef Name="Advance ID" />
+          </Key>
+          <Property Name="Advance ID" Type="float" Nullable="false" />
+          <Property Name="First_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Middle_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Last_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="Zip_Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="255" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="255" />
+          <Property Name="E-Mail 1" Type="nvarchar" MaxLength="255" />
+          <Property Name="E-Mail 2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Match Type" Type="float" />
+          <Property Name="Employer" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer Industry" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer City" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer State" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer Zip" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employer Phone" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date" Type="nvarchar" MaxLength="255" />
+          <Property Name="F24" Type="nvarchar" MaxLength="255" />
+          <Property Name="F25" Type="nvarchar" MaxLength="255" />
+          <Property Name="UID" Type="char" MaxLength="9" />
         </EntityType>
         <EntityType Name="Programs">
           <Key>
@@ -175,6 +205,7 @@
         </Association>
         <EntityContainer Name="SchoolAlumniDBModelStoreContainer">
           <EntitySet Name="GradPlacements" EntityType="Self.GradPlacements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LinkedInData'" EntityType="Self.LinkedInData'" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_GradPlacements_Programs1" Association="Self.FK_GradPlacements_Programs1">
@@ -194,8 +225,7 @@
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SchoolAlumniDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -395,7 +425,38 @@
             <End Role="Programs" EntitySet="Programs" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
+          <EntitySet Name="LinkedInData_" EntityType="SchoolAlumniDBModel.LinkedInData_" />
         </EntityContainer>
+        <EntityType Name="LinkedInData_">
+          <Key>
+            <PropertyRef Name="Advance_ID" />
+          </Key>
+          <Property Name="Advance_ID" Type="Double" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Middle_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Last_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Zip_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="E_Mail_1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="E_Mail_2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Match_Type" Type="Double" />
+          <Property Name="Employer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_Industry" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_Zip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Employer_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="F24" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="F25" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UID" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -522,6 +583,37 @@
                 <ScalarProperty Name="CurrentAdvisorEmail" ColumnName="CurrentAdvisorEmail" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinkedInData_">
+            <EntityTypeMapping TypeName="SchoolAlumniDBModel.LinkedInData_">
+              <MappingFragment StoreEntitySet="LinkedInData'">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="F25" ColumnName="F25" />
+                <ScalarProperty Name="F24" ColumnName="F24" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Employer_Phone" ColumnName="Employer Phone" />
+                <ScalarProperty Name="Employer_Zip" ColumnName="Employer Zip" />
+                <ScalarProperty Name="Employer_State" ColumnName="Employer State" />
+                <ScalarProperty Name="Employer_City" ColumnName="Employer City" />
+                <ScalarProperty Name="Employer_Address" ColumnName="Employer Address" />
+                <ScalarProperty Name="Employer_Industry" ColumnName="Employer Industry" />
+                <ScalarProperty Name="Employer_Title" ColumnName="Employer Title" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="Match_Type" ColumnName="Match Type" />
+                <ScalarProperty Name="E_Mail_2" ColumnName="E-Mail 2" />
+                <ScalarProperty Name="E_Mail_1" ColumnName="E-Mail 1" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Zip_Code" ColumnName="Zip_Code" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Advance_ID" ColumnName="Advance ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

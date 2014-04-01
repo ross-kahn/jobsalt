@@ -48,12 +48,6 @@
             });
         });
 
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 25) {
-                loadJobs();
-            }
-        });
-
         function loadJobs() {
             if (page > -1 && !_inCallback) {
                 _inCallback = true;

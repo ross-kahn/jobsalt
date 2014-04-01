@@ -28,5 +28,6 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
         public virtual DbSet<GradPlacement> GradPlacements { get; set; }
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<LinkedInData_> LinkedInData_ { get; set; }
     }
 }
