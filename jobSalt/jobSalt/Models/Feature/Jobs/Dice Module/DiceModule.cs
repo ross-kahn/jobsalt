@@ -21,6 +21,8 @@ namespace jobSalt.Models.Feature.Jobs.Dice_Module
 				return source;
 				}
 			}
+		
+
 		private readonly DiceQueryBuilder builder;
 
 		public DiceModule()
@@ -28,15 +30,10 @@ namespace jobSalt.Models.Feature.Jobs.Dice_Module
 			builder = new DiceQueryBuilder( );
 			}
 
-		public List<JobPost> GetJobs ( Dictionary<Field , string> filters , int page , int resultsPerPage )
+		public List<JobPost> GetJobs ( FilterBag filters , int page , int resultsPerPage )
 			{
 			List<JobPost> jobsToReturn = new List<JobPost>( );
 			;
-			// Return empty list if no filters are specified
-			if ( filters.Count == 0 )
-				{
-				return new List<JobPost>( );
-				}
 
 			string request = builder.BuildQuery( filters , page , resultsPerPage );
 

@@ -76,7 +76,7 @@ namespace jobSalt.Models.Feature.Jobs.UAJobLink_Module
 			{
 			StringBuilder builder = new StringBuilder( );
 
-			builder.Append( "https://localhost:44300/api/SymplicityJobs/GetPage/?PageNum="+Page+"&ResultsPerPage="+ResultsPerPage );
+			builder.Append( "http://localhost:57215/api/SymplicityJobs/GetPage/?PageNum="+Page+"&ResultsPerPage="+ResultsPerPage );
 			String Location ="NONE";
 			String Keyword="NONE";
 			String JobTitle ="NONE";
