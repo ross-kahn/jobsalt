@@ -20,27 +20,60 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
         public List<JobPost> GetJobs(FilterBag filterbag, int page, int resultsPerPage)
         {
-            // TODO: Replace this with a Logger call
+            // Short circuit if there are no filters specified
+            if (filterbag.isEmpty())
+            {
+                return new List<JobPost>();
+            }
+
+            // Will try and build an Indeed API request from the given set of filters. Catches and logs any problems
             string request = "";
             try
             {
                 request = builder.buildQuery(filterbag, page, resultsPerPage);
+
+                if (String.IsNullOrEmpty(request)) { throw new ArgumentException(); }
             }
-            catch (Exception e)
+            catch (ArgumentException argex) // The built request is, for some reason, empty or null. Return empty results list
             {
-                Console.WriteLine(e.Message);
+                Logging.JobSaltLogger.Instance.log("(Indeed) Error in IndeedQueryBuilder caused API request string to be empty or null.");
+                Logging.JobSaltLogger.Instance.log(filterbag.ToString() + "\n Page=" + page + "\n resultsPerPage=" + resultsPerPage);
+                return new List<JobPost>();
+            }
+            catch (Exception e)         // An unknown exception was thrown; may not be fatal, so log it and continue
+            {
+                Logging.JobSaltLogger.Instance.log("(Indeed) Exception caught while building Indeed Query: " + e.Message);
+                Logging.JobSaltLogger.Instance.log(filterbag.ToString() + "\n Page=" + page + "\n resultsPerPage=" + resultsPerPage);
             }
 
-            IndeedResult iResult;
+            
+            IndeedResult iResult;   // Raw Indeed results
             using (var client = new WebClient())
             {
-                string json = client.DownloadString(request);
-                var serializer = new JavaScriptSerializer();
-                // TODO: Fetch the JSON from a remote URL
-                iResult = serializer.Deserialize<IndeedResult>(json);
-            }
+                string json = client.DownloadString(request);   // Issues a Get to the Indeed API with the request string
 
-            return IndeedResultToJobPosts(iResult);
+                try
+                {
+                    var serializer = new JavaScriptSerializer();
+                    iResult = serializer.Deserialize<IndeedResult>(json);   // Parses JSON result into C# Indeed data object
+
+                    if (null == iResult) { throw new ArgumentException();}
+
+                    return IndeedResultToJobPosts(iResult); // Parses C# Indeed data object into a list of JobPosts
+                }
+                catch (ArgumentException argex)    // iResult is null, which means something went very wrong. Return an empty job list
+                {
+                    Logging.JobSaltLogger.Instance.log("(Indeed) An error occured when parsing Indeed JSON into iResult, resulting in iResult being null: " + argex.Message);
+                    Logging.JobSaltLogger.Instance.log("(Indeed) JSON: \n" + json);
+                    return new List<JobPost>();
+                }
+                catch (Exception e)     // An unknown exception occured
+                {
+                    Logging.JobSaltLogger.Instance.log("(Indeed) An exception occured when parsing Indeed JSON into iResult: " + e.Message);
+                    Logging.JobSaltLogger.Instance.log("(Indeed) JSON: \n" + json);
+                    return new List<JobPost>();
+                }
+            }
         }
 
         private List<JobPost> IndeedResultToJobPosts(IndeedResult iResult)

@@ -26,14 +26,19 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			}
 		private readonly CareerBuilderQueryBuilder builder;
 
-		public CareerBuilderModule ( )
-			{
+		public CareerBuilderModule()
+		{
 			builder = new CareerBuilderQueryBuilder( );
-			}
+		}
 
 		public List<JobPost> GetJobs ( FilterBag filters , int page , int resultsPerPage )
 			{
 			List<JobPost> jobsToReturn = new List<JobPost>( );
+
+            if (filters.isEmpty())
+            {
+                return jobsToReturn;
+            }
 
 			string request = builder.BuildQuery( filters , page , resultsPerPage );
 

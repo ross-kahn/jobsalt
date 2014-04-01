@@ -97,6 +97,11 @@ namespace jobSalt.Models
             return filterList;
         }
 
+        public bool isEmpty()
+        {
+            return (GetFilters().Count == 0);
+        }
+
         public string GetFilterValue(Field target)
         {
             switch(target)
@@ -134,6 +139,18 @@ namespace jobSalt.Models
 
             json = json.Replace("\"", "'");
             return json;
+        }
+
+        public string ToString()
+        {
+            string toprint = "Filterbag: \n";
+            foreach (Field key in filters.Keys)
+            {
+                string value = GetFilterValue(key);
+                toprint += "\t" + key.ToString() + " : " + (null == value? "null" : value);
+            }
+
+            return toprint;
         }
 
         public Location Location 

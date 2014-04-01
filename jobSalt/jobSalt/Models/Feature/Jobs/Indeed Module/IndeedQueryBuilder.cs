@@ -24,12 +24,15 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             StringBuilder builder = new StringBuilder();
 
             // The required base for all requests
-            builder.Append(Constants.INDEED_REQUEST_BASE);
-            builder.Append("&start=" + page * resultsPerPage);
+            builder.Append(Constants.INDEED_REQUEST_BASE);      //TODO: This should come from configuration
+            builder.Append("&start=" + page * resultsPerPage);  
 
             builder.Append(keywordConverter(filterbag.Keyword, filterbag.JobTitle, filterbag.CompanyName));
             builder.Append(locationConverter(filterbag.Location));
-        
+
+           // string ip = HttpContext.Current.Request.UserHostAddress;
+            //string agent = HttpContext.Current.Request.Browser.Browser;
+
             // Required tags
             builder.Append(FORMAT_TAG);                                 // The result comes back in JSON format
             builder.Append(limitConverter(Constants.RESULT_LIMIT));     // The limit of # of results returned
@@ -47,17 +50,16 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             return "&format=json";
         }
 
-        // Indeed supports advanced search, which (depending on how you wanted the search criteria)
-        // would change how this string is formated for the request. For now, it's formatted in
-        // the default way, which is putting a logical "AND" on each of the search words
         /// <summary>
+        /// Indeed supports advanced search, which (depending on how you wanted the search criteria)
+        /// would change how this string is formated for the request. For now, it's formatted in
+        /// the default way, which is putting a logical "AND" on each of the search words
         /// Query. By default terms are ANDed. To see what is possible, use our
         /// advanced search page to perform a search and then check the url for 
         /// the q value. (http://www.indeed.com/advanced_search)
         /// </summary>
         /// <param name="queries"></param>
         /// <returns></returns>
-
         private string keywordConverter (string keyword = "", string jobTitle = "", string companyName = "")
         {
             // Return an empty string if none of the paramters have values
@@ -70,17 +72,17 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
             if (!String.IsNullOrWhiteSpace(keyword))
             {
-                query += keyword;
+                query += keyword.Replace(",", "");
             }
 
             if (!String.IsNullOrWhiteSpace(jobTitle))
             {
-                query += " title:" + jobTitle; 
+                query += " title:" + jobTitle.Replace(",", ""); 
             }
 
             if (!String.IsNullOrWhiteSpace(companyName))
             {
-                query += " company:" + companyName;
+                query += " company:" + companyName.Replace(",", "");
             }
 
             return query;
