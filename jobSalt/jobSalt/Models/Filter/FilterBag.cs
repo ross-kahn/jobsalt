@@ -141,6 +141,18 @@ namespace jobSalt.Models
             return json;
         }
 
+        public string ToString()
+        {
+            string toprint = "Filterbag: \n";
+            foreach (Field key in filters.Keys)
+            {
+                string value = GetFilterValue(key);
+                toprint += "\t" + key.ToString() + " : " + (null == value? "null" : value);
+            }
+
+            return toprint;
+        }
+
         public Location Location 
         {
             get { return filters.ContainsKey(Field.Location) ? (Location)Deserialize<Location>(filters[Field.Location]) : null; } 
