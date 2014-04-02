@@ -68,6 +68,9 @@
                     $.get("/Job/Index?page=" + page + "&filterString=" + fstr, function (data) {
                         if (data != '') {
                             $("#productList").append(data);
+                            $(".post-new").each(function (index) {
+                                $(this).show('slow');
+                            });
                         }
                         else {
                             page = -1;
