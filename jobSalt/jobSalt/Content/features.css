@@ -84,6 +84,7 @@
 
 .post h3 {
     margin-top: 0px;
+    color: #505050;
 }
 
 .post .alumni-company {
@@ -206,23 +207,10 @@
 
 .filters{
     padding-right: 0px;
+    margin-top: 10px;
 }
 
 @media (min-width: 768px){
-     #sidebar.affix-top {
-        position: static;
-        margin-top: 10px;
-        width: 162px;
-        font-size: 12px;
-    }
-
-    #sidebar.affix {
-        position: fixed;
-        top: 10px;
-        width: 162px;
-        font-size: 12px;
-    }
-
     .filter-text {
         font-size: 16px;
     }
@@ -234,18 +222,6 @@
 }
 
 @media (min-width: 1200px) {
-    #sidebar.affix-top {
-        position: static;
-        margin-top: 10px;
-        width: 196px;
-    }
-
-    #sidebar.affix {
-        position: fixed;
-        top: 10px;
-        width: 196px;
-    }
-
     .filter-text {
         font-size: 18px;
     }

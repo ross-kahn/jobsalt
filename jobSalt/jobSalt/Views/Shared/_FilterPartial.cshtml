@@ -7,7 +7,7 @@
 @using jobSalt.Models;
 
 <!-- Filter Buttons -->
-<div class="col-md-2 filters">
+<div class="col-md-3 filters">
     <div id="sidebar">
         @{var filters = FilterUtility.GetFilters(ViewBag.FilterString);}
         @foreach (jobSalt.Models.Filter filter in filters)
@@ -27,7 +27,9 @@
             }
         }
     </div>
-</div>
+    <a class="twitter-timeline" href="https://twitter.com/RITCareers" data-widget-id="398508119136804865">Tweets by @@RITCareers</a>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+ </div>
 
 <!-- Edit Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -54,14 +56,6 @@
 <!-- Add Modal -->
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebar').affix({
-            offset: {
-                top: 243
-            }
-        });
-    });
-
     function SaveAndCloseModal(event){
         //SubmitFilter is defined in the partial view _FilterEditPartial,
         //it changes based on the filter/input type
