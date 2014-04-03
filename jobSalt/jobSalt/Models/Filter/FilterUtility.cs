@@ -39,5 +39,42 @@ namespace jobSalt.Models
         {
             return filters.Find(filter => filter.TargetField == targetField) != null;
         }
+
+        public static List<Field> FiltersForFeature(Features feature)
+        {
+            List<Field> fields = new List<Field>();
+
+            switch (feature)
+            {
+                case Features.Jobs:
+                    fields.Add(Field.Keyword);
+                    fields.Add(Field.FieldOfStudy);
+                    fields.Add(Field.CompanyName);
+                    fields.Add(Field.JobTitle);
+                    fields.Add(Field.Location);
+                    fields.Add(Field.Source);
+                    break;
+                case Features.Alumni:
+                    fields.Add(Field.Keyword);
+                    fields.Add(Field.FieldOfStudy);
+                    fields.Add(Field.CompanyName);
+                    fields.Add(Field.Location);
+                    break;
+                case Features.Salary:
+                    fields.Add(Field.FieldOfStudy);
+                    fields.Add(Field.Location);
+                    break;
+                case Features.Housing:
+                    fields.Add(Field.Keyword);
+                    fields.Add(Field.FieldOfStudy);
+                    fields.Add(Field.CompanyName);
+                    fields.Add(Field.JobTitle);
+                    fields.Add(Field.Location);
+                    fields.Add(Field.Source);
+                    break;
+            }
+
+            return fields;
+        }
     }
 }
