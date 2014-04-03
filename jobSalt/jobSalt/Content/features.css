@@ -73,14 +73,17 @@
 }
 
 .post {
-    min-height: 20px;
     padding: 10px; 
     border-radius: 2px;
-    min-height: 107px;
+    min-height: 80px;
     background-color: white;
     color: #878787;
     -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.post h3 {
+    margin-top: 0px;
 }
 
 .post-details {
