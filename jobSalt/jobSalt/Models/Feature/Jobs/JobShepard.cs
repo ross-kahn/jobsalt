@@ -42,6 +42,11 @@ namespace jobSalt.Models.Feature.Jobs
         {
             List<JobPost> jobs = new List<JobPost>();
 
+            if (filters.isEmpty())
+            {
+                return jobs;
+            }
+
             // Use a dictionary of module to bool so each module can mark when it's complete,
             // this is used incase of a timeout so it can be determined which module did not complete.
             Dictionary<IJobModule, bool> moduleCompleted = new Dictionary<IJobModule, bool>();

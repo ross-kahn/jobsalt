@@ -38,6 +38,11 @@ namespace jobSalt.Models.Feature.Alumni
         {
             Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
 
+            if (filters.isEmpty())
+            {
+                return alumni;
+            }
+
             // Use a dictionary of module to bool so each module can mark when it's complete,
             // this is used incase of a timeout so it can be determined which module did not complete.
             Dictionary<IAlumniModule, bool> moduleCompleted = new Dictionary<IAlumniModule, bool>();

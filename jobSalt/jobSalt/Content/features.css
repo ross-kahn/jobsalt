@@ -1,7 +1,75 @@
 ﻿body {
     background-image: linear-gradient(top,#fafafa,#f5f5f5);
-    background: #f5f5f5;
+    background: #e5e5e5;
     font-family: arial,sans-serif;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    min-height: 44px;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fafafa),color-stop(1,#f5f5f5));
+    background: linear-gradient(top,#fafafa,#f5f5f5);
+}
+
+.navbar-nav li a {
+    color: rgb(159, 162, 166);
+    padding-left: 0px;
+}
+
+.navbar-nav {
+    margin-left: 0px;
+}
+
+.navbar-nav::before {
+    border: solid #e5e5e5;
+    border-width: 0 0 0 1px;
+    content: "";
+    float: left;
+    height: 32px;
+    margin: 15px;
+}
+
+.navbar-header h1 {
+    margin-top: 5px;
+    color: #808080;
+}
+
+.header {
+    padding: 10px;
+    height: 185px;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(http://www.google.com/landing/now/images/now_background.jpg);
+    background-origin: padding-box;
+    background-size: auto;
+    position: relative;
+}
+
+.header h1 {
+    color: rgb(235, 235, 235);
+    font-family: 'open sans', arial, sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 3px;
+    margin-top: 35px;
+    width: 100%;
+}
+
+.header-input {
+    width: 100%;
+    background-color: rgba(229, 229, 229, 0.498039);
+    position: absolute;
+    bottom:0px;
+    left: 0px;
+    padding-bottom:10px;
+}
+
+.header-input .input-group {
+    margin-top: 10px;
+    box-shadow: 2px 3px 1px rgba(0,0,0,.4);
+    border-radius: 4px;
 }
 
 .post {
@@ -13,10 +81,6 @@
     color: #878787;
     -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-}
-
-.post-new {
-    display: none;
 }
 
 .post-details {
@@ -92,6 +156,18 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
+#loading {
+    display:none;
+    height: 500px;
+}
+
+#loading img {
+    margin-top: 25px;
+    margin-left: 50%;
+    margin-right: 50%;
+    padding-bottom: 400px;
+}
+
 .filter-enabled {
     margin-bottom: 5px;
     border-radius: 2px;
@@ -124,7 +200,7 @@
 
     #sidebar.affix {
         position: fixed;
-        top: 60px;
+        top: 10px;
         width: 162px;
         font-size: 12px;
     }
@@ -148,7 +224,7 @@
 
     #sidebar.affix {
         position: fixed;
-        top: 60px;
+        top: 10px;
         width: 196px;
     }
 

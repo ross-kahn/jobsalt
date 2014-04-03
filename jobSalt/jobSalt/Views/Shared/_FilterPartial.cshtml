@@ -54,6 +54,14 @@
 <!-- Add Modal -->
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebar').affix({
+            offset: {
+                top: 243
+            }
+        });
+    });
+
     function SaveAndCloseModal(event){
         //SubmitFilter is defined in the partial view _FilterEditPartial,
         //it changes based on the filter/input type

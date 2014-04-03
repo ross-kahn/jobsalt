@@ -1,12 +1,32 @@
-﻿@model string
+﻿@using jobSalt.Models;
 
-@{
-    ViewBag.Title = "Index";
-}
+<div class="container-fluid header">
+    <h1>Salary Information</h1>
+    @using jobSalt.Models;
+    @using (Html.BeginForm("AssignFilter", "FilterUtility"))
+    {
+        <div class="header-input">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <div class="input-group">
+                            <input id="value" class="form-control" name="value" type="text" value="@ViewBag.FilterBag.FieldOfStudy">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+             
+        <input type="hidden" id="targetField" name="targetField" value="FieldOfStudy" />
+        <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />   
+    }
+</div>
 
 @Scripts.Render("~/bundles/graphing")
 
-<h2>Index</h2>
 <div class="container">
     <div class="row">
         @Html.Partial("_FilterPartial")

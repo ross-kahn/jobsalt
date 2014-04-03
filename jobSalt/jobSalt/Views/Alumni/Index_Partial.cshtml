@@ -7,8 +7,8 @@
     if (odd)
     {
         <div class="post-margin collapse col-lg-12 col-xs-12 @guid"></div>
-        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
-            <div class="post-details container-fluid">
+        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding-right:0px;">
+            <div class="post-details  container-fluid">
                 @foreach (AlumniPost alumni in @Model[company])
                 {
                     <div class="col-xs-6 col-lg-4">
@@ -27,14 +27,14 @@
         </div>
         <div class="post-margin collapse in col-lg-12 col-xs-12 @guid "></div>
     }
-    <div class="col-md-6 col-xs-12">
-        <div class="post" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+    <div class="col-md-6 col-xs-12" style="padding-right:0px">
+        <div class="post  post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
             <h3 class="ellipsis" style="padding-right:50px">@company</h3>
         </div>
     </div>
     if (!odd)
     {
-        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+        <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding-right:0px;">
             <div class="arrow-up"></div>
             <div class="post-details container-fluid">
                 @foreach (AlumniPost alumni in @Model[company])
