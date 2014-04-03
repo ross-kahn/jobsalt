@@ -10,6 +10,8 @@ namespace jobSalt.Models
 {
     public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, FieldOfStudy, Keyword, EducationCode };
 
+    public enum Features { Jobs, Alumni, Salary, Housing };
+
     /// <summary>
     /// A single data structure to hold all the
     /// filter information for a single request from a user.
