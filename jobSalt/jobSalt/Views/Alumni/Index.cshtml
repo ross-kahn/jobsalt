@@ -62,7 +62,6 @@
 
                 $.get("/Alumni/Index?page=" + page + "&filterString=" + fstr, function (data) {
                     if (data.trim() != '') {
-                        alert(data);
                         $("#productList").append(data);
                         $(".post-new").each(function (i) {
                             var $item = $(this);
