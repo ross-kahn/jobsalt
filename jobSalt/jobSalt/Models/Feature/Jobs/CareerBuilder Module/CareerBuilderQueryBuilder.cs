@@ -23,7 +23,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			StringBuilder builder = new StringBuilder( );
 
 			//add job search api and required dev key.
-			builder.Append( "http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WDHV0RV6Q60BJ3WD2H15&PerPage="+ResultsPerPage +"&PageNumber="+Page );
+			builder.Append( "http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WDHV0RV6Q60BJ3WD2H15&PerPage="+ResultsPerPage +"&PageNumber="+ (Page+1).ToString() );
 
             builder.Append(keywordConverter(filters.Keyword));
             builder.Append(locationConverter(filters.Location));
@@ -100,9 +100,29 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
             }
         }
 
-        private string locationConverter(Location location)
+        private string locationConverter(Location loc)
         {
-            return "";
+            if (null == loc)
+            {
+                return "";
+            }
+
+            string q = "&Location=";
+
+            if (!String.IsNullOrWhiteSpace(loc.ZipCode))
+            {
+                q += loc.ZipCode;
+            }
+            else if (!String.IsNullOrWhiteSpace(loc.City) && !String.IsNullOrWhiteSpace(loc.State))
+            {
+                q += loc.City + ", " + loc.State;
+            }
+            else
+            {
+                return "";
+            }
+
+            return q;
         }
 
 		}
