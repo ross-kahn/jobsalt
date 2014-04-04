@@ -76,5 +76,32 @@ namespace jobSalt.Models
 
             return fields;
         }
+
+        public static string FilterDisplayName(Field filter)
+        {
+            switch (filter)
+            {
+                case Field.CompanyName:
+                    return "Company";
+                case Field.Date:
+                    return "Date";
+                case Field.EducationCode:
+                    return "Education Code";
+                case Field.FieldOfStudy:
+                    return "Field of Study";
+                case Field.JobTitle:
+                    return "Job Title";
+                case Field.Keyword:
+                    return "Keyword";
+                case Field.Location:
+                    return "Location";
+                case Field.Salary:
+                    return "Salary";
+                case Field.Source:
+                    return "Source";
+                default:
+                    return filter.ToString();
+            }
+        }
     }
 }
