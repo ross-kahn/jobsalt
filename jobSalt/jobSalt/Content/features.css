@@ -20,15 +20,6 @@
     margin-left: 0px;
 }
 
-.navbar-nav::before {
-    border: solid #e5e5e5;
-    border-width: 0 0 0 1px;
-    content: "";
-    float: left;
-    height: 32px;
-    margin: 15px;
-}
-
 .navbar-header h1 {
     margin-top: 5px;
     color: #808080;
@@ -217,7 +208,22 @@
     color: #505050;
 }
 
+@media (max-width: 992px) {
+    .twitter-timeline {
+        display:none;
+    }
+}
+
 @media (min-width: 768px){
+    .navbar-nav::before {
+        border: solid #e5e5e5;
+        border-width: 0 0 0 1px;
+        content: "";
+        float: left;
+        height: 32px;
+        margin: 15px;
+    }
+
     .filter-text {
         font-size: 16px;
     }
@@ -237,4 +243,9 @@
         font-size: 12px;
         font-style: italic;
     }
+}
+
+.twitter-timeline {
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }

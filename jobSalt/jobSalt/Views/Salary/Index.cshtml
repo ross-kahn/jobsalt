@@ -31,12 +31,12 @@
 
 <div class="container">
     <div class="row">
-        @Html.Partial("_FilterPartial")
+        @Html.Partial("_FilterPartial", Features.Salary)
         <div class="col-md-3">
             <div class="textfill" style="width: 100%; height: 400px;">
                 <span>@((int)(Model[0].Average/1000))k<br />Average</span>
-            </div>
-        </div>
+    </div>
+</div>
         <div class="col-md-offset-1 col-md-3" >
             <div class="textfill" style="width: 100%; height: 400px;">
                 <span>@((int)(Model[0].Median/1000))k<br />Median</span>
