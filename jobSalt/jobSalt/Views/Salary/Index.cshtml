@@ -1,4 +1,6 @@
-﻿@using jobSalt.Models;
+﻿@model List<jobSalt.Models.Feature.Salary.SalaryPost>
+
+@using jobSalt.Models;
 
 <div class="container-fluid header">
     <h1>Salary Information</h1>
@@ -30,28 +32,27 @@
 <div class="container">
     <div class="row">
         @Html.Partial("_FilterPartial")
-        <div id="graph"></div>
+        <div class="col-md-3">
+            <div class="textfill" style="width: 100%; height: 400px;">
+                <span>@((int)(Model[0].Average/1000))k<br />Average</span>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-3" >
+            <div class="textfill" style="width: 100%; height: 400px;">
+                <span>@((int)(Model[0].Median/1000))k<br />Median</span>
+            </div>
+        </div>
     </div>
 </div>
 
 <div id="mvc_data" data-data="@Model"></div>
 
 <script>
-    window.onload = function () {
-        var paper = Raphael("graph", 400, 400);
+    $(document).ready( function () {
+        $('.textfill').textfill({maxFontPixels: -1});
+    });
 
-        fin = function () {
-            this.flag = paper.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
-        };
-        fout = function () {
-            this.flag.animate({ opacity: 0 }, 300, function () { this.remove(); });
-        };
-
-        data = $('#mvc_data').data('data');
-
-        var bchart = paper.barchart(10, 10, 300, 220, data).hover(fin, fout);
-        var text1 = paper.text(50, 230, "Min").attr({ fill: Raphael.g.colors[0] });
-        var text2 = paper.text(50, 240, "Median").attr({ fill: Raphael.g.colors[1] });
-        var text3 = paper.text(50, 250, "Max").attr({ fill: Raphael.g.colors[2] });
-    };
+    window.onresize = function () {
+        $('.textfill').textfill({ maxFontPixels: -1 });
+    }
 </script>

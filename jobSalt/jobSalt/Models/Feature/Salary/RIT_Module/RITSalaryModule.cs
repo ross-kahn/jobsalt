@@ -31,16 +31,15 @@ namespace jobSalt.Models.Feature.Salary.RIT_Module
 
             List<int> salaries;
             var salaryQuery = db.GradPlacements.Where(grad => grad.placementSalary != null 
-                                                      && grad.placementSalary > 0
+                                                      && grad.placementSalary > 1000
                                                       && programIDs.Contains(grad.Program.id));
             salaryQuery = salaryQuery.OrderBy(grad => grad.placementSalary);
             salaries = salaryQuery.Select(grad => (int)grad.placementSalary).ToList();
 
-            int min = salaries.First();
-            int max = salaries.Last();
             int median = salaries[(int)(salaries.Count / 2)];
+            int mean = (int)salaries.Average();
 
-            return new SalaryPost() { Min = min, Max = max, Median = median };
+            return new SalaryPost() { Source = "RIT", Average = mean, Median = median };
         }
     }
 }

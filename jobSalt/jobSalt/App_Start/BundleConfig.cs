@@ -24,7 +24,8 @@ namespace jobSalt
                         "~/Scripts/Graphing/g.pie-min.js",
                         "~/Scripts/Graphing/g.line-min.js",
                         "~/Scripts/Graphing/g.dot-min.js",
-                        "~/Scripts/Graphing/g.bar-min.js"));
+                        "~/Scripts/Graphing/g.bar-min.js",
+                        "~/Scripts/Graphing/jquery.textfill.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

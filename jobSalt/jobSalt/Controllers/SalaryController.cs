@@ -21,17 +21,9 @@ namespace jobSalt.Controllers
             ViewBag.FilterString = filters.JsonEncode();
             ViewBag.FilterBag = filters;
 
-            List<int> data = new List<int>();
-
             List<SalaryPost> salaries = shepard.GetAlumni(filters);
-            foreach(SalaryPost salaryPost in salaries)
-            {
-                data.Add(salaryPost.Min);
-                data.Add(salaryPost.Median);
-                data.Add(salaryPost.Max);
-            }
             
-            return View((object)System.Web.Helpers.Json.Encode(data));
+            return View(salaries);
         }
 
     }

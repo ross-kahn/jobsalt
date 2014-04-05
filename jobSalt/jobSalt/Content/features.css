@@ -210,6 +210,13 @@
     margin-top: 10px;
 }
 
+.textfill {
+    text-align: center;
+    padding: 20px;
+    margin-top: 25px;
+    color: #505050;
+}
+
 @media (min-width: 768px){
     .filter-text {
         font-size: 16px;

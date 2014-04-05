@@ -8,8 +8,10 @@ namespace jobSalt.Models.Feature.Salary
 {
     public class SalaryPost
     {
-        public int Min { get; set; }
-        public int Max { get; set; }
+        public string Source { get; set; }
+
         public int Median { get; set; }
+
+        public int Average { get; set; }
     }
 }
