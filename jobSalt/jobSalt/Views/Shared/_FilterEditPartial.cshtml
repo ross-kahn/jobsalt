@@ -6,7 +6,7 @@
 {
     case Field.Date:
         <div>
-            <input type="text" class="form-control" style="height:30px; width:200px" id="datePicker" onclick="event.stopPropagation()" />
+            <input type="text" class="form-control" id="datePicker" onclick="event.stopPropagation()" />
         </div>
         <script type="text/javascript">
             $('#datePicker').datepicker({
@@ -21,7 +21,7 @@
     case Field.Location:
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 
-        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" style="height:30px; width:200px" onclick="event.stopPropagation()"/>
+        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()"/>
         <input id="autocomplete-value" type="hidden" name="value" />
 
         <script type="text/javascript">
@@ -105,7 +105,7 @@
         </style>
         break;    
     default:
-        <input placeholder="@FilterUtility.FilterDisplayName(@Model)" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()">
+        <input placeholder="@FilterUtility.FilterDisplayName(@Model)" class="form-control col-lg-4" name="value" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()">
         break;
 
 }
