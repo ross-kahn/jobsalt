@@ -262,7 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -412,6 +411,8 @@
     <Content Include="Content\images\RIT_icon.png" />
     <Content Include="Content\images\UA_Block_A.png" />
     <Content Include="Content\images\linkedin_icon.jpg" />
+    <Content Include="Content\jasny-bootstrap.min.css" />
+    <Content Include="Content\offcanvas.css" />
     <Content Include="favicon.jpg" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
@@ -530,6 +531,7 @@
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
+    <Content Include="Scripts\jasny-bootstrap.min.js" />
     <Content Include="Views\Alumni\Index_Partial.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />

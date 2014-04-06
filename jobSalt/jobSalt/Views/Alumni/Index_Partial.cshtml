@@ -4,12 +4,12 @@
 @foreach(string company in @Model.Keys)
 {
     var guid = Guid.NewGuid().ToString();
-    <div class="col-md-12 col-xs-12" style="padding-right:0px; margin-top:10px">
+    <div class="col-md-12 col-xs-12" style="padding:0px; margin-top:10px">
         <div class="post  post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
             <h2 class="ellipsis alumni-company" style="padding-right:50px">@company</h2>
         </div>
     </div>
-    <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding-right:0px;">
+    <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding:0px;">
         <div class="arrow-up"></div>
         <div class="post-details container-fluid">
             @foreach (AlumniPost alumni in @Model[company])

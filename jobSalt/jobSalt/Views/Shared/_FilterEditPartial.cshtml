@@ -6,7 +6,7 @@
 {
     case Field.Date:
         <div>
-            <input type="text" class="form-control" style="height:30px; width:200px" id="datePicker" />
+            <input type="text" class="form-control" style="height:30px; width:200px" id="datePicker" onclick="event.stopPropagation()" />
         </div>
         <script type="text/javascript">
             $('#datePicker').datepicker({
@@ -21,8 +21,8 @@
     case Field.Location:
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 
-        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" style="height:30px; width:200px" />
-        <input id="@ViewBag.inputID" type="hidden" name="value" />
+        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" style="height:30px; width:200px" onclick="event.stopPropagation()"/>
+        <input id="autocomplete-value" type="hidden" name="value" />
 
         <script type="text/javascript">
             var autocomplete;
@@ -58,14 +58,14 @@
 
                                         parsedLocation = true;
 
-                                        $('#@ViewBag.inputID').val(JSON.stringify(location));
-                                        $('#@ViewBag.inputID').closest("form").submit();
+                                        $('#autocomplete-value').val(JSON.stringify(location));
+                                        $('#autocomplete-value').closest("form").submit();
                                     });
                                 } else {
                                     parsedLocation = true;
 
-                                    $('#@ViewBag.inputID').val(JSON.stringify(location));
-                                    $('#@ViewBag.inputID').closest("form").submit();
+                                    $('#autocomplete-value').val(JSON.stringify(location));
+                                    $('#autocomplete-value').closest("form").submit();
                                 }
                             }
                         } else {
@@ -105,7 +105,7 @@
         </style>
         break;    
     default:
-        <input id="@ViewBag.inputID" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)">
+        <input placeholder="@FilterUtility.FilterDisplayName(@Model)" class="form-control col-lg-4" name="value" style="height:30px; width:200px" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()">
         break;
 
 }

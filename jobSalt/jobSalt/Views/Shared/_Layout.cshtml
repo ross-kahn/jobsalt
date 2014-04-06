@@ -11,14 +11,16 @@
 
 
         @Styles.Render("~/Content/bootstrap.min.css")
-        @Styles.Render("~/Content/datetimepicker.css")
         @Styles.Render("~/Content/bootstrap-select.min.css")
+        @Styles.Render("~/Content/jasny-bootstrap.min.css")
+        @Styles.Render("~/Content/offcanvas.css")
         @Styles.Render("~/Content/features.css")
 
         @Scripts.Render("~/Scripts/bootstrap.min.js")
         @Scripts.Render("~/Scripts/bootstrap-datepicker.js")
         @Scripts.Render("~/Scripts/bootstrap-select.min.js")
-
+        @Scripts.Render("~/Scripts/jasny-bootstrap.min.js")
+          
 
         @RenderSection("scripts", required: false)
 
@@ -27,29 +29,39 @@
 
         </head>
         <body>
-            <div class="navbar navbar-inverse" role="navigation">
+            @{var filters = jobSalt.Models.FilterUtility.GetFilters(ViewBag.FilterString);}
+
+            <div class="navbar navbar-default" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button type="button" class="navbar-toggle pull-left" data-toggle="offcanvas" data-target=".navbar-offcanvas" data-canvas="body">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h1>jobSalt</h1>
+                        <h1 class="navbar-brand">jobSalt</h1>
+                        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".filters" data-canvas="body">
+                            Filters <span class="badge">@filters.Count</span>
+                        </button>
                     </div>
-                    <div class="collapse navbar-collapse">
+                    <div class="navbar-offcanvas offcanvas navmenu-fixed-left">
                         <ul class="nav navbar-nav">
                             <li><a href="/Job">Job Search</a></li>
+                            <li class="divider"></li>
                             <li><a href="/Alumni">Alumni Connections</a></li>
+                            <li class="divider"></li>
                             <li><a href="/Salary">Salary Information</a></li>
+                            <li class="divider"></li>
                             <li><a href="/Housing">Housing Reviews</a></li>
+                            <li class="divider"></li>
                             <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            <li class="divider"></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
             </div>
 
             @RenderBody()
-        </body>
+            </body>
     </html>

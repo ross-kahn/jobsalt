@@ -2,14 +2,14 @@
 @for (int i = 0; i < Model.Count(); i++)
 {
     var guid = Guid.NewGuid().ToString();
-    <div class="col-md-12 col-xs-12" style="padding-right:0px; margin-top: 10px">
+    <div class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
         <div class="post post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
             <h3 class="ellipsis">@Model[i].JobTitle</h3>
             <img width="50px" src="@Model[i].SourceModule.Icon" style="position:absolute; right:0; top:0" />            
             <h4 class="ellipsis" style="padding-right:50px">@Model[i].Company</h4>
         </div>
     </div>
-    <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding-right:0px;">
+    <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding:0px;">
         <div class="arrow-up"></div>
         <div class="post-details">
             <p>@Html.Raw(Model[i].Description)</p>
