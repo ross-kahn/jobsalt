@@ -112,14 +112,8 @@
     margin-top: 20px;
 }
 
-.post-details {
-    min-height: 20px;
-    padding: 10px;
-    border-radius: 2px;
-    background-color: white;
-    color: #878787;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+.post-details.in {
+    overflow:auto;
 }
 
 .post-margin {
@@ -234,6 +228,10 @@
     text-align:left;
 }
 
+.filter-form {
+    margin-top: 5px;
+}
+
 .textfill {
     text-align: center;
     padding: 20px;
@@ -270,6 +268,14 @@
 
     .pac-container {
         margin-left: 250px;
+    }
+
+    .post h3 {
+        font-size:20px;
+    }
+
+    .post h4 {
+        font-size: 16px;
     }
 }
 

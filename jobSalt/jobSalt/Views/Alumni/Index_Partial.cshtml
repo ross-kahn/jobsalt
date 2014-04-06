@@ -1,29 +1,25 @@
 ﻿@model Dictionary<string, List<jobSalt.Models.Feature.Alumni.AlumniPost>>
 @using jobSalt.Models.Feature.Alumni;
-@{var odd = true;}
 @foreach(string company in @Model.Keys)
 {
     var guid = Guid.NewGuid().ToString();
     <div class="col-md-12 col-xs-12" style="padding:0px; margin-top:10px">
-        <div class="post  post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+        <div class="post post-new" style="position:relative" data-toggle="collapse" data-target=".@guid">
             <h2 class="ellipsis alumni-company" style="padding-right:50px">@company</h2>
-        </div>
-    </div>
-    <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding:0px;">
-        <div class="arrow-up"></div>
-        <div class="post-details container-fluid">
-            @foreach (AlumniPost alumni in @Model[company])
-            {
-                <div class="col-xs-6 col-lg-4">
-                    <h4>@alumni.Name</h4>
-                    <b>Location:</b> @alumni.Location.City, @alumni.Location.State<br />
-                    <b>Major:</b> @alumni.FieldOfStudy<br />
-                    <b>Email:</b> @alumni.Email<br />
-                    <br />
+            <div class="post-details collapse @guid">
+                @foreach (AlumniPost alumni in @Model[company])
+                {
+                    <div class="col-xs-6 col-sm-4">
+                        <h4>@alumni.Name</h4>
+                        <b>Location:</b> @alumni.Location.City, @alumni.Location.State<br />
+                        <b>Major:</b> @alumni.FieldOfStudy<br />
+                        <b>Email:</b> @alumni.Email<br />
+                        <br />
+                    </div>
+                }
+                <div class="col-xs-12 col-lg-12">
+                    <a href="@Url.Action("JobsAtCompany", new { company = company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="event.stopPropagation();">View Jobs</a>
                 </div>
-            }
-            <div class="col-xs-12 col-lg-12">
-                <a href="@Url.Action("JobsAtCompany", new { company = company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">View Jobs</a>
             </div>
         </div>
     </div>

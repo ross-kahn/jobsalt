@@ -4,21 +4,20 @@
     var guid = Guid.NewGuid().ToString();
     <div class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
         <div class="post post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
-            <h3 class="ellipsis">@Model[i].JobTitle</h3>
+            <h3 class="ellipsis" style="padding-right:50px">@Model[i].JobTitle</h3>
             <img width="50px" src="@Model[i].SourceModule.Icon" style="position:absolute; right:0; top:0" />            
-            <h4 class="ellipsis" style="padding-right:50px">@Model[i].Company</h4>
+            <h4 class="ellipsis">@Model[i].Company</h4>
+            
+            <div class="post-details collapse @guid">
+                <p>@Html.Raw(Model[i].Description)</p>
+                <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <b>Source: @Model[i].SourceModule.Name</b><br />
+                <br />
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+                <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">View Alumni</a>
+            </div>
         </div>
     </div>
-    <div class="collapse col-lg-12 col-xs-12 @guid" data-toggle="collapse" data-parent="parentList" data-target=".@guid" style="padding:0px;">
-        <div class="arrow-up"></div>
-        <div class="post-details">
-            <p>@Html.Raw(Model[i].Description)</p>
-            <b>Location: @Model[i].Location.City, @Model[i].Location.State</b><br />
-            <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
-            <b>Source: @Model[i].SourceModule.Name</b><br />
-            <br />
-            <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
-            <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">View Alumni</a>
-        </div>
-    </div>
+    
 }
