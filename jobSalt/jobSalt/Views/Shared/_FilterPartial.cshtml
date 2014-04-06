@@ -17,7 +17,7 @@
             <span class="pull-left filter-text">@FilterUtility.FilterDisplayName(filter.TargetField)</span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon pull-right" style="color:#808080" onclick="RemoveFilter(this, event)"></span><br/>
             <div class="filter-subtitle pull-left ellipsis collapse in collapse-@(filter.TargetField)">@FilterUtility.GetFilterValue(filter.TargetField, ViewBag.FilterString)</div>
             <div class="collapse collapse-@(filter.TargetField)">
-                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="SubmitFilter(event)">
+                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="@(filter.TargetField)SubmitFilter(event)">
                     @Html.Action("GetFilterView", 
                             "FilterUtility",
                          new { targetField = filter.TargetField, filterString = ViewBag.FilterString })
@@ -32,7 +32,7 @@
             <div class="btn filter-disabled btn-lg col-xs-12" data-toggle="collapse" data-target=".collapse-@target">
                 <span class="pull-left filter-text">@FilterUtility.FilterDisplayName(target)</span><span data-value="@target" class="glyphicon glyphicon-plus icon pull-right" style="color:#808080"></span><br />
                 <div class="collapse collapse-@(target)">
-                    <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")">
+                    <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="@(target)SubmitFilter(event)">
                         @Html.Action("GetFilterView", 
                                 "FilterUtility",
                              new { targetField = target, filterString = ViewBag.FilterString })
