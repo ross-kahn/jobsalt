@@ -58,11 +58,30 @@
     height: 185px;
     background-attachment: scroll;
     background-clip: border-box;
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url(http://www.google.com/landing/now/images/now_background.jpg);
+    background-color: #533127;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#664136),color-stop(1,#533127));
+    background: linear-gradient(top,#664136,#533127);
     background-origin: padding-box;
     background-size: auto;
     position: relative;
+    overflow: hidden;
+}
+
+.university-logo {
+    width: 25%;
+    height: 115%;
+    top: 0px;
+    background-image: url(/Content/images/RIT-Logo.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.jobSalt-logo {
+    margin-top: 12px;
+    margin-right: 10px;
+    height: 35px;
+    display: inline;
 }
 
 .header h1 {

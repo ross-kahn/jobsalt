@@ -1,7 +1,9 @@
 ﻿@using jobSalt.Models;
 
 <div class="container-fluid header">
-    <h1>Alumni Connections</h1>
+    <div class="container">
+        <div class="university-logo pull-left"></div><h1>Alumni Connections</h1>
+    </div>
     @using jobSalt.Models;
     @using (Html.BeginForm("AssignFilter", "FilterUtility"))
     {
@@ -19,79 +21,79 @@
                 </div>
             </div>
         </div>
-                
+
         <input type="hidden" id="targetField" name="targetField" value="Keyword" />
         <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
     }
-</div>
-
-<div class="container">
-    <div class="row">
-        @Html.Partial("_FilterPartial", Features.Alumni)
-        <div class="col-md-9">
-            <div id="productList"></div>
-            <div class="row">
-                <div class="col-cs-12 col-sm-offset-3 col-sm-6">
-                    <h1 id="message"></h1>
-                </div>
-            </div>
-            <div id="loading"><p><img src="/Content/images/loading.gif"></p></div> 
-        </div>
-        
     </div>
-</div>
 
-@section Scripts
+    <div class="container">
+        <div class="row">
+            @Html.Partial("_FilterPartial", Features.Alumni)
+            <div class="col-md-9">
+                <div id="productList"></div>
+                <div class="row">
+                    <div class="col-cs-12 col-sm-offset-3 col-sm-6">
+                        <h1 id="message"></h1>
+                    </div>
+                </div>
+                <div id="loading"><p><img src="/Content/images/loading.gif"></p></div>
+            </div>
+
+        </div>
+    </div>
+
+    @section Scripts
     {
-    <script type="text/javascript">
-        var page = 0;
-        var _inCallback = false;
+        <script type="text/javascript">
+            var page = 0;
+            var _inCallback = false;
 
-        $(window).load(function () {
-            loadJobs();
-        });
+            $(window).load(function () {
+                loadJobs();
+            });
 
-        function loadJobs() {
-            if (page > -1 && !_inCallback) {
-                _inCallback = true;
+            function loadJobs() {
+                if (page > -1 && !_inCallback) {
+                    _inCallback = true;
 
-                $('div#loading').show();
-                var filterString = $("#filterString").val();
+                    $('div#loading').show();
+                    var filterString = $("#filterString").val();
 
-                var fstr = "@Html.Raw(ViewBag.FilterString)";
+                    var fstr = "@Html.Raw(ViewBag.FilterString)";
 
-                $.get("/Alumni/Index?page=" + page + "&filterString=" + fstr, function (data) {
-                    if (data.trim() != '') {
-                        $("#productList").append(data);
-                        $(".post-new").each(function (i) {
-                            var $item = $(this);
+                    $.get("/Alumni/Index?page=" + page + "&filterString=" + fstr, function (data) {
+                        if (data.trim() != '') {
+                            $("#productList").append(data);
+                            $(".post-new").each(function (i) {
+                                var $item = $(this);
 
-                            $item.animate({ top: "+=" + 1500 }, 0)
-                            // execute this function sometime later:
-                            setTimeout(function () {
-                                $item.animate({ top: "-=" + 1500 }, 400);
-                            }, 50 * i);
+                                $item.animate({ top: "+=" + 1500 }, 0)
+                                // execute this function sometime later:
+                                setTimeout(function () {
+                                    $item.animate({ top: "-=" + 1500 }, 400);
+                                }, 50 * i);
 
-                            $(this).removeClass("post-new");
-                        });
-                    }
-                    else {
-                        if (page == 1) {
-                            $("#message").empty();
-                            $("#message").append("No results found, try changing the filters");
-                        } 
-                        page = -1;
-                    }
+                                $(this).removeClass("post-new");
+                            });
+                        }
+                        else {
+                            if (page == 1) {
+                                $("#message").empty();
+                                $("#message").append("No results found, try changing the filters");
+                            }
+                            page = -1;
+                        }
 
-                    _inCallback = false;
-                    $('div#loading').hide();
-                });
-                page++;
+                        _inCallback = false;
+                        $('div#loading').hide();
+                    });
+                    page++;
+                }
             }
-        }
 
-        function StopPropagation(event) {
-            event.stopPropagation();
-        }
-    </script>
-}
+            function StopPropagation(event) {
+                event.stopPropagation();
+            }
+        </script>
+    }

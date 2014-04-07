@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>jobSalt</title>
-        <link href="~/favicon.jpg" rel="shortcut icon" type="image/x-icon" />
+        <link href="~/favicon.png" rel="shortcut icon" type="image/x-icon" />
         @if(Request.Browser.IsMobileDevice){
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         } else {
@@ -19,6 +19,7 @@
         @Styles.Render("~/Content/jasny-bootstrap.min.css")
         @Styles.Render("~/Content/offcanvas.css")
         @Styles.Render("~/Content/features.css")
+        @Styles.Render("~/Content/RIT-Theme.css")
 
         @Scripts.Render("~/Scripts/bootstrap.min.js")
         @Scripts.Render("~/Scripts/bootstrap-datepicker.js")
@@ -41,6 +42,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <img class="jobSalt-logo pull-left" src="/Content/images/jobSalt-Logo.png"/>
                         <h1 class="navbar-brand">jobSalt</h1>
                         <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".filters" data-canvas="body">
                             Filters <span class="badge">@filters.Count</span>

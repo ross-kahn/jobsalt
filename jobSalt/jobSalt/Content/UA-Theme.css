@@ -1,0 +1,8 @@
+﻿.university-logo {
+    background-image: url(/Content/images/RIT-Logo.png);
+}
+
+.header {
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#664136),color-stop(1,#533127));
+    background: linear-gradient(top,#664136,#533127);
+}

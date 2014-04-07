@@ -1,7 +1,10 @@
 ﻿@using jobSalt.Models;
 
 <div class="container-fluid header">
-    <h1>Job Search</h1>
+    <div class="container">
+        <div class="university-logo pull-left"></div><h1>Job Search</h1>
+    </div>
+    
     @using jobSalt.Models;
     @using (Html.BeginForm("AssignFilter", "FilterUtility"))
     {

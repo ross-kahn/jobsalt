@@ -3,7 +3,9 @@
 @using jobSalt.Models;
 
 <div class="container-fluid header">
-    <h1>Salary Information</h1>
+    <div class="container">
+        <div class="university-logo pull-left"></div><h1>Salary Information</h1>
+    </div>
     @using jobSalt.Models;
     @using (Html.BeginForm("AssignFilter", "FilterUtility"))
     {
@@ -21,38 +23,38 @@
                 </div>
             </div>
         </div>
-             
+
         <input type="hidden" id="targetField" name="targetField" value="FieldOfStudy" />
-        <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />   
+        <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
     }
-</div>
-
-@Scripts.Render("~/bundles/graphing")
-
-<div class="container">
-    <div class="row">
-        @Html.Partial("_FilterPartial", Features.Salary)
-        <div class="col-md-3">
-            <div class="textfill" style="width: 100%; height: 400px;">
-                <span>@((int)(Model[0].Average/1000))k<br />Average</span>
     </div>
-</div>
-        <div class="col-md-offset-1 col-md-3" >
-            <div class="textfill" style="width: 100%; height: 400px;">
-                <span>@((int)(Model[0].Median/1000))k<br />Median</span>
+
+    @Scripts.Render("~/bundles/graphing")
+
+    <div class="container">
+        <div class="row">
+            @Html.Partial("_FilterPartial", Features.Salary)
+            <div class="col-md-3">
+                <div class="textfill" style="width: 100%; height: 400px;">
+                    <span>@((int)(Model[0].Average / 1000))k<br />Average</span>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <div class="textfill" style="width: 100%; height: 400px;">
+                    <span>@((int)(Model[0].Median / 1000))k<br />Median</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div id="mvc_data" data-data="@Model"></div>
+    <div id="mvc_data" data-data="@Model"></div>
 
-<script>
-    $(document).ready( function () {
-        $('.textfill').textfill({maxFontPixels: -1});
-    });
+    <script>
+        $(document).ready(function () {
+            $('.textfill').textfill({ maxFontPixels: -1 });
+        });
 
-    window.onresize = function () {
-        $('.textfill').textfill({ maxFontPixels: -1 });
-    }
-</script>
+        window.onresize = function () {
+            $('.textfill').textfill({ maxFontPixels: -1 });
+        }
+    </script>
