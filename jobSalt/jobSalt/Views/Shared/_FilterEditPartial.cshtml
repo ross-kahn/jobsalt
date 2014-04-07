@@ -101,6 +101,10 @@
 
                 return location;
             }
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                $('#autocomplete-value').closest("form").submit();
+            });
         </script>
         <style type="text/css">
             .pac-container {
