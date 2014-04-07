@@ -76,12 +76,13 @@
                             $(".post-new").each(function (i) {
                                 var $item = $(this);
 
-                                $item.animate({ top: "+=" + 1500 }, 0)
-                                // execute this function sometime later:
-                                setTimeout(function () {
-                                    $item.animate({ top: "-=" + 1500 }, 400);
-                                }, 50 * i);
-
+                                if (i < 13) {
+                                    $item.animate({ top: "+=" + 1500 }, 0)
+                                    // execute this function sometime later:
+                                    setTimeout(function () {
+                                        $item.animate({ top: "-=" + 1500 }, 400);
+                                    }, 50 * i);
+                                }
                                 $(this).removeClass("post-new");
                             });
                         }

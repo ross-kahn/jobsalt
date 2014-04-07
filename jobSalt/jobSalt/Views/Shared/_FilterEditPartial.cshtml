@@ -20,8 +20,12 @@
         break;
     case Field.Location:
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-
-        <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()"/>
+        <div class="input-group">
+            <input id="autocomplete" placeholder="Search City, State, or Zip" type="text" class="form-control col-lg-4 focusable" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()" />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
+            </span>
+        </div>
         <input id="autocomplete-value" type="hidden" name="value" />
 
         <script type="text/javascript">
@@ -105,7 +109,12 @@
         </style>
         break;    
     default:
-        <input placeholder="@FilterUtility.FilterDisplayName(@Model)" class="form-control col-lg-4" name="value" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()">
+        <div class="input-group">
+            <input placeholder="@FilterUtility.FilterDisplayName(@Model)" class="form-control col-lg-4 focusable" name="value" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()">
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
+            </span>
+        </div>
         break;
 
 }

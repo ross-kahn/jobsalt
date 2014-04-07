@@ -5,7 +5,7 @@
         <title>jobSalt</title>
         <link href="~/favicon.png" rel="shortcut icon" type="image/x-icon" />
         @if(Request.Browser.IsMobileDevice){
-            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+            <meta name="viewport" content="width=640, user-scalable=no">
         } else {
             <meta name="viewport" content="width=768">
         }
@@ -42,12 +42,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <img class="jobSalt-logo pull-left" src="/Content/images/jobSalt-Logo.png"/>
-                        <h1 class="navbar-brand">jobSalt</h1>
-                        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".filters" data-canvas="body">
-                            Filters <span class="badge">@filters.Count</span>
-                        </button>
-                    </div>
+                        <a href="/Job">
+                            <img class="jobSalt-logo pull-left" src="/Content/images/jobSalt-Logo.png" />
+                            <h1 class="navbar-brand">jobSalt</h1>
+                        </a>
+                            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".filters" data-canvas="body">
+                                Filters <span class="badge">@filters.Count</span>
+                            </button>
+</div>
                     <div class="navbar-offcanvas offcanvas navmenu-fixed-left">
                         <ul class="nav navbar-nav">
                             <li><a href="/Job">Job Search</a></li>
