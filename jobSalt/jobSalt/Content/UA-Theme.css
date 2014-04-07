@@ -1,8 +1,10 @@
 ﻿.university-logo {
-    background-image: url(/Content/images/RIT-Logo.png);
+    height: 95%;
+    margin-top: 10px;
+    background-image: url(/Content/images/UA-Logo.png);
 }
 
 .header {
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#664136),color-stop(1,#533127));
-    background: linear-gradient(top,#664136,#533127);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#b61234),color-stop(1,#890d27));
+    background: linear-gradient(top,#b61234,#890d27);
 }

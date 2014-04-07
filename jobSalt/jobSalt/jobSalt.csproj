@@ -411,10 +411,13 @@
     <Content Include="Content\images\jobSalt-Logo.png" />
     <Content Include="Content\images\RIT-Logo.png" />
     <Content Include="Content\images\RIT_icon.png" />
+    <Content Include="Content\images\UA-Logo.png" />
     <Content Include="Content\images\UA_Block_A.png" />
     <Content Include="Content\images\linkedin_icon.jpg" />
     <Content Include="Content\jasny-bootstrap.min.css" />
     <Content Include="Content\offcanvas.css" />
+    <Content Include="Content\UA-Theme.css" />
+    <Content Include="Content\RIT-Theme.css" />
     <Content Include="favicon.png" />
     <Content Include="Images\glyphicons-halflings-white.png" />
     <Content Include="Images\glyphicons-halflings.png" />
