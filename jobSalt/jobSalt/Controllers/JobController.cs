@@ -1,4 +1,5 @@
 ﻿using jobSalt.Models;
+using jobSalt.Models.Config;
 using jobSalt.Models.Feature.Jobs;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,6 @@ namespace jobSalt.Controllers
 
         public ActionResult Index(string filterString, int page = 0, int resultsPerPage = 10)
         {
-            if (Session["LoggedIntoLinkedIn"] == null)
-            {
-                Session["LoggedIntoLinkedIn"] = true;
-            }
-
             FilterBag filters = FilterBag.createFromURLQuery(Request.QueryString.ToString());
 
             ViewBag.FilterString = filters.JsonEncode();
