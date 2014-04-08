@@ -21,12 +21,11 @@ namespace jobSalt.Controllers
 
         public AccountController()
         {
-            Dictionary<string, string[]> authConfig = ConfigLoader.LoadConfig("AuthConfig.xml");
+            AuthenticationConfig config = ConfigLoader.AuthenticationConfig;
             //modules.Add(new ShibbolethAuthModule("JobSALT", "shibboleth.massivedynamic.net", "AD", "<UnKnown>"));
-            //modules.Add(new LDAPAuthModule("maindca.main.ad.rit.edu", "RIT_MAIN"));
-            foreach(string module in authConfig["Auth.LDAP"])
+            foreach(var ldapServer in config.LDAPServers)
             {
-                modules.Add(new LDAPAuthModule(module.Split(',')[1], module.Split(',')[0]));
+                modules.Add(new LDAPAuthModule(ldapServer.DomainController, ldapServer.Name));
             }
         }
 

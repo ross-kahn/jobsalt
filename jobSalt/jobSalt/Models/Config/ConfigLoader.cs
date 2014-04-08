@@ -54,42 +54,15 @@ namespace jobSalt.Models.Config
                 SaveConfig<SiteConfig>(value, "SiteConfig.xml");
             }
         }
-
-        public static Dictionary<string, string[]> LoadConfig(string configFileName)
+        public static AuthenticationConfig AuthenticationConfig
         {
-            string path = Path.GetFullPath(System.Web.HttpContext.Current.Server.MapPath("/") + "Models\\Config\\" + configFileName);
-
-            if (!path.StartsWith(System.Web.HttpContext.Current.Server.MapPath("/") + "Models\\Config\\"))
-                return null;
-
-            XmlDocument xml = new XmlDocument();
-            xml.Load(path);
-
-            Dictionary<string, List<string>> rawConfig = new Dictionary<string, List<string>>();
-            Dictionary<string, string[]> config = new Dictionary<string, string[]>();
-
-            loadChildNodes(xml.LastChild, "", rawConfig);
-
-            foreach (string key in rawConfig.Keys)
+            get
             {
-                config[key.Trim('.')] = rawConfig[key].ToArray();
+                return OpenConfig<AuthenticationConfig>("Authentication.xml");
             }
-
-            return config;
-        }
-
-        private static void loadChildNodes(XmlNode node, string prefix, Dictionary<string, List<string>> dict)
-        {
-            foreach(XmlNode childNode in node)
+            set
             {
-                if(childNode.HasChildNodes)
-                {
-                    loadChildNodes(childNode, prefix + "." + node.Name, dict);
-                    continue;
-                }
-                if (!dict.ContainsKey(prefix + "." + node.Name))
-                    dict[prefix + "." + node.Name] = new List<string>();
-                dict[prefix + "." + node.Name].Add(node.InnerText);
+                SaveConfig<AuthenticationConfig>(value, "Authentication.xml");
             }
         }
     }
