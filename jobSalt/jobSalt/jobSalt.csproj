@@ -398,6 +398,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\UserData.sdf" />
+    <Content Include="Configurations\Authentication.xml" />
     <Content Include="Configurations\SiteConfig.xml" />
     <Content Include="Content\body.css" />
     <Content Include="Content\bootstrap-mvc-validation.css" />
@@ -485,7 +486,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\example_json_linkedin.txt" />
-    <Content Include="Models\Config\AuthConfig.xml" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
