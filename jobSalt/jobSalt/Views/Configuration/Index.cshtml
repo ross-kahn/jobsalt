@@ -10,8 +10,26 @@
 <div class="container">
     @using (Html.BeginForm("SaveConfig", "Configuration"))
     {
-        @Html.EditorForModel()
-        <input type="submit" value="submit" />
+        <div class="row" style="margin-top: 25px; margin-bottom:25px">
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>University Specific CSS</h3>@Html.TextBoxFor(model => model.UniversityThemeCSSFile, new { @class = "form-control" })
+                    
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>Enable/Disable Features</h3>
+                    <table>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Alumni: </h4></td><td>@Html.CheckBoxFor(model => model.AlumniEnabled)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Salary: </h4></td><td>@Html.CheckBoxFor(model => model.SalaryEnabled)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Housing: </h4></td><td>@Html.CheckBoxFor(model => model.HousingEnabled)</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <input class="col-xs-offset-4 col-xs-4" type="submit" value="Save Changes" />
     }
 </div>
 
