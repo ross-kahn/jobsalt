@@ -271,6 +271,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
     <Compile Include="Models\Auth\AccountModels.cs" />
     <Compile Include="Models\Auth\AuthModule.cs" />
@@ -540,6 +541,7 @@
     <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
     <Content Include="Views\Alumni\Index_Partial.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
