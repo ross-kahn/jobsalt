@@ -8,3 +8,13 @@
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#b61234),color-stop(1,#890d27));
     background: linear-gradient(top,#b61234,#890d27);
 }
+
+.filter-enabled {
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#003366),color-stop(1,#183c60));
+    background: linear-gradient(top,#003366,#183c60);
+}
+
+.filter-disabled {
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#004890),color-stop(1,#24588d));
+    background: linear-gradient(top,#004890,#24588d);
+}
