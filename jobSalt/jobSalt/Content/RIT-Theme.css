@@ -6,3 +6,14 @@
     background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#664136),color-stop(1,#533127));
     background: linear-gradient(top,#664136,#533127);
 }
+
+.filter-enabled {
+    
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#f18000),color-stop(1,#ef9835));
+    background: linear-gradient(top,#f18000,#ef9835);
+}
+
+.filter-disabled {
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#E9A75C),color-stop(1,#EAA049));
+    background: linear-gradient(top,#E9A75C,#EAA049);
+}
