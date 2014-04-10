@@ -10,7 +10,7 @@ using System.Web;
 namespace jobSalt.Models.Feature.Housing
 {
     public class HousingShepard : IHousingModule
-        {
+    {
         #region Properties
         public int NumberOfModules
         {
@@ -78,16 +78,21 @@ namespace jobSalt.Models.Feature.Housing
                             // The module failed. Not a system failure but the user should be notified
                             // we need to create a mechanism to actually notify them and call it here
                         }
-                        
+
                     }
                 );
             }
-            catch(OperationCanceledException)
+            catch (OperationCanceledException)
             {
                 // This is where we should notify the user that a source timed out
                 // The source can be determined by looking at the dictionary moduleCompleted
             }
             return PostProcessAlumni(houses);
+        }
+
+        public Data_Types.Source Source
+        {
+            get { throw new NotImplementedException(); }
         }
         #endregion // Public Methods
 
@@ -97,11 +102,10 @@ namespace jobSalt.Models.Feature.Housing
         /// </summary>
         /// <param name="alumni">Unprocessed list of jobs</param>
         /// <returns>Processed list of alumni</returns>
-        Dictionary<string, List<HousingPost>> PostProcessAlumni(Dictionary<string, List<HousingPost>> houses) 
+        Dictionary<string, List<HousingPost>> PostProcessAlumni(Dictionary<string, List<HousingPost>> houses)
         {
             return houses;
         }
         #endregion // Private Methods
-
     }
 }
