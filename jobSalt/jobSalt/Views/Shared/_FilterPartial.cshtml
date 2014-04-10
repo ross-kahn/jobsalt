@@ -67,4 +67,10 @@
             $(this).find('.focusable').focus();
         })
     });
+
+    function RemoveFilter(caller, event) {
+        var fstr = "@Html.Raw(ViewBag.FilterString)";
+        window.location = "/FilterUtility/RemoveFilter?targetField=" + $(caller).data('value') + "&filterString=" + fstr;
+        event.stopPropagation();
+    }
 </script>

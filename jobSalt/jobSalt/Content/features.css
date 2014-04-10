@@ -117,8 +117,8 @@
     min-height: 80px;
     background-color: white;
     color: #878787;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .post h3 {
@@ -164,8 +164,8 @@
     transform: rotate(45deg); /* Prefixes... */
     bottom: 12px;
     left: 25px;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .arrow-up {
@@ -186,8 +186,8 @@
     transform: rotate(45deg); /* Prefixes... */
     top: 12px;
     left: 25px;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 #message {
@@ -204,8 +204,8 @@
     border-radius: 2px;
     background-color: white;
     color: #878787;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 #loading {
@@ -225,8 +225,8 @@
     border-radius: 2px;
     background-color: #428bca;
     color: white;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .filter-disabled {
@@ -234,8 +234,8 @@
     border-radius: 2px;
     background-color: #7cb6e6;
     color: white;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .filters{
@@ -342,6 +342,6 @@
 }
 
 .twitter-timeline {
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
