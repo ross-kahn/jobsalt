@@ -27,6 +27,16 @@
                     </table>
                 </div>
             </div>
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>Twitter</h3><br />
+                    <table>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Enabled: </h4></td><td>@Html.CheckBoxFor(model => model.TwitterFeedEnabled)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Twitter User: </h4></td><td>@Html.TextBoxFor(model => model.TwitterUser)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Twitter Widget ID: </h4></td><td>@Html.TextBoxFor(model => model.TwitterWidgetID)</td></tr>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <input class="col-xs-offset-4 col-xs-4" type="submit" value="Save Changes" />

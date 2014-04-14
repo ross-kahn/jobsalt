@@ -23,7 +23,10 @@
         @Styles.Render("~/Content/bootstrap-select.min.css")
         @Styles.Render("~/Content/jasny-bootstrap.min.css")
         @Styles.Render("~/Content/features.css")
-        @Styles.Render("~/Content/" + config.UniversityThemeCSSFile)
+        @if(!String.IsNullOrEmpty(config.UniversityThemeCSSFile))
+        {
+            @Styles.Render("~/Content/" + config.UniversityThemeCSSFile)
+        }
 
         @Scripts.Render("~/Scripts/bootstrap.min.js")
         @Scripts.Render("~/Scripts/bootstrap-datepicker.js")

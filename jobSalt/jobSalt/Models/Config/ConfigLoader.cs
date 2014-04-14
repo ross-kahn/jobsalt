@@ -11,18 +11,23 @@ namespace jobSalt.Models.Config
 {
     public class ConfigLoader
     {
+        public static object write_lock = new object();
+
         public static void SaveConfig<Type>(Type configObject, string configName)
         {
-            string path = Path.GetFullPath(System.Web.HttpContext.Current.Server.MapPath("/") + "Configurations\\" + configName);
+            lock (write_lock)
+            {
+                string path = Path.GetFullPath(System.Web.HttpContext.Current.Server.MapPath("/") + "Configurations\\" + configName);
 
-            if (!path.StartsWith(System.Web.HttpContext.Current.Server.MapPath("/") + "Configurations\\"))
-                return;
+                if (!path.StartsWith(System.Web.HttpContext.Current.Server.MapPath("/") + "Configurations\\"))
+                    return;
 
-            StreamWriter stream = new StreamWriter(path);
+                StreamWriter stream = new StreamWriter(path);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Type));
-            serializer.Serialize(stream, configObject);
-            stream.Close();
+                XmlSerializer serializer = new XmlSerializer(typeof(Type));
+                serializer.Serialize(stream, configObject);
+                stream.Close();
+            }
         }
 
         public static Type OpenConfig<Type>(string configName)
