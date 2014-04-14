@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SiteConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <UniversityThemeCSSFile>UA-Theme.css</UniversityThemeCSSFile>
+  <UniversityThemeCSSFile>Rit-Theme.css</UniversityThemeCSSFile>
   <AlumniEnabled>true</AlumniEnabled>
   <SalaryEnabled>true</SalaryEnabled>
   <HousingEnabled>true</HousingEnabled>
   <TwitterFeedEnabled>true</TwitterFeedEnabled>
-  <TwitterUser>uacareersvcs</TwitterUser>
-  <TwitterWidgetID>455165976888086528</TwitterWidgetID>
+  <TwitterUser>RITCareers</TwitterUser>
+  <TwitterWidgetID>398508119136804865</TwitterWidgetID>
 </SiteConfig>

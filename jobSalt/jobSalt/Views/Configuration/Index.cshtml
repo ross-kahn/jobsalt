@@ -32,8 +32,8 @@
                     <h3>Twitter</h3><br />
                     <table>
                         <tr><td><h4 style="margin: 0 10px 0 0;">Enabled: </h4></td><td>@Html.CheckBoxFor(model => model.TwitterFeedEnabled)</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Twitter User: </h4></td><td>@Html.TextBoxFor(model => model.TwitterUser)</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0; ">Twitter Widget ID: </h4></td><td>@Html.TextBoxFor(model => model.TwitterWidgetID)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Twitter User: </h4></td><td>@Html.TextBoxFor(model => model.TwitterUser, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Twitter Widget ID: </h4></td><td>@Html.TextBoxFor(model => model.TwitterWidgetID, new { @class = "form-control" })</td></tr>
                     </table>
                 </div>
             </div>
