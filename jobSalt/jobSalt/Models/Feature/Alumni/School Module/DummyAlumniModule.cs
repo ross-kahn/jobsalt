@@ -11,24 +11,35 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
         public Dictionary<string, List<AlumniPost>> GetAlumni(FilterBag filters)
         {
             Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
-            alumni.Add("Microsoft", new List<AlumniPost>());
-            alumni.Add("Google", new List<AlumniPost>());
-            alumni.Add("Indeed", new List<AlumniPost>());
-            alumni.Add("Fisher Price", new List<AlumniPost>());
-            alumni.Add("Engadget", new List<AlumniPost>());
-
-            foreach(var key in alumni.Keys)
+            alumni.Add("Microsoft", new List<AlumniPost>()
             {
-                alumni[key].Add(new AlumniPost()
-                {
-                    Company = "blah",
-                    Location = new Location("14623","NY","Rochester"),
-                    FieldOfStudy = "Fishing",
-                    Name = "Jim Bondi",
-                    PhoneNumber = "5558675309",
-                    Email = "jtboce@rit.edu"
-                });
-            }
+                new AlumniPost(){
+                    Email="ValidEmail@UA.edu",
+                    FieldOfStudy="Software Engineering",
+                    Location=new Location(){State="WA", City="Bellevue"},
+                    Name="Colton Presler"
+                },
+                new AlumniPost(){
+                    Email="ValidEmail@UA.edu",
+                    FieldOfStudy="Software Engineering",
+                    Location=new Location(){State="WA", City="Bellevue"},
+                    Name="Chris Rosen"
+                },
+                new AlumniPost(){
+                    Email="ValidEmail@UA.edu",
+                    FieldOfStudy="Software Engineering",
+                    Location=new Location(){State="WA", City="Bellevue"},
+                    Name="David Lamont"
+                },
+                new AlumniPost(){
+                    Email="ValidEmail@UA.edu",
+                    FieldOfStudy="Computer Science",
+                    Location=new Location(){State="WA", City="Bellevue"},
+                    Name="Dan Corrigan"
+                }
+            });
+            alumni.Add("Microsoft Game Studios", new List<AlumniPost>());
+
             return alumni;
         }
 
