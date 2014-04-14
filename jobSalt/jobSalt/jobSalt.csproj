@@ -397,6 +397,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\HousingData.mdf" />
+    <Content Include="App_Data\HousingData_log.ldf">
+      <DependentUpon>HousingData.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\UserData.sdf" />
     <Content Include="Content\body.css" />
     <Content Include="Content\bootstrap-mvc-validation.css" />
