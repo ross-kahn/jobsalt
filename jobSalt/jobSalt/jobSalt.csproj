@@ -312,6 +312,7 @@
     <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature\Housing\HousingShepard.cs" />
     <Compile Include="Models\Feature\Housing\IHousingModule.cs" />
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
