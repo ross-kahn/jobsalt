@@ -25,7 +25,7 @@ namespace jobSalt.Controllers
             //modules.Add(new ShibbolethAuthModule("JobSALT", "shibboleth.massivedynamic.net", "AD", "<UnKnown>"));
             foreach(var ldapServer in config.LDAPServers)
             {
-                modules.Add(new LDAPAuthModule(ldapServer.DomainController, ldapServer.Name));
+                modules.Add(new LDAPAuthModule(ldapServer.DomainController, ldapServer.Name, ldapServer.AdminGroup));
             }
         }
 

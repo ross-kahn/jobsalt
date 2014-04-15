@@ -4,6 +4,7 @@
     <LDAPServer>
       <Name>RIT_MAIN</Name>
       <DomainController>maindca.main.ad.rit.edu</DomainController>
+      <AdminGroup></AdminGroup>
     </LDAPServer>
   </LDAPServers>
 </AuthenticationConfig>
