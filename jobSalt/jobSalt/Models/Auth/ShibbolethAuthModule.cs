@@ -37,5 +37,10 @@ namespace jobSalt.Models.Auth
 
             return true;
         }
+
+        public override bool IsAdmin(string _username)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
