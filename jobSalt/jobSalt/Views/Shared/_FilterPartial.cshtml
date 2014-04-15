@@ -12,37 +12,41 @@
 <div class="col-xs-6 col-sm-3 filters offcanvas-xs">
     @{var filters = FilterUtility.GetFilters(ViewBag.FilterString);}
     @foreach (jobSalt.Models.Filter filter in filters)
-    {
-        <div class="btn filter-btn filter-enabled btn-lg col-xs-12" data-toggle="collapse" data-target=".collapse-@filter.TargetField">
-            <span class="pull-left filter-text">@FilterUtility.FilterDisplayName(filter.TargetField)</span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon pull-right" style="color:#808080" onclick="RemoveFilter(this, event)"></span><br/>
-            <div class="filter-subtitle pull-left ellipsis collapse in collapse-@(filter.TargetField)">@FilterUtility.GetFilterValue(filter.TargetField, ViewBag.FilterString)</div>
-            <div class="filter-form collapse collapse-@(filter.TargetField)">
-                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="@(filter.TargetField)SubmitFilter(event)">
-                    @Html.Action("GetFilterView", 
+{
+    <div class="btn filter-btn filter-enabled btn-lg col-xs-12" data-toggle="collapse" data-target=".collapse-@filter.TargetField" href=".collapse-@filter.TargetField">
+        <span class="pull-left filter-text">@FilterUtility.FilterDisplayName(filter.TargetField)</span><span data-value="@filter.TargetField" class="glyphicon glyphicon-remove icon pull-right" style="color:#808080" onclick="RemoveFilter(this, event)"></span><br />
+        <div class="filter-subtitle pull-left ellipsis collapse in collapse-@(filter.TargetField)">@FilterUtility.GetFilterValue(filter.TargetField, ViewBag.FilterString)</div>
+        <div class="filter-form collapse collapse-@(filter.TargetField)">
+            <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="@(filter.TargetField)SubmitFilter(event)">
+                @Html.Action("GetFilterView",
                             "FilterUtility",
                          new { targetField = filter.TargetField, filterString = ViewBag.FilterString })
-                </form>
-            </div>
+            </form>
         </div>
-    }
-    @foreach (jobSalt.Models.Field target in FilterUtility.FiltersForFeature(@Model))
-{
-    if (!FilterUtility.FilterIsSet(filters, target))
-    {
-        <div class="btn filter-btn filter-disabled btn-lg col-xs-12" data-toggle="collapse" data-target=".collapse-@target">
-            <span class="pull-left filter-text">@FilterUtility.FilterDisplayName(target)</span><span data-value="@target" class="glyphicon glyphicon-plus icon pull-right" style="color:#808080"></span><br />
-            <div class="filter-form collapse collapse-@(target)">
-                <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="@(target)SubmitFilter(event)">
-                    @Html.Action("GetFilterView",
-                                "FilterUtility",
-                             new { targetField = target, filterString = ViewBag.FilterString })
-                </form>
-            </div>
-        </div>
-    }
+    </div>
 }
-    <a class="twitter-timeline" href="https://twitter.com/RITCareers" data-widget-id="398508119136804865" data-chrome="nofooter">Tweets by @@RITCareers</a>
-    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    @foreach (jobSalt.Models.Field target in FilterUtility.FiltersForFeature(@Model))
+    {
+        if (!FilterUtility.FilterIsSet(filters, target))
+        {
+            <div class="btn filter-btn filter-disabled btn-lg col-xs-12" data-toggle="collapse" data-target=".collapse-@target">
+                <span class="pull-left filter-text">@FilterUtility.FilterDisplayName(target)</span><span data-value="@target" class="glyphicon glyphicon-plus icon pull-right" style="color:#808080"></span><br />
+                <div class="filter-form collapse collapse-@(target)">
+                    <form method="post" action="@Url.Action("AssignFilter", "FilterUtility")" onsubmit="@(target)SubmitFilter(event)">
+                        @Html.Action("GetFilterView",
+                                    "FilterUtility",
+                                 new { targetField = target, filterString = ViewBag.FilterString })
+                    </form>
+                </div>
+            </div>
+        }
+    }
+    @{var config = jobSalt.Models.Config.ConfigLoader.SiteConfig;}
+    @if(config.TwitterFeedEnabled)
+    { 
+        <a class="twitter-timeline" href="https://twitter.com/RITCareers" data-widget-id="@config.TwitterWidgetID" data-chrome="nofooter">Tweets by @@@config.TwitterUser</a>
+        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    }
  </div>
 
 <script type="text/javascript">

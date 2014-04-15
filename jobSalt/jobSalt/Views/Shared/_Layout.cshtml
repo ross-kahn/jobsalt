@@ -23,7 +23,10 @@
         @Styles.Render("~/Content/bootstrap-select.min.css")
         @Styles.Render("~/Content/jasny-bootstrap.min.css")
         @Styles.Render("~/Content/features.css")
-        @Styles.Render("~/Content/" + config.UniversityThemeCSSFile)
+        @if(!String.IsNullOrEmpty(config.UniversityThemeCSSFile))
+        {
+            @Styles.Render("~/Content/" + config.UniversityThemeCSSFile)
+        }
 
         @Scripts.Render("~/Scripts/bootstrap.min.js")
         @Scripts.Render("~/Scripts/bootstrap-datepicker.js")
@@ -70,7 +73,14 @@
                                 <li><a href="/Housing">Housing Reviews</a></li>
                                 <li class="divider"></li>
                             }
-                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            @if (Request.IsAuthenticated) {
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", style="display: none"})) {
+                                    @Html.AntiForgeryToken()
+                                }
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
+                            } else {
+                                <li>@Html.ActionLink("Log In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            }
                             <li class="divider"></li>
                             <li><a href="/Configuration">Configuration</a></li>
                             <li class="divider"></li>
