@@ -9,6 +9,7 @@ namespace jobSalt.Models.Config
     {
         public string Name { get; set; }
         public string DomainController { get; set; }
+        public string AdminGroup { get; set; }
     }
     public class AuthenticationConfig
     {

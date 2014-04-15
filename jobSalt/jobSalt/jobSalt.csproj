@@ -281,8 +281,10 @@
     <Compile Include="Models\Auth\SamlSignedXml.cs" />
     <Compile Include="Models\Auth\ShibbolethAuthModule.cs" />
     <Compile Include="Models\Auth\SigningHelper.cs" />
+    <Compile Include="Models\Config\AlumniConfig.cs" />
     <Compile Include="Models\Config\AuthenticationConfig.cs" />
     <Compile Include="Models\Config\ConfigLoader.cs" />
+    <Compile Include="Models\Config\JobConfig.cs" />
     <Compile Include="Models\Config\SiteConfig.cs" />
     <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
@@ -401,7 +403,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\UserData.sdf" />
+    <Content Include="Configurations\AlumniConfig.xml" />
     <Content Include="Configurations\Authentication.xml" />
+    <Content Include="Configurations\JobConfig.xml" />
     <Content Include="Configurations\SiteConfig.xml" />
     <Content Include="Content\body.css" />
     <Content Include="Content\bootstrap-mvc-validation.css" />

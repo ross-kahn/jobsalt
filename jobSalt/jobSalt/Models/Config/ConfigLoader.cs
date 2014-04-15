@@ -65,5 +65,27 @@ namespace jobSalt.Models.Config
                 SaveConfig<AuthenticationConfig>(value, "Authentication.xml");
             }
         }
+        public static JobConfig JobConfig
+        {
+            get
+            {
+                return OpenConfig<JobConfig>("JobConfig.xml");
+            }
+            set
+            {
+                SaveConfig<JobConfig>(value, "JobConfig.xml");
+            }
+        }
+        public static AlumniConfig AlumniConfig
+        {
+            get
+            {
+                return OpenConfig<AlumniConfig>("AlumniConfig.xml");
+            }
+            set
+            {
+                SaveConfig<AlumniConfig>(value, "AlumniConfig.xml");
+            }
+        }
     }
 }

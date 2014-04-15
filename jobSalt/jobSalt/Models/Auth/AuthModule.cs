@@ -15,5 +15,7 @@ namespace jobSalt.Models.Auth
         }
 
         public abstract bool IsValid(string _username, string _password);
+
+        public abstract bool IsAdmin(string _username);
     }
 }

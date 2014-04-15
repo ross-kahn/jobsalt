@@ -16,8 +16,12 @@ namespace jobSalt.Controllers
         private JobShepard shepard = new JobShepard();
         
 
-        public ActionResult Index(string filterString, int page = 0, int resultsPerPage = 10)
+        public ActionResult Index(string filterString, int page = 0)
         {
+            JobConfig config = ConfigLoader.JobConfig;
+            int resultsPerPage = config.NumResults;
+
+
             FilterBag filters = FilterBag.createFromURLQuery(Request.QueryString.ToString());
 
             ViewBag.FilterString = filters.JsonEncode();

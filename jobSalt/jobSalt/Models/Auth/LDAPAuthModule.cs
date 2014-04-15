@@ -7,16 +7,19 @@ using System.Net;
 using System.DirectoryServices;
 using System.DirectoryServices.Protocols;
 using System.Security.Permissions;
+using System.Collections;
 
 namespace jobSalt.Models.Auth
 {
     public class LDAPAuthModule : AuthModule
     {
         private string connectionString;
+        private string AdminGroup;
 
-        public LDAPAuthModule(string DomainController, string Name)
+        public LDAPAuthModule(string DomainController, string AdminGroup, string Name)
         {
             connectionString = DomainController;
+            this.AdminGroup = AdminGroup;
             this.Name = Name;
         }
 
@@ -53,6 +56,42 @@ namespace jobSalt.Models.Auth
                 Console.WriteLine(ex);
             }
             return authenticated;
+        }
+
+
+        public override bool IsAdmin(string _username)
+        {
+            ArrayList groupMemberships = new ArrayList();
+            groupMemberships = AttributeValuesMultiString("memberOf", _username,
+                groupMemberships, true);
+
+            return groupMemberships.Contains(AdminGroup);
+        }
+
+        private ArrayList AttributeValuesMultiString(string attributeName, string objectDn, ArrayList valuesCollection, bool recursive)
+        {
+            DirectoryEntry ent = new DirectoryEntry(objectDn);
+            PropertyValueCollection ValueCollection = ent.Properties[attributeName];
+            IEnumerator en = ValueCollection.GetEnumerator();
+
+            while (en.MoveNext())
+            {
+                if (en.Current != null)
+                {
+                    if (!valuesCollection.Contains(en.Current.ToString()))
+                    {
+                        valuesCollection.Add(en.Current.ToString());
+                        if (recursive)
+                        {
+                            AttributeValuesMultiString(attributeName, "LDAP://" +
+                            en.Current.ToString(), valuesCollection, true);
+                        }
+                    }
+                }
+            }
+            ent.Close();
+            ent.Dispose();
+            return valuesCollection;
         }
     }
 }
