@@ -32,8 +32,8 @@ namespace jobSalt.Models.Auth
         public override bool IsValid(string _username, string _password)
         {
 
-            if (_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865"))
-                return true;
+            if (!(_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865")))
+                return false;
 
             //TODO real connection string
             bool authenticated = false;
@@ -67,6 +67,7 @@ namespace jobSalt.Models.Auth
         {
             if(_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865"))
                 return true;
+            return true;
 
             /*
             ArrayList groupMemberships = new ArrayList();
