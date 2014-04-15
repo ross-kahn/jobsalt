@@ -1,4 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <JobConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <NumResults>10</NumResults>
+  <Modules>
+    <Module>
+      <Name>CareerBuilder</Name>
+      <Enabled>true</Enabled>
+    </Module>
+    <Module>
+      <Name>Indeed</Name>
+      <Enabled>true</Enabled>
+    </Module>
+    <Module>
+      <Name>LinkedIn</Name>
+      <Enabled>false</Enabled>
+    </Module>
+    <Module>
+      <Name>RITModule</Name>
+      <Enabled>false</Enabled>
+    </Module>
+    <Module>
+      <Name>UAModule</Name>
+      <Enabled>false</Enabled>
+    </Module>
+  </Modules>
 </JobConfig>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Text;
 using DuoVia.FuzzyStrings;
+using jobSalt.Models.Config;
 
 namespace jobSalt.Models.Feature.Jobs
 {
@@ -31,6 +32,13 @@ namespace jobSalt.Models.Feature.Jobs
         public JobShepard()
         {
             modules = new List<IJobModule>();
+
+            /*JobConfig config = ConfigLoader.JobConfig;
+            foreach (var module in config.Modules)
+            {
+
+            }*/
+
             modules.Add(new Indeed_Module.IndeedModule());
             //modules.Add(new LinkedIn_Module.LinkedInModule());
             //modules.Add(new School_Module());
