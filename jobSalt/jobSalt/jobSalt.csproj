@@ -314,6 +314,25 @@
     </Compile>
     <Compile Include="Models\Feature\Housing\HousingShepard.cs" />
     <Compile Include="Models\Feature\Housing\IHousingModule.cs" />
+    <Compile Include="Models\Feature\Housing\LocalModule\LocalHousingModule.cs" />
+    <Compile Include="Models\Feature\Housing\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\Table.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
@@ -537,6 +556,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
       <LastGenOutput>SchoolAlumniDB.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Feature\Housing\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Housing\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Housing\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Feature\Housing\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
