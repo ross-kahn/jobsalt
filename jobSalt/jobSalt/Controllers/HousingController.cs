@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
+    [ReleaseOnlyAuthorization]
     public class HousingController : Controller
     {
         //

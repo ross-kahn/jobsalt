@@ -270,7 +270,6 @@
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumniController.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
     <Compile Include="Models\Auth\AccountModels.cs" />
@@ -392,6 +391,7 @@
     <Compile Include="Models\Data Types\SalaryRange.cs" />
     <Compile Include="Models\Data Types\Source.cs" />
     <Compile Include="Models\Logging\JobSaltLogger.cs" />
+    <Compile Include="Models\ReleaseOnlyAuthorization.cs" />
     <Compile Include="Models\UserData\UserDataContext.cs" />
     <Compile Include="Models\UserData\UserDataRow.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -403,7 +403,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\UserData.sdf" />
+    <Content Include="Configurations\AlumniConfig.xml" />
     <Content Include="Configurations\Authentication.xml" />
+    <Content Include="Configurations\JobConfig.xml" />
     <Content Include="Configurations\SiteConfig.xml" />
     <Content Include="Content\body.css" />
     <Content Include="Content\bootstrap-mvc-validation.css" />
@@ -642,7 +644,9 @@
     <Folder Include="Views\Jobs\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

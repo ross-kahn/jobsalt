@@ -11,22 +11,49 @@ using WebMatrix.WebData;
 using jobSalt.Models;
 using jobSalt.Models.Auth;
 using jobSalt.Models.Config;
+using System.Threading;
 
 namespace jobSalt.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private List<AuthModule> modules = new List<AuthModule>();
+        private static List<AuthModule> modules;
 
         public AccountController()
         {
-            AuthenticationConfig config = ConfigLoader.AuthenticationConfig;
-            //modules.Add(new ShibbolethAuthModule("JobSALT", "shibboleth.massivedynamic.net", "AD", "<UnKnown>"));
-            foreach(var ldapServer in config.LDAPServers)
+            InitializeModules();   
+        }
+
+        private static void InitializeModules()
+        {
+            if (modules == null)
             {
-                modules.Add(new LDAPAuthModule(ldapServer.DomainController, ldapServer.Name, ldapServer.AdminGroup));
+                AuthenticationConfig config = ConfigLoader.AuthenticationConfig;
+
+                modules = new List<AuthModule>();
+                foreach (var ldapServer in config.LDAPServers)
+                {
+                    modules.Add(new LDAPAuthModule(ldapServer.DomainController, ldapServer.Name, ldapServer.AdminGroup));
+                }
             }
+        }
+
+        public static bool IsAdmin(string username)
+        {
+            InitializeModules();
+
+            bool isAdmin = false;
+
+            foreach (AuthModule module in modules)
+            {
+                if (module.IsAdmin(username))
+                {
+                    isAdmin = true;
+                }
+            }
+
+            return isAdmin;
         }
 
         //
@@ -54,7 +81,7 @@ namespace jobSalt.Controllers
                     if (module.IsValid(model.UserName, model.Password))
                     {
                         FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                        return RedirectToAction("Index", "");
+                        return RedirectToLocal(returnUrl);
                     }
                 }
                 ModelState.AddModelError("", "Login data is incorrect!");

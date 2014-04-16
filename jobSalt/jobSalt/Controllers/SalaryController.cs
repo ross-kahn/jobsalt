@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
+    [ReleaseOnlyAuthorization]
     public class SalaryController : Controller
     {
         private SalaryShepard shepard = new SalaryShepard();

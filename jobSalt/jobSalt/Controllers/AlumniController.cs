@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
+    [ReleaseOnlyAuthorization]
     public class AlumniController : Controller
     {
         private AlumniShepard shepard = new AlumniShepard();
