@@ -1,4 +1,5 @@
 ﻿using jobSalt.Models;
+using jobSalt.Models.Config;
 using jobSalt.Models.Feature.Salary;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace jobSalt.Controllers
 
         public ActionResult Index(string filterString)
         {
+            if (!ConfigLoader.SiteConfig.SalaryEnabled)
+            {
+                throw new HttpException(404, "The page you requested could not be found");
+            }
+
             FilterBag filters = FilterBag.createFromURLQuery(Request.QueryString.ToString());
 
             ViewBag.FilterString = filters.JsonEncode();
