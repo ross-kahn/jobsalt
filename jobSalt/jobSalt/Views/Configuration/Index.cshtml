@@ -1,6 +1,12 @@
 ﻿@model jobSalt.Models.Config.SiteConfig
 @using jobSalt.Models.Config
 
+@Scripts.Render("/Scripts/jquery-ui-1.10.4-min.js")
+@Scripts.Render("/Scripts/jquery.colorpicker.js")
+@Styles.Render("/Content/jquery.colorpicker.css")
+@Styles.Render("/Content/jquery-ui-1.10.4-min.css")
+
+
 <div class="container-fluid header">
     <div class="container">
         <div class="university-logo pull-left"></div><h1>Configuration</h1>
@@ -19,18 +25,18 @@
                     <tr><td><h4 style="margin: 0 10px 0 0;">University Logo: </h4></td><td>@Html.TextBoxFor(model => model.UniversityLogo, new { @class = "form-control" })</td></tr>
                     <tr>
                         <td><h4 style="margin: 0 10px 0 0;">Banner Color: </h4></td>
-                        <td>@Html.TextBoxFor(model => model.BannerTopColor, new { @class = "form-control", placeholder = "Top Color" })</td>
-                        <td>@Html.TextBoxFor(model => model.BannerBottomColor, new { @class = "form-control", placeholder = "Bottom Color" })</td>
+                        <td>@Html.TextBoxFor(model => model.BannerTopColor, new { @class = "form-control cp-basic", placeholder = "Top Color" })</td>
+                        <td>@Html.TextBoxFor(model => model.BannerBottomColor, new { @class = "form-control cp-basic", placeholder = "Bottom Color" })</td>
                     </tr>
                     <tr>
                         <td><h4 style="margin: 0 10px 0 0;">Filter Enabled Color: </h4></td>
-                        <td>@Html.TextBoxFor(model => model.FilterEnabledTopColor, new { @class = "form-control", placeholder = "Top Color" })</td>
-                        <td>@Html.TextBoxFor(model => model.FilterEnabledBottomColor, new { @class = "form-control", placeholder = "Bottom Color" })</td>
+                        <td>@Html.TextBoxFor(model => model.FilterEnabledTopColor, new { @class = "form-control cp-basic", placeholder = "Top Color" })</td>
+                        <td>@Html.TextBoxFor(model => model.FilterEnabledBottomColor, new { @class = "form-control cp-basic", placeholder = "Bottom Color" })</td>
                     </tr>
                     <tr>
                         <td><h4 style="margin: 0 10px 0 0;">Filter Disabled Color: </h4></td>
-                        <td>@Html.TextBoxFor(model => model.FilterDisabledTopColor, new { @class = "form-control", placeholder = "Top Color" })</td>
-                        <td>@Html.TextBoxFor(model => model.FilterDisabledBottomColor, new { @class = "form-control", placeholder = "Bottom Color" })</td>
+                        <td>@Html.TextBoxFor(model => model.FilterDisabledTopColor, new { @class = "form-control cp-basic", placeholder = "Top Color" })</td>
+                        <td>@Html.TextBoxFor(model => model.FilterDisabledBottomColor, new { @class = "form-control cp-basic", placeholder = "Bottom Color" })</td>
                     </tr>
                 </table>
             </div>
@@ -102,4 +108,8 @@
     }
 </div>
 
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.cp-basic').colorpicker();
+    });
+</script>
