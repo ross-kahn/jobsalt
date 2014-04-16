@@ -7,6 +7,15 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
+    public class CssViewResult : PartialViewResult
+    {
+        public override void ExecuteResult(ControllerContext context)
+        {
+            context.HttpContext.Response.ContentType = "text/css";
+            base.ExecuteResult(context);
+        }
+    }
+
     public class ConfigurationController : Controller
     {
         //
@@ -25,6 +34,13 @@ namespace jobSalt.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SchoolThemeCSS()
+        {
+            var view = new CssViewResult();
+            view.ViewData = new ViewDataDictionary(ConfigLoader.SiteConfig);
+            return view;
         }
     }
 }
