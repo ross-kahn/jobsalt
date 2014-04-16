@@ -9,7 +9,6 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
 {
     public class School_Module : IJobModule
     {
-        private SqlConnection connection;
         private ocecsEntities dbContext = new ocecsEntities();
         public School_Module ()
         {            
@@ -19,7 +18,8 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
 
         private void InitializeSQL()
         {
-            connection = new SqlConnection("database=ocecs;server=localhost");
+            var SiteConfig = Config.ConfigLoader.SiteConfig;
+            dbContext.ChangeDatabase(SiteConfig.JobsDBConnection);
         }
 
         public string DisplayName

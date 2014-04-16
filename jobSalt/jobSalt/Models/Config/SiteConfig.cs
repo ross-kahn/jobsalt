@@ -19,6 +19,10 @@ namespace jobSalt.Models.Config
         public string TwitterUser { get; set; }
         public string TwitterWidgetID { get; set; }
 
+        public DBConnectionConfig JobsDBConnection { get; set; }
+        public DBConnectionConfig AlumniDBConnection { get; set; }
+        public DBConnectionConfig SalaryDBConnection { get; set; }
+
         // An empty constructor is needed by the config loader. 
         // Set defaults here incase they aren't specified in the xml.
         public SiteConfig()
@@ -31,6 +35,10 @@ namespace jobSalt.Models.Config
             TwitterFeedEnabled = false;
             TwitterUser = "";
             TwitterWidgetID = "";
+
+            JobsDBConnection = new DBConnectionConfig();
+            AlumniDBConnection = new DBConnectionConfig();
+            SalaryDBConnection = new DBConnectionConfig();
         }
     }
 }

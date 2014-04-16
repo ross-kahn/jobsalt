@@ -7,4 +7,28 @@
   <TwitterFeedEnabled>false</TwitterFeedEnabled>
   <TwitterUser />
   <TwitterWidgetID />
+  <JobsDBConnection>
+    <InitialCatalog>ocecs</InitialCatalog>
+    <DataSource>localhost\SQLEXPRESS</DataSource>
+    <UserId />
+    <Password />
+    <IntegratedSecuity>true</IntegratedSecuity>
+    <ConfigConnectionStringName />
+  </JobsDBConnection>
+  <AlumniDBConnection>
+    <InitialCatalog>ocecs</InitialCatalog>
+    <DataSource>localhost\SQLEXPRESS</DataSource>
+    <UserId />
+    <Password />
+    <IntegratedSecuity>true</IntegratedSecuity>
+    <ConfigConnectionStringName />
+  </AlumniDBConnection>
+  <SalaryDBConnection>
+    <InitialCatalog>ocecs</InitialCatalog>
+    <DataSource>localhost\SQLEXPRESS</DataSource>
+    <UserId />
+    <Password />
+    <IntegratedSecuity>true</IntegratedSecuity>
+    <ConfigConnectionStringName />
+  </SalaryDBConnection>
 </SiteConfig>

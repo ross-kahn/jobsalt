@@ -10,6 +10,11 @@ namespace jobSalt.Models.Feature.Salary.RIT_Module
     {
         private SchoolAlumniDBContext db = new SchoolAlumniDBContext();
 
+        public RITSalaryModule()
+        {
+            db.ChangeDatabase(Config.ConfigLoader.SiteConfig.SalaryDBConnection);
+        }
+
         public Data_Types.Source Source
         {
             get { throw new NotImplementedException(); }
