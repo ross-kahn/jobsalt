@@ -81,7 +81,11 @@ namespace jobSalt.Controllers
                     if (module.IsValid(model.UserName, model.Password))
                     {
                         FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                        return RedirectToLocal(returnUrl);
+                        if (!String.IsNullOrEmpty(returnUrl))
+                            return RedirectToLocal(returnUrl);
+                        else
+                            return RedirectToAction("Index", "Job");
+
                     }
                 }
                 ModelState.AddModelError("", "Login data is incorrect!");

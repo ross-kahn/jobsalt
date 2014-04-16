@@ -32,7 +32,7 @@ namespace jobSalt.Models.Auth
         public override bool IsValid(string _username, string _password)
         {
 
-            if (!(_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865")))
+            if (!(_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865") || _username.Equals("jtboce")))
                 return false;
 
             //TODO real connection string
@@ -65,9 +65,9 @@ namespace jobSalt.Models.Auth
 
         public override bool IsAdmin(string _username)
         {
-            if(_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865"))
+            if(_username.Equals("dyw2567") || _username.Equals("del6597") || _username.Equals("rtk1865"))
                 return true;
-            return true;
+            return false;
 
             /*
             ArrayList groupMemberships = new ArrayList();

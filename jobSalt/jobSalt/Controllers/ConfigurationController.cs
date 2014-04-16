@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
-    [ReleaseOnlyAuthorization]
+    [ReleaseOnlyAuthorization(Roles="admin")]
     public class ConfigurationController : Controller
     {
         //

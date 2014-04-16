@@ -78,16 +78,16 @@
                                     @Html.AntiForgeryToken()
                                 }
                                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a></li>
-                                if (User.IsInRole("admin"))
-                                {
-                                    <li>Admin!!</li>
-                                }
                             } else {
                                 <li>@Html.ActionLink("Log In", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                             }
                             <li class="divider"></li>
-                            <li><a href="/Configuration">Configuration</a></li>
-                            <li class="divider"></li>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li><a href="/Configuration">Configuration</a></li>
+                                <li class="divider"></li>
+                            }
+                            
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
