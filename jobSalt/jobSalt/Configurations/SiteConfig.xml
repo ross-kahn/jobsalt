@@ -30,10 +30,10 @@
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
   </SalaryDBConnection>
-  <UniversityThemeCSSFile>RIT-Theme.css</UniversityThemeCSSFile>
-  <UniversityLogo />
-  <BannerTopColor />
-  <BannerBottomColor />
+  <UniversityThemeCSSFile>UA-Theme.css</UniversityThemeCSSFile>
+  <UniversityLogo>/Content/images/jobsalt-logo.png</UniversityLogo>
+  <BannerTopColor>004997</BannerTopColor>
+  <BannerBottomColor>003671</BannerBottomColor>
   <FilterEnabledTopColor />
   <FilterEnabledBottomColor />
   <FilterDisabledTopColor />
