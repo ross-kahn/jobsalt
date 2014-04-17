@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <AlumniConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <NumResults>10</NumResults>
+  <Module>
+    <Name>jobSalt.Models.Feature.Alumni.School_Module.RitAlumniModule</Name>
+    <Enabled>true</Enabled>
+  </Module>
 </AlumniConfig>
