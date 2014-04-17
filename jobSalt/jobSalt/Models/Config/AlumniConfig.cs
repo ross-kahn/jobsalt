@@ -9,6 +9,8 @@ namespace jobSalt.Models.Config
     {
         public int NumResults { get; set; }
 
+        public List<Module> Modules { get; set; }
+
         public AlumniConfig()
         {
             NumResults = 10;

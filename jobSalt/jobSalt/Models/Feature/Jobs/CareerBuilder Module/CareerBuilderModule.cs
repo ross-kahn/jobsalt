@@ -12,7 +12,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 	{
 	public class CareerBuilderModule : Feature.Jobs.IJobModule
 		{
-		Source source = new Source( )
+	    Source source = new Source( )
 		{
 			Name = "CareerBuilder" ,
 			Icon = "/Content/images/careerbuilder_icon.png"
