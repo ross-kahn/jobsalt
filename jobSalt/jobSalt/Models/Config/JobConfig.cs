@@ -8,7 +8,7 @@ namespace jobSalt.Models.Config
     public class Module
     {
         public string Name { get; set; }
-        public string Enabled { get; set; }
+        public bool Enabled { get; set; }
     }
 
     public class JobConfig

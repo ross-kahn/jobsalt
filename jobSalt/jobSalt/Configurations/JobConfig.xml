@@ -3,23 +3,27 @@
   <NumResults>10</NumResults>
   <Modules>
     <Module>
-      <Name>CareerBuilder</Name>
+      <Name>jobSalt.Models.Feature.Jobs.CareerBuilder_Module.CareerBuilderModule</Name>
       <Enabled>true</Enabled>
     </Module>
     <Module>
-      <Name>Indeed</Name>
+      <Name>jobSalt.Models.Feature.Jobs.Dice_Module.DiceModule</Name>
+      <Enabled>false</Enabled>
+    </Module>
+    <Module>
+      <Name>jobSalt.Models.Feature.Jobs.Indeed_Module.IndeedModule</Name>
       <Enabled>true</Enabled>
     </Module>
     <Module>
-      <Name>LinkedIn</Name>
+      <Name>jobSalt.Models.Feature.Jobs.LinkedIn_Module.LinkedInModule</Name>
       <Enabled>false</Enabled>
     </Module>
     <Module>
-      <Name>RITModule</Name>
+      <Name>jobSalt.Models.Feature.Jobs.RIT_Module.School_Module</Name>
       <Enabled>false</Enabled>
     </Module>
     <Module>
-      <Name>UAModule</Name>
+      <Name>jobSalt.Models.Feature.Jobs.UAJobLink_Module.UAJobLinkModule</Name>
       <Enabled>false</Enabled>
     </Module>
   </Modules>
