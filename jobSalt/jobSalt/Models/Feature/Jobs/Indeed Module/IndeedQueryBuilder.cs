@@ -89,6 +89,15 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
         }
 
+        private string jobtypeConverter(string jobtype)
+        {
+            if(String.IsNullOrWhiteSpace(jobtype)){
+                return "";
+            }else{
+                return "&jt=" + jobtype;
+            }
+        }
+
         private string locationConverter(Location loc)
         {
 
