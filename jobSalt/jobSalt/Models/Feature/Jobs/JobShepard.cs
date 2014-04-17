@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿
+using System.Security.Cryptography;
 using jobSalt.Models.Feature.Jobs.RIT_Module;
 using System;
 using System.Collections.Generic;

@@ -12,14 +12,14 @@ namespace jobSalt.Models.Feature.Housing
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class HousingReview
     {
         public int Id { get; set; }
         public Nullable<System.DateTime> DateTime { get; set; }
-        public string Company { get; set; }
         public string Location { get; set; }
         public string Price { get; set; }
         public string Description { get; set; }
         public Nullable<int> Rating { get; set; }
+        public string Title { get; set; }
     }
 }

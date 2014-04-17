@@ -13,15 +13,16 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
             get { throw new NotImplementedException(); }
         }
 
-        public Dictionary<string, List<HousingPost>> GetHousing(FilterBag filters)
+        public List<HousingPost> GetHousing(FilterBag filters)
         {
-            Dictionary<string, List<HousingPost>> posts = new Dictionary<string, List<HousingPost>>();
-
-            List<HousingPost> local = new List<HousingPost>();
-
-            dbConext.Tables.Select(item => item.Id>0);
-
-            posts.Add("local", local);
+           List<HousingPost> posts = dbConext.HousingReviews.Select(review => new HousingPost()
+           {
+               Title = review.Title,
+               DatePosted = (DateTime)review.DateTime,
+               Description = review.Description,
+               Rating = (int)review.Rating
+           }).ToList();
+            
             return posts;
         }
     }
