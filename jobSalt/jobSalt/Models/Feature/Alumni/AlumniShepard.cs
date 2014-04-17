@@ -35,7 +35,7 @@ namespace jobSalt.Models.Feature.Alumni
             {
                 if (module.Enabled)
                 {
-                    Logging.JobSaltLogger.Instance.log("Launching Alumni Module: " + module.Name);
+                    //Logging.JobSaltLogger.Instance.log("Launching Alumni Module: " + module.Name);
                     modules.Add((IAlumniModule)Activator.CreateInstance(Type.GetType(module.Name)));
                 }
             }

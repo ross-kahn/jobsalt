@@ -38,7 +38,7 @@ namespace jobSalt.Models.Feature.Jobs
             {
                 if (module.Enabled)
                 {
-                    Logging.JobSaltLogger.Instance.log("Launching Job Module: " + module.Name);
+                    //Logging.JobSaltLogger.Instance.log("Launching Job Module: " + module.Name);
                     modules.Add((IJobModule)Activator.CreateInstance(Type.GetType(module.Name)));
                 }
             }
