@@ -111,7 +111,21 @@
                 z-index: 1051;
             }
         </style>
-        break;    
+        break;   
+        
+    case Field.JobType:
+        <div class="input-group">
+            <select class="form-control col-lg-4 focusable" name="value" onclick="event.stopPropagation()">
+                <option value="@JobType.All">All</option>
+                <option value="@JobType.FullTime">Full-Time</option>
+                <option value="@JobType.Internship">Internship</option>
+            </select>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
+            </span>
+        </div>
+        break;
+         
     default:
         <div class="input-group">
             <input placeholder="@FilterUtility.FilterDisplayName(@Model)" class="form-control col-lg-4 focusable" name="value" type="text" value="@FilterUtility.GetFilterValue(@Model, ViewBag.FilterString)" onclick="event.stopPropagation()">

@@ -23,6 +23,16 @@ namespace jobSalt.Models
         public static string GetFilterValue(Field targetField, string filterString)
         {
             FilterBag fb = FilterBag.createFromJSON(filterString);
+            if(targetField == Field.JobType)
+            {
+                switch(fb.JobType)
+                {
+                    case JobType.FullTime:
+                        return "Full-Time";
+                    default:
+                        return fb.JobType.ToString();
+                }
+            }
             return fb.GetFilterValue(targetField);
         }
 
@@ -52,6 +62,7 @@ namespace jobSalt.Models
                     fields.Add(Field.CompanyName);
                     fields.Add(Field.JobTitle);
                     fields.Add(Field.Location);
+                    fields.Add(Field.JobType);
                     fields.Add(Field.Source);
                     break;
                 case Features.Alumni:
@@ -99,6 +110,8 @@ namespace jobSalt.Models
                     return "Salary";
                 case Field.Source:
                     return "Source";
+                case Field.JobType:
+                    return "Job Type";
                 default:
                     return filter.ToString();
             }

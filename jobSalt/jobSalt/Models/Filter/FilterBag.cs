@@ -8,7 +8,9 @@ using System.Web.Script.Serialization;
 
 namespace jobSalt.Models
 {
-    public enum Field { Source, Date, CompanyName, JobTitle, Location, Salary, FieldOfStudy, Keyword, EducationCode };
+    public enum Field { Source, Date, CompanyName, JobTitle, JobType, Location, Salary, FieldOfStudy, Keyword, EducationCode };
+
+    public enum JobType { Internship, FullTime, All }
 
     public enum Features { Jobs, Alumni, Salary, Housing };
 
@@ -118,6 +120,8 @@ namespace jobSalt.Models
                     return this.JobTitle;
                 case Field.Keyword:
                     return this.Keyword;
+                case Field.JobType:
+                    return this.JobType.ToString();
                 default:
                     return "";
             }
@@ -166,6 +170,11 @@ namespace jobSalt.Models
         public string JobTitle 
         {
             get { return filters.ContainsKey(Field.JobTitle) ? HttpUtility.UrlDecode(filters[Field.JobTitle]) : ""; }
+        }
+
+        public JobType JobType
+        {
+            get { return filters.ContainsKey(Field.JobType) ? (JobType)Enum.Parse(typeof(JobType), HttpUtility.UrlDecode(filters[Field.JobType])) : JobType.All; }
         }
         public string FieldOfStudy 
         {
