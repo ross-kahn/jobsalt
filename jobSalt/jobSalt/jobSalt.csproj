@@ -285,6 +285,7 @@
     <Compile Include="Models\Config\ConfigLoader.cs" />
     <Compile Include="Models\Config\DBConnectionConfig.cs" />
     <Compile Include="Models\Config\JobConfig.cs" />
+    <Compile Include="Models\Config\Module.cs" />
     <Compile Include="Models\Config\SiteConfig.cs" />
     <Compile Include="Models\ConnectionTools.cs" />
     <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
