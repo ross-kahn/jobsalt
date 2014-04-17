@@ -25,21 +25,19 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
         {
             Dictionary<string, List<AlumniPost>> posts = new Dictionary<string, List<AlumniPost>>();
 
-            var AlumSearchQuery = db.LinkedInData_.Join(db.Students, grad => grad.UID, 
-                stud => stud.UID, 
-                (grad, stud) => new AlumniPost
+            var AlumSearchQuery = db.GradPlacements.Select( grad => new AlumniPost
                 {
-                    Company = grad.Employer,
+                    Company = grad.employerName,
                     Location = new Location
                         {
-                            State = grad.State, 
-                            City = grad.City, 
-                            ZipCode = grad.Zip_Code
+                            State = grad.employerStateId, 
+                            City = grad.employerCity, 
+                            ZipCode = ""
                         },
-                    FieldOfStudy = stud.Program.name,
-                    Name = stud.FirstName + " " + stud.LastName,
+                    FieldOfStudy = grad.Program.name,
+                    Name = grad.Student.FirstName + " " + grad.Student.LastName,
                     PhoneNumber = "None found yet",
-                    Email = grad.E_Mail_1
+                    Email = "StudentEmail@University.com"
                 });
 
 

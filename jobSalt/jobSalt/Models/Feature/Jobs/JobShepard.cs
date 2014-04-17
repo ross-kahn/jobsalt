@@ -41,7 +41,7 @@ namespace jobSalt.Models.Feature.Jobs
 
             modules.Add(new Indeed_Module.IndeedModule());
             //modules.Add(new LinkedIn_Module.LinkedInModule());
-            //modules.Add(new School_Module());
+            modules.Add(new School_Module());
 			modules.Add( new CareerBuilder_Module.CareerBuilderModule( ) );
 			//modules.Add( new UAJobLink_Module.UAJobLinkModule( ) );
 			//modules.Add( new Dice_Module.DiceModule( ) );

@@ -24,7 +24,7 @@
                     <tr><td><h4 style="margin: 0 10px 0 0;">Custom CSS: </h4></td><td>@Html.TextBoxFor(model => model.UniversityThemeCSSFile, new { @class = "form-control" })</td></tr>
                     <tr><td><h4 style="margin: 0 10px 0 0;">University Logo: </h4></td><td>@Html.TextBoxFor(model => model.UniversityLogo, new { @class = "form-control" })</td></tr>
                     <tr>
-                        <td><h4 style="margin: 0 10px 0 0;">Banner Color: </h4></td>
+                        <td><h4 style="margin: 0 10px 0 0;">Banner Gradient: </h4></td>
                         <td>
                             <div class="input-group">
                                 <span class="input-group-addon">#</span>
@@ -39,7 +39,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h4 style="margin: 0 10px 0 0;">Filter Enabled Color: </h4></td>
+                        <td><h4 style="margin: 0 10px 0 0;">Filter Active Gradient: </h4></td>
                         <td>
                             <div class="input-group">
                                 <span class="input-group-addon">#</span>
@@ -54,7 +54,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><h4 style="margin: 0 10px 0 0;">Filter Disabled Color: </h4></td>
+                        <td><h4 style="margin: 0 10px 0 0;">Filter Inactive Gradient: </h4></td>
                         <td>
                             <div class="input-group">
                                 <span class="input-group-addon">#</span>
@@ -104,7 +104,7 @@
                         <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.JobsDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
                         <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.JobsDBConnection.IntegratedSecuity)</td></tr>
                         <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.JobsDBConnection.UserId, new { @class = "form-control" })</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.JobsDBConnection.Password, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.JobsDBConnection.Password, new { @class = "form-control", value = "PasswordJS" })</td></tr>
                     </table>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                         <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.AlumniDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
                         <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.AlumniDBConnection.IntegratedSecuity)</td></tr>
                         <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.AlumniDBConnection.UserId, new { @class = "form-control" })</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.AlumniDBConnection.Password, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.AlumniDBConnection.Password, new { @class = "form-control", value="PasswordJS"})</td></tr>
                     </table>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                         <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.SalaryDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
                         <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.SalaryDBConnection.IntegratedSecuity)</td></tr>
                         <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.SalaryDBConnection.UserId, new { @class = "form-control" })</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.SalaryDBConnection.Password, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.SalaryDBConnection.Password, new { @class = "form-control", value = "PasswordJS" })</td></tr>
                     </table>
                 </div>
             </div>

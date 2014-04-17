@@ -31,12 +31,25 @@ namespace jobSalt.Controllers
         {
             if(config != null)
             {
+                var oldConfig = ConfigLoader.SiteConfig;
+
+                // Check if the passwords are the placeholder passwords, if so save the orignal value
+                if (config.JobsDBConnection.Password == "PasswordJS")
+                    config.JobsDBConnection.Password = oldConfig.JobsDBConnection.Password;
+
+                if (config.AlumniDBConnection.Password == "PasswordJS")
+                    config.AlumniDBConnection.Password = oldConfig.AlumniDBConnection.Password;
+
+                if (config.SalaryDBConnection.Password == "PasswordJS")
+                    config.SalaryDBConnection.Password = oldConfig.SalaryDBConnection.Password;
+
                 ConfigLoader.SiteConfig = config;
             }
 
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult SchoolThemeCSS()
         {
             var view = new CssViewResult();

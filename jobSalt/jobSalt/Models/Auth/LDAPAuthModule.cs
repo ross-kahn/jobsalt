@@ -65,7 +65,7 @@ namespace jobSalt.Models.Auth
 
         public override bool IsAdmin(string _username)
         {
-            if(_username.Equals("dyw2567") || _username.Equals("del6597") || _username.Equals("rtk1865"))
+            if (_username.Equals("cjp5465") || _username.Equals("jtboce"))
                 return true;
             return false;
 
