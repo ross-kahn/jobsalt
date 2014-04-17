@@ -1,4 +1,5 @@
-﻿using jobSalt.Models.Feature.Alumni.School_Module;
+﻿using jobSalt.Models.Config;
+using jobSalt.Models.Feature.Alumni.School_Module;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,7 +30,16 @@ namespace jobSalt.Models.Feature.Alumni
         public AlumniShepard()
         {
             modules = new List<IAlumniModule>();
-            modules.Add(new RitAlumniModule());
+
+            foreach (Module module in ConfigLoader.AlumniConfig.Modules)
+            {
+                if (module.Enabled)
+                {
+                    Logging.JobSaltLogger.Instance.log("Launching Alumni Module: " + module.Name);
+                    modules.Add((IAlumniModule)Activator.CreateInstance(Type.GetType(module.Name)));
+                }
+            }
+
         }
         #endregion // Constructors
 

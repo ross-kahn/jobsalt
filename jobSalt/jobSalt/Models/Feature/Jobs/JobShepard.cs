@@ -33,18 +33,14 @@ namespace jobSalt.Models.Feature.Jobs
         {
             modules = new List<IJobModule>();
 
-            /*JobConfig config = ConfigLoader.JobConfig;
-            foreach (var module in config.Modules)
+            foreach (Module module in ConfigLoader.JobConfig.Modules)
             {
-
-            }*/
-
-            modules.Add(new Indeed_Module.IndeedModule());
-            //modules.Add(new LinkedIn_Module.LinkedInModule());
-            //modules.Add(new School_Module());
-			modules.Add( new CareerBuilder_Module.CareerBuilderModule( ) );
-			//modules.Add( new UAJobLink_Module.UAJobLinkModule( ) );
-			//modules.Add( new Dice_Module.DiceModule( ) );
+                if (module.Enabled)
+                {
+                    Logging.JobSaltLogger.Instance.log("Launching Job Module: " + module.Name);
+                    modules.Add((IJobModule)Activator.CreateInstance(Type.GetType(module.Name)));
+                }
+            }
         }
         #endregion // Constructors
 
