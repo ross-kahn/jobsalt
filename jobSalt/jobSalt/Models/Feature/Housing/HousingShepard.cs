@@ -107,10 +107,5 @@ namespace jobSalt.Models.Feature.Housing
         }
         #endregion // Private Methods
 
-
-        public Data_Types.Source Source
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }
