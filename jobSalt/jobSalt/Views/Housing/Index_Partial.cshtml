@@ -1,0 +1,23 @@
+﻿@model jobSalt.Models.Feature.Housing.HousingPost[]
+@for (int i = 0; i < Model.Count(); i++)
+{
+    var guid = Guid.NewGuid().ToString();
+    <div class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
+        <div class="post post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+            <h3 class="ellipsis" style="padding-right:65px">@Model[i].Title</h3>
+            @{int rating = Model[i].Rating > 5 ? 5 : Model[i].Rating;}
+            <span style="height: 40px;position:absolute; right:15px; top:15px" >
+                @for (int j = 0; j < rating; j++){ <span class="glyphicon glyphicon glyphicon-star"></span> }
+                @for (int j = 0; j < 5 - rating; j++){ <span class="glyphicon glyphicon-star-empty"></span> }
+            </span>        
+
+            <div class="post-details collapse @guid">
+                <p>@Html.Raw(Model[i].Description)</p>
+                <!--<b>Location: Model[i].Location.City, Model[i].Location.State</b><br />-->
+                <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
+                <br />
+            </div>
+        </div>
+    </div>
+    
+}

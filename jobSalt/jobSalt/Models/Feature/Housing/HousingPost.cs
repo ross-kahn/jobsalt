@@ -12,6 +12,7 @@ namespace jobSalt.Models.Feature.Housing
         public String Company { get; set; }
         public Location Location { get; set; }
         public String PriceRange { get; set; }
+        public String Title { get; set; }
         public String Description { get; set; }
         public int Rating { get; set; }
     }

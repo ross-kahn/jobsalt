@@ -18,6 +18,6 @@ namespace jobSalt.Models.Feature.Housing
         /// </summary>
         /// <param name="filters">The filters that the module should use to query</param>
         /// <returns>The Housing postings</returns>
-        Dictionary<string, List<HousingPost>> GetHousing(FilterBag filters);
+        List<HousingPost> GetHousing(FilterBag filters);
     }
 }

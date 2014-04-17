@@ -10,7 +10,7 @@ using System.Web;
 namespace jobSalt.Models.Feature.Housing
 {
     public class HousingShepard : IHousingModule
-    {
+        {
         #region Properties
         public int NumberOfModules
         {
@@ -29,14 +29,14 @@ namespace jobSalt.Models.Feature.Housing
         public HousingShepard()
         {
             modules = new List<IHousingModule>();
-            modules.Add(null);
+            modules.Add(new Housing.LocalModule.LocalHousingModule());
         }
         #endregion // Constructors
 
         #region Public Methods
-        public Dictionary<string, List<HousingPost>> GetHousing(FilterBag filters)
+        public List<HousingPost> GetHousing(FilterBag filters)
         {
-            Dictionary<string, List<HousingPost>> houses = new Dictionary<string, List<HousingPost>>();
+            List<HousingPost> houses = new List<HousingPost>();
 
             if (filters.isEmpty())
             {
@@ -65,20 +65,19 @@ namespace jobSalt.Models.Feature.Housing
                     {
                         try
                         {
-                            Dictionary<string, List<HousingPost>> partialJobs = module.GetHousing(filters);
+                            List<HousingPost> partialJobs = module.GetHousing(filters);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
-                                houses = houses.Concat(partialJobs).ToDictionary(e => e.Key, e => e.Value);
+                                houses.AddRange(partialJobs);
                             }
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
-                            Debug.WriteLine(e.ToString());
                             // The module failed. Not a system failure but the user should be notified
                             // we need to create a mechanism to actually notify them and call it here
                         }
-
+                        
                     }
                 );
             }
@@ -87,7 +86,7 @@ namespace jobSalt.Models.Feature.Housing
                 // This is where we should notify the user that a source timed out
                 // The source can be determined by looking at the dictionary moduleCompleted
             }
-            return PostProcessAlumni(houses);
+            return PostProcessHousing(houses);
         }
 
         public Data_Types.Source Source
@@ -102,10 +101,16 @@ namespace jobSalt.Models.Feature.Housing
         /// </summary>
         /// <param name="alumni">Unprocessed list of jobs</param>
         /// <returns>Processed list of alumni</returns>
-        Dictionary<string, List<HousingPost>> PostProcessAlumni(Dictionary<string, List<HousingPost>> houses)
+        List<HousingPost> PostProcessHousing( List<HousingPost> houses) 
         {
             return houses;
         }
         #endregion // Private Methods
+
+
+        public Data_Types.Source Source
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

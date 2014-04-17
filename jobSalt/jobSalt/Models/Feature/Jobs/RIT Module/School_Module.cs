@@ -9,17 +9,17 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
 {
     public class School_Module : IJobModule
     {
-        private SqlConnection connection;
+        //private SqlConnection connection;
         private ocecsEntities dbContext = new ocecsEntities();
         public School_Module ()
         {            
             // Initialize SQL connection probably
-            InitializeSQL();
+            //InitializeSQL();
         }
 
         private void InitializeSQL()
         {
-            connection = new SqlConnection("database=ocecs;server=localhost");
+            //connection = new SqlConnection("database=ocecs;server=localhost");
         }
 
         public string DisplayName

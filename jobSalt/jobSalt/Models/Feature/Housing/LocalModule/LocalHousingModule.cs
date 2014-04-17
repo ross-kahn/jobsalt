@@ -7,15 +7,23 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
 {
     public class LocalHousingModule : IHousingModule
     {
+        HousingDataEntities dbConext = new HousingDataEntities();
         public Data_Types.Source Source
         {
             get { throw new NotImplementedException(); }
         }
 
-        public Dictionary<string, List<HousingPost>> GetHousing(FilterBag filters)
+        public List<HousingPost> GetHousing(FilterBag filters)
         {
+           List<HousingPost> posts = dbConext.HousingReviews.Select(review => new HousingPost()
+           {
+               Title = review.Title,
+               DatePosted = (DateTime)review.DateTime,
+               Description = review.Description,
+               Rating = (int)review.Rating
+           }).ToList();
             
-            return null;
+            return posts;
         }
     }
 }
