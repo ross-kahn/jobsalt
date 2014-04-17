@@ -10,6 +10,12 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
     {
         private SchoolAlumniDBContext db = new SchoolAlumniDBContext();
 
+        public RitAlumniModule()
+        {
+            var siteConfig = Config.ConfigLoader.SiteConfig;
+            db.ChangeDatabase(siteConfig.AlumniDBConnection);
+        }
+
         Data_Types.Source IAlumniModule.Source
         {
             get { throw new NotImplementedException(); }

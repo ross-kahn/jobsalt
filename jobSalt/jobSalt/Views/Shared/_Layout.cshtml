@@ -27,6 +27,7 @@
         {
             @Styles.Render("~/Content/" + config.UniversityThemeCSSFile)
         }
+        <link href="@Url.Action("SchoolThemeCSS", "Configuration")" rel="stylesheet" type="text/css" />
 
         @Scripts.Render("~/Scripts/bootstrap.min.js")
         @Scripts.Render("~/Scripts/bootstrap-datepicker.js")
