@@ -12,7 +12,6 @@
         @using jobSalt.Models.Config;
         @{
             var config = ConfigLoader.SiteConfig;
-            ConfigLoader.SiteConfig = config;
         }
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         @Scripts.Render("~/bundles/jquery")
@@ -95,5 +94,14 @@
             </div>
 
             @RenderBody()
+
+            <script type="text/javascript">
+                function CollapseWithoutSelection(caller) {
+                    var sel = getSelection().toString();
+                    if (!sel) {
+                        var target = $(caller).children('.collapse').collapse('toggle');
+                    }
+                }
+            </script>
             </body>
     </html>

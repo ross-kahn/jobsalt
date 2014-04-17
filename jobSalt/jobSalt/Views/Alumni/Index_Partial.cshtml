@@ -2,11 +2,10 @@
 @using jobSalt.Models.Feature.Alumni;
 @foreach(string company in @Model.Keys)
 {
-    var guid = Guid.NewGuid().ToString();
     <div class="col-md-12 col-xs-12" style="padding:0px; margin-top:10px">
-        <div class="post post-new" style="position:relative" data-toggle="collapse" data-target=".@guid">
+        <div class="post post-new" onclick="CollapseWithoutSelection(this)">
             <h2 class="ellipsis alumni-company" style="padding-right:50px">@company</h2>
-            <div class="post-details collapse @guid">
+            <div class="post-details collapse">
                 @foreach (AlumniPost alumni in @Model[company])
                 {
                     <div class="col-xs-6 col-sm-4">
