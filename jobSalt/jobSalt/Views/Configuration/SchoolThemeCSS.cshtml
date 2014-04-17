@@ -1,0 +1,44 @@
+﻿@model jobSalt.Models.Config.SiteConfig
+
+@if(!String.IsNullOrEmpty(Model.UniversityLogo))
+{
+    <text>
+    .university-logo {
+        background-image: url(@Model.UniversityLogo);
+    }
+    </text>
+}
+
+@if(!String.IsNullOrEmpty(Model.BannerTopColor) && !String.IsNullOrEmpty(Model.BannerBottomColor))
+{
+    <text>
+    .header {
+        background: -ms-linear-gradient(top,#@Model.BannerTopColor,#@Model.BannerBottomColor);
+        background: -moz-linear-gradient(top,#@Model.BannerTopColor,#@Model.BannerBottomColor);
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#@Model.BannerTopColor),color-stop(1,#@Model.BannerBottomColor));
+        background: linear-gradient(top,#@Model.BannerTopColor,#@Model.BannerBottomColor);
+    }
+    </text>
+}
+@if(!String.IsNullOrEmpty(Model.FilterEnabledTopColor) && !String.IsNullOrEmpty(Model.FilterEnabledBottomColor))
+{
+    <text>
+    .filter-enabled {
+        background: -ms-linear-gradient(top,#@Model.FilterEnabledTopColor,#@Model.FilterEnabledBottomColor);
+        background: -moz-linear-gradient(top,#@Model.FilterEnabledTopColor,#@Model.FilterEnabledBottomColor);
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#@Model.FilterEnabledTopColor),color-stop(1,#@Model.FilterEnabledBottomColor));
+        background: linear-gradient(top,#@Model.FilterEnabledTopColor,#@Model.FilterEnabledBottomColor);
+    }
+    </text>
+}
+@if(!String.IsNullOrEmpty(Model.FilterDisabledTopColor) && !String.IsNullOrEmpty(Model.FilterDisabledBottomColor))
+{
+    <text>
+    .filter-disabled {
+        background: -ms-linear-gradient(top,#@Model.FilterDisabledTopColor,#@Model.FilterDisabledBottomColor);
+        background: -moz-linear-gradient(top,#@Model.FilterDisabledTopColor,#@Model.FilterDisabledBottomColor);
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#@Model.FilterDisabledTopColor),color-stop(1,#@Model.FilterDisabledBottomColor));
+        background: linear-gradient(top,#@Model.FilterDisabledTopColor,#@Model.FilterDisabledBottomColor);
+    }
+    </text>
+}

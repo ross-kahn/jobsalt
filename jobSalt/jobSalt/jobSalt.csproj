@@ -270,7 +270,6 @@
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumniController.cs" />
-    <Compile Include="Controllers\BootstrapBaseController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\FilterUtilityController.cs" />
     <Compile Include="Models\Auth\AccountModels.cs" />
@@ -284,8 +283,10 @@
     <Compile Include="Models\Config\AlumniConfig.cs" />
     <Compile Include="Models\Config\AuthenticationConfig.cs" />
     <Compile Include="Models\Config\ConfigLoader.cs" />
+    <Compile Include="Models\Config\DBConnectionConfig.cs" />
     <Compile Include="Models\Config\JobConfig.cs" />
     <Compile Include="Models\Config\SiteConfig.cs" />
+    <Compile Include="Models\ConnectionTools.cs" />
     <Compile Include="Models\Feature\Alumni\AlumniShepard.cs" />
     <Compile Include="Models\Feature\Alumni\School Module\DummyAlumniModule.cs" />
     <Compile Include="Models\Feature\Alumni\IAlumniModule.cs" />
@@ -411,6 +412,7 @@
     <Compile Include="Models\Data Types\SalaryRange.cs" />
     <Compile Include="Models\Data Types\Source.cs" />
     <Compile Include="Models\Logging\JobSaltLogger.cs" />
+    <Compile Include="Models\ReleaseOnlyAuthorization.cs" />
     <Compile Include="Models\UserData\UserDataContext.cs" />
     <Compile Include="Models\UserData\UserDataRow.cs" />
     <Compile Include="NavigationRoutes\INavigationRouteFilter.cs" />
@@ -422,7 +424,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\UserData.sdf" />
+    <Content Include="Configurations\AlumniConfig.xml" />
     <Content Include="Configurations\Authentication.xml" />
+    <Content Include="Configurations\JobConfig.xml" />
     <Content Include="Configurations\SiteConfig.xml" />
     <Content Include="Content\body.css" />
     <Content Include="Content\bootstrap-mvc-validation.css" />
@@ -434,15 +438,26 @@
     <Content Include="Content\features.css" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\bar-alpha.png" />
+    <Content Include="Content\images\bar-opacity.png" />
+    <Content Include="Content\images\bar-pointer.png" />
+    <Content Include="Content\images\bar.png" />
     <Content Include="Content\images\careerbuilder_icon.png" />
     <Content Include="Content\images\indeed_icon.png" />
     <Content Include="Content\images\jobSalt-Logo.png" />
+    <Content Include="Content\images\map-opacity.png" />
+    <Content Include="Content\images\map-pointer.png" />
+    <Content Include="Content\images\map.png" />
+    <Content Include="Content\images\preview-opacity.png" />
     <Content Include="Content\images\RIT-Logo.png" />
     <Content Include="Content\images\RIT_icon.png" />
     <Content Include="Content\images\UA-Logo.png" />
     <Content Include="Content\images\UA_Block_A.png" />
     <Content Include="Content\images\linkedin_icon.jpg" />
+    <Content Include="Content\images\ui-colorpicker.png" />
     <Content Include="Content\jasny-bootstrap.min.css" />
+    <Content Include="Content\jquery-ui-1.10.4-min.css" />
+    <Content Include="Content\jquery.colorpicker.css" />
     <Content Include="Content\UA-Theme.css" />
     <Content Include="Content\RIT-Theme.css" />
     <Content Include="favicon.png" />
@@ -562,9 +577,12 @@
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4-min.js" />
+    <Content Include="Scripts\jquery.colorpicker.js" />
     <Content Include="Views\Alumni\Index_Partial.cshtml" />
     <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Views\Housing\Index_Partial.cshtml" />
+    <Content Include="Views\Configuration\SchoolThemeCSS.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -623,15 +641,7 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -662,7 +672,9 @@
     <Folder Include="Views\Jobs\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

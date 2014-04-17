@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
+    [ReleaseOnlyAuthorization]
     public class AlumniController : Controller
     {
         private AlumniShepard shepard = new AlumniShepard();
@@ -17,6 +18,11 @@ namespace jobSalt.Controllers
 
         public ActionResult Index(string filterString, int page = 0)
         {
+            if (!ConfigLoader.SiteConfig.HousingEnabled)
+            {
+                throw new HttpException(404, "The page you requested could not be found");
+            }
+
             AlumniConfig config = ConfigLoader.AlumniConfig;
             int resultsPerPage = config.NumResults;
             
@@ -34,6 +40,7 @@ namespace jobSalt.Controllers
             return View();
         }
 
+        [ChildActionOnly]
         public ActionResult JobsAtCompany(string filterString, string company)
         {
             string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, "");

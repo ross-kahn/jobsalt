@@ -7,9 +7,7 @@ using System.Web.Mvc;
 
 namespace jobSalt.Controllers
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    [ReleaseOnlyAuthorization]
     public class FilterUtilityController : Controller
     {
     

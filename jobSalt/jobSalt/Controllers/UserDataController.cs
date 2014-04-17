@@ -7,6 +7,7 @@ using jobSalt.Models.UserData;
 
 namespace jobSalt.Controllers
 {
+    [ReleaseOnlyAuthorization]
     public class UserDataController : Controller
     {
         private UserDataContext database = new UserDataContext("UserDataContextDb");

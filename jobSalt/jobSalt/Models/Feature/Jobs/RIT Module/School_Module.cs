@@ -19,7 +19,8 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
 
         private void InitializeSQL()
         {
-            //connection = new SqlConnection("database=ocecs;server=localhost");
+            var SiteConfig = Config.ConfigLoader.SiteConfig;
+            dbContext.ChangeDatabase(SiteConfig.JobsDBConnection);
         }
 
         public string DisplayName

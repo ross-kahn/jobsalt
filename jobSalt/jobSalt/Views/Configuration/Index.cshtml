@@ -1,6 +1,12 @@
 ﻿@model jobSalt.Models.Config.SiteConfig
 @using jobSalt.Models.Config
 
+@Scripts.Render("/Scripts/jquery-ui-1.10.4-min.js")
+@Scripts.Render("/Scripts/jquery.colorpicker.js")
+@Styles.Render("/Content/jquery.colorpicker.css")
+@Styles.Render("/Content/jquery-ui-1.10.4-min.css")
+
+
 <div class="container-fluid header">
     <div class="container">
         <div class="university-logo pull-left"></div><h1>Configuration</h1>
@@ -9,31 +15,120 @@
 </div>
 <div class="container">
     @using (Html.BeginForm("SaveConfig", "Configuration"))
-    {
+{
+    <div class="row" style="margin-top: 25px; margin-bottom:25px">
+        <div class="col-xs-8">
+            <div class="post">
+                <h3>Theme</h3>
+                <table>
+                    <tr><td><h4 style="margin: 0 10px 0 0;">Custom CSS: </h4></td><td>@Html.TextBoxFor(model => model.UniversityThemeCSSFile, new { @class = "form-control" })</td></tr>
+                    <tr><td><h4 style="margin: 0 10px 0 0;">University Logo: </h4></td><td>@Html.TextBoxFor(model => model.UniversityLogo, new { @class = "form-control" })</td></tr>
+                    <tr>
+                        <td><h4 style="margin: 0 10px 0 0;">Banner Gradient: </h4></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">#</span>
+                                @Html.TextBoxFor(model => model.BannerTopColor, new { @class = "form-control cp-basic", placeholder = "Top Color" })
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">#</span>
+                                @Html.TextBoxFor(model => model.BannerBottomColor, new { @class = "form-control cp-basic", placeholder = "Bottom Color" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4 style="margin: 0 10px 0 0;">Filter Active Gradient: </h4></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">#</span>
+                                @Html.TextBoxFor(model => model.FilterEnabledTopColor, new { @class = "form-control cp-basic", placeholder = "Top Color" })
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">#</span>
+                                @Html.TextBoxFor(model => model.FilterEnabledBottomColor, new { @class = "form-control cp-basic", placeholder = "Bottom Color" })
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4 style="margin: 0 10px 0 0;">Filter Inactive Gradient: </h4></td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">#</span>
+                                @Html.TextBoxFor(model => model.FilterDisabledTopColor, new { @class = "form-control cp-basic", placeholder = "Top Color" })
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <span class="input-group-addon">#</span>
+                                @Html.TextBoxFor(model => model.FilterDisabledBottomColor, new { @class = "form-control cp-basic", placeholder = "Bottom Color" })
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 25px; margin-bottom:25px">
+        <div class="col-xs-4">
+            <div class="post">
+                <h3>Enable/Disable Features</h3>
+                <table>
+                    <tr><td><h4 style="margin: 0 10px 0 0;">Alumni: </h4></td><td>@Html.CheckBoxFor(model => model.AlumniEnabled)</td></tr>
+                    <tr><td><h4 style="margin: 0 10px 0 0;">Salary: </h4></td><td>@Html.CheckBoxFor(model => model.SalaryEnabled)</td></tr>
+                    <tr><td><h4 style="margin: 0 10px 0 0; ">Housing: </h4></td><td>@Html.CheckBoxFor(model => model.HousingEnabled)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="post">
+                <h3>Twitter</h3><br />
+                <table>
+                    <tr><td><h4 style="margin: 0 10px 0 0;">Enabled: </h4></td><td>@Html.CheckBoxFor(model => model.TwitterFeedEnabled)</td></tr>
+                    <tr><td><h4 style="margin: 0 10px 0 0;">Twitter User: </h4></td><td>@Html.TextBoxFor(model => model.TwitterUser, new { @class = "form-control" })</td></tr>
+                    <tr><td><h4 style="margin: 0 10px 0 0; ">Twitter Widget ID: </h4></td><td>@Html.TextBoxFor(model => model.TwitterWidgetID, new { @class = "form-control" })</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
         <div class="row" style="margin-top: 25px; margin-bottom:25px">
             <div class="col-xs-4">
                 <div class="post">
-                    <h3>University Specific CSS</h3>@Html.TextBoxFor(model => model.UniversityThemeCSSFile, new { @class = "form-control" })
-                    
-                </div>
-            </div>
-            <div class="col-xs-4">
-                <div class="post">
-                    <h3>Enable/Disable Features</h3>
+                    <h3>Jobs DB Connection</h3><br />
                     <table>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Alumni: </h4></td><td>@Html.CheckBoxFor(model => model.AlumniEnabled)</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Salary: </h4></td><td>@Html.CheckBoxFor(model => model.SalaryEnabled)</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0; ">Housing: </h4></td><td>@Html.CheckBoxFor(model => model.HousingEnabled)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Data Source: </h4></td><td>@Html.TextBoxFor(model => model.JobsDBConnection.DataSource, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.JobsDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.JobsDBConnection.IntegratedSecuity)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.JobsDBConnection.UserId, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.JobsDBConnection.Password, new { @class = "form-control", value = "PasswordJS" })</td></tr>
                     </table>
                 </div>
             </div>
             <div class="col-xs-4">
                 <div class="post">
-                    <h3>Twitter</h3><br />
+                    <h3>Alumni DB Connection</h3><br />
                     <table>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Enabled: </h4></td><td>@Html.CheckBoxFor(model => model.TwitterFeedEnabled)</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0;">Twitter User: </h4></td><td>@Html.TextBoxFor(model => model.TwitterUser, new { @class = "form-control" })</td></tr>
-                        <tr><td><h4 style="margin: 0 10px 0 0; ">Twitter Widget ID: </h4></td><td>@Html.TextBoxFor(model => model.TwitterWidgetID, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Data Source: </h4></td><td>@Html.TextBoxFor(model => model.AlumniDBConnection.DataSource, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.AlumniDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.AlumniDBConnection.IntegratedSecuity)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.AlumniDBConnection.UserId, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.AlumniDBConnection.Password, new { @class = "form-control", value="PasswordJS"})</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>Salary DB Connection</h3><br />
+                    <table>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Data Source: </h4></td><td>@Html.TextBoxFor(model => model.SalaryDBConnection.DataSource, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.SalaryDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.SalaryDBConnection.IntegratedSecuity)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.SalaryDBConnection.UserId, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.SalaryDBConnection.Password, new { @class = "form-control", value = "PasswordJS" })</td></tr>
                     </table>
                 </div>
             </div>
@@ -43,4 +138,8 @@
     }
 </div>
 
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.cp-basic').colorpicker();
+    });
+</script>

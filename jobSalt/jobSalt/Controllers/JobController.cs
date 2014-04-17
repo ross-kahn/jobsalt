@@ -11,6 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace jobSalt.Controllers
 {
+    [ReleaseOnlyAuthorization]
     public class JobController : Controller
     {
         private JobShepard shepard = new JobShepard();

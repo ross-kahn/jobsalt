@@ -42,7 +42,7 @@ namespace jobSalt.Models.Feature.Jobs
 
             modules.Add(new Indeed_Module.IndeedModule());
             //modules.Add(new LinkedIn_Module.LinkedInModule());
-            //modules.Add(new School_Module());
+            modules.Add(new School_Module());
 			modules.Add( new CareerBuilder_Module.CareerBuilderModule( ) );
 			//modules.Add( new UAJobLink_Module.UAJobLinkModule( ) );
 			//modules.Add( new Dice_Module.DiceModule( ) );
@@ -82,7 +82,7 @@ namespace jobSalt.Models.Feature.Jobs
 
             var timeout = 5000; // 5 seconds
             var cts = new CancellationTokenSource();
-            var t = new Timer(_ => cts.Cancel(), null, timeout, -1);
+            var t = new Timer(_ => cts.Cancel(), null, timeout, Timeout.Infinite);
 
             try
             {
