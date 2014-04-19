@@ -44,6 +44,10 @@
                         <div class="row">
                             <div class="col-xs-12" style="text-align:center">
                                 <h1>@salary.Source Salary Information</h1>
+                                @if(!String.IsNullOrEmpty(ViewBag.FilterBag.FieldOfStudy))
+                                { 
+                                    <h4>Field of Study: @ViewBag.FilterBag.FieldOfStudy</h4>
+                                }
                             </div>
                         </div>
                         <div class="row">
