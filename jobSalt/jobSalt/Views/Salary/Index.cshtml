@@ -27,34 +27,104 @@
         <input type="hidden" id="targetField" name="targetField" value="FieldOfStudy" />
         <input type="hidden" name="filterString" id="filterString" value="@ViewBag.FilterString" />
     }
-    </div>
+</div>
 
-    @Scripts.Render("~/bundles/graphing")
+@Scripts.Render("~/bundles/jqplot")
+@Styles.Render("~/Content/jqplot")
 
-    <div class="container">
-        <div class="row">
-            @Html.Partial("_FilterPartial", Features.Salary)
-            <div class="col-md-3">
-                <div class="textfill" style="width: 100%; height: 400px;">
-                    <span>@((int)(Model[0].Average / 1000))k<br />Average</span>
+<div class="container">
+    <div class="row" style="margin-bottom:25px;">
+        @Html.Partial("_FilterPartial", Features.Salary)
+        @if (Model.Count > 0)
+        {
+            foreach (var salary in Model)
+            {
+                <div class="col-xs-12 col-sm-9" style="margin-top:10px;">
+                    <div class="post" style="cursor: default">
+                        <div class="row">
+                            <div class="col-xs-12" style="text-align:center">
+                                <h1>@salary.Source Salary Information</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6" style="text-align:center">
+                                <h2>@((int)(salary.Average / 1000))k<br />Average</h2>
+                            </div>
+                            <div class="col-xs-6" style="text-align:center">
+                                <h2>@((int)(salary.Median / 1000))k<br />Median</h2>
+                            </div>
+                            <div class="col-xs-offset-1 col-xs-10"  style="text-align:center">
+                                <div id="@salary.Source-chart" class="chart" style="height:400px; width:100%;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-offset-1 col-md-3">
-                <div class="textfill" style="width: 100%; height: 400px;">
-                    <span>@((int)(Model[0].Median / 1000))k<br />Median</span>
-                </div>
-            </div>
-        </div>
-    </div>
+                
+                <script class="code" type="text/javascript">
+                    $(document).ready(function () {
+                        var graph = $.jqplot('@salary.Source-chart',
+                            [[[1, 0, ""],
+                                [2, 2, "<h4>@((int)((salary.Average-(2 * salary.StandardDeviation)) / 1000))k</h4>"],
+                                [3, 16, "<h4>@((int)((salary.Average-salary.StandardDeviation) / 1000))k</h4>"],
+                                [4, 50, "<h4>@((int)(salary.Average / 1000))k</h4>"],
+                                [5, 16, "<h4>@((int)((salary.Average+salary.StandardDeviation) / 1000))k</h4>"],
+                                [6, 2, "<h4>@((int)((salary.Average+(2 * salary.StandardDeviation)) / 1000))k</h4>"],
+                                [7, 0, ""]]], {
+                            title: 'Salary Distribution',
 
-    <div id="mvc_data" data-data="@Model"></div>
+                            axesDefaults: {
+                                labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                            },
 
-    <script>
-        $(document).ready(function () {
-            $('.textfill').textfill({ maxFontPixels: -1 });
-        });
+                            seriesDefaults: {
+                                rendererOptions: {
+                                    smooth: true
+                                },
+                                showMarker: true,
+                                pointLabels: {
+                                    show: true,
+                                    escapeHTML: false,
+                                    ypadding: 10
+                                }
+                            },
 
-        window.onresize = function () {
-            $('.textfill').textfill({ maxFontPixels: -1 });
+                            axes: {
+                                xaxis: {
+                                    label: "Salary ($1,000)",
+                                    pad: 0,
+                                    ticks: [[1, ""], [2, "2nd Dev."], [3, "1st Dev."], [4, "Average"], [5, "1st Dev."], [6, "2nd Dev."], [7, ""]],
+                                },
+                                yaxis: {
+                                    min: 0,
+                                    max: 60,
+                                    label: "Percentage",
+                                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer
+                                }
+                            }
+                        });
+
+                        graphs.push(graph);
+                    });
+                </script>
+            }
         }
-    </script>
+        else
+        {
+            <div class="col-xs-12 col-sm-9" style="margin-top:10px;">
+                <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                    <h1 id="message">No results found, try changing the filters</h1>
+                </div>
+            </div>
+        }
+    </div>        
+</div>
+
+<script class="code" type="text/javascript">
+    var graphs = [];
+
+    $(window).resize(function () {
+        for (var i in graphs) {
+            graphs[i].replot();
+        }
+    });
+</script>

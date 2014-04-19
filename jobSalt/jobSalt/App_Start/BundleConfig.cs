@@ -27,6 +27,15 @@ namespace jobSalt
                         "~/Scripts/Graphing/g.bar-min.js",
                         "~/Scripts/Graphing/jquery.textfill.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqplot").Include(
+                        "~/Scripts/jqPlot/jquery.jqplot-min.js",
+                        "~/Scripts/jqPlot/plugins/jqplot.canvasAxisLabelRenderer.js",
+                        "~/Scripts/jqPlot/plugins/jqplot.canvasTextRenderer.js",
+                        "~/Scripts/jqPlot/plugins/jqplot.categoryAxisRenderer.js",
+                        "~/Scripts/jqPlot/plugins/jqplot.pointLabels.js",
+                        "~/Scripts/jqPlot/plugins/jqplot.barRenderer.js"
+                        ));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -47,6 +56,9 @@ namespace jobSalt
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/jqplot").Include(
+                        "~/Scripts/jqPlot/jquery.jqplot-min.css"));
         }
     }
 }
