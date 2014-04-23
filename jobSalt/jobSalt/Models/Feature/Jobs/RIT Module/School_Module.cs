@@ -13,8 +13,7 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
         private ocecsEntities dbContext = new ocecsEntities();
         public School_Module ()
         {            
-            // Initialize SQL connection probably
-            //InitializeSQL();
+            InitializeSQL();
         }
 
         private void InitializeSQL()
