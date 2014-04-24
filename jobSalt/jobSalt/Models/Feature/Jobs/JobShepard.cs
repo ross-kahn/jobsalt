@@ -104,18 +104,17 @@ namespace jobSalt.Models.Feature.Jobs
                     }
                 );
 				//Begin: Duplication removal logic
-				//get a fuzzy hash for each jobPost
-				int i =0;//unique number for each hash
+				//get a fuzzy hash for each jobPost 
 				foreach ( var job in jobs )
 					{
 
 
 
 					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-					string jobHash = job.Company+" "+job.JobTitle+" "+i;
+					string jobHash = job.Company+" "+job.JobTitle+" "+job.Location.City+" , "+job
+						.Location.State+" "+job.Location.ZipCode +" "+job.Description;
 					//add hash to dictionary
-					jobHashDict.Add( job , jobHash );
-					i++;
+					jobHashDict.Add( job , jobHash ); 
 					}
 				//only remove duplicates if we have a reasonable number of jobs.
 				if ( jobHashDict.Count( )>=10 )
@@ -148,7 +147,7 @@ namespace jobSalt.Models.Feature.Jobs
 								  select c;
 				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
 					{
-					Double threashold = 0.6;
+					Double threashold = 0.95;
 					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
 					//System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 

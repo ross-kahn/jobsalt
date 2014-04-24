@@ -29,7 +29,8 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
             builder.Append(locationConverter(filters.Location));
             builder.Append(jobTitleConverter(filters.JobTitle));
             builder.Append(companyNameConverter(filters.CompanyName));
-			builder.Append(JobTypeConverter(filters.JobType.ToString())); 
+			builder.Append(JobTypeConverter(filters.JobType.ToString()));
+			builder = FieldOfStudyConverter( filters.FieldOfStudy.ToString( ), builder ) ;
 					/* case Field.EducationCode:
 						switch(FilterDict[key])
 							{
@@ -57,8 +58,21 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 							default:
 								break; */
 			return builder.ToString( );
-        }
-		private static string JobTypeConverter ( String JobType )
+		}
+
+		private static StringBuilder FieldOfStudyConverter ( string fieldOfStudy , StringBuilder builder )
+		{
+			if(!String.IsNullOrWhiteSpace(fieldOfStudy))
+				if ( builder.ToString( ).Contains( "&Keywords=" ) )
+					builder.Replace( "&Keywords=" , "&Keywords="+fieldOfStudy+"," );
+				else
+					{
+					builder.Append( "&Keywords="+fieldOfStudy+"," );
+					}
+			return builder;
+		}
+
+		private static string JobTypeConverter(String JobType)
 			{
 			String converted="";
 			if(!String.IsNullOrWhiteSpace(JobType))
@@ -96,6 +110,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 					}
 			return converted;
 			}
+
         private static string companyNameConverter(string companyname)
         {
             if (String.IsNullOrWhiteSpace(companyname))
