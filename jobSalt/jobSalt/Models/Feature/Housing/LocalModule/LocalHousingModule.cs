@@ -35,8 +35,9 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
             return posts;
         }
 
-        public void AddHousingPost(HousingPost post)
+        public void AddHousingPost(HousingPost post, string submittedBy)
         {
+            DateTime submitedTime = DateTime.Now;
             dbConext.HousingReviews.Add(
                 new HousingReview()
                 {
@@ -52,7 +53,8 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
                         ZipCode = post.Location.ZipCode,
                         Longitude = post.Location.Longitude,
                         Latitude = post.Location.Latitude
-                    }
+                    },
+                    SubmittedBy = submittedBy
                 });
             dbConext.SaveChanges();
         }

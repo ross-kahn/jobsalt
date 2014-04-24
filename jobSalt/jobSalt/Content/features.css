@@ -166,8 +166,8 @@
 }
  
 .rating span {
-    height:16px;
-    line-height:16px;
+    height:24px;
+    line-height:24px;
 }
 .rating span:before {
     content: "\e006";

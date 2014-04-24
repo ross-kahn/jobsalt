@@ -40,7 +40,10 @@ namespace jobSalt.Controllers
         public ActionResult AddReview(HousingPost post)
         {
             LocalHousingModule housingModule = new LocalHousingModule();
-            //housingModule.AddHousingPost(post);
+            string username = "";
+            if (User != null && User.Identity != null)
+                username = User.Identity.Name;
+            housingModule.AddHousingPost(post, User.Identity.Name);
 
             return RedirectToAction("Index");
         }

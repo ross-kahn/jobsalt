@@ -97,6 +97,12 @@
                     if (addressType == "locality") {
                         location.City = place.address_components[i].long_name;
                     }
+                    if (place.geometry) {
+                        if (place.geometry.location) {
+                            location.Latitude = place.geometry.location.k;
+                            location.Longitude = place.geometry.location.A;
+                        }
+                    }
                 }
 
                 return location;
