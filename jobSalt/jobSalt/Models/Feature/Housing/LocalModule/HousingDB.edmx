@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HousingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HousingLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="128" />
+          <Property Name="State" Type="varchar" MaxLength="75" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="25" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="Latitude" Type="float" />
+        </EntityType>
+        <EntityType Name="HousingReviews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="varchar(max)" />
+          <Property Name="Description" Type="text" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Title" Type="text" Nullable="false" />
+          <Property Name="Location" Type="int" Nullable="false" />
+          <Property Name="SubmittedBy" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Location">
+          <End Role="HousingLocation" Type="Self.HousingLocation" Multiplicity="1" />
+          <End Role="HousingReviews" Type="Self.HousingReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HousingLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HousingReviews">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HousingDBModelStoreContainer">
+          <EntitySet Name="HousingLocation" EntityType="Self.HousingLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HousingReviews" EntityType="Self.HousingReviews" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Location" Association="Self.FK_Location">
+            <End Role="HousingLocation" EntitySet="HousingLocation" />
+            <End Role="HousingReviews" EntitySet="HousingReviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HousingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HousingReview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Location" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HousingLocation" Relationship="HousingDBModel.FK_Location" FromRole="HousingReview" ToRole="HousingLocation" />
+          <Property Name="SubmittedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="HousingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HousingReviews" EntityType="HousingDBModel.HousingReview" />
+          <EntitySet Name="HousingLocations" EntityType="HousingDBModel.HousingLocation" />
+          <AssociationSet Name="FK_Location" Association="HousingDBModel.FK_Location">
+            <End Role="HousingLocation" EntitySet="HousingLocations" />
+            <End Role="HousingReview" EntitySet="HousingReviews" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="HousingLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="Latitude" Type="Double" />
+          <NavigationProperty Name="HousingReviews" Relationship="HousingDBModel.FK_Location" FromRole="HousingLocation" ToRole="HousingReview" />
+        </EntityType>
+        <Association Name="FK_Location">
+          <End Type="HousingDBModel.HousingLocation" Role="HousingLocation" Multiplicity="1" />
+          <End Type="HousingDBModel.HousingReview" Role="HousingReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HousingLocation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HousingReview">
+              <PropertyRef Name="Location" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HousingDBModelStoreContainer" CdmEntityContainer="HousingDBEntities">
+          <EntitySetMapping Name="HousingReviews">
+            <EntityTypeMapping TypeName="HousingDBModel.HousingReview">
+              <MappingFragment StoreEntitySet="HousingReviews">
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HousingLocations">
+            <EntityTypeMapping TypeName="HousingDBModel.HousingLocation">
+              <MappingFragment StoreEntitySet="HousingLocation">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

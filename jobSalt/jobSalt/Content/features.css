@@ -109,6 +109,7 @@
     margin-top: 10px;
     box-shadow: 2px 3px 1px rgba(0,0,0,.4);
     border-radius: 4px;
+    font-size: 14px;
 }
 
 .post {
@@ -127,10 +128,14 @@
     color: #505050;
 }
 
-.post .alumni-company {
+.post-alumni h2, .post-housing h2 {
     width: 100%;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 13px !important;
+}
+
+.post-housing h2 {
+    text-align: left;
 }
 
 .post-details.in {
@@ -148,47 +153,35 @@
     white-space:nowrap;
 }
 
-.arrow-down {
-    margin-left: 150px;
-    width: 100px;
-    height: 25px;
-    position: relative;
-    overflow: hidden;
+.rating input {
+    position:absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity:0;
+    opacity:0;
+    cursor:pointer;
+    width:17px;
+    z-index:99;
 }
-.arrow-down:before {
-    content: "";
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg); /* Prefixes... */
-    bottom: 12px;
-    left: 25px;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+ 
+.rating span {
+    height:24px;
+    line-height:24px;
 }
-
-.arrow-up {
-    margin-right: 150px;
-    margin-left: auto;
-    width: 100px;
-    height: 25px;
-    position: relative;
-    overflow: hidden;
+.rating span:before {
+    content: "\e006";
 }
-.arrow-up:after {
-    content: "";
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg); /* Prefixes... */
-    top: 12px;
-    left: 25px;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+/* Change span immediately following the checked radio */
+ 
+.rating input:checked + span:before {
+    content: "\e006";
+}
+ 
+/* Reset all remaining stars back to default background.
+   This supersedes the above due to its ordering. */
+ 
+.rating input:checked + span ~ span:before {
+    content: "\e007";
 }
 
 #message {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using jobSalt.Models.Feature.Housing.LocalModule;
 
 namespace jobSalt.Controllers
 {
@@ -32,7 +33,29 @@ namespace jobSalt.Controllers
             {
                 return PartialView("Index_Partial", shepard.GetHousing(filters).ToArray());
             }
-            return View();
+            return View(new HousingPost());
+        }
+
+        [HttpPost]
+        public ActionResult AddReview(HousingPost post)
+        {
+            LocalHousingModule housingModule = new LocalHousingModule();
+            string username = "";
+            if (User != null && User.Identity != null)
+                username = User.Identity.Name;
+            housingModule.AddHousingPost(post, User.Identity.Name);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ReleaseOnlyAuthorization(Roles="Admin")]
+        public ActionResult RemoveReview(int postID)
+        {
+            LocalHousingModule housingModule = new LocalHousingModule();
+            housingModule.DeleteHousingPost(postID);
+
+            return RedirectToAction("Index");
         }
     }
 }

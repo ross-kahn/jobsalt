@@ -13,8 +13,7 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
         private ocecsEntities dbContext = new ocecsEntities();
         public School_Module ()
         {            
-            // Initialize SQL connection probably
-            //InitializeSQL();
+            InitializeSQL();
         }
 
         private void InitializeSQL()
@@ -55,15 +54,16 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
             }
 
             if (!String.IsNullOrWhiteSpace(filters.Keyword))
-            {                
+            {
                 //Add more as needed
                 jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(filters.Keyword) || item.Job.title.Contains(filters.Keyword) || item.Job.Employer.name.Contains(filters.Keyword) || item.Job.qualifications.Contains(filters.Keyword));
             }
 
+            // Only get jobs that were modified within the last year
+            DateTime recent = DateTime.Now.AddYears(-1);
+            jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.modifiedDate > recent);
 
-            //jobsSearchQuery = jobsSearchQuery.Where(item => it == f.TargetField);
-
-            jobsSearchQuery = jobsSearchQuery.OrderBy(item => item.Job.modifiedDate);
+            jobsSearchQuery = jobsSearchQuery.OrderByDescending(item => item.Job.modifiedDate);
             var jobsSearch = jobsSearchQuery.Skip(page * resultsperpage);
             jobsSearch = jobsSearch.Take(resultsperpage);
             foreach(var job in jobsSearch.ToList())
@@ -82,41 +82,6 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
                 jobs.Add(j);
             }
 
-            /*
-            connection.Open();
-
-            //Two options, either Filter in the SQL or filter after the statement
-            SqlCommand command = new SqlCommand("SELECT title,description,salary,postedDate,employerId from dbo.Jobs", connection);
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            while(reader.Read())
-            {
-                JobPost j = new JobPost();
-                j.JobTitle = reader.GetString(0);
-                j.Description = reader.GetString(1);
-                j.Salary = reader.GetString(2);
-                j.DatePosted = reader.GetDateTime(3);
-                j.Company = reader.GetString(4);
-                jobs.Add(j);
-            }
-
-            /*
-            Random r = new Random();
-            for (int i = 0; i < page; i++)
-            {
-                JobPost post = new JobPost();
-                post.Company = "Microsoft";
-                post.DatePosted = DateTime.Now;
-                post.Description = "A real job you want to apply for " + r.Next(50);
-                post.FieldOfStudy = "Software Engineering";
-                post.JobTitle = "Taco Technician";
-                post.Location = new Location("14623", "NY", "Rochester");
-                post.Salary = (r.NextDouble() * 1000).ToString();
-                post.SourceModule = new Source();
-                jobs.Add(post);
-            }
-             */
             return jobs;
         }
 

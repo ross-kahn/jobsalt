@@ -33,7 +33,7 @@ namespace jobSalt.Models.Feature.Salary
         #endregion // Constructors
 
         #region Public Methods
-        public List<SalaryPost> GetAlumni(FilterBag filters)
+        public List<SalaryPost> GetSalaries(FilterBag filters)
         {
             List<SalaryPost> salaries = new List<SalaryPost>();
 
@@ -63,7 +63,8 @@ namespace jobSalt.Models.Feature.Salary
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
-                                salaries.Add(salaryPartial);
+                                if(salaryPartial != null)
+                                    salaries.Add(salaryPartial);
                             }
                         }
                         catch (Exception e)

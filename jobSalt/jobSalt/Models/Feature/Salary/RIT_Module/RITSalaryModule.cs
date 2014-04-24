@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using LinqStatistics;
 
 namespace jobSalt.Models.Feature.Salary.RIT_Module
 {
@@ -41,10 +42,17 @@ namespace jobSalt.Models.Feature.Salary.RIT_Module
             salaryQuery = salaryQuery.OrderBy(grad => grad.placementSalary);
             salaries = salaryQuery.Select(grad => (int)grad.placementSalary).ToList();
 
-            int median = salaries[(int)(salaries.Count / 2)];
-            int mean = (int)salaries.Average();
+            // Do not display any statistic information unless there are at least 5 control points
+            if(salaries.Count < 5)
+            {
+                return null;
+            }
 
-            return new SalaryPost() { Source = "RIT", Average = mean, Median = median };
+            int median = (int)salaries.Median();
+            int mean = (int)salaries.Average();
+            double stdDev = salaries.StandardDeviation();
+
+            return new SalaryPost() { Source = "RIT", Average = mean, Median = median, StandardDeviation = stdDev };
         }
     }
 }

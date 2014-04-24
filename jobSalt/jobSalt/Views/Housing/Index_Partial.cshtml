@@ -3,8 +3,8 @@
 {
     var guid = Guid.NewGuid().ToString();
     <div class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
-        <div class="post post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
-            <h3 class="ellipsis" style="padding-right:65px">@Model[i].Title</h3>
+        <div class="post post-housing post-new" style="position:relative" data-toggle="collapse" data-parent="parentList" data-target=".@guid">
+            <h2 class="ellipsis" style="padding-right:65px">@Model[i].Title</h2>
             @{int rating = Model[i].Rating > 5 ? 5 : Model[i].Rating;}
             <span style="height: 40px;position:absolute; right:15px; top:15px" >
                 @for (int j = 0; j < rating; j++){ <span class="glyphicon glyphicon glyphicon-star"></span> }

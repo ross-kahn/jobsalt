@@ -28,7 +28,7 @@ namespace jobSalt.Controllers
             ViewBag.FilterString = filters.JsonEncode();
             ViewBag.FilterBag = filters;
 
-            List<SalaryPost> salaries = shepard.GetAlumni(filters);
+            List<SalaryPost> salaries = shepard.GetSalaries(filters);
             
             return View(salaries);
         }

@@ -1,0 +1,18 @@
+﻿Generated model file: HousingDB.edmx.
+Loading metadata from the database took 00:00:01.4856302.
+Generating the model took 00:00:01.2128589.
+Writing the .edmx file took 00:00:00.0020433.
+Generated model file: HousingDB.edmx.
+Loading metadata from the database took 00:00:00.5954761.
+Generating the model took 00:00:00.9386424.
+Added the connection string to the Web.Config file.
+Writing the .edmx file took 00:00:00.0020316.
+Generated model file: HousingDB.edmx.
+Loading metadata from the database took 00:00:00.5079987.
+Generating the model took 00:00:01.0354005.
+Generated model file: HousingDB.edmx.
+Loading metadata from the database took 00:00:00.5245196.
+Generating the model took 00:00:00.9289527.
+Generated model file: HousingDB.edmx.
+Loading metadata from the database took 00:00:00.5161223.
+Generating the model took 00:00:00.9676421.

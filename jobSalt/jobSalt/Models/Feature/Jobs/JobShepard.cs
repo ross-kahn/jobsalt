@@ -148,7 +148,7 @@ namespace jobSalt.Models.Feature.Jobs
 								  select c;
 				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
 					{
-					Double threashold = 0.6;
+					Double threashold = 0.98;
 					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
 					//System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 

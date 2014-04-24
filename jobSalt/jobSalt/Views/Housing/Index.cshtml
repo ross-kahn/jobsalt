@@ -1,4 +1,5 @@
-﻿@using jobSalt.Models;
+﻿@model jobSalt.Models.Feature.Housing.HousingPost
+@using jobSalt.Models;
 
 <div class="container-fluid header">
     <div class="container">
@@ -11,7 +12,12 @@
         <div class="header-input">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-offset-8 col-md-4">
+                    <div class="col-xs-6 col-md-offset-6 col-md-2" style="color:white">
+                        <button type="button" class="btn btn-success input-group" style="width: 100%" data-target=".new-review" data-toggle="collapse">
+                            <div class="pull-left">New Review</div><span class="glyphicon glyphicon-plus pull-right"></span>
+                        </button>
+                    </div>
+                    <div class="col-xs-6 col-md-4" >
                         <div class="input-group">
                             <input id="value" class="form-control" name="value" type="text" value="@ViewBag.FilterBag.Keyword">
                             <span class="input-group-btn">
@@ -33,84 +39,175 @@
     <div class="row">
         @Html.Partial("_FilterPartial", Features.Housing)
         <div class="col-xs-12 col-sm-9">
+            <div class="col-md-12 col-xs-12 new-review collapse" style="padding:0px; margin-top: 10px">
+                <div class="post post-housing" style="position:relative">
+                    <h2>Your Review</h2>
+                    @using (Html.BeginForm("AddReview", "Housing", FormMethod.Post, new { onsubmit="SubmitReview(event)" }))
+                    {
+                        <div class="rating pull-right">
+                            <input type="radio" name="post.Rating" value="1" checked /><span class="glyphicon"></span>
+                            <input type="radio" name="post.Rating" value="2" /><span class="glyphicon"></span>
+                            <input type="radio" name="post.Rating" value="3" /><span class="glyphicon"></span>
+                            <input type="radio" name="post.Rating" value="4" /><span class="glyphicon"></span>
+                            <input type="radio" name="post.Rating" value="5" /><span class="glyphicon"></span>
+                        </div>
+                        <div style="margin-right:120px">
+                            <input type="text" class="form-control" name="post.Title" placeholder="Title" />
+                        </div>
+                        
+
+                        <textarea class="form-control" name="post.Description" placeholder="Description" style="resize:vertical; margin-top:10px"></textarea>
+                        <input id="locationAuto" placeholder="Location" type="text" class="form-control" onclick="event.stopPropagation()" style="margin-top:10px" />
+
+                        <button class="form-control btn btn-success" type="submit" style="margin-top:10px">Submit Review</button>
+                        
+                        <input id="locCity" type="hidden" name="post.Location.City" />
+                        <input id="locState" type="hidden" name="post.Location.State" />
+                        <input id="locZip" type="hidden" name="post.Location.ZipCode" />
+                        <input id="locLong" type="hidden" name="post.Location.Longitude" />
+                        <input id="locLat" type="hidden" name="post.Location.Latitude" />
+                    }
+                </div>
+            </div>
             <div id="productList"></div>
             <div class="row">
                 <div class="col-cs-12 col-sm-offset-3 col-sm-6">
                     <h1 id="message"></h1>
                 </div>
             </div>
-            <div id="loading"><p><img src="/Content/images/loading.gif"></p></div> 
+            <div id="loading"><p><img src="/Content/images/loading.gif"></p></div>
         </div>
-        
     </div>
 </div>
 
-    @section Scripts
-    {
-        <script type="text/javascript">
-            var page = 0;
-            var _inCallback = false;
+@section Scripts
+{
+    <script type="text/javascript">
+        var page = 0;
+        var _inCallback = false;
 
-            $(window).load(function () {
+        $(window).load(function () {
+            loadJobs();
+        });
+
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 25) {
                 loadJobs();
-            });
+            }
+        });
 
-            $(window).scroll(function () {
-                if ($(window).scrollTop() + $(window).height() > $(document).height() - 25) {
-                    loadJobs();
-                }
-            });
+        function loadJobs() {
+            if (page > -1 && !_inCallback) {
+                _inCallback = true;
 
-            function loadJobs() {
-                if (page > -1 && !_inCallback) {
-                    _inCallback = true;
+                $('div#loading').show();
+                var filterString = $("#filterString").val();
 
-                    $('div#loading').show();
-                    var filterString = $("#filterString").val();
+                var fstr = "@Html.Raw(ViewBag.FilterString)";
 
-                    var fstr = "@Html.Raw(ViewBag.FilterString)";
+                $.get("/Housing/Index?page=" + page + "&filterString=" + fstr, function (data) {
+                    if (data != '') {
+                        $("#productList").append(data);
+                        $(".post-new").each(function (i) {
+                            @if(!Request.Browser.IsMobileDevice)
+                            {
+                                <text>
+                                var $item = $(this);
 
-                    $.get("/Housing/Index?page=" + page + "&filterString=" + fstr, function (data) {
-                        if (data != '') {
-                            $("#productList").append(data);
-                            $(".post-new").each(function (i) {
-                                @if(!Request.Browser.IsMobileDevice)
-                                {
-                                    <text>
-                                    var $item = $(this);
-
-                                    if (i < 13) {
-                                        $item.animate({ top: "+=" + 1500 }, 0)
-                                        // execute this function sometime later:
-                                        setTimeout(function () {
-                                            $item.animate({ top: "-=" + 1500 }, 400);
-                                        }, 50 * i);
-                                    }
-                                    </text>
+                                if (i < 13) {
+                                    $item.animate({ top: "+=" + 1500 }, 0)
+                                    // execute this function sometime later:
+                                    setTimeout(function () {
+                                        $item.animate({ top: "-=" + 1500 }, 400);
+                                    }, 50 * i);
                                 }
-                                $(this).removeClass("post-new");
-                            });
-                        }
-                        else {
-                            if (page == 1) {
-                                $("#message").empty();
-                                $("#message").append("No results found, try changing the filters");
-                            } else {
-                                $("#message").empty();
-                                $("#message").append("It appears we have run out of posts... Sorry :(");
+                                </text>
                             }
-                            page = -1;
+                            $(this).removeClass("post-new");
+                        });
+                    }
+                    else {
+                        if (page == 1) {
+                            $("#message").empty();
+                            $("#message").append("No results found, try changing the filters");
+                        } else {
+                            $("#message").empty();
+                            $("#message").append("It appears we have run out of posts... Sorry :(");
                         }
+                        page = -1;
+                    }
 
-                        _inCallback = false;
-                        $('div#loading').hide();
-                    });
-                    page++;
+                    _inCallback = false;
+                    $('div#loading').hide();
+                });
+                page++;
+            }
+        }
+
+        function StopPropagation(event) {
+            event.stopPropagation();
+        }
+    </script>
+}
+
+<!-- Google API Location stuff -->
+<script type="text/javascript">
+    var locationAuto;
+    var parsedLocation = false;
+
+    locationAuto = new google.maps.places.Autocomplete((document.getElementById('locationAuto')),
+    {
+        types: ['geocode'],
+        componentRestrictions: { country: "us" }
+    });
+    function SubmitReview(event) {
+
+        if (!parsedLocation) {
+            event.preventDefault();
+
+            var place = locationAuto.getPlace();
+            var geocoder = new google.maps.Geocoder();
+            var location = {};
+
+            geocoder.geocode({ 'address': $('#locationAuto').val() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        place = results[0];
+                        location = ParseLocation(place);
+                        if (!location.ZipCode) {
+                            geocoder.geocode({ 'location': place.geometry.location }, function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    if (results[0]) {
+                                        place = results[0];
+                                        location = ParseLocation(place);
+                                    }
+                                }
+
+                                parsedLocation = true;
+                                $('#locCity').val(location.City);
+                                $('#locState').val(location.State);
+                                $('#locZip').val(location.ZipCode);
+                                $('#locLong').val(location.Longitude);
+                                $('#locLat').val(location.Latitude);
+                                $('#locCity').closest("form").submit();
+                            });
+                        } else {
+                            parsedLocation = true;
+                            $('#locCity').val(location.City);
+                            $('#locState').val(location.State);
+                            $('#locZip').val(location.ZipCode);
+                            $('#locLong').val(location.Longitude);
+                            $('#locLat').val(location.Latitude);
+                            $('#locCity').closest("form").submit();
+                        }
+                    }
+                } else {
+                    alert("The address could not be parsed.\n Please ensure everything is typed correctly and try again.");
                 }
-            }
-
-            function StopPropagation(event) {
-                event.stopPropagation();
-            }
-        </script>
+            });
+        } else {
+            parsedLocation = false;
+        }
     }
+</script>
+

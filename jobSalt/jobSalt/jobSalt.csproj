@@ -127,6 +127,9 @@
     <Reference Include="EntityFramework.SqlServerCompact">
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.0.2\lib\net40\EntityFramework.SqlServerCompact.dll</HintPath>
     </Reference>
+    <Reference Include="LinqStatistics">
+      <HintPath>..\packages\LinqStatistics.1.0.3\lib\net40\LinqStatistics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Net4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.1\lib\net40\Microsoft.CompilerServices.AsyncTargetingPack.Net4.dll</HintPath>
@@ -319,27 +322,30 @@
     <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feature\Housing\HousingReview.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Feature\Housing\HousingShepard.cs" />
     <Compile Include="Models\Feature\Housing\IHousingModule.cs" />
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HousingDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HousingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingLocation.cs">
+      <DependentUpon>HousingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingReview.cs">
+      <DependentUpon>HousingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Feature\Housing\LocalModule\LocalHousingModule.cs" />
-    <Compile Include="Models\Feature\Housing\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Housing\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Housing\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
@@ -424,6 +430,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\HousingData.mdf" />
+    <Content Include="App_Data\HousingData_log.ldf">
+      <DependentUpon>HousingData.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\UserData.sdf" />
     <Content Include="Configurations\AlumniConfig.xml" />
     <Content Include="Configurations\Authentication.xml" />
@@ -529,13 +539,6 @@
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Graphing\g.bar-min.js" />
-    <Content Include="Scripts\Graphing\g.dot-min.js" />
-    <Content Include="Scripts\Graphing\g.line-min.js" />
-    <Content Include="Scripts\Graphing\g.pie-min.js" />
-    <Content Include="Scripts\Graphing\g.raphael-min.js" />
-    <Content Include="Scripts\Graphing\jquery.textfill.js" />
-    <Content Include="Scripts\Graphing\raphael-min.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -574,10 +577,104 @@
       <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
       <LastGenOutput>SchoolAlumniDB.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="Models\Feature\Housing\LocalModule\HousingDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HousingDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Housing\LocalModule\HousingDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+      <LastGenOutput>HousingDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Housing\LocalModule\HousingDB.edmx.diagram">
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Feature\Housing\LocalModule\HousingDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+      <LastGenOutput>HousingDB.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Test.pubxml" />
     <Content Include="Scripts\jasny-bootstrap.min.js" />
+    <Content Include="Scripts\jqPlot\changes.txt" />
+    <Content Include="Scripts\jqPlot\copyright.txt" />
+    <Content Include="Scripts\jqPlot\excanvas.js" />
+    <Content Include="Scripts\jqPlot\excanvas.min.js" />
+    <Content Include="Scripts\jqPlot\gpl-2.0.txt" />
+    <Content Include="Scripts\jqPlot\jqPlotCssStyling.txt" />
+    <Content Include="Scripts\jqPlot\jqPlotOptions.txt" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.css" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot.js" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot-min.css" />
+    <Content Include="Scripts\jqPlot\jquery.jqplot-min.js" />
+    <Content Include="Scripts\jqPlot\jquery.js" />
+    <Content Include="Scripts\jqPlot\jquery.min.js" />
+    <Content Include="Scripts\jqPlot\MIT-LICENSE.txt" />
+    <Content Include="Scripts\jqPlot\optionsTutorial.txt" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.barRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.barRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.BezierCurveRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.BezierCurveRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.blockRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.blockRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.bubbleRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.bubbleRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisLabelRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisLabelRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisTickRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasAxisTickRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasOverlay.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasOverlay.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasTextRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.canvasTextRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.categoryAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.categoryAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ciParser.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ciParser.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.cursor.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.cursor.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dateAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dateAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.donutRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.donutRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dragable.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.dragable.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.enhancedLegendRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.enhancedLegendRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.funnelRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.funnelRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.highlighter.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.highlighter.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.json2.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.json2.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.logAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.logAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mekkoRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.meterGaugeRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.meterGaugeRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mobile.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.mobile.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ohlcRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.ohlcRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pieRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pieRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pointLabels.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pointLabels.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidAxisRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidAxisRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidGridRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidGridRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidRenderer.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.pyramidRenderer.min.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.trendline.js" />
+    <Content Include="Scripts\jqPlot\plugins\jqplot.trendline.min.js" />
+    <Content Include="Scripts\jqPlot\README.txt" />
+    <Content Include="Scripts\jqPlot\usage.txt" />
     <Content Include="Scripts\jquery-ui-1.10.4-min.js" />
     <Content Include="Scripts\jquery.colorpicker.js" />
     <Content Include="Views\Alumni\Index_Partial.cshtml" />
@@ -670,7 +767,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />
-    <Folder Include="Views\Jobs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

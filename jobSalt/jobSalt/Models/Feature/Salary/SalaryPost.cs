@@ -13,5 +13,7 @@ namespace jobSalt.Models.Feature.Salary
         public int Median { get; set; }
 
         public int Average { get; set; }
+
+        public double StandardDeviation { get; set; }
     }
 }
