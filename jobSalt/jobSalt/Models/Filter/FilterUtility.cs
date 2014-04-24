@@ -77,11 +77,7 @@ namespace jobSalt.Models
                     break;
                 case Features.Housing:
                     fields.Add(Field.Keyword);
-                    fields.Add(Field.FieldOfStudy);
-                    fields.Add(Field.CompanyName);
-                    fields.Add(Field.JobTitle);
                     fields.Add(Field.Location);
-                    fields.Add(Field.Source);
                     break;
             }
 
