@@ -21,6 +21,7 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
         public string Description { get; set; }
         public int Rating { get; set; }
         public string Title { get; set; }
+        public string SubmittedBy { get; set; }
     
         public virtual HousingLocation HousingLocation { get; set; }
     }

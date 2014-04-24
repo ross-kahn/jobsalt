@@ -54,6 +54,17 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
                         Latitude = post.Location.Latitude
                     }
                 });
+            dbConext.SaveChanges();
+        }
+
+        public void DeleteHousingPost(int postID)
+        {
+            HousingReview review = dbConext.HousingReviews.Find(postID);
+            if(review != null)
+            {
+                dbConext.HousingReviews.Remove(review);
+                dbConext.SaveChanges();
+            }
         }
     }
 }

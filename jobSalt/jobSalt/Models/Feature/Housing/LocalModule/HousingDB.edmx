@@ -27,6 +27,7 @@
           <Property Name="Rating" Type="int" Nullable="false" />
           <Property Name="Title" Type="text" Nullable="false" />
           <Property Name="Location" Type="int" Nullable="false" />
+          <Property Name="SubmittedBy" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <Association Name="FK_Location">
           <End Role="HousingLocation" Type="Self.HousingLocation" Multiplicity="1" />
@@ -64,6 +65,7 @@
           <Property Name="Rating" Type="Int32" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="HousingLocation" Relationship="HousingDBModel.FK_Location" FromRole="HousingReview" ToRole="HousingLocation" />
+          <Property Name="SubmittedBy" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="HousingDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="HousingReviews" EntityType="HousingDBModel.HousingReview" />
@@ -106,6 +108,7 @@
           <EntitySetMapping Name="HousingReviews">
             <EntityTypeMapping TypeName="HousingDBModel.HousingReview">
               <MappingFragment StoreEntitySet="HousingReviews">
+                <ScalarProperty Name="SubmittedBy" ColumnName="SubmittedBy" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
