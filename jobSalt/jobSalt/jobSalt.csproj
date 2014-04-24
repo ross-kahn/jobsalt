@@ -340,6 +340,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature\Jobs\GitHub_Module\GitHub_Module.cs" />
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
