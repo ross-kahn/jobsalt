@@ -322,27 +322,27 @@
     <Compile Include="Models\Feature\Alumni\School Module\Student.cs">
       <DependentUpon>SchoolAlumniDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feature\Housing\HousingReview.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Feature\Housing\HousingShepard.cs" />
     <Compile Include="Models\Feature\Housing\IHousingModule.cs" />
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HousingDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HousingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingReview.cs">
+      <DependentUpon>HousingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Feature\Housing\LocalModule\LocalHousingModule.cs" />
-    <Compile Include="Models\Feature\Housing\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Housing\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Feature\Housing\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
@@ -573,6 +573,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolAlumniDB.edmx</DependentUpon>
       <LastGenOutput>SchoolAlumniDB.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\Feature\Housing\LocalModule\HousingDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HousingDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Feature\Housing\LocalModule\HousingDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+      <LastGenOutput>HousingDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Feature\Housing\LocalModule\HousingDB.edmx.diagram">
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Feature\Housing\LocalModule\HousingDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HousingDB.edmx</DependentUpon>
+      <LastGenOutput>HousingDB.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
     <None Include="Properties\PublishProfiles\Remote OCE Production.pubxml" />

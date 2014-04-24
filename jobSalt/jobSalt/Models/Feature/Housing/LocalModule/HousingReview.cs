@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace jobSalt.Models.Feature.Housing
+namespace jobSalt.Models.Feature.Housing.LocalModule
 {
     using System;
     using System.Collections.Generic;

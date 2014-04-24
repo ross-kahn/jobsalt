@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace jobSalt.Models.Feature.Housing
+namespace jobSalt.Models.Feature.Housing.LocalModule
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HousingDataEntities : DbContext
+    public partial class HousingDBEntities : DbContext
     {
-        public HousingDataEntities()
-            : base("name=HousingDataEntities")
+        public HousingDBEntities()
+            : base("name=HousingDBEntities")
         {
         }
     

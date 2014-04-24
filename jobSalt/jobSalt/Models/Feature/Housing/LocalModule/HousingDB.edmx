@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="HousingDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HousingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="HousingReviews">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,16 +17,14 @@
           <Property Name="Rating" Type="int" />
           <Property Name="Title" Type="text" />
         </EntityType>
-        <EntityContainer Name="HousingDataModelStoreContainer">
+        <EntityContainer Name="HousingDBModelStoreContainer">
           <EntitySet Name="HousingReviews" EntityType="Self.HousingReviews" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HousingDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="HousingDataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="HousingReviews" EntityType="HousingDataModel.HousingReview" />
-        </EntityContainer>
+      <Schema Namespace="HousingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="HousingReview">
           <Key>
             <PropertyRef Name="Id" />
@@ -39,22 +37,25 @@
           <Property Name="Rating" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityContainer Name="HousingDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HousingReviews" EntityType="HousingDBModel.HousingReview" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HousingDataModelStoreContainer" CdmEntityContainer="HousingDataEntities">
+        <EntityContainerMapping StorageEntityContainer="HousingDBModelStoreContainer" CdmEntityContainer="HousingDBEntities">
           <EntitySetMapping Name="HousingReviews">
-            <EntityTypeMapping TypeName="HousingDataModel.HousingReview">
+            <EntityTypeMapping TypeName="HousingDBModel.HousingReview">
               <MappingFragment StoreEntitySet="HousingReviews">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
