@@ -26,5 +26,6 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
         }
     
         public virtual DbSet<HousingReview> HousingReviews { get; set; }
+        public virtual DbSet<HousingLocation> HousingLocations { get; set; }
     }
 }

@@ -339,6 +339,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HousingDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Feature\Housing\LocalModule\HousingLocation.cs">
+      <DependentUpon>HousingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Feature\Housing\LocalModule\HousingReview.cs">
       <DependentUpon>HousingDB.tt</DependentUpon>
     </Compile>

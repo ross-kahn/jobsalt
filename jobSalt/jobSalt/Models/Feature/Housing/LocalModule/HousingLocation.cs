@@ -12,16 +12,20 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
     using System;
     using System.Collections.Generic;
     
-    public partial class HousingReview
+    public partial class HousingLocation
     {
-        public int Id { get; set; }
-        public System.DateTime DateTime { get; set; }
-        public int Location { get; set; }
-        public string Price { get; set; }
-        public string Description { get; set; }
-        public int Rating { get; set; }
-        public string Title { get; set; }
+        public HousingLocation()
+        {
+            this.HousingReviews = new HashSet<HousingReview>();
+        }
     
-        public virtual HousingLocation HousingLocation { get; set; }
+        public int Id { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ZipCode { get; set; }
+        public Nullable<double> Longitude { get; set; }
+        public Nullable<double> Latitude { get; set; }
+    
+        public virtual ICollection<HousingReview> HousingReviews { get; set; }
     }
 }
