@@ -50,7 +50,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
             if (!String.IsNullOrEmpty(filters.Keyword))
             {
-                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(filters.Keyword));
+                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(filters.Keyword) || alum.Company.Contains(filters.CompanyName) || alum.FieldOfStudy.Contains(filters.FieldOfStudy));
             }
 
             if (!String.IsNullOrEmpty(filters.FieldOfStudy))

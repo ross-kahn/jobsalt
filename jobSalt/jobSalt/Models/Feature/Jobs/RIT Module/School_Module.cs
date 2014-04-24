@@ -57,15 +57,7 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
             if (!String.IsNullOrWhiteSpace(filters.Keyword))
             {                
                 //Add more as needed
-                var jobsSearchQuery1 = jobsSearchQuery.Where(item => item.Job.description.Contains(filters.Keyword));
-                var jobsSearchQuery2 = jobsSearchQuery.Where(item => item.Job.title.Contains(filters.Keyword));
-                var jobsSearchQuery3 = jobsSearchQuery.Where(item => item.Job.Employer.name.Contains(filters.Keyword));
-                var jobsSearchQuery4 = jobsSearchQuery.Where(item => item.Job.qualifications.Contains(filters.Keyword));
-
-                jobsSearchQuery = jobsSearchQuery1;
-                jobsSearchQuery.Concat(jobsSearchQuery2);
-                jobsSearchQuery.Concat(jobsSearchQuery3);
-                jobsSearchQuery.Concat(jobsSearchQuery4);
+                jobsSearchQuery = jobsSearchQuery.Where(item => item.Job.description.Contains(filters.Keyword) || item.Job.title.Contains(filters.Keyword) || item.Job.Employer.name.Contains(filters.Keyword) || item.Job.qualifications.Contains(filters.Keyword));
             }
 
 
