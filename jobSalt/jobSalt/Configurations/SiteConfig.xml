@@ -41,6 +41,7 @@
   <AdminUsers>
     <string>cjp5465</string>
     <string>jtboce</string>
+    <string>jtbtest</string>
   </AdminUsers>
   <Moderators />
   <RestrictAccessToUsers>
