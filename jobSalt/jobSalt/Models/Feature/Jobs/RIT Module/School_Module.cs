@@ -43,6 +43,10 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             List<string> whereClauses = new List<string>();
+
+            // Only get jobs that were modified within the last year
+            whereClauses.Add("[Jobs].modifiedDate > @RecentOrders");
+            parameters.Add(new SqlParameter("RecentOrders", DateTime.Now.AddMonths(-6)));
             
             //Use a WHERE clause to match filters perhaps?
             if (!String.IsNullOrWhiteSpace(filters.CompanyName))
@@ -90,10 +94,6 @@ namespace jobSalt.Models.Feature.Jobs.RIT_Module
                     parameters.Add(new SqlParameter("JobType", "Co-op"));
                 }                
             }
-
-            // Only get jobs that were modified within the last year
-            //whereClauses.Add("[Jobs].modifiedDate > @RecentOrders");
-            //parameters.Add(new SqlParameter("RecentOrders", DateTime.Now.AddYears(-1)));
 
             for(int i=0; i<whereClauses.Count; ++i)
                 whereClauses[i] = "(" + whereClauses[i] + ")";

@@ -27,7 +27,7 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             builder.Append(Constants.INDEED_REQUEST_BASE);      //TODO: This should come from configuration
             builder.Append("&start=" + page * resultsPerPage);  
 
-            builder.Append(keywordConverter(filterbag.Keyword, filterbag.JobTitle, filterbag.CompanyName));
+            builder.Append(keywordConverter(filterbag.Keyword, filterbag.JobTitle, filterbag.CompanyName, filterbag.FieldOfStudy));
             builder.Append(locationConverter(filterbag.Location));
 
            // string ip = HttpContext.Current.Request.UserHostAddress;
@@ -60,10 +60,10 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
         /// </summary>
         /// <param name="queries"></param>
         /// <returns></returns>
-        private string keywordConverter (string keyword = "", string jobTitle = "", string companyName = "")
+        private string keywordConverter (string keyword = "", string jobTitle = "", string companyName = "", string fieldOfStudy = "")
         {
             // Return an empty string if none of the paramters have values
-            if (String.IsNullOrWhiteSpace(keyword + jobTitle + companyName))
+            if (String.IsNullOrWhiteSpace(keyword + jobTitle + companyName + fieldOfStudy))
             {
                 return "";
             }
@@ -73,6 +73,11 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             if (!String.IsNullOrWhiteSpace(keyword))
             {
                 query += keyword.Replace(",", "");
+            }
+
+            if (!String.IsNullOrWhiteSpace(fieldOfStudy))
+            {
+                query += " " + fieldOfStudy.Replace(",", "");
             }
 
             if (!String.IsNullOrWhiteSpace(jobTitle))
