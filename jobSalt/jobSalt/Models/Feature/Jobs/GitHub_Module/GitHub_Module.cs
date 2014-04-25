@@ -72,6 +72,12 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 							City= location[0].Trim( ) ,
 							ZipCode=null
 						};
+					else if ( location.Length==1 )
+						{
+						post.Location = new Location
+						{ City=location[0], State=null,ZipCode=null
+						};
+						}
 					else
 						post.Location = new Location
 						{
@@ -114,13 +120,18 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 				description+=  filters.FieldOfStudy+", "; 
 
 			if ( filters.JobTitle != "" ) 
-				description+=  filters.JobTitle+", "; 
+				description+=  filters.JobTitle+", ";
+
+			if ( filters.JobType.ToString( )=="FullTime" )
+				builder.Append( "&full_time=true" );
+			else if ( filters.JobType.ToString( )!="" )
+				description+=filters.JobType.ToString( )+",";
 
 			if ( filters.Keyword != "" ) 
 				if ( filters.Keyword == "full time" )
 					builder.Append( "&full_time=true" );
 				else
-					description+= filters.Keyword; 
+					description+= filters.Keyword+","; 
 
 			if ( filters.Location!=null && ( filters.Location.City != "" || filters.Location.State != "" ||filters.Location.ZipCode !="" ) ) 
 				builder.Append( "&location="+ ( filters.Location.City??"" ) + ", "+ ( filters.Location.State??"" ) +" " +( filters.Location.ZipCode??"" ) ); 
@@ -128,8 +139,7 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 			if ( description!="" ) 
 				builder.Append( "&description="+description );
 
-			if ( filters.JobType.ToString( )=="FullTime" )
-				builder.Append( "&full_time=true" );
+
 
 			return builder.ToString( );
 			}
