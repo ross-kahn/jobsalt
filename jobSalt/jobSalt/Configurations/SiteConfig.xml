@@ -3,7 +3,9 @@
   <AlumniEnabled>true</AlumniEnabled>
   <SalaryEnabled>true</SalaryEnabled>
   <HousingEnabled>true</HousingEnabled>
-  <TwitterFeedEnabled>false</TwitterFeedEnabled>
+  <TwitterFeedEnabled>true</TwitterFeedEnabled>
+  <TwitterUser>RITCareers</TwitterUser>
+  <TwitterWidgetID>398508119136804865</TwitterWidgetID>
   <JobsDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
@@ -25,5 +27,10 @@
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
   </SalaryDBConnection>
+  <HousingDBConnection>
+    <Password>PasswordJS</Password>
+    <IntegratedSecuity>true</IntegratedSecuity>
+    <ConfigConnectionStringName />
+  </HousingDBConnection>
   <UniversityThemeCSSFile>RIT-Theme.css</UniversityThemeCSSFile>
 </SiteConfig>

@@ -69,11 +69,11 @@ namespace jobSalt.Models
                     fields.Add(Field.Keyword);
                     fields.Add(Field.FieldOfStudy);
                     fields.Add(Field.CompanyName);
-                    fields.Add(Field.Location);
+                    //fields.Add(Field.Location);
                     break;
                 case Features.Salary:
                     fields.Add(Field.FieldOfStudy);
-                    fields.Add(Field.Location);
+                    //fields.Add(Field.Location);
                     break;
                 case Features.Housing:
                     fields.Add(Field.Keyword);
