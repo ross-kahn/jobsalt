@@ -12,7 +12,7 @@
                         <h4>@alumni.Name</h4>
                         <b>Location:</b> @alumni.Location.City, @alumni.Location.State<br />
                         <b>Major:</b> @alumni.FieldOfStudy<br />
-                        <b>Email:</b> @alumni.Email<br />
+                        <b>Email:</b> <a href="mailto:@alumni.Email" onclick="event.stopPropagation()">@alumni.Email</a><br />
                         <br />
                     </div>
                 }

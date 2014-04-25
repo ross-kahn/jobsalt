@@ -35,7 +35,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
                             ZipCode = ""
                         },
                     FieldOfStudy = grad.Program.name,
-                    Name = grad.Student.FirstName + " " + grad.Student.LastName,
+                    Name = grad.Student.FirstName + " " + "Smith",
                     PhoneNumber = "None found yet",
                     Email = "StudentEmail@University.com"
                 });
@@ -50,7 +50,7 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
             if (!String.IsNullOrEmpty(filters.Keyword))
             {
-                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(filters.Keyword) || alum.Company.Contains(filters.CompanyName) || alum.FieldOfStudy.Contains(filters.FieldOfStudy));
+                AlumSearchQuery = AlumSearchQuery.Where(alum => alum.Name.Contains(filters.Keyword) || alum.Company.Contains(filters.Keyword) || alum.FieldOfStudy.Contains(filters.Keyword));
             }
 
             if (!String.IsNullOrEmpty(filters.FieldOfStudy))
