@@ -12,9 +12,12 @@ namespace jobSalt.Models.Config
 
         public List<Module> Modules { get; set; }
 
+        public bool RemoveDuplicatePosts { get; set; }
+
         public JobConfig()
         {
             NumResults = 10;
+            RemoveDuplicatePosts = false;
         }
     }
 }

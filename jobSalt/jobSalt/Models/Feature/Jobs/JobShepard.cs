@@ -59,11 +59,11 @@ namespace jobSalt.Models.Feature.Jobs
 			jobHashDict = HttpContext.Current.Session["Job_Fuzzy_Hashes"] as Dictionary<JobPost , string>;
 		//END: Duplication removal logic
 
-            List<JobPost> jobs = new List<JobPost>();
+            List<List<JobPost>> jobs = new List<List<JobPost>>();
 
             if (filters.isEmpty())
             {
-                return jobs;
+                return new List<JobPost>();
             }
 
             // Use a dictionary of module to bool so each module can mark when it's complete,
@@ -92,7 +92,7 @@ namespace jobSalt.Models.Feature.Jobs
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
-                                jobs.AddRange(partialJobs);
+                                jobs.Add(partialJobs);
                             }
                         }
                         catch (Exception)
@@ -103,37 +103,42 @@ namespace jobSalt.Models.Feature.Jobs
                         
                     }
                 );
-				//Begin: Duplication removal logic
-				//get a fuzzy hash for each jobPost
-				foreach ( var job in jobs )
-					{
 
-
-
-					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-					string jobHash = job.Company+" "+job.JobTitle+" "+job.Location.City+" , "+job
-						.Location.State+" "+job.Location.ZipCode +" "+job.Description;
-					//add hash to dictionary
-					jobHashDict.Add( job , jobHash );
-					}
-				//only remove duplicates if we have a reasonable number of jobs.
-				if ( jobHashDict.Count( )>=10 )
-					RemoveDuplicateJobs( jobHashDict , jobs );
-			//End: Duplication removal logic 
+                if (ConfigLoader.JobConfig.RemoveDuplicatePosts)
+                {
+                    //Begin: Duplication removal logic
+                    //get a fuzzy hash for each jobPost
+                    foreach (var moduleJobs in jobs)
+                    {
+                        foreach (var job in moduleJobs)
+                        {
+                            //string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
+                            string jobHash = job.Company + " " + job.JobTitle + " " + job.Location.City + " , " + job
+                                .Location.State + " " + job.Location.ZipCode + " " + job.Description;
+                            //add hash to dictionary
+                            jobHashDict.Add(job, jobHash);
+                        }
+                    }
+                    //only remove duplicates if we have a reasonable number of jobs.
+                    if (jobHashDict.Count() >= 10)
+                        RemoveDuplicateJobs(jobHashDict, jobs);
+                    //End: Duplication removal logic 
+                }
+                 
             }
             catch(OperationCanceledException)
             {
                 // This is where we should notify the user that a source timed out
                 // The source can be determined by looking at the dictionary moduleCompleted
             }
-            return PostProcessJobs(jobs);
+            return PostProcessJobs(jobs); ;
         }
 		/// <summary>
 		/// Removes duplicate jobs from both the fuzzy hash dictionary and the jobs list.
 		/// </summary>
 		/// <param name="jobHashDict">The dictionary containing the jobPosts and their fuzzy hashes.</param>
 		/// <param name="jobs">Current list of jobs that are to be shown to the user.</param>
-		private void RemoveDuplicateJobs ( Dictionary<JobPost , string> jobHashDict , List<JobPost> jobs )
+		private void RemoveDuplicateJobs ( Dictionary<JobPost , string> jobHashDict , List<List<JobPost>> jobs )
 			{
 			//keep track of duplicates
 			List<JobPost> jobsToRemove = new List<JobPost>( );
@@ -166,8 +171,11 @@ namespace jobSalt.Models.Feature.Jobs
 			//remove duplicates from both jobHasDict and jobs
 			Parallel.ForEach( jobsToRemove , ( duplicateJob ) =>
 			{
-				if ( jobs.Contains( duplicateJob ) )
-					jobs.Remove( duplicateJob );
+                foreach (var moduleJobs in jobs)
+                {
+                    if (moduleJobs.Contains(duplicateJob))
+                        moduleJobs.Remove(duplicateJob);
+                }
 				if ( jobHashDict.ContainsKey( duplicateJob ) )
 					jobHashDict.Remove( duplicateJob );
 			} );
@@ -195,11 +203,34 @@ namespace jobSalt.Models.Feature.Jobs
         /// </summary>
         /// <param name="jobs">Unprocessed list of jobs</param>
         /// <returns>Processed list of jobs</returns>
-        List<JobPost> PostProcessJobs(List<JobPost> jobs) 
+        List<JobPost> PostProcessJobs(List<List<JobPost>> jobs) 
         {
-            jobs = jobs.OrderByDescending(job => job.DatePosted).ToList();
+            List<JobPost> interleavedJobs = new List<JobPost>();
+            int totalJobs = jobs.Sum(list => list.Count);
+            int listIndex = 0;
+            int numLists = jobs.Count;
+            // Yes this looks rather complicated, but it's not really.
+            // For however many jobs are in all of the lists append them
+            // to the new list one at a time from each module.
+            for (int i = 0; i < totalJobs; i++)
+            {
+                for (int j = 0; j < numLists; j++)
+                {
+                    if (jobs[listIndex].Count > 0)
+                    {
+                        interleavedJobs.Add(jobs[listIndex][0]);
+                        jobs[listIndex].RemoveAt(0);
+                        listIndex = (listIndex + 1) % numLists;
+                        break;
+                    }
+                    else
+                    {
+                        listIndex = (listIndex + 1) % numLists;
+                    }
+                }
+            }
 
-            return jobs;
+            return interleavedJobs;
         }
         #endregion // Private Methods
 
