@@ -92,6 +92,7 @@
 
                     if (addressType == "administrative_area_level_1") {
                         location.State = place.address_components[i].short_name;
+                        location.StateLong = place.address_components[i].long_name;
                     }
 
                     if (addressType == "locality") {
@@ -124,13 +125,8 @@
             <select class="form-control col-lg-4 focusable" name="value" onclick="event.stopPropagation()">
                 <option value="@JobType.All">All</option>
                 <option value="@JobType.FullTime">Full-Time</option>
-                <option value="@JobType.PartTime">Part Time</option>
-                <option value="@JobType.Internship">Internship</option>
-                <option value="@JobType.SeasonalOrTemp">Seasonal / Temp</option>
-                <option value="@JobType.Contractor">Contractor</option> 
-                
-
-</select>
+                <option value="@JobType.Internship">Internship</option>                
+            </select>
             <span class="input-group-btn">
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></button>
             </span>

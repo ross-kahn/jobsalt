@@ -4,12 +4,9 @@
   <SalaryEnabled>true</SalaryEnabled>
   <HousingEnabled>true</HousingEnabled>
   <TwitterFeedEnabled>false</TwitterFeedEnabled>
-  <TwitterUser />
-  <TwitterWidgetID />
   <JobsDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
-    <UserId />
     <Password />
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
@@ -17,7 +14,6 @@
   <AlumniDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
-    <UserId />
     <Password />
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
@@ -25,17 +21,9 @@
   <SalaryDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
-    <UserId />
     <Password />
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
   </SalaryDBConnection>
-  <UniversityThemeCSSFile>UA-Theme.css</UniversityThemeCSSFile>
-  <UniversityLogo>/Content/images/jobsalt-logo.png</UniversityLogo>
-  <BannerTopColor>004997</BannerTopColor>
-  <BannerBottomColor>003671</BannerBottomColor>
-  <FilterEnabledTopColor />
-  <FilterEnabledBottomColor />
-  <FilterDisabledTopColor />
-  <FilterDisabledBottomColor />
+  <UniversityThemeCSSFile>RIT-Theme.css</UniversityThemeCSSFile>
 </SiteConfig>
