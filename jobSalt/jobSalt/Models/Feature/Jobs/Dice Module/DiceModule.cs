@@ -12,7 +12,7 @@ namespace jobSalt.Models.Feature.Jobs.Dice_Module
 		Source source = new Source( )
 		{
 			Name = "Dice_Module" ,
-			Icon = "/Content/images/DiceLogo-550x224.jpg"
+			Icon = "/Content/images/DiceLogo-512x512.png"
 		};
 		public Source Source
 			{

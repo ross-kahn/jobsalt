@@ -26,5 +26,9 @@
       <Name>jobSalt.Models.Feature.Jobs.UAJobLink_Module.UAJobLinkModule</Name>
       <Enabled>false</Enabled>
     </Module>
+	  <Module>
+		  <Name>jobSalt.Models.Feature.Jobs.GitHub_Module.GitHub_Module</Name>
+		  <Enabled>true</Enabled>
+	  </Module>
   </Modules>
 </JobConfig>

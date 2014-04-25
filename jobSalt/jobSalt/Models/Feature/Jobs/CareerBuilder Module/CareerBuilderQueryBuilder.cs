@@ -29,7 +29,8 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
             builder.Append(locationConverter(filters.Location));
             builder.Append(jobTitleConverter(filters.JobTitle));
             builder.Append(companyNameConverter(filters.CompanyName));
-
+			builder.Append(JobTypeConverter(filters.JobType.ToString()));
+			builder = FieldOfStudyConverter( filters.FieldOfStudy.ToString( ), builder ) ;
 					/* case Field.EducationCode:
 						switch(FilterDict[key])
 							{
@@ -57,9 +58,60 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 							default:
 								break; */
 			return builder.ToString( );
-        }
+		}
 
-        private string companyNameConverter(string companyname)
+		private static StringBuilder FieldOfStudyConverter ( string fieldOfStudy , StringBuilder builder )
+		{
+			if(!String.IsNullOrWhiteSpace(fieldOfStudy))
+				if ( builder.ToString( ).Contains( "&Keywords=" ) )
+					builder.Replace( "&Keywords=" , "&Keywords="+fieldOfStudy+"," );
+				else
+					{
+					builder.Append( "&Keywords="+fieldOfStudy+"," );
+					}
+			return builder;
+		}
+
+		private static string JobTypeConverter(String JobType)
+			{
+			String converted="";
+			if(!String.IsNullOrWhiteSpace(JobType))
+				switch ( JobType )
+					{
+					case "FullTime":
+						converted="&EmpType=JTFT";
+						break;
+					case "PartTime":
+						converted="&EmpType=JTPT";
+						break;
+					case "FullTimeOrPartTime":
+						converted="&EmpType=JTFP";
+						break;
+					case "Contractor":
+						converted="&EmpType=JTCT";
+						break;
+					case "Internship":
+						converted="&EmpType=JTIN";
+						break;
+					case "SeasonalOrTemp":
+						converted="&EmpType=JTSE";
+						break;
+					case "PerDiem":
+						converted="&EmpType=JTPD";
+						break;
+					case "Franchises":
+						converted="&EmpType=JTFR";
+						break;
+					case "All":
+						converted="&EmpType=JTFT,JTPT,JTFP,JTCT,JTIN,JTSE,JTPD,JTFR";
+						break;
+					default:
+						break;
+					}
+			return converted;
+			}
+
+        private static string companyNameConverter(string companyname)
         {
             if (String.IsNullOrWhiteSpace(companyname))
             {
@@ -75,7 +127,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
             }
         }
 
-        private string jobTitleConverter(string title)
+		private static string jobTitleConverter ( string title )
         {
             if (String.IsNullOrWhiteSpace(title))
             {
@@ -88,7 +140,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 
         }
 
-        private string keywordConverter(string keywords)
+		private static string keywordConverter ( string keywords )
         {
             if (String.IsNullOrWhiteSpace(keywords))
             {
@@ -100,7 +152,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
             }
         }
 
-        private string locationConverter(Location loc)
+		private static string locationConverter ( Location loc )
         {
             if (null == loc)
             {

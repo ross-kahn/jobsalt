@@ -10,7 +10,7 @@ namespace jobSalt.Models
 {
     public enum Field { Source, Date, CompanyName, JobTitle, JobType, Location, Salary, FieldOfStudy, Keyword, EducationCode };
 
-    public enum JobType { Internship, FullTime, All }
+    public enum JobType { Internship, FullTime, PartTime, FullTimeOrPartTime, Contractor, SeasonalOrTemp,PerDiem, All }
 
     public enum Features { Jobs, Alumni, Salary, Housing };
 

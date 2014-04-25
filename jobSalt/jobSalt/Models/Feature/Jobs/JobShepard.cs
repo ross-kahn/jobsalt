@@ -105,17 +105,16 @@ namespace jobSalt.Models.Feature.Jobs
                 );
 				//Begin: Duplication removal logic
 				//get a fuzzy hash for each jobPost
-				int i =0;//unique number for each hash
 				foreach ( var job in jobs )
 					{
 
 
 
 					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-					string jobHash = job.Company+" "+job.JobTitle+" "+i;
+					string jobHash = job.Company+" "+job.JobTitle+" "+job.Location.City+" , "+job
+						.Location.State+" "+job.Location.ZipCode +" "+job.Description;
 					//add hash to dictionary
 					jobHashDict.Add( job , jobHash );
-					i++;
 					}
 				//only remove duplicates if we have a reasonable number of jobs.
 				if ( jobHashDict.Count( )>=10 )

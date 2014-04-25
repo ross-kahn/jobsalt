@@ -346,6 +346,7 @@
       <DependentUpon>HousingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Feature\Housing\LocalModule\LocalHousingModule.cs" />
+    <Compile Include="Models\Feature\Jobs\GitHub_Module\GitHub_Module.cs" />
     <Compile Include="Models\Feature\Salary\ISalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\RIT_Module\RITSalaryModule.cs" />
     <Compile Include="Models\Feature\Salary\SalaryShepard.cs" />
@@ -454,6 +455,9 @@
     <Content Include="Content\images\bar-pointer.png" />
     <Content Include="Content\images\bar.png" />
     <Content Include="Content\images\careerbuilder_icon.png" />
+    <Content Include="Content\images\DiceLogo-512x512.png" />
+    <Content Include="Content\images\DiceLogo-550x224.jpg" />
+    <Content Include="Content\images\GitHub-Mark-230.png" />
     <Content Include="Content\images\indeed_icon.png" />
     <Content Include="Content\images\jobSalt-Logo.png" />
     <Content Include="Content\images\map-opacity.png" />
