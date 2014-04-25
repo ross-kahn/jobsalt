@@ -39,7 +39,7 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
             builder.Append(useripConverter(USER_IP));                   // The IP of the current user, for Indeed metrics
             builder.Append(useragentConverter(USER_AGENT));             // The browser of the current user, for Indeed metrics
             builder.Append(VERSION_TAG);                                // Version of the API, currently v.2
-			builder.Append( jobtypeConverter(filterbag.JobType.ToString( )) );
+			builder.Append( JobTypeConverter( filterbag.JobType.ToString( ) ) );
             return builder.ToString();
         }
 
@@ -87,16 +87,7 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 
             return query;
 
-        }
-
-        private string jobtypeConverter(string jobtype)
-        {
-            if(String.IsNullOrWhiteSpace(jobtype)){
-                return "";
-            }else{
-                return "&jt=" + jobtype;
-            }
-        }
+        } 
 
         private string locationConverter(Location loc)
         {
@@ -160,35 +151,34 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
 		private static string JobTypeConverter ( String JobType )
 			{
 			String converted="";
-			if ( !String.IsNullOrWhiteSpace( JobType ) )
-				switch ( JobType )
-					{
-					case "FullTime":
-						converted="&jt=fulltime";
-						break;
-					case "PartTime":
-						converted="&jt=parttime";
-						break;
-					case "FullTimeOrPartTime": 
-						break;
-					case "Contractor":
-						converted="&jt=contract";
-						break;
-					case "Internship":
-						converted="&jt=internship";
-						break;
-					case "SeasonalOrTemp":
-						converted="&jt=temporary";
-						break;
-					case "PerDiem": 
-						break;
-					case "Franchises": 
-						break;
-					case "All": 
-						break;
-					default:
-						break;
-					}
+			switch ( JobType )
+				{
+				case "FullTime":
+					converted="&jt=fulltime";
+					break;
+				case "PartTime":
+					converted="&jt=parttime";
+					break;
+				case "FullTimeOrPartTime":
+					break;
+				case "Contractor":
+					converted="&jt=contract";
+					break;
+				case "Internship":
+					converted="&jt=internship";
+					break;
+				case "SeasonalOrTemp":
+					converted="&jt=temporary";
+					break;
+				case "PerDiem":
+					break;
+				case "Franchises":
+					break;
+				case "All":
+					break;
+				default:
+					break;
+				}
 			return converted;
 			}
         #endregion
