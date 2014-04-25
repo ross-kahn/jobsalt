@@ -1,5 +1,6 @@
 ﻿using jobSalt.Models;
 using jobSalt.Models.Config;
+using jobSalt.Models.Data_Types;
 using jobSalt.Models.Feature.Jobs;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,12 @@ namespace jobSalt.Controllers
         {
             string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, "");
             return RedirectToAction("Index", "Alumni", new { filterString = newFilterString });
+        }
+
+        public ActionResult HousingAtLocation(string filterString, Location location)
+        {
+            string newFilterString = FilterUtility.AssignFilter(Field.Location, System.Web.Helpers.Json.Encode(location), "");
+            return RedirectToAction("Index", "Housing", new { filterString = newFilterString });
         }
     }
 

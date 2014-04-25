@@ -14,7 +14,11 @@
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
                 <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
-                <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">View Alumni</a>
+                <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">Search Alumni</a>
+                <a href="@Url.Action("HousingAtLocation", new { City = Model[i].Location.City, 
+                                                                State = Model[i].Location.State, 
+                                                                ZipCode = Model[i].Location.ZipCode,
+                                                                filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">Search Housing Reviews</a>
             </div>
         </div>
     </div>
