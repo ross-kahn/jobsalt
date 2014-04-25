@@ -31,9 +31,11 @@ namespace jobSalt.Models.Auth
         /// <returns>True if user exist and password is correct</returns>
         public override bool IsValid(string _username, string _password)
         {
+            var config = Config.ConfigLoader.SiteConfig;
 
-            if (!(_username.Equals("dyw2567") || _username.Equals("cjp5465") || _username.Equals("del6597") || _username.Equals("rtk1865") || _username.Equals("jtboce")))
-                return false;
+            if (config.RestrictAccessToUsers.Count > 0)
+                if (!config.RestrictAccessToUsers.Contains(_username))
+                    return false;
 
             //TODO real connection string
             bool authenticated = false;
@@ -65,8 +67,8 @@ namespace jobSalt.Models.Auth
 
         public override bool IsAdmin(string _username)
         {
-            if (_username.Equals("cjp5465") || _username.Equals("jtboce"))
-            return true;
+            if (Config.ConfigLoader.SiteConfig.AdminUsers.Contains(_username))
+                return true;
             return false;
 
             /*

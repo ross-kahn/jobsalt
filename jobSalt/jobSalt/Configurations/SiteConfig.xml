@@ -9,6 +9,7 @@
   <JobsDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
+    <UserId />
     <Password />
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
@@ -16,6 +17,7 @@
   <AlumniDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
+    <UserId />
     <Password />
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
@@ -23,14 +25,38 @@
   <SalaryDBConnection>
     <InitialCatalog>ocecs</InitialCatalog>
     <DataSource>localhost\SQLEXPRESS</DataSource>
+    <UserId />
     <Password />
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
   </SalaryDBConnection>
   <HousingDBConnection>
+    <InitialCatalog />
+    <DataSource />
+    <UserId />
     <Password>PasswordJS</Password>
     <IntegratedSecuity>true</IntegratedSecuity>
     <ConfigConnectionStringName />
   </HousingDBConnection>
+  <AdminUsers>
+    <string>cjp5465</string>
+    <string>jtboce</string>
+  </AdminUsers>
+  <Moderators />
+  <RestrictAccessToUsers>
+    <string>dyw2567</string>
+    <string>cjp5465</string>
+    <string>del6597</string>
+    <string>rtk1865</string>
+    <string>jtboce</string>
+    <string>jtbtest</string>
+  </RestrictAccessToUsers>
   <UniversityThemeCSSFile>RIT-Theme.css</UniversityThemeCSSFile>
+  <UniversityLogo />
+  <BannerTopColor />
+  <BannerBottomColor />
+  <FilterEnabledTopColor />
+  <FilterEnabledBottomColor />
+  <FilterDisabledTopColor />
+  <FilterDisabledBottomColor />
 </SiteConfig>
