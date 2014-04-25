@@ -31,9 +31,9 @@
     <ConfigConnectionStringName />
   </SalaryDBConnection>
   <UniversityThemeCSSFile>UA-Theme.css</UniversityThemeCSSFile>
-  <UniversityLogo>/Content/images/jobsalt-logo.png</UniversityLogo>
-  <BannerTopColor>004997</BannerTopColor>
-  <BannerBottomColor>003671</BannerBottomColor>
+  <UniversityLogo>/Content/images/UA-Logo.png</UniversityLogo>
+  <BannerTopColor>003366</BannerTopColor>
+  <BannerBottomColor>003366</BannerBottomColor>
   <FilterEnabledTopColor />
   <FilterEnabledBottomColor />
   <FilterDisabledTopColor />

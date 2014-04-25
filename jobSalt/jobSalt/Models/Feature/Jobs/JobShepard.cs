@@ -76,9 +76,9 @@ namespace jobSalt.Models.Feature.Jobs
 
             object lockObject = new Object();
 
-            var timeout = 5000; // 5 seconds
-            var cts = new CancellationTokenSource();
-            var t = new Timer(_ => cts.Cancel(), null, timeout, Timeout.Infinite);
+			int timeout = 5000; // 5 seconds
+			CancellationTokenSource cts = new CancellationTokenSource();
+			Timer t = new Timer(_ => cts.Cancel(), null, timeout, Timeout.Infinite);
 
             try
             {
@@ -105,14 +105,10 @@ namespace jobSalt.Models.Feature.Jobs
                 );
 				//Begin: Duplication removal logic
 				//get a fuzzy hash for each jobPost 
-				foreach ( var job in jobs )
-					{
-
-
-
+				foreach (JobPost job in jobs)
+				{
 					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-					string jobHash = job.Company+" "+job.JobTitle+" "+job.Location.City+" , "+job
-						.Location.State+" "+job.Location.ZipCode +" "+job.Description;
+					string jobHash = job.Company+" "+job.JobTitle+" "+job.Location.City+" "+job.Description.Substring(0,job.Description.Length<50?job.Description.Length:50);
 					//add hash to dictionary
 					jobHashDict.Add( job , jobHash ); 
 					}
@@ -142,10 +138,10 @@ namespace jobSalt.Models.Feature.Jobs
 			foreach ( KeyValuePair<JobPost , string> jobHashDictKV_a in jobHashDict )
 				{
 				visited.Add( jobHashDictKV_a );
-				var compareList = from c in jobHashDict
-								  where !visited.Any( a => a.Equals( c ) )
-								  select c;
-				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
+				IEnumerable<KeyValuePair<JobPost, string>> compareList = from c in jobHashDict
+																		 where !visited.Any(a => a.Equals(c))
+																		 select c;
+				foreach (KeyValuePair<JobPost, string> jobHashDictKV_b in compareList)
 					{
 					Double threashold = 0.95;
 					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
