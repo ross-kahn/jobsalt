@@ -14,6 +14,18 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
             get { throw new NotImplementedException(); }
         }
 
+        public LocalHousingModule()
+        {
+            bool releaseConfiguration = true;
+
+            #if DEBUG
+                releaseConfiguration = false;
+            #endif
+
+            if (releaseConfiguration)
+                dbConext.ChangeDatabase(Config.ConfigLoader.SiteConfig.HousingDBConnection);
+        }
+
         public List<HousingPost> GetHousing(FilterBag filters)
         {
             List<HousingPost> posts = dbConext.HousingReviews.Select(review => new HousingPost()

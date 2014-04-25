@@ -3,7 +3,7 @@
 @foreach(string company in @Model.Keys)
 {
     <div class="col-md-12 col-xs-12" style="padding:0px; margin-top:10px">
-        <div class="post post-alumni post-new" onclick="CollapseWithoutSelection(this)">
+        <div class="post post-alumni post-new" onclick="CollapseWithoutSelection(this)" style="position: relative">
             <h2 class="ellipsis" style="padding-right:50px">@company</h2>
             <div class="post-details collapse">
                 @foreach (AlumniPost alumni in @Model[company])

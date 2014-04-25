@@ -133,7 +133,20 @@
                 </div>
             </div>
         </div>
-
+        <div class="row" style="margin-top: 25px; margin-bottom:25px">
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>Housing DB Connection</h3><br />
+                    <table>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Data Source: </h4></td><td>@Html.TextBoxFor(model => model.HousingDBConnection.DataSource, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Initial Catalog: </h4></td><td>@Html.TextBoxFor(model => model.HousingDBConnection.InitialCatalog, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0; ">Integrated Security: </h4></td><td>@Html.CheckBoxFor(model => model.HousingDBConnection.IntegratedSecuity)</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">UserID: </h4></td><td>@Html.TextBoxFor(model => model.HousingDBConnection.UserId, new { @class = "form-control" })</td></tr>
+                        <tr><td><h4 style="margin: 0 10px 0 0;">Password: </h4></td><td>@Html.PasswordFor(model => model.HousingDBConnection.Password, new { @class = "form-control", value = "PasswordJS" })</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
         <input class="col-xs-offset-4 col-xs-4" type="submit" value="Save Changes" />
     }
 </div>

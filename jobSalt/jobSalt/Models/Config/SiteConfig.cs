@@ -20,6 +20,7 @@ namespace jobSalt.Models.Config
         public DBConnectionConfig JobsDBConnection { get; set; }
         public DBConnectionConfig AlumniDBConnection { get; set; }
         public DBConnectionConfig SalaryDBConnection { get; set; }
+        public DBConnectionConfig HousingDBConnection { get; set; }
 
         // ******** Site Theme ********
         #region Site Theme
@@ -49,6 +50,7 @@ namespace jobSalt.Models.Config
             JobsDBConnection = new DBConnectionConfig();
             AlumniDBConnection = new DBConnectionConfig();
             SalaryDBConnection = new DBConnectionConfig();
+            HousingDBConnection = new DBConnectionConfig();
 
             UniversityLogo = "";
             UniversityThemeCSSFile = "";

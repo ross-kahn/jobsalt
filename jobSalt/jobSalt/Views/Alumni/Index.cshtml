@@ -30,10 +30,10 @@
     <div class="container">
         <div class="row">
             @Html.Partial("_FilterPartial", Features.Alumni)
-            <div class="col-md-9">
+            <div class="col-xs-12 col-sm-9">
                 <div id="productList"></div>
                 <div class="row">
-                    <div class="col-cs-12 col-sm-offset-3 col-sm-6">
+                    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
                         <h1 id="message"></h1>
                     </div>
                 </div>
@@ -66,14 +66,18 @@
                         if (data.trim() != '') {
                             $("#productList").append(data);
                             $(".post-new").each(function (i) {
-                                var $item = $(this);
+                                @if(!Request.Browser.IsMobileDevice)
+                                {
+                                    <text>
+                                    var $item = $(this);
 
-                                $item.animate({ top: "+=" + 1500 }, 0)
-                                // execute this function sometime later:
-                                setTimeout(function () {
-                                    $item.animate({ top: "-=" + 1500 }, 400);
-                                }, 50 * i);
-
+                                    $item.animate({ top: "+=" + 1500 }, 0)
+                                    // execute this function sometime later:
+                                    setTimeout(function () {
+                                        $item.animate({ top: "-=" + 1500 }, 400);
+                                    }, 50 * i);
+                                    </text>
+                                }
                                 $(this).removeClass("post-new");
                             });
                         }

@@ -106,7 +106,7 @@
                 var fstr = "@Html.Raw(ViewBag.FilterString)";
 
                 $.get("/Housing/Index?page=" + page + "&filterString=" + fstr, function (data) {
-                    if (data != '') {
+                    if (data.trim() != '') {
                         $("#productList").append(data);
                         $(".post-new").each(function (i) {
                             @if(!Request.Browser.IsMobileDevice)
