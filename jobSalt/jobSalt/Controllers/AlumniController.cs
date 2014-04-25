@@ -40,7 +40,6 @@ namespace jobSalt.Controllers
             return View();
         }
 
-        [ChildActionOnly]
         public ActionResult JobsAtCompany(string filterString, string company)
         {
             string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, "");
