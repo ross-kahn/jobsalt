@@ -46,18 +46,21 @@ namespace jobSalt.Models.Feature.Jobs
         #endregion // Constructors
 
         #region Public Methods
-        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule, HttpContext context)
         {
-		//Begin: Duplication removal logic
-		if ( page==0 )
+            Dictionary<JobPost, string> jobHashDict = new Dictionary<JobPost, string>();
+            
+		    //Begin: Duplication removal logic
+		    if ( page==0 )
 			{	//if on the first page, clear the hashes from session.
-			HttpContext.Current.Session["Job_Fuzzy_Hashes"] = null;
+			    HttpContext.Current.Session["Job_Fuzzy_Hashes"] = null;
 			}
-		//retrieve the job hash dictionary from session
-		Dictionary<JobPost , string> jobHashDict = new Dictionary<JobPost , string>( );
-		if ( HttpContext.Current.Session["Job_Fuzzy_Hashes"] != null && ( HttpContext.Current.Session["Job_Fuzzy_Hashes"] is Dictionary<JobPost , string> ) )
-			jobHashDict = HttpContext.Current.Session["Job_Fuzzy_Hashes"] as Dictionary<JobPost , string>;
-		//END: Duplication removal logic
+		    //retrieve the job hash dictionary from session
+		    
+		    if ( HttpContext.Current.Session["Job_Fuzzy_Hashes"] != null && ( HttpContext.Current.Session["Job_Fuzzy_Hashes"] is Dictionary<JobPost , string> ) )
+			    jobHashDict = HttpContext.Current.Session["Job_Fuzzy_Hashes"] as Dictionary<JobPost , string>;
+		    //END: Duplication removal logic
+            
 
             List<List<JobPost>> jobs = new List<List<JobPost>>();
 
@@ -76,9 +79,9 @@ namespace jobSalt.Models.Feature.Jobs
 
             object lockObject = new Object();
 
-            var timeout = 5000; // 5 seconds
+            var timeout = 1000; // 5 seconds
             var cts = new CancellationTokenSource();
-            var t = new Timer(_ => cts.Cancel(), null, timeout, Timeout.Infinite);
+            var t = new Timer(_ => { cts.Cancel(); }, null, timeout, Timeout.Infinite);
 
             try
             {
@@ -133,6 +136,7 @@ namespace jobSalt.Models.Feature.Jobs
             }
             return PostProcessJobs(jobs); ;
         }
+
 		/// <summary>
 		/// Removes duplicate jobs from both the fuzzy hash dictionary and the jobs list.
 		/// </summary>
@@ -179,7 +183,7 @@ namespace jobSalt.Models.Feature.Jobs
 				if ( jobHashDict.ContainsKey( duplicateJob ) )
 					jobHashDict.Remove( duplicateJob );
 			} );
-			}
+	    }
 		private string CalculateMD5Hash ( string input )
 			{
 			// Calculate MD5 hash from input

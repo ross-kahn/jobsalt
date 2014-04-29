@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -13,12 +14,12 @@ using System.Web.Script.Serialization;
 namespace jobSalt.Controllers
 {
     [ReleaseOnlyAuthorization]
-    public class JobController : Controller
+    public class JobController : AsyncController
     {
         private JobShepard shepard = new JobShepard();
         
 
-        public ActionResult Index(string filterString, int page = 0)
+        public async Task<ActionResult> Index(string filterString, int page = 0)
         {
             JobConfig config = ConfigLoader.JobConfig;
             int resultsPerPage = config.NumResults;
@@ -32,7 +33,10 @@ namespace jobSalt.Controllers
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
             {
-                return PartialView("Index_Partial", shepard.GetJobs(filters, page, resultsPerPage).ToArray());
+                var task = new Task<List<JobPost>>(() => shepard.GetJobs(filters, page, resultsPerPage, System.Web.HttpContext.Current));
+                task.Start();
+                var jobs = await task;
+                return PartialView("Index_Partial", jobs.ToArray());
             }
 
             return View();
