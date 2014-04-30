@@ -16,13 +16,7 @@ namespace jobSalt.Models.Feature.Jobs
     public class JobShepard
     {
         #region Properties
-        public int NumberOfModules
-        {
-            get
-            {
-                return modules.Count;
-            }
-        }
+        public int MaxWaitTime { get; set; }
         #endregion // Properties
 
         #region Private Member Variables
@@ -33,6 +27,9 @@ namespace jobSalt.Models.Feature.Jobs
         public JobShepard()
         {
             modules = new List<IJobModule>();
+
+            // Set the maxium amount of time to wait for a module to complete in seconds.
+            MaxWaitTime = 5;
 
             foreach (Module module in ConfigLoader.JobConfig.Modules)
             {
@@ -46,72 +43,39 @@ namespace jobSalt.Models.Feature.Jobs
         #endregion // Constructors
 
         #region Public Methods
-        /*
-        public async Task<List<JobPost>> GetJobsAsync(FilterBag filters, int page, int resultsPerModule, HttpContext context)
+        public Task<List<JobPost>> GetJobsAsync(FilterBag filters, int page, int resultsPerModule)
         {
-            
-            List<Task<List<JobPost>>> tasks = new List<Task<List<JobPost>>>();
-            foreach(IJobModule module in modules)
-            {
-                Task<List<JobPost>> task = new Task<List<JobPost>>(() => RunModule(module, filters, page, resultsPerModule));
-            }
+            HttpContext context = HttpContext.Current;
+            Task<List<JobPost>> task = new Task<List<JobPost>>(() => 
+                {
+                    HttpContext.Current = context;
+                    return GetJobs(filters, page, resultsPerModule);
+                });
+            task.Start();
+            return task;
         }
 
-        private List<JobPost> RunModule(IJobModule module, FilterBag filters, int page, int resultsPerModule)
+        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule)
         {
-            return module.GetJobs(filters, page, resultsPerModule);
-        }
-        */
-        public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule, HttpContext context)
-        {
-            Dictionary<JobPost, string> jobHashDict = new Dictionary<JobPost, string>();
-            
-		    //Begin: Duplication removal logic
-		    if ( page==0 )
-			{	//if on the first page, clear the hashes from session.
-			    HttpContext.Current.Session["Job_Fuzzy_Hashes"] = null;
-			}
-		    //retrieve the job hash dictionary from session
-		    
-		    if ( HttpContext.Current.Session["Job_Fuzzy_Hashes"] != null && ( HttpContext.Current.Session["Job_Fuzzy_Hashes"] is Dictionary<JobPost , string> ) )
-			    jobHashDict = HttpContext.Current.Session["Job_Fuzzy_Hashes"] as Dictionary<JobPost , string>;
-		    //END: Duplication removal logic
-            
-
-            List<List<JobPost>> jobs = new List<List<JobPost>>();
-
             if (filters.isEmpty())
             {
                 return new List<JobPost>();
             }
 
-            // Use a dictionary of module to bool so each module can mark when it's complete,
-            // this is used incase of a timeout so it can be determined which module did not complete.
-            Dictionary<IJobModule, bool> moduleCompleted = new Dictionary<IJobModule, bool>();
+            List<Task> tasks = new List<Task>();
+            List<List<JobPost>> jobs = new List<List<JobPost>>();
+            object lockObject = new object();
+
             foreach(IJobModule module in modules)
             {
-                moduleCompleted.Add(module, false);
-            }
-
-            object lockObject = new Object();
-
-            var timeout = 1000; // 5 seconds
-            var cts = new CancellationTokenSource();
-            var t = new Timer(_ => { cts.Cancel(); }, null, timeout, Timeout.Infinite);
-
-            try
-            {
-                Parallel.ForEach(modules,
-                    new ParallelOptions { CancellationToken = cts.Token },
-                    (module) =>
+                Task task = new Task(() => 
                     {
                         try
                         {
-                            List<JobPost> partialJobs = module.GetJobs(filters, page, resultsPerModule);
+                            List<JobPost> moduleJobs = module.GetJobs(filters, page, resultsPerModule);
                             lock (lockObject)
                             {
-                                moduleCompleted[module] = true;
-                                jobs.Add(partialJobs);
+                                jobs.Add(moduleJobs);
                             }
                         }
                         catch (Exception)
@@ -119,87 +83,95 @@ namespace jobSalt.Models.Feature.Jobs
                             // The module failed. Not a system failure but the user should be notified
                             // we need to create a mechanism to actually notify them and call it here
                         }
-                        
-                    }
-                );
-
-                if (ConfigLoader.JobConfig.RemoveDuplicatePosts)
-                {
-                    //Begin: Duplication removal logic
-                    //get a fuzzy hash for each jobPost
-                    foreach (var moduleJobs in jobs)
-                    {
-                        foreach (var job in moduleJobs)
-                        {
-                            //string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
-                            string jobHash = job.Company + " " + job.JobTitle + " " + job.Location.City + " , " + job
-                                .Location.State + " " + job.Location.ZipCode + " " + job.Description;
-                            //add hash to dictionary
-                            jobHashDict.Add(job, jobHash);
-                        }
-                    }
-                    //only remove duplicates if we have a reasonable number of jobs.
-                    if (jobHashDict.Count() >= 10)
-                        RemoveDuplicateJobs(jobHashDict, jobs);
-                    //End: Duplication removal logic 
-                }
-                 
+                       
+                    });
+                tasks.Add(task);
+                task.Start();
             }
-            catch(OperationCanceledException)
+            Task.WaitAll(tasks.ToArray(), MaxWaitTime * 1000);
+
+            // Create a copy of jobs incase a module finishes late and tries to modifiy the
+            // collection while we're still using it.
+            List<List<JobPost>> duplicatedJobs = new List<List<JobPost>>(jobs);
+
+            if (ConfigLoader.JobConfig.RemoveDuplicatePosts)
             {
-                // This is where we should notify the user that a source timed out
-                // The source can be determined by looking at the dictionary moduleCompleted
+                RemoveDuplicateJobs(duplicatedJobs, page);
             }
-            return PostProcessJobs(jobs); ;
+
+            return PostProcessJobs(duplicatedJobs); ;
         }
+        
+        private void RemoveDuplicateJobs(List<List<JobPost>> jobs, int page)
+        {
+            Dictionary<JobPost, string> jobHashDict = new Dictionary<JobPost, string>();
 
-		/// <summary>
-		/// Removes duplicate jobs from both the fuzzy hash dictionary and the jobs list.
-		/// </summary>
-		/// <param name="jobHashDict">The dictionary containing the jobPosts and their fuzzy hashes.</param>
-		/// <param name="jobs">Current list of jobs that are to be shown to the user.</param>
-		private void RemoveDuplicateJobs ( Dictionary<JobPost , string> jobHashDict , List<List<JobPost>> jobs )
-			{
-			//keep track of duplicates
-			List<JobPost> jobsToRemove = new List<JobPost>( );
-			List<KeyValuePair<JobPost , string>> visited = new List<KeyValuePair<JobPost , string>>( );
+            if (page == 0)
+            {	//if on the first page, clear the hashes from session.
+                HttpContext.Current.Session["Job_Fuzzy_Hashes"] = null;
+            }
+            //retrieve the job hash dictionary from session
 
-			foreach ( KeyValuePair<JobPost , string> jobHashDictKV_a in jobHashDict )
-				{
-				visited.Add( jobHashDictKV_a );
-				var compareList = from c in jobHashDict
-								  where !visited.Any( a => a.Equals( c ) )
-								  select c;
-				foreach ( KeyValuePair<JobPost , string> jobHashDictKV_b in compareList )
-					{
-					Double threashold = 0.98;
-					Double simScore = jobHashDictKV_a.Value.DiceCoefficient( jobHashDictKV_b.Value );
-					//System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
+            if (HttpContext.Current.Session["Job_Fuzzy_Hashes"] != null && (HttpContext.Current.Session["Job_Fuzzy_Hashes"] is Dictionary<JobPost, string>))
+                jobHashDict = HttpContext.Current.Session["Job_Fuzzy_Hashes"] as Dictionary<JobPost, string>;
 
-					//compare a to b's hashes. remove if too similar
-					if ( !jobHashDictKV_a.Key.Equals( jobHashDictKV_b.Key ) && ( Double.IsNaN( simScore ) || simScore>=threashold ) )
-						{
-						System.Diagnostics.Debug.WriteLine( "JobShepard found a duplicate, fuzzy match score: "+ simScore +" similar. Threashold = "+threashold+"\n"
-														   +"\t[Source: "+jobHashDictKV_a.Key.SourceModule.Name+"\t\t\t  hash: " + jobHashDictKV_a.Value+"]...removing.\n" 
-														   +"\t[Source: "+jobHashDictKV_b.Key.SourceModule.Name+"\t\t\t  hash: " + jobHashDictKV_b.Value+ "]\n" );
-						//mark duplicate
-						jobsToRemove.Add( jobHashDictKV_a.Key );
-						}
-					}
-				}
+            //Begin: Duplication removal logic
+            //get a fuzzy hash for each jobPost
+            foreach (var moduleJobs in jobs)
+            {
+                foreach (var job in moduleJobs)
+                {
+                    //string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
+                    string jobHash = job.Company + " " + job.JobTitle + " " + job.Location.City + " , " + job
+                        .Location.State + " " + job.Location.ZipCode + " " + job.Description;
+                    //add hash to dictionary
+                    jobHashDict.Add(job, jobHash);
+                }
+            }
+            //only remove duplicates if we have a reasonable number of jobs.
+            if (jobHashDict.Count() < 10)
+                return;
 
-			//remove duplicates from both jobHasDict and jobs
-			Parallel.ForEach( jobsToRemove , ( duplicateJob ) =>
-			{
+            //keep track of duplicates
+            List<JobPost> jobsToRemove = new List<JobPost>();
+            List<KeyValuePair<JobPost, string>> visited = new List<KeyValuePair<JobPost, string>>();
+
+            foreach (KeyValuePair<JobPost, string> jobHashDictKV_a in jobHashDict)
+            {
+                visited.Add(jobHashDictKV_a);
+                var compareList = from c in jobHashDict
+                                  where !visited.Any(a => a.Equals(c))
+                                  select c;
+                foreach (KeyValuePair<JobPost, string> jobHashDictKV_b in compareList)
+                {
+                    Double threashold = 0.98;
+                    Double simScore = jobHashDictKV_a.Value.DiceCoefficient(jobHashDictKV_b.Value);
+                    //System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
+
+                    //compare a to b's hashes. remove if too similar
+                    if (!jobHashDictKV_a.Key.Equals(jobHashDictKV_b.Key) && (Double.IsNaN(simScore) || simScore >= threashold))
+                    {
+                        System.Diagnostics.Debug.WriteLine("JobShepard found a duplicate, fuzzy match score: " + simScore + " similar. Threashold = " + threashold + "\n"
+                                                           + "\t[Source: " + jobHashDictKV_a.Key.SourceModule.Name + "\t\t\t  hash: " + jobHashDictKV_a.Value + "]...removing.\n"
+                                                           + "\t[Source: " + jobHashDictKV_b.Key.SourceModule.Name + "\t\t\t  hash: " + jobHashDictKV_b.Value + "]\n");
+                        //mark duplicate
+                        jobsToRemove.Add(jobHashDictKV_a.Key);
+                    }
+                }
+            }
+
+            //remove duplicates from both jobHasDict and jobs
+            Parallel.ForEach(jobsToRemove, (duplicateJob) =>
+            {
                 foreach (var moduleJobs in jobs)
                 {
                     if (moduleJobs.Contains(duplicateJob))
                         moduleJobs.Remove(duplicateJob);
                 }
-				if ( jobHashDict.ContainsKey( duplicateJob ) )
-					jobHashDict.Remove( duplicateJob );
-			} );
-	    }
+                if (jobHashDict.ContainsKey(duplicateJob))
+                    jobHashDict.Remove(duplicateJob);
+            });
+        }
 		private string CalculateMD5Hash ( string input )
 			{
 			// Calculate MD5 hash from input

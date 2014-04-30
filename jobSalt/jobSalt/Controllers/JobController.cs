@@ -32,10 +32,8 @@ namespace jobSalt.Controllers
 
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
-            {
-                var task = new Task<List<JobPost>>(() => shepard.GetJobs(filters, page, resultsPerPage, System.Web.HttpContext.Current));
-                task.Start();
-                var jobs = await task;
+            {   
+                var jobs = await shepard.GetJobsAsync(filters, page, resultsPerPage);
                 return PartialView("Index_Partial", jobs.ToArray());
             }
 

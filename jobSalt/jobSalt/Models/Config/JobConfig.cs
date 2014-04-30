@@ -18,6 +18,7 @@ namespace jobSalt.Models.Config
         {
             NumResults = 10;
             RemoveDuplicatePosts = false;
+            Modules = new List<Module>();
         }
     }
 }
