@@ -46,6 +46,22 @@ namespace jobSalt.Models.Feature.Jobs
         #endregion // Constructors
 
         #region Public Methods
+        /*
+        public async Task<List<JobPost>> GetJobsAsync(FilterBag filters, int page, int resultsPerModule, HttpContext context)
+        {
+            
+            List<Task<List<JobPost>>> tasks = new List<Task<List<JobPost>>>();
+            foreach(IJobModule module in modules)
+            {
+                Task<List<JobPost>> task = new Task<List<JobPost>>(() => RunModule(module, filters, page, resultsPerModule));
+            }
+        }
+
+        private List<JobPost> RunModule(IJobModule module, FilterBag filters, int page, int resultsPerModule)
+        {
+            return module.GetJobs(filters, page, resultsPerModule);
+        }
+        */
         public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule, HttpContext context)
         {
             Dictionary<JobPost, string> jobHashDict = new Dictionary<JobPost, string>();
