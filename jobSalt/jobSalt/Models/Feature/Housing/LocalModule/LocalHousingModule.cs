@@ -26,9 +26,17 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
                 dbConext.ChangeDatabase(Config.ConfigLoader.SiteConfig.HousingDBConnection);
         }
 
-        public List<HousingPost> GetHousing(FilterBag filters)
+        public List<HousingPost> GetHousing(FilterBag filters, int page, int resultsPerPage)
         {
-            List<HousingPost> posts = dbConext.HousingReviews.Select(review => new HousingPost()
+            var query = dbConext.HousingReviews.AsQueryable();
+            if(!String.IsNullOrEmpty(filters.Keyword))
+            {
+                query = query.Where(review =>
+                    review.Description.Contains(filters.Keyword) ||
+                    review.Title.Contains(filters.Keyword));
+            }
+
+            List<HousingPost> reviews = query.Select(review => new HousingPost()
               {
                   Title = review.Title,
                   DatePosted = (DateTime)review.DateTime,
@@ -43,8 +51,31 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
                       Latitude = review.HousingLocation.Latitude ?? 0
                   }
               }).ToList();
+
+            if(filters.Location != null)
+            {
+                reviews = reviews.Where(review =>
+                {
+                    double lat1 = (Math.PI / 180) * filters.Location.Latitude;
+                    double lat2 = (Math.PI / 180) * review.Location.Latitude;
+                    double lon1 = (Math.PI / 180) * filters.Location.Longitude;
+                    double lon2 = (Math.PI / 180) * review.Location.Longitude;
+                    double dlat = lat2 - lat1;
+                    double dlon = lon2 - lon1;
+                    double a = Math.Pow(Math.Sin(dlat / 2), 2) +
+                               Math.Cos(lat1) *
+                               Math.Cos(lat2) *
+                               Math.Pow(Math.Sin(dlon / 2), 2);
+                    double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+                    double dist = 3961 * c;
+                    return dist < 50;
+                }).ToList();
+            }
+
+            reviews = reviews.OrderByDescending(review => review.Rating).ToList();
+            reviews = reviews.Skip(page * resultsPerPage).Take(resultsPerPage).ToList();
             
-            return posts;
+            return reviews;
         }
 
         public void AddHousingPost(HousingPost post, string submittedBy)

@@ -18,7 +18,7 @@ namespace jobSalt.Controllers
     {
         private JobShepard shepard = new JobShepard();
         
-
+        [AsyncTimeout(5000)]
         public async Task<ActionResult> Index(string filterString, int page = 0)
         {
             JobConfig config = ConfigLoader.JobConfig;
@@ -32,8 +32,14 @@ namespace jobSalt.Controllers
 
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
-            {   
-                var jobs = await shepard.GetJobsAsync(filters, page, resultsPerPage);
+            {
+                List<JobPost> jobs = new List<JobPost>();
+                try
+                {
+                    jobs = await shepard.GetJobsAsync(filters, page, resultsPerPage);
+                }
+                catch (Exception) { }
+
                 return PartialView("Index_Partial", jobs.ToArray());
             }
 

@@ -31,7 +31,7 @@ namespace jobSalt.Controllers
             // If being called from ajax return the partial view that has the next set of job posts
             if (Request.IsAjaxRequest())
             {
-                return PartialView("Index_Partial", shepard.GetHousing(filters).ToArray());
+                return PartialView("Index_Partial", shepard.GetHousing(filters, page, resultsPerPage).ToArray());
             }
             return View(new HousingPost());
         }

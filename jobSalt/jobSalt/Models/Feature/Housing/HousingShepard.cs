@@ -34,14 +34,9 @@ namespace jobSalt.Models.Feature.Housing
         #endregion // Constructors
 
         #region Public Methods
-        public List<HousingPost> GetHousing(FilterBag filters)
+        public List<HousingPost> GetHousing(FilterBag filters, int page, int resultsPerPage)
         {
             List<HousingPost> houses = new List<HousingPost>();
-
-            if (filters.isEmpty())
-            {
-                return houses;
-            }
 
             // Use a dictionary of module to bool so each module can mark when it's complete,
             // this is used incase of a timeout so it can be determined which module did not complete.
@@ -65,7 +60,7 @@ namespace jobSalt.Models.Feature.Housing
                     {
                         try
                         {
-                            List<HousingPost> partialJobs = module.GetHousing(filters);
+                            List<HousingPost> partialJobs = module.GetHousing(filters, page, resultsPerPage);
                             lock (lockObject)
                             {
                                 moduleCompleted[module] = true;
