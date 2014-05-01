@@ -18,13 +18,19 @@ namespace jobSalt.Controllers
     {
         private JobShepard shepard = new JobShepard();
         
+        /// <summary>
+        /// Generates the View to show
+        /// </summary>
+        /// <param name="filterString">set of filters to search on, taken from URL</param>
+        /// <param name="page">page of results to grab</param>
+        /// <returns>page</returns>
         [AsyncTimeout(5000)]
         public async Task<ActionResult> Index(string filterString, int page = 0)
         {
             JobConfig config = ConfigLoader.JobConfig;
             int resultsPerPage = config.NumResults;
 
-
+            //Convert filter URL into FilterBag
             FilterBag filters = FilterBag.createFromURLQuery(Request.QueryString.ToString());
 
             ViewBag.FilterString = filters.JsonEncode();
@@ -46,6 +52,12 @@ namespace jobSalt.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Button Controller for Search Alumni button on each job
+        /// </summary>
+        /// <param name="filterString">filter for alumni page after switching</param>
+        /// <param name="company">company to search alumni for</param>
+        /// <returns></returns>
         public ActionResult AlumniAtCompany(string filterString, string company)
         {
             string newFilterString = FilterUtility.AssignFilter(Field.CompanyName, company, "");
