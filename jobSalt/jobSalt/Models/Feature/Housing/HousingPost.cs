@@ -8,6 +8,7 @@ namespace jobSalt.Models.Feature.Housing
 {
     public class HousingPost
     {
+        public int ID { get; set; }
         public DateTime DatePosted { get; set; }
         public String Company { get; set; }
         public Location Location { get; set; }
@@ -15,5 +16,6 @@ namespace jobSalt.Models.Feature.Housing
         public String Title { get; set; }
         public String Description { get; set; }
         public int Rating { get; set; }
+        public String PostedBy { get; set; }
     }
 }

@@ -1,9 +1,21 @@
 ﻿@model jobSalt.Models.Feature.Housing.HousingPost[]
 @for (int i = 0; i < Model.Count(); i++)
 {
-    <div class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
+    <div id="@Model[i].ID" class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
         <div class="post post-new" onclick="CollapseWithoutSelection(this)" style="position: relative">
             <h3 class="ellipsis" style="padding-right:65px">@Model[i].Title</h3>
+            @if (User.IsInRole("admin") || User.Identity.Name.Equals(Model[i].PostedBy))
+            {
+                using (Ajax.BeginForm("RemoveReview", new AjaxOptions() { HttpMethod = "DELETE", OnSuccess = "DeletedPost("+Model[i].ID+")" }))
+                { 
+                    <div style="position:absolute; right:15px; bottom:15px">
+                        <input type="hidden" name="postID" value="@Model[i].ID" />
+                        <button type="submit" onclick="event.stopPropagation();">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </div>   
+                }
+            }
             <h4 class="ellipsis">@Model[i].Location.City, @Model[i].Location.State</h4>
             @{int rating = Model[i].Rating > 5 ? 5 : Model[i].Rating;}
             <span style="height: 40px;position:absolute; right:15px; top:15px">

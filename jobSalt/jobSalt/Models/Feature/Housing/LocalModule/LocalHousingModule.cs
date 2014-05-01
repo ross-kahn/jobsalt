@@ -38,6 +38,7 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
 
             List<HousingPost> reviews = query.Select(review => new HousingPost()
               {
+                  ID = review.Id,
                   Title = review.Title,
                   DatePosted = (DateTime)review.DateTime,
                   Description = review.Description,
@@ -49,7 +50,8 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
                       ZipCode = review.HousingLocation.ZipCode,
                       Longitude = review.HousingLocation.Longitude ?? 0,
                       Latitude = review.HousingLocation.Latitude ?? 0
-                  }
+                  },
+                  PostedBy = review.SubmittedBy
               }).ToList();
 
             if(filters.Location != null)
@@ -109,6 +111,35 @@ namespace jobSalt.Models.Feature.Housing.LocalModule
             {
                 dbConext.HousingReviews.Remove(review);
                 dbConext.SaveChanges();
+            }
+        }
+
+        public HousingPost GetHousingPost(int postID)
+        {
+            var review = dbConext.HousingReviews.Find(postID);
+            if(review != null)
+            {
+                return new HousingPost()
+                 {
+                     ID = review.Id,
+                     Title = review.Title,
+                     DatePosted = (DateTime)review.DateTime,
+                     Description = review.Description,
+                     Rating = (int)review.Rating,
+                     Location = new Data_Types.Location()
+                     {
+                         City = review.HousingLocation.City,
+                         State = review.HousingLocation.State,
+                         ZipCode = review.HousingLocation.ZipCode,
+                         Longitude = review.HousingLocation.Longitude ?? 0,
+                         Latitude = review.HousingLocation.Latitude ?? 0
+                     },
+                     PostedBy = review.SubmittedBy
+                 };
+            }
+            else
+            {
+                return null;
             }
         }
     }

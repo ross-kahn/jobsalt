@@ -48,14 +48,22 @@ namespace jobSalt.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        [ReleaseOnlyAuthorization(Roles="Admin")]
+        [HttpDelete]
         public ActionResult RemoveReview(int postID)
         {
             LocalHousingModule housingModule = new LocalHousingModule();
-            housingModule.DeleteHousingPost(postID);
+            HousingPost post = housingModule.GetHousingPost(postID);
 
-            return RedirectToAction("Index");
+            if (User.IsInRole("admin") || User.Identity.Name.Equals(post.PostedBy))
+            {
+                housingModule.DeleteHousingPost(postID);
+            }
+            else
+            {
+                throw new HttpException(403, "Access Denied");
+            }
+
+            return null;
         }
     }
 }
