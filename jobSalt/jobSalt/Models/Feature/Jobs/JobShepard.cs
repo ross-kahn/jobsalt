@@ -53,7 +53,7 @@ namespace jobSalt.Models.Feature.Jobs
                 });
             task.Start();
             return task;
-        }
+			}
 
         public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule)
         {
@@ -69,7 +69,7 @@ namespace jobSalt.Models.Feature.Jobs
             foreach(IJobModule module in modules)
             {
                 Task task = new Task(() => 
-                    {
+            {
                         try
                         {
                             List<JobPost> moduleJobs = module.GetJobs(filters, page, resultsPerModule);
@@ -83,11 +83,11 @@ namespace jobSalt.Models.Feature.Jobs
                             // The module failed. Not a system failure but the user should be notified
                             // we need to create a mechanism to actually notify them and call it here
                         }
-                       
+                        
                     });
                 tasks.Add(task);
                 task.Start();
-            }
+                    }
             Task.WaitAll(tasks.ToArray(), MaxWaitTime * 1000);
 
             // Create a copy of jobs incase a module finishes late and tries to modifiy the
@@ -95,7 +95,7 @@ namespace jobSalt.Models.Feature.Jobs
             List<List<JobPost>> duplicatedJobs = new List<List<JobPost>>(jobs);
 
             if (ConfigLoader.JobConfig.RemoveDuplicatePosts)
-            {
+					{
                 RemoveDuplicateJobs(duplicatedJobs, page);
             }
 
@@ -121,57 +121,57 @@ namespace jobSalt.Models.Feature.Jobs
             {
                 foreach (var job in moduleJobs)
                 {
-                    //string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
+					//string jobHash = CalculateMD5Hash( job.Company+job.JobTitle );
                     string jobHash = job.Company + " " + job.JobTitle + " " + job.Location.City + " , " + job
                         .Location.State + " " + job.Location.ZipCode + " " + job.Description;
-                    //add hash to dictionary
+					//add hash to dictionary
                     jobHashDict.Add(job, jobHash);
                 }
-            }
-            //only remove duplicates if we have a reasonable number of jobs.
+					}
+				//only remove duplicates if we have a reasonable number of jobs.
             if (jobHashDict.Count() < 10)
                 return;
 
-            //keep track of duplicates
+			//keep track of duplicates
             List<JobPost> jobsToRemove = new List<JobPost>();
             List<KeyValuePair<JobPost, string>> visited = new List<KeyValuePair<JobPost, string>>();
 
             foreach (KeyValuePair<JobPost, string> jobHashDictKV_a in jobHashDict)
-            {
+				{
                 visited.Add(jobHashDictKV_a);
                 var compareList = from c in jobHashDict
                                   where !visited.Any(a => a.Equals(c))
-                                  select c;
-                foreach (KeyValuePair<JobPost, string> jobHashDictKV_b in compareList)
-                {
+								  select c;
+				foreach (KeyValuePair<JobPost, string> jobHashDictKV_b in compareList)
+					{
                     Double threashold = 0.98;
                     Double simScore = jobHashDictKV_a.Value.DiceCoefficient(jobHashDictKV_b.Value);
-                    //System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
+					//System.Diagnostics.Debug.WriteLine( "Fuzzy match score: "+ simScore +" similar." +"("+jobHashDictKV_a.Value+" , "+ jobHashDictKV_b.Value+ ")" );
 
-                    //compare a to b's hashes. remove if too similar
+					//compare a to b's hashes. remove if too similar
                     if (!jobHashDictKV_a.Key.Equals(jobHashDictKV_b.Key) && (Double.IsNaN(simScore) || simScore >= threashold))
-                    {
+						{
                         System.Diagnostics.Debug.WriteLine("JobShepard found a duplicate, fuzzy match score: " + simScore + " similar. Threashold = " + threashold + "\n"
                                                            + "\t[Source: " + jobHashDictKV_a.Key.SourceModule.Name + "\t\t\t  hash: " + jobHashDictKV_a.Value + "]...removing.\n"
                                                            + "\t[Source: " + jobHashDictKV_b.Key.SourceModule.Name + "\t\t\t  hash: " + jobHashDictKV_b.Value + "]\n");
-                        //mark duplicate
+						//mark duplicate
                         jobsToRemove.Add(jobHashDictKV_a.Key);
-                    }
-                }
-            }
+						}
+					}
+				}
 
-            //remove duplicates from both jobHasDict and jobs
+			//remove duplicates from both jobHasDict and jobs
             Parallel.ForEach(jobsToRemove, (duplicateJob) =>
             {
                 foreach (var moduleJobs in jobs)
-                {
+			{
                     if (moduleJobs.Contains(duplicateJob))
                         moduleJobs.Remove(duplicateJob);
                 }
                 if (jobHashDict.ContainsKey(duplicateJob))
                     jobHashDict.Remove(duplicateJob);
             });
-        }
+			}
 		private string CalculateMD5Hash ( string input )
 			{
 			// Calculate MD5 hash from input
@@ -216,7 +216,7 @@ namespace jobSalt.Models.Feature.Jobs
                         break;
                     }
                     else
-                    {
+        {
                         listIndex = (listIndex + 1) % numLists;
                     }
                 }
