@@ -45,18 +45,26 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 			JArray JobPosts = JArray.Parse( wc.DownloadString( request ) );
 
 			//Process It into JobPost objects
-			foreach ( var jobPost in JobPosts )
-				{
+			foreach (JToken jobPost in JobPosts)
+			{
 				try
 					{
 
 					JobPost post = new JobPost( );
-					post.URL = jobPost["url"].ToString( );
 					post.SourceModule =source;
-					var date = jobPost["created_at"].ToString( ).Replace( "UTC " , "" );
-					post.DatePosted =DateTime.ParseExact( date , "ddd MMM dd HH:mm:ss yyyy" , null );
+
+					//url
+					post.URL = jobPost["url"].ToString( );
+					
+					//parse date into proper format
+					String date = jobPost["created_at"].ToString().Replace("UTC ", "");
+					post.DatePosted = DateTime.ParseExact(date, "ddd MMM dd HH:mm:ss yyyy", null);
+
+					//job title
 					post.JobTitle = jobPost["title"].ToString( );
-					string[] location = jobPost["location"].ToString( ).Split( new char[] { ',' } );
+
+					//location
+					String[] location = jobPost["location"].ToString( ).Split( new char[] { ',' } );
 					if ( location.Length>=2 )
 						post.Location = new Location
 						{
@@ -64,6 +72,12 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 							City= location[0].Trim( ) ,
 							ZipCode=null
 						};
+					else if ( location.Length==1 )
+						{
+						post.Location = new Location
+						{ City=location[0], State=null,ZipCode=null
+						};
+						}
 					else
 						post.Location = new Location
 						{
@@ -71,8 +85,14 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 							State=null ,
 							ZipCode=null
 						};
+
+					//company
 					post.Company = jobPost["company"].ToString( );
-					post.Description =  jobPost["description"].ToString( );
+
+					string temp =jobPost["description"].ToString( );
+					//description
+					post.Description =  temp.Substring( 0 , temp.Length<350?temp.Length:350 )+"..."; 
+
 					post.FieldOfStudy = null;
 					post.Salary =  null;
 					jobsToReturn.Add( post );
@@ -85,41 +105,40 @@ namespace jobSalt.Models.Feature.Jobs.GitHub_Module
 			return jobsToReturn.Skip( startIndex ).Take( resultsPerPage ).ToList<JobPost>( );
 			}
 
-		public static String BuildQuery ( FilterBag FilterDict , int Page , int ResultsPerPage )
+		public static String BuildQuery ( FilterBag filters , int Page , int ResultsPerPage )
 			{
 			StringBuilder builder = new StringBuilder( );
 			ResultsPerPage = ResultsPerPage<=50?ResultsPerPage:50;
 			Page = (Int32)( Page*( (Double)ResultsPerPage/50.0 ) ); //returns 50 pages
-			builder.Append( "http://jobs.github.com/positions.json?page="+Page );
+			builder.Append( "http://jobs.github.com/positions.json?markdown=false&page="+Page );
 			String description ="";
 
-			if ( FilterDict.CompanyName != "" )
-				{
-				description+= FilterDict.CompanyName+", ";
-				}
-			if ( FilterDict.FieldOfStudy != "" )
-				{
-				description+=  FilterDict.FieldOfStudy+", ";
-				}
-			if ( FilterDict.JobTitle != "" )
-				{
-				description+=  FilterDict.JobTitle+", ";
-				}
-			if ( FilterDict.Keyword != "" )
-				{
-				if ( FilterDict.Keyword == "full time" )
+			if ( filters.CompanyName != "" ) 
+				description+= filters.CompanyName+", "; 
+
+			if ( filters.FieldOfStudy != "" ) 
+				description+=  filters.FieldOfStudy+", "; 
+
+			if ( filters.JobTitle != "" ) 
+				description+=  filters.JobTitle+", ";
+
+			if ( filters.JobType.ToString( )=="FullTime" )
+				builder.Append( "&full_time=true" );
+			else if ( filters.JobType.ToString( )!="" )
+				description+=filters.JobType.ToString( )+",";
+
+			if ( filters.Keyword != "" ) 
+				if ( filters.Keyword == "full time" )
 					builder.Append( "&full_time=true" );
 				else
-					description+= FilterDict.Keyword;
-				}
-			if ( FilterDict.Location!=null && ( FilterDict.Location.City != "" || FilterDict.Location.State != "" ||FilterDict.Location.ZipCode !="" ) )
-				{
-				builder.Append( "&location="+ ( FilterDict.Location.City??"" ) + ", "+ ( FilterDict.Location.State??"" ) +" " +( FilterDict.Location.ZipCode??"" ) );
-				}
-			if ( description!="" )
-				{
+					description+= filters.Keyword+","; 
+
+			if ( filters.Location!=null && ( filters.Location.City != "" || filters.Location.State != "" ||filters.Location.ZipCode !="" ) ) 
+				builder.Append( "&location="+ ( filters.Location.City??"" ) + ", "+ ( filters.Location.State??"" ) +" " +( filters.Location.ZipCode??"" ) ); 
+
+			if ( description!="" ) 
 				builder.Append( "&description="+description );
-				}
+
 
 
 			return builder.ToString( );
