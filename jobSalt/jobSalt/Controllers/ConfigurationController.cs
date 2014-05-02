@@ -27,7 +27,7 @@ namespace jobSalt.Controllers
             return View(ConfigLoader.SiteConfig);
         }
         
-        public ActionResult SaveConfig(SiteConfig config)
+        public ActionResult SaveConfig(SiteConfig config, JobConfig jobConfig, AlumniConfig alumniConfig)
         {
             if(config != null)
             {
@@ -44,6 +44,14 @@ namespace jobSalt.Controllers
                     config.SalaryDBConnection.Password = oldConfig.SalaryDBConnection.Password;
 
                 ConfigLoader.SiteConfig = config;
+            }
+
+            if(jobConfig != null)
+            {
+                var oldConfig = ConfigLoader.JobConfig;
+                oldConfig.Modules = jobConfig.Modules;
+
+                //ConfigLoader.JobConfig = oldConfig;
             }
 
             return RedirectToAction("Index");

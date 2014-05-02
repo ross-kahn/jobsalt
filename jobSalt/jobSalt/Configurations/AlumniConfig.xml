@@ -4,6 +4,7 @@
   <Modules>
     <Module>
       <Name>jobSalt.Models.Feature.Alumni.School_Module.RitAlumniModule</Name>
+      <DisplayName>Sql</DisplayName>
       <Enabled>true</Enabled>
     </Module>
   </Modules>

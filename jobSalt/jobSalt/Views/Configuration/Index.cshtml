@@ -146,6 +146,50 @@
                     </table>
                 </div>
             </div>
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>Enable/Disable Job Modules</h3>
+                    @{var jobConfig = ConfigLoader.JobConfig;}
+                    <table>
+                        @for(int i=0; i < jobConfig.Modules.Count; i++)
+                        {
+                            
+                            <tr><td><h4 style="margin: 0 10px 0 0;">@jobConfig.Modules[i].DisplayName: </h4>
+                            </td>
+                                <td>
+                                    <input type="hidden" name="jobConfig.Modules[@i].Name" value="@jobConfig.Modules[i].Name" />
+                                    <input type="hidden" name="jobConfig.Modules[@i].DisplayName" value="@jobConfig.Modules[i].DisplayName" />
+                                    <input name="jobConfig.Modules[@i].Enabled" type="checkbox" value="@jobConfig.Modules[i].Enabled.ToString()"
+                                           @if (jobConfig.Modules[i].Enabled) { <text> checked="checked" </text>   } />
+                                </td>
+                            </tr>    
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="post">
+                    <h3>Enable/Disable Alumni Modules</h3>
+                    @{var alumConfig = ConfigLoader.AlumniConfig;}
+                    <table>
+                        @for (int i = 0; i < alumConfig.Modules.Count; i++)
+                        {
+
+                            <tr>
+                                <td>
+                                    <h4 style="margin: 0 10px 0 0;">@alumConfig.Modules[i].DisplayName: </h4>
+                                </td>
+                                <td>
+                                    <input type="hidden" name="alumConfig.Modules[@i].Name" value="@alumConfig.Modules[i].Name" />
+                                    <input type="hidden" name="alumConfig.Modules[@i].DisplayName" value="@alumConfig.Modules[i].DisplayName" />
+                                    <input name="alumConfig.Modules[@i].Enabled" type="checkbox" value="@alumConfig.Modules[i].Enabled.ToString()"
+                                           @if (alumConfig.Modules[i].Enabled){ <text> checked="checked" </text>    } />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
         </div>
         <input class="col-xs-offset-4 col-xs-4" type="submit" value="Save Changes" />
     }
