@@ -43,6 +43,12 @@ namespace jobSalt.Controllers
                 if (config.SalaryDBConnection.Password == "PasswordJS")
                     config.SalaryDBConnection.Password = oldConfig.SalaryDBConnection.Password;
 
+                if (config.HousingDBConnection.Password == "PasswordJS")
+                    config.HousingDBConnection.Password = oldConfig.HousingDBConnection.Password;
+
+                config.AdminUsers = oldConfig.AdminUsers;
+                config.RestrictAccessToUsers = oldConfig.RestrictAccessToUsers;
+
                 ConfigLoader.SiteConfig = config;
             }
 
