@@ -21,7 +21,7 @@ namespace jobSalt.Models.Feature.Jobs.Indeed_Module
         public List<JobPost> GetJobs(FilterBag filterbag, int page, int resultsPerPage)
         {
             // Short circuit if there are no filters specified
-            if (  filterbag.isEmpty()  ) {  return new List<JobPost>();   }
+            if (  filterbag.IsEmpty()  ) {  return new List<JobPost>();   }
 
 
             // Will try and build an Indeed API request from the given set of filters. Catches and logs any problems

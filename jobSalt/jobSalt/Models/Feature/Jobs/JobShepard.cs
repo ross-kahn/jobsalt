@@ -57,7 +57,7 @@ namespace jobSalt.Models.Feature.Jobs
 
         public List<JobPost> GetJobs(FilterBag filters, int page, int resultsPerModule)
         {
-            if (filters.isEmpty())
+            if (filters.IsEmpty())
             {
                 return new List<JobPost>();
             }

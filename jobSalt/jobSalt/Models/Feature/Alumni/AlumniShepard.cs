@@ -48,7 +48,7 @@ namespace jobSalt.Models.Feature.Alumni
         {
             Dictionary<string, List<AlumniPost>> alumni = new Dictionary<string, List<AlumniPost>>();
 
-            if (filters.isEmpty())
+            if (filters.IsEmpty())
             {
                 return alumni;
             }

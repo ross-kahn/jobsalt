@@ -69,6 +69,15 @@
                     var filterString = $("#filterString").val();
 
                     var fstr = "@Html.Raw(ViewBag.FilterString)";
+            
+                    if (fstr.trim() == '[]') {
+                        $("#message").empty();
+                        $("#message").append("Add a filter or specify a keyword to begin your search.");
+                        page = -1;
+                        _inCallback = false;
+                        $('div#loading').hide();
+                        return;
+                    }
 
                     $.get("/Job/Index?page=" + page + "&filterString=" + fstr, function (data) {
                         if (data.trim() != '') {

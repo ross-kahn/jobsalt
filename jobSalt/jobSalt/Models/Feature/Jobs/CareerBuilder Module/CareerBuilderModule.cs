@@ -35,7 +35,7 @@ namespace jobSalt.Models.Feature.Jobs.CareerBuilder_Module
 			{
 			List<JobPost> jobsToReturn = new List<JobPost>( );
 
-            if (filters.isEmpty())
+            if (filters.IsEmpty())
             {
                 return jobsToReturn;
             }

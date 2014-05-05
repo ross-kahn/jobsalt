@@ -101,7 +101,7 @@ namespace jobSalt.Models
             return filterList;
         }
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
             return (GetFilters().Count == 0);
         }
