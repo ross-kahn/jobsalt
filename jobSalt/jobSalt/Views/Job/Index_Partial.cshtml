@@ -13,7 +13,7 @@
                 <b>Posted On: @Model[i].DatePosted.ToShortDateString()</b><br />
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
-                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">View Source</a>
+                <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">Go To Post</a>
                 <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">Search Alumni</a>
                 <a href="@Url.Action("HousingAtLocation", new { City = Model[i].Location.City, 
                                                                 State = Model[i].Location.State, 

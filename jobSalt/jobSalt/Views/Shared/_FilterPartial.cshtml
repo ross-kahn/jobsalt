@@ -69,6 +69,7 @@
     $(document).ready(function () {
         $('.filter-btn').on('shown.bs.collapse', function() {
             $(this).find('.focusable').focus();
+            $(this).find('.focusable').select();
         })
     });
 
