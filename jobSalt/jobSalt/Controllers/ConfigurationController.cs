@@ -57,6 +57,14 @@ namespace jobSalt.Controllers
                 ConfigLoader.JobConfig = oldConfig;
             }
 
+            if (alumniConfig != null)
+            {
+                var oldConfig = ConfigLoader.AlumniConfig;
+                oldConfig.Modules = alumniConfig.Modules;
+
+                ConfigLoader.AlumniConfig = oldConfig;
+            }
+
             if(authConfig != null)
             {
                 var oldConfig = ConfigLoader.AuthenticationConfig;
