@@ -22,10 +22,6 @@ namespace jobSalt.Models.Config
         public DBConnectionConfig SalaryDBConnection { get; set; }
         public DBConnectionConfig HousingDBConnection { get; set; }
 
-        public List<string> AdminUsers { get; set; }
-        public List<string> Moderators { get; set; }
-        public List<string> RestrictAccessToUsers { get; set; }
-
         // ******** Site Theme ********
         #region Site Theme
         public string UniversityThemeCSSFile { get; set; }
@@ -55,10 +51,6 @@ namespace jobSalt.Models.Config
             AlumniDBConnection = new DBConnectionConfig();
             SalaryDBConnection = new DBConnectionConfig();
             HousingDBConnection = new DBConnectionConfig();
-
-            AdminUsers = new List<string>();
-            Moderators = new List<string>();
-            RestrictAccessToUsers = new List<string>();
 
             UniversityLogo = "";
             UniversityThemeCSSFile = "";

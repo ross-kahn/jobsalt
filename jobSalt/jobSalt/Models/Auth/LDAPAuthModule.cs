@@ -31,7 +31,7 @@ namespace jobSalt.Models.Auth
         /// <returns>True if user exist and password is correct</returns>
         public override bool IsValid(string _username, string _password)
         {
-            var config = Config.ConfigLoader.SiteConfig;
+            var config = Config.ConfigLoader.AuthenticationConfig;
 
             if (config.RestrictAccessToUsers.Count > 0)
                 if (!config.RestrictAccessToUsers.Contains(_username))
@@ -67,7 +67,7 @@ namespace jobSalt.Models.Auth
 
         public override bool IsAdmin(string _username)
         {
-            if (Config.ConfigLoader.SiteConfig.AdminUsers.Contains(_username))
+            if (Config.ConfigLoader.AuthenticationConfig.AdminUsers.Contains(_username))
                 return true;
             return false;
 

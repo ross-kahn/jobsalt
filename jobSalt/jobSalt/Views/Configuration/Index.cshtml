@@ -191,6 +191,19 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="post">
+                    @{var authConfig = ConfigLoader.AuthenticationConfig;}
+                    <h3>Authentication</h3><br />
+                    Users names are newline seperated
+                    <h4>Admin Users:</h4>
+                    <textarea class="form-control" rows="6" draggable="false" name="authConfig.AdminUsers[0]">@String.Join("\n", authConfig.AdminUsers)</textarea>
+                    <h4>Restrict Access to: (Empty for unrestricted)</h4>
+                    <textarea class="form-control" rows="6" draggable="false" name="authConfig.RestrictAccessToUsers[0]">@String.Join("\n", authConfig.RestrictAccessToUsers)</textarea>
+                </div>
+            </div>
+        </div>
         <input class="col-xs-offset-4 col-xs-4" type="submit" value="Save Changes" />
     }
 </div>

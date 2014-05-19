@@ -27,7 +27,7 @@ namespace jobSalt.Controllers
             return View(ConfigLoader.SiteConfig);
         }
         
-        public ActionResult SaveConfig(SiteConfig config, JobConfig jobConfig, AlumniConfig alumniConfig)
+        public ActionResult SaveConfig(SiteConfig config, JobConfig jobConfig, AlumniConfig alumniConfig, AuthenticationConfig authConfig)
         {
             if(config != null)
             {
@@ -46,9 +46,6 @@ namespace jobSalt.Controllers
                 if (config.HousingDBConnection.Password == "PasswordJS")
                     config.HousingDBConnection.Password = oldConfig.HousingDBConnection.Password;
 
-                config.AdminUsers = oldConfig.AdminUsers;
-                config.RestrictAccessToUsers = oldConfig.RestrictAccessToUsers;
-
                 ConfigLoader.SiteConfig = config;
             }
 
@@ -57,7 +54,25 @@ namespace jobSalt.Controllers
                 var oldConfig = ConfigLoader.JobConfig;
                 oldConfig.Modules = jobConfig.Modules;
 
-                //ConfigLoader.JobConfig = oldConfig;
+                ConfigLoader.JobConfig = oldConfig;
+            }
+
+            if(authConfig != null)
+            {
+                var oldConfig = ConfigLoader.AuthenticationConfig;
+                oldConfig.AdminUsers = new List<string>();
+                foreach(string user in authConfig.AdminUsers[0].Split('\n'))
+                {
+                    oldConfig.AdminUsers.Add(user.Trim());
+                }
+
+                oldConfig.RestrictAccessToUsers = new List<string>();
+                foreach (string user in authConfig.RestrictAccessToUsers[0].Split('\n'))
+                {
+                    oldConfig.RestrictAccessToUsers.Add(user);
+                }
+
+                ConfigLoader.AuthenticationConfig = oldConfig;
             }
 
             return RedirectToAction("Index");

@@ -4,7 +4,14 @@
     <LDAPServer>
       <Name>RIT_MAIN</Name>
       <DomainController>maindca.main.ad.rit.edu</DomainController>
-      <AdminGroup></AdminGroup>
+      <AdminGroup />
     </LDAPServer>
   </LDAPServers>
+  <AdminUsers>
+    <string>cjp5465</string>
+    <string>rtk2567</string>
+  </AdminUsers>
+  <RestrictAccessToUsers>
+    <string />
+  </RestrictAccessToUsers>
 </AuthenticationConfig>

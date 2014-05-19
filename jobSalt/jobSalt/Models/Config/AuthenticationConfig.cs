@@ -15,10 +15,16 @@ namespace jobSalt.Models.Config
     {
         public List<LDAPServer> LDAPServers { get; set; }
 
+        public List<string> AdminUsers { get; set; }
+        public List<string> RestrictAccessToUsers { get; set; }
+
         // Set defaults
         public AuthenticationConfig()
         {
             LDAPServers = new List<LDAPServer>();
+
+            AdminUsers = new List<string>();
+            RestrictAccessToUsers = new List<string>();
         }
     }
 }

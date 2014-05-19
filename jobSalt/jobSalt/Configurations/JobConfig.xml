@@ -1,42 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+<?xml version="1.0" encoding="utf-8"?>
 <JobConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <RemoveDuplicatePosts>false</RemoveDuplicatePosts>
   <NumResults>10</NumResults>
   <Modules>
     <Module>
       <Name>jobSalt.Models.Feature.Jobs.CareerBuilder_Module.CareerBuilderModule</Name>
-      <DisplayName>Career Builder</DisplayName>
       <Enabled>true</Enabled>
+      <DisplayName>Career Builder</DisplayName>
     </Module>
     <Module>
       <Name>jobSalt.Models.Feature.Jobs.Dice_Module.DiceModule</Name>
-      <DisplayName>Dice</DisplayName>
       <Enabled>false</Enabled>
+      <DisplayName>Dice</DisplayName>
     </Module>
     <Module>
       <Name>jobSalt.Models.Feature.Jobs.Indeed_Module.IndeedModule</Name>
-      <DisplayName>Indeed</DisplayName>
       <Enabled>true</Enabled>
+      <DisplayName>Indeed</DisplayName>
     </Module>
     <Module>
       <Name>jobSalt.Models.Feature.Jobs.LinkedIn_Module.LinkedInModule</Name>
-      <DisplayName>LinkedIn</DisplayName>
       <Enabled>false</Enabled>
+      <DisplayName>LinkedIn</DisplayName>
     </Module>
     <Module>
       <Name>jobSalt.Models.Feature.Jobs.RIT_Module.School_Module</Name>
-      <DisplayName>SQL</DisplayName>
       <Enabled>true</Enabled>
+      <DisplayName>SQL</DisplayName>
     </Module>
     <Module>
       <Name>jobSalt.Models.Feature.Jobs.UAJobLink_Module.UAJobLinkModule</Name>
-      <DisplayName>Symplicity</DisplayName>
       <Enabled>false</Enabled>
+      <DisplayName>Symplicity</DisplayName>
     </Module>
-	  <Module>
-		  <Name>jobSalt.Models.Feature.Jobs.GitHub_Module.GitHub_Module</Name>
+    <Module>
+      <Name>jobSalt.Models.Feature.Jobs.GitHub_Module.GitHub_Module</Name>
+      <Enabled>false</Enabled>
       <DisplayName>GitHub</DisplayName>
-		  <Enabled>true</Enabled>
-	  </Module>
+    </Module>
   </Modules>
+  <RemoveDuplicatePosts>false</RemoveDuplicatePosts>
 </JobConfig>
