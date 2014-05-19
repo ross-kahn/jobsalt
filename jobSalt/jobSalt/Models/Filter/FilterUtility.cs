@@ -63,7 +63,7 @@ namespace jobSalt.Models
                     fields.Add(Field.JobTitle);
                     fields.Add(Field.Location);
                     fields.Add(Field.JobType);
-                    fields.Add(Field.Source);
+                    //fields.Add(Field.Source);
                     break;
                 case Features.Alumni:
                     fields.Add(Field.Keyword);

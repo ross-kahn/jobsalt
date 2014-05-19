@@ -441,15 +441,10 @@
     <Content Include="Configurations\Authentication.xml" />
     <Content Include="Configurations\JobConfig.xml" />
     <Content Include="Configurations\SiteConfig.xml" />
-    <Content Include="Content\body.css" />
-    <Content Include="Content\bootstrap-mvc-validation.css" />
-    <Content Include="Content\bootstrap-responsive.css" />
-    <Content Include="Content\bootstrap-responsive.min.css" />
     <Content Include="Content\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\features.css" />
-    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\bar-alpha.png" />
     <Content Include="Content\images\bar-opacity.png" />
@@ -734,7 +729,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />

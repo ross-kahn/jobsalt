@@ -1,762 +1,351 @@
-﻿.post {
-    background-color: grey;
-    box-shadow: 10px 10px 5px #888888;
+﻿body {
+    background-image: linear-gradient(top,#fafafa,#f5f5f5);
+    background: #e5e5e5;
+    font-family: arial,sans-serif;
 }
 
-/* Visual Studio Default CSS */
-html {
-    background-color: #e2e2e2;
-    margin: 0;
-    padding: 0;
+.navbar {
+    margin-bottom: 0px;
+    min-height: 44px;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fafafa),color-stop(1,#f5f5f5));
+    background: linear-gradient(top,#fafafa,#f5f5f5);
+    border:none;
+    border-radius:0px;
 }
 
-body {
-    background-color: #fff;
-    border-top: solid 10px #000;
-    color: #333;
-    font-size: .85em;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
+.navbar-nav li a {
+    color: rgb(159, 162, 166);
+    padding-left: 0px;
 }
 
-a {
-    color: #333;
-    outline: none;
-    padding-left: 3px;
-    padding-right: 3px;
-    text-decoration: underline;
+.navbar-offcanvas.in ul li a {
+    color: rgb(159, 162, 166);
+    padding-left: 10px;
+    font-size:20px;
+    text-align:center;
 }
 
-    a:link, a:visited,
-    a:active, a:hover {
-        color: #333;
-    }
-
-    a:hover {
-        background-color: #c7d1d6;
-    }
-
-header, footer, hgroup,
-nav, section {
-    display: block;
+.navbar-nav {
+    margin-left: 0px;
 }
 
-mark {
-    background-color: #a6dbed;
-    padding-left: 5px;
-    padding-right: 5px;
+.navbar-brand {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #808080;
+    height:auto;
+    font-size:28px;
 }
 
-.float-left {
-    float: left;
+.navbar-toggle {
+    margin-left: 15px;
+    margin-right: 10px;
 }
 
-.float-right {
-    float: right;
+.navbar-offcanvas {
+    border-color: #747373 !important;
 }
 
-.clear-fix:after {
-    content: ".";
-    clear: both;
-    display: block;
-    height: 0;
-    visibility: hidden;
+.divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
-    color: #000;
-    margin-bottom: 0;
-    padding-bottom: 0;
+.header {
+    padding: 10px;
+    height: 185px;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #533127;
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#664136),color-stop(1,#533127));
+    background: linear-gradient(top,#664136,#533127);
+    background-origin: padding-box;
+    background-size: auto;
+    position: relative;
+    overflow: hidden;
 }
 
-h1 {
-    font-size: 2em;
+.university-logo {
+    width: 25%;
+    height: 115%;
+    top: 0px;
+    background-image: url(/Content/images/RIT-Logo.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+    position: absolute;
 }
 
-h2 {
-    font-size: 1.75em;
-}
-
-h3 {
-    font-size: 1.2em;
-}
-
-h4 {
-    font-size: 1.1em;
-}
-
-h5, h6 {
-    font-size: 1em;
-}
-
-    h5 a:link, h5 a:visited, h5 a:active {
-        padding: 0;
-        text-decoration: none;
-    }
-
-
-/* main layout
-----------------------------------------------------------*/
-.content-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
-}
-
-#body {
-    background-color: #efeeef;
-    clear: both;
-    padding-bottom: 35px;
-}
-
-    .main-content {
-        background: url("../Images/accent.png") no-repeat;
-        padding-left: 10px;
-        padding-top: 30px;
-    }
-
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
-    }
-
-header .content-wrapper {
-    padding-top: 20px; 
-}
-
-footer {
-    clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
-}
-
-
-/* site title
-----------------------------------------------------------*/
-.site-title {
-    color: #c8c8c8;
-    font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
-    font-size: 2.3em;
-    margin: 0;
-}
-
-.site-title a, .site-title a:hover, .site-title a:active {
-    background: none;
-    color: #c8c8c8;
-    outline: none;
-    text-decoration: none;
-}
-
-
-/* login
-----------------------------------------------------------*/
-#login {
-    display: block;
-    font-size: .85em;
-    margin: 0 0 10px;
-    text-align: right;
-}
-
-    #login a {
-        background-color: #d3dce0;
-        margin-left: 10px;
-        margin-right: 3px;
-        padding: 2px 3px;
-        text-decoration: none;
-    }
-
-    #login a.username {
-        background: none;
-        margin: 0;
-        padding: 0;
-        text-decoration: underline;
-    }
-
-    #login ul {
-        margin: 0;
-    }
-
-    #login li {
-        display: inline;
-        list-style: none;
-    }
-
-
-/* menu
-----------------------------------------------------------*/
-ul#menu {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 5px;
-    padding: 0;
-    text-align: right;
-}
-
-    ul#menu li {
-        display: inline;
-        list-style: none;
-        padding-left: 15px;
-    }
-
-        ul#menu li a {
-            background: none;
-            color: #999;
-            text-decoration: none;
-        }
-
-        ul#menu li a:hover {
-            color: #333;
-            text-decoration: none;
-        }
-
-
-/* page elements
-----------------------------------------------------------*/
-/* featured */
-.featured {
-    background-color: #fff;
-}
-
-    .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        color: #3e5667;
-        padding: 20px 40px 30px 40px;
-    }
-
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
-
-        .featured p {
-            font-size: 1.1em;
-        }
-
-/* page titles */
-hgroup.title {
-    margin-bottom: 10px;
-}
-
-hgroup.title h1, hgroup.title h2 {
+.jobSalt-logo {
+    margin-top: 12px;
+    margin-right: 10px;
+    height: 35px;
     display: inline;
 }
 
-hgroup.title h2 {
-    font-weight: normal;
-    margin-left: 3px;
+.header h1 {
+    color: rgb(235, 235, 235);
+    font-family: 'open sans', arial, sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 3px;
+    margin-top: 35px;
+    width: 100%;
 }
 
-/* features */
-section.feature {
-    width: 300px;
-    float: left;
-    padding: 10px;
+.header-input {
+    width: 100%;
+    background-color: rgba(229, 229, 229, 0.498039);
+    position: absolute;
+    bottom:0px;
+    left: 0px;
+    padding-bottom:10px;
+    min-height: 54px;
 }
 
-/* ordered list */
-ol.round {
-    list-style-type: none;
-    padding-left: 0;
+.header-input .input-group {
+    margin-top: 10px;
+    box-shadow: 2px 3px 1px rgba(0,0,0,.4);
+    border-radius: 4px;
+    font-size: 14px;
 }
 
-    ol.round li {
-        margin: 25px 0;
-        padding-left: 45px;
+.post {
+    cursor: pointer;
+    padding: 10px; 
+    border-radius: 2px;
+    min-height: 80px;
+    background-color: white;
+    color: #878787;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.post h3 {
+    margin-top: 0px;
+    color: #505050;
+}
+
+.post-alumni h2, .post-housing h2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 13px !important;
+}
+
+.post-housing h2 {
+    text-align: left;
+}
+
+.post-details.in {
+    overflow:auto;
+}
+
+.post-margin {
+    height: 10px !important;
+}
+
+.ellipsis {
+    text-overflow:ellipsis; 
+    overflow:hidden; 
+    text-wrap:none; 
+    white-space:nowrap;
+}
+
+.rating input {
+    position:absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity:0;
+    opacity:0;
+    cursor:pointer;
+    width:17px;
+    z-index:99;
+}
+ 
+.rating span {
+    height:24px;
+    line-height:24px;
+}
+.rating span:before {
+    content: "\e006";
+}
+/* Change span immediately following the checked radio */
+ 
+.rating input:checked + span:before {
+    content: "\e006";
+}
+ 
+/* Reset all remaining stars back to default background.
+   This supersedes the above due to its ordering. */
+ 
+.rating input:checked + span ~ span:before {
+    content: "\e007";
+}
+
+#message {
+    color: #505050;
+    font-family: 'open sans', arial, sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.jumbotron {
+    margin-bottom: 0px;
+    border-radius: 2px;
+    background-color: white;
+    color: #878787;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+#loading {
+    display:none;
+    height: 500px;
+}
+
+#loading img {
+    margin-top: 25px;
+    margin-left: 50%;
+    margin-right: 50%;
+    padding-bottom: 400px;
+}
+
+.filter-enabled {
+    margin-bottom: 5px;
+    border-radius: 2px;
+    background-color: #428bca;
+    color: white;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.filter-disabled {
+    margin-bottom: 5px;
+    border-radius: 2px;
+    background-color: #7cb6e6;
+    color: white;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.filters{
+    padding-right: 0px;
+    margin-top: 10px;
+}
+
+.filter-subtitle {
+    width: 100%;
+    text-align:left;
+}
+
+.filter-form {
+    margin-top: 5px;
+}
+
+.textfill {
+    text-align: center;
+    padding: 20px;
+    margin-top: 25px;
+    color: #505050;
+}
+
+@media (max-width: 767px) {
+    .twitter-timeline {
+        display:none;
     }
 
-        ol.round li.zero {
-            background: url("../Images/orderedList0.png") no-repeat;
-        }
-
-        ol.round li.one {
-            background: url("../Images/orderedList1.png") no-repeat;
-        }
-
-        ol.round li.two {
-            background: url("../Images/orderedList2.png") no-repeat;
-        }
-
-        ol.round li.three {
-            background: url("../Images/orderedList3.png") no-repeat;
-        }
-
-        ol.round li.four {
-            background: url("../Images/orderedList4.png") no-repeat;
-        }
-
-        ol.round li.five {
-            background: url("../Images/orderedList5.png") no-repeat;
-        }
-
-        ol.round li.six {
-            background: url("../Images/orderedList6.png") no-repeat;
-        }
-
-        ol.round li.seven {
-            background: url("../Images/orderedList7.png") no-repeat;
-        }
-
-        ol.round li.eight {
-            background: url("../Images/orderedList8.png") no-repeat;
-        }
-
-        ol.round li.nine {
-            background: url("../Images/orderedList9.png") no-repeat;
-        }
-
-/* content */
-article {
-    float: left;
-    width: 70%;
-}
-
-aside {
-    float: right;
-    width: 25%;
-}
-
-    aside ul {
-        list-style: none;
-        padding: 0;
+    .divider {
+        box-shadow: -2px 0px 4px rgba(0,0,0,0.4) inset;
     }
 
-        aside ul li {
-            background: url("../Images/bullet.png") no-repeat 0 50%;
-            padding: 2px 0 2px 20px;
-        }
-
-.label {
-    font-weight: 700;
-}
-
-/* login page */
-#loginForm {
-    border-right: solid 2px #c8c8c8;
-    float: left;
-    width: 55%;
-}
-
-    #loginForm .validation-error {
-        display: block;
-        margin-left: 15px;
+    .navbar-offcanvas {
+        box-shadow: -2px 0px 4px rgba(0,0,0,0.4) inset;
     }
 
-    #loginForm .validation-summary-errors ul {
-        margin: 0;
-        padding: 0;
+    .filters {
+        position: fixed;
+        z-index: 1030;
+        width: 250px;
+        top: 0;
+        right: 0;
+        left: auto;
+        height: 100%;
+        margin-top:0px;
+        padding-top: 10px;
+        border-style:solid;
+        border-radius: 0;
+        border-width: 0 0 0 1px;
+        border-color: #747373;
+        box-shadow: 2px 0px 4px rgba(0,0,0,0.4) inset;
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fafafa),color-stop(1,#f5f5f5));
+        background: linear-gradient(top,#fafafa,#f5f5f5);
     }
-
-    #loginForm .validation-summary-errors li {
-        display: inline;
-        list-style: none;
-        margin: 0;
-    }
-
-    #loginForm input {
+    
+    .navbar-offcanvas {
         width: 250px;
     }
 
-    #loginForm input[type="checkbox"],
-    #loginForm input[type="submit"],
-    #loginForm input[type="button"],
-    #loginForm button {
-        width: auto;
+    .pac-container {
+        margin-left: 250px;
     }
 
-#socialLoginForm {
-    margin-left: 40px;
-    float: left;
-    width: 40%;
+    .post h3 {
+        font-size:20px;
+    }
+
+    .post h4 {
+        font-size: 16px;
+    }
+
+    .university-logo {
+        width: 20%;
+        top: 5px;
+        left: 5px;
+    }
+
+    .jobSalt-logo {
+        margin-right: 0px;
+        margin-left: 25px;
+    }
 }
 
-    #socialLoginForm h2 {
-        margin-bottom:  5px;
+@media (min-width: 768px){
+    .navbar-nav::before {
+        border: solid #e5e5e5;
+        border-width: 0 0 0 1px;
+        content: "";
+        float: left;
+        height: 32px;
+        margin: 15px;
     }
 
-#socialLoginList button {
-    margin-bottom: 12px;
+    .filter-text {
+        font-size: 16px;
+    }
+
+    .filter-subtitle {
+        font-size: 12px;
+        font-style: italic;
+    }
 }
 
-#logoutForm {
-    display: inline;
+@media (min-width: 1200px) {
+    .filter-text {
+        font-size: 18px;
+    }
+
+    .filter-subtitle {
+        font-size: 12px;
+        font-style: italic;
+    }
 }
 
-/* contact */
-.contact h3 {
-    font-size: 1.2em;
-}
-
-.contact p {
-    margin: 5px 0 0 10px;
-}
-
-.contact iframe {
-    border: 1px solid #333;
-    margin: 5px 0 0 10px;
-}
-
-/* forms */
-fieldset {
-    border: none;
-    margin: 0;
-    padding: 0;
-}
-
-    fieldset legend {
-        display: none;
-    }
-
-    fieldset ol {
-        padding: 0;
-        list-style: none;
-    }
-
-        fieldset ol li {
-            padding-bottom: 5px;
-        }
-
-label {
-    display: block;
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-label.checkbox {
-    display: inline;
-}
-
-input, textarea {
-    border: 1px solid #e2e2e2;
-    background: #fff;
-    color: #333;
-    font-size: 1.2em;
-    margin: 5px 0 6px 0;
-    padding: 5px;
-    width: 300px;
-}
-
-textarea {
-    font-family: inherit;
-    width: 500px;
-}
-
-    input:focus, textarea:focus {
-        border: 1px solid #7ac0da;
-    }
-
-    input[type="checkbox"] {
-        background: transparent;
-        border: inherit;
-        width: auto;
-    }
-
-    input[type="submit"],
-    input[type="button"],
-    button {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
-        cursor: pointer;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 7px;
-        margin-right: 8px;
-        width: auto;
-    }
-
-    td input[type="submit"],
-    td input[type="button"],
-    td button {
-        font-size: 1em;
-        padding: 4px;
-        margin-right: 4px;
-    }
-
-/* info and errors */
-.message-info {
-    border: 1px solid;
-    clear: both;
-    padding: 10px 20px;
-}
-
-.message-error {
-    clear: both;
-    color: #e80c4d;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin: 20px 0 10px 0;
-}
-
-.message-success {
-    color: #7ac0da;
-    font-size: 1.3em;
-    font-weight: bold;
-    margin: 20px 0 10px 0;
-}
-
-.error {
-    color: #e80c4d;
-}
-
-/* styles for validation helpers */
-.field-validation-error {
-    color: #e80c4d;
-    font-weight: bold;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-input.input-validation-error {
-    border: 1px solid #e80c4d;
-}
-
-input[type="checkbox"].input-validation-error {
-    border: 0 none;
-}
-
-.validation-summary-errors {
-    color: #e80c4d;
-    font-weight: bold;
-    font-size: 1.1em;
-}
-
-.validation-summary-valid {
-    display: none;
-}
-
-
-/* tables
-----------------------------------------------------------*/
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-top: 0.75em;
-    border: 0 none;
-}
-
-th {
-    font-size: 1.2em;
-    text-align: left;
-    border: none 0px;
-    padding-left: 0;
-}
-
-    th a {
-        display: block;
-        position: relative;
-    }
-
-    th a:link, th a:visited, th a:active, th a:hover {
-        color: #333;
-        font-weight: 600;
-        text-decoration: none;
-        padding: 0;
-    }
-
-    th a:hover {
-        color: #000;
-    }
-
-    th.asc a, th.desc a {
-        margin-right: .75em;
-    }
-
-    th.asc a:after, th.desc a:after {
-        display: block;
-        position: absolute;
-        right: 0em;
-        top: 0;
-        font-size: 0.75em;
-    }
-
-    th.asc a:after {
-        content: '▲';
-    }
-
-    th.desc a:after {
-        content: '▼';
-    }
-
-td {
-    padding: 0.25em 2em 0.25em 0em;
-    border: 0 none;
-}
-
-tr.pager td {
-    padding: 0 0.25em 0 0;
-}
-
-
-/********************
-*   Mobile Styles   *
-********************/
-@media only screen and (max-width: 850px) {
-
-    /* header
-    ----------------------------------------------------------*/
-    header .float-left,
-    header .float-right {
-        float: none;
-    }
-
-    /* logo */
-    header .site-title {
-        margin: 10px;
-        text-align: center;
-    }
-
-    /* login */
-    #login {
-        font-size: .85em;
-        margin: 0 0 12px;
-        text-align: center;
-    }
-
-        #login ul {
-            margin: 5px 0;
-            padding: 0;
-        }
-
-        #login li {
-            display: inline;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #login a {
-            background: none;
-            color: #999;
-            font-weight: 600;
-            margin: 2px;
-            padding: 0;
-        }
-
-        #login a:hover {
-            color: #333;
-        }
-
-    /* menu */
-    nav {
-        margin-bottom: 5px;
-    }
-
-    ul#menu {
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-        ul#menu li {
-            margin: 0;
-            padding: 0;
-        }
-
-
-    /* main layout
-    ----------------------------------------------------------*/
-    .main-content,
-    .featured + .main-content {
-        background-position: 10px 0;
-    }
-
-    .content-wrapper {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-
-    .featured .content-wrapper {
-        padding: 10px;
-    }
-
-    /* page content */
-    article, aside {
-        float: none;
-        width: 100%;
-    }
-
-    /* ordered list */
-    ol.round {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-        ol.round li {
-            padding-left: 10px;
-            margin: 25px 0;
-        }
-
-            ol.round li.zero,
-            ol.round li.one,
-            ol.round li.two,
-            ol.round li.three,
-            ol.round li.four,
-            ol.round li.five,
-            ol.round li.six,
-            ol.round li.seven,
-            ol.round li.eight,
-            ol.round li.nine {
-                background: none;
-            }
-
-     /* features */
-     section.feature {
-        float: none;
-        padding: 10px;
-        width: auto;
-     }
-
-        section.feature img {
-            color: #999;
-            content: attr(alt);
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-
-    /* forms */
-    input {
-        width: 90%;
-    }
-
-    /* login page */
-    #loginForm {
-        border-right: none;
-        float: none;
-        width: auto;
-    }
-
-        #loginForm .validation-error {
-            display: block;
-            margin-left: 15px;
-        }
-
-    #socialLoginForm {
-        margin-left: 0;
-        float: none;
-        width: auto;
-    }
-
-
-    /* footer
-    ----------------------------------------------------------*/
-    footer .float-left,
-    footer .float-right {
-        float: none;
-    }
-
-    footer {
-        text-align: center;
-        height: auto;
-        padding: 10px 0;
-    }
-
-        footer p {
-            margin: 0;
-        }
+.twitter-timeline {
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    margin-top: 10px;
 }
