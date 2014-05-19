@@ -271,6 +271,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
     <Compile Include="BootstrapSupport\ViewHelperExtensions.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumniController.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
@@ -464,6 +465,11 @@
     <Content Include="Content\images\map-pointer.png" />
     <Content Include="Content\images\map.png" />
     <Content Include="Content\images\preview-opacity.png" />
+    <Content Include="Content\images\profile_chris.jpg" />
+    <Content Include="Content\images\profile_colton.jpg" />
+    <Content Include="Content\images\profile_daniel.jpg" />
+    <Content Include="Content\images\profile_david.jpg" />
+    <Content Include="Content\images\profile_ross.jpg" />
     <Content Include="Content\images\RIT-Logo.png" />
     <Content Include="Content\images\RIT_icon.png" />
     <Content Include="Content\images\UA-Logo.png" />
@@ -685,6 +691,7 @@
     <Content Include="Views\Configuration\Index.cshtml" />
     <Content Include="Views\Housing\Index_Partial.cshtml" />
     <Content Include="Views\Configuration\SchoolThemeCSS.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -744,19 +751,10 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_html5shiv.cshtml" />
-    <Content Include="Views\Shared\Index.cshtml" />
-    <Content Include="Views\Shared\Details.cshtml" />
-    <Content Include="Views\Shared\Create.cshtml" />
-    <Content Include="Views\Shared\_validationSummary.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.narrow.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.empty.cshtml" />
-    <Content Include="Views\Shared\_BootstrapLayout.basic.cshtml" />
-    <Content Include="Views\Shared\_alerts.cshtml" />
     <Content Include="Views\Salary\Index.cshtml" />
     <Content Include="Views\Alumni\Index.cshtml" />
     <Content Include="Views\Housing\Index.cshtml" />

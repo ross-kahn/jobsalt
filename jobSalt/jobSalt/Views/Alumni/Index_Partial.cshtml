@@ -1,4 +1,5 @@
 ﻿@model Dictionary<string, List<jobSalt.Models.Feature.Alumni.AlumniPost>>
+
 @using jobSalt.Models.Feature.Alumni;
 @foreach(string company in @Model.Keys)
 {
@@ -8,10 +9,11 @@
             <div class="post-details collapse">
                 @foreach (AlumniPost alumni in @Model[company])
                 {
-                    <div class="col-xs-6 col-md-4" style="min-height:140px">
+                    <div class="col-xs-12 col-md-4" style="min-height:160px">
                         <h4>@alumni.Name</h4>
                         <b>Location:</b> @alumni.Location.City, @alumni.Location.State<br />
                         <b>Major:</b> @alumni.FieldOfStudy<br />
+                        <b>Graduating Year:</b> @alumni.GraduatingYear<br />
                         <b>Email:</b> <a href="mailto:@alumni.Email" onclick="event.stopPropagation()">@alumni.Email</a><br />
                         <br />
                     </div>

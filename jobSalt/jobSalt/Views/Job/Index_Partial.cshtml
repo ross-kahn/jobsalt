@@ -1,4 +1,10 @@
 ﻿@model jobSalt.Models.Feature.Jobs.JobPost[]
+
+@using jobSalt.Models.Config;
+@{
+    var config = ConfigLoader.SiteConfig;
+}
+
 @for (int i = 0; i < Model.Count(); i++)
 {
     <div class="col-md-12 col-xs-12" style="padding:0px; margin-top: 10px">
@@ -14,11 +20,15 @@
                 <b>Source: @Model[i].SourceModule.Name</b><br />
                 <br />
                 <a href="@Model[i].URL" class="btn btn-primary btn-large" target="_blank" onclick="StopPropagation(event);">Go To Post</a>
-                <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">Search Alumni</a>
-                <a href="@Url.Action("HousingAtLocation", new { City = Model[i].Location.City, 
+                @if (config.AlumniEnabled) {
+                    <a href="@Url.Action("AlumniAtCompany", new { company = Model[i].Company, filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">Search Alumni</a>
+                }
+                @if (config.HousingEnabled) { 
+                    <a href="@Url.Action("HousingAtLocation", new { City = Model[i].Location.City, 
                                                                 State = Model[i].Location.State, 
                                                                 ZipCode = Model[i].Location.ZipCode,
                                                                 filterString = ViewBag.FilterString })" class="btn btn-primary btn-large" onclick="StopPropagation(event);">Search Housing Reviews</a>
+                }
             </div>
         </div>
     </div>

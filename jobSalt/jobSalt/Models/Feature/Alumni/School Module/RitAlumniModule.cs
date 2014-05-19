@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 
 namespace jobSalt.Models.Feature.Alumni.School_Module
@@ -37,7 +39,8 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
                     FieldOfStudy = grad.Program.name,
                     Name = grad.Student.FirstName + " " + "Smith",
                     PhoneNumber = "None found yet",
-                    Email = "StudentEmail@University.com"
+                    Email = "StudentEmail@University.com",
+                    GraduatingYear = grad.Student.CurrentExpectedGradTerm ?? 0
                 });
 
 
@@ -64,18 +67,60 @@ namespace jobSalt.Models.Feature.Alumni.School_Module
 
             foreach (var alum in AlumSearchQuery.ToList())
             {
-                if (posts.ContainsKey(alum.Company))
+                string company = alum.Company.Trim().ToLower();
+                Regex rgx = new Regex("[^a-zA-Z0-9 &-]");
+                company = rgx.Replace(company, "");
+                company = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(company);
+
+
+                if (posts.ContainsKey(company))
                 {
-                    posts[alum.Company].Add(alum);
+                    posts[company].Add(alum);
                 }
                 else
                 {
-                    posts.Add(alum.Company, new List<AlumniPost>() { alum });
+                    posts.Add(company, new List<AlumniPost>() { alum });
                 }
+
+                alum.GraduatingYear = ConvertTermToYear(alum.GraduatingYear);
                 
             }
 
             return posts;
+        }
+
+        private int ConvertTermToYear(int term)
+        {
+            if(term == 0)
+            {
+                return 0;
+            }
+
+            int year = 0;
+
+            if(term > 9999) // Dates in quarters
+            {
+                year = term / 10;
+                int quarter = term % (year * 10);
+                if (quarter > 2)
+                {
+                    year++;
+                }
+            }
+            else // Dates in semesters
+            {
+                int melenium = term / 1000;
+                int decade = (term / 10) % (100 * melenium);
+                int semester = term % (((melenium * 100) + decade)*10);
+
+                year = (melenium * 1000) + decade;
+                if (semester > 3)
+                {
+                    year++;
+                }
+            }
+
+            return year;
         }
     }
 }
